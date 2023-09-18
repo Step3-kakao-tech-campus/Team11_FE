@@ -46,6 +46,7 @@ export const PercentNnumberSt = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 0.7rem;
+  height: 0.7rem;
   p {
     font-size: 12px;
     font-weight: 600;

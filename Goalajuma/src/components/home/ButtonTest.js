@@ -26,6 +26,12 @@ export const ButtonTest = {
           optionCount: 100,
           optionRatio: 67,
         },
+        {
+          id: 3,
+          optionName: "마음대로해라마음대로",
+          optionCount: 100,
+          optionRatio: 17,
+        },
       ],
     },
   },
