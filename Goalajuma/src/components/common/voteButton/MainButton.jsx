@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MainButtonSt, BtnContents } from "../../../styles/VotingBtnStyle";
 import PercentNnumber from "./PercentNumber";
+import styled from "styled-components";
 
 const MainButton = ({
   value,
@@ -21,7 +22,7 @@ const MainButton = ({
   }, [choices, choice]);
 
   return (
-    <>
+    <ButtonContainer>
       <MainButtonSt onClick={clickButton} choice={choices} id={id}>
         <BtnContents choice={choices} id={id}>
           {name}
@@ -35,8 +36,13 @@ const MainButton = ({
       ) : (
         <></>
       )}
-    </>
+    </ButtonContainer>
   );
 };
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export default MainButton;
