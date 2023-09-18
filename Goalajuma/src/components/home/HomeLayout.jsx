@@ -1,13 +1,14 @@
+import { MainContainer } from "../../styles/Container";
 import ButtonLayout from "./ButtonLayout";
 const HomeLayout = ({ options, participants, isOwner }) => {
   return (
-    <div>
+    <MainContainer>
       <ButtonLayout
         options={options}
         participants={participants}
         isOwner={isOwner}
       ></ButtonLayout>
-    </div>
+    </MainContainer>
   );
 };
 

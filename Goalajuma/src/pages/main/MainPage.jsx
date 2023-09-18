@@ -1,4 +1,4 @@
-import HomeLayout from "../../components/home/ButtonLayout";
+import HomeLayout from "../../components/home/HomeLayout";
 import { ButtonTest } from "../../components/home/ButtonTest";
 
 const MainPage = () => {
