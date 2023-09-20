@@ -17,5 +17,6 @@ const StyledButton = styled.button`
 	padding:15px 120px;
   border-radius: 50px;
   font-size: 15px;
-
+	font-weight: bold;
+	background-color: #9EB0EA;
 `
