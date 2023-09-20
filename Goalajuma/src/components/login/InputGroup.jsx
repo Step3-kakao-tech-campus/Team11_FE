@@ -2,6 +2,7 @@ import Box from './Box';
 import Label from './Label';
 import Input from './Input';
 
+
 const InputGroup = ({id, type, value, onChange, className, placeholder, label }) => {
   return (
     <Box className={className}>
