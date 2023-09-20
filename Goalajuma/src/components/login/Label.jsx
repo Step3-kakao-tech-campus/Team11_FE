@@ -12,7 +12,8 @@ export default Label;
 
 const StyledLabel = styled.label`
   display:block;
-  margin: 5px 0;
+  margin: 10px 0;
   font-size: 18px;
   font-weight: bold;
+  text-align: left;
 `

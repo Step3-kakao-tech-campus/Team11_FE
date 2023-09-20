@@ -26,22 +26,24 @@ const LoginPage = () => {
         <span>계정이 없으신가요?</span>
         <button>회원가입하기</button>
       </Subheader>
-      <InputGroup
-        id="email"
-        type="email"
-        placeholder="이메일을 입력해주세요"
-        label="Email"
-        value={value.email}
-        onChange={handleOnChange}
-      />
-      <InputGroup
-        id="password"
-        type="password"
-        placeholder="******"
-        label="비밀번호"
-        value={value.password}
-        onChange={handleOnChange}
-      />
+      <Group>
+        <InputGroup
+          id="email"
+          type="email"
+          placeholder="이메일을 입력해주세요"
+          label="Email"
+          value={value.email}
+          onChange={handleOnChange}
+        />
+        <InputGroup
+          id="password"
+          type="password"
+          placeholder="******"
+          label="비밀번호"
+          value={value.password}
+          onChange={handleOnChange}
+        />
+      </Group>
       <Button>로그인</Button>
     </>
   );
@@ -74,4 +76,11 @@ const Subheader = styled.div`
     margin-left: 30px;
     color: #9EB0EA;
   }
+`
+const Group = styled.div`
+  position: relative;
+  bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 `
