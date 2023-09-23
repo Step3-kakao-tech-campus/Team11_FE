@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export const Dropdown = (items) => {
   const [open, setOpen] = useState(false);
@@ -16,17 +17,17 @@ export const Dropdown = (items) => {
 
   return (
     <Category className="dropdown">
-      <button onClick={handleDrop}>{items.items[main].category} ▼</button>
+      <StyledButton onClick={handleDrop}>{items.items[main].category}<ExpandMoreIcon style={{fontSize: 30}}/></StyledButton>
       {open ? (
       <Ul>
         {items.items.map((item) => 
-          <li key={item.id} className="item">
-            <button>
+          <Li key={item.id} className="item">
+            <StyledButton>
               <div className="category-name" onClick={() => handleCategory(item.id)}>
                 {item.category}
               </div>
-            </button>
-          </li>
+            </StyledButton>
+          </Li>
         )}
       </Ul>
       ) : null}
@@ -36,8 +37,24 @@ export const Dropdown = (items) => {
 
 const Category = styled.div`
   display: inline-block;
+  position: relative;
 `
+const StyledButton = styled.button`
+  display: flex;
+  align-items: center;
+  background-color:#fff;
+  color: #000;
+  padding: 0%;
+  border-radius: 0;
+  width: 85px;
+`;
+
 const Ul = styled.ul`
+  position: absolute;
   list-style: none;
   padding-left: 0px;
+`;
+
+const Li = styled.li`
+  margin: 0;
 `

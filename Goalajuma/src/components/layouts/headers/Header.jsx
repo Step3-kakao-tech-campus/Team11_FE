@@ -1,5 +1,6 @@
 import { Dropdown } from "./Dropdown"
 import styled from "styled-components";
+import SearchIcon from '@mui/icons-material/Search';
 
 export const Header = () => {
   const sortList = [
@@ -44,11 +45,14 @@ export const Header = () => {
   ];
   return (
     <Nav>
-      <Dropdown items={sortList} />
-      <Dropdown items={contentList} />
-      <button className="search-button">
-        검색이요
-      </button>
+      <CategoryBox>
+        <Dropdown items={sortList} />
+        <Dropdown items={contentList} />
+      </CategoryBox>
+      <SearchButton className="search-button">
+        <SearchIcon style={{fontSize: 35}}/>
+      </SearchButton>
+        
     </Nav>
   )
 }
@@ -61,4 +65,18 @@ const Nav = styled.nav`
   width: 100%;
   background: #FFF;
   color: #000;
+  display: flex;
+  align-items: center;
+`;
+
+const CategoryBox = styled.div`
+  margin-left: 15px;
+`
+
+const SearchButton  = styled.button`
+  padding: 0%;
+  background-color: #FFF;
+  color: #7192FF;
+  position: fixed;
+  right: 10px;
 `;
