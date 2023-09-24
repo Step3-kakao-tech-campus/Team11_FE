@@ -52,7 +52,6 @@ export const Header = () => {
       <SearchButton className="search-button">
         <SearchIcon style={{fontSize: 35}}/>
       </SearchButton>
-        
     </Nav>
   )
 }

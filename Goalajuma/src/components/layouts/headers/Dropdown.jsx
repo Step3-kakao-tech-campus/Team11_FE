@@ -22,7 +22,7 @@ export const Dropdown = (items) => {
       <Ul>
         {items.items.map((item) => 
           <Li key={item.id} className="item">
-            <StyledButton>
+            <StyledButton style={{backgroundColor: '#7192FF'}}>
               <div className="category-name" onClick={() => handleCategory(item.id)}>
                 {item.category}
               </div>
@@ -42,19 +42,22 @@ const Category = styled.div`
 const StyledButton = styled.button`
   display: flex;
   align-items: center;
-  background-color:#fff;
+  background-color: #fff;
   color: #000;
   padding: 0%;
   border-radius: 0;
-  width: 85px;
+  width: 88px;
+
 `;
 
 const Ul = styled.ul`
   position: absolute;
   list-style: none;
   padding-left: 0px;
+  padding-bottom: 0px;
 `;
 
 const Li = styled.li`
   margin: 0;
-`
+`;
+

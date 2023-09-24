@@ -1,34 +1,53 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {
-  Home,
-  HomeOutlined,
-  LocalFireDepartment,
-  LocalFireDepartmentOutlined, 
-  BorderColorOutlined, 
-  CheckBoxOutlined, 
-  CheckBox, 
-  AccountBoxOutlined
-} from "@mui/icons-material";
+import { useState } from "react";
+import routes from "../../../routes";
+import {GoHome, GoHomeFill, GoPlusCircle } from 'react-icons/go';
+import {AiOutlineFire, AiFillFire} from 'react-icons/ai';
+import {BsClipboardCheck, BsClipboardCheckFill, BsPerson} from 'react-icons/bs';
+
 
 export const Footer = () => {
+  const [page, setPage] = useState([true, false, false]); // home, hot, complete 
+  const handlePage = (index) => {
+    if (page[index] === true) {
+      console.log();
+    }
+    const newPage = page.map((item, i) => i === index);
+    setPage(newPage);
+  };
+
   return (
     <Nav>
       <LinkBox>
-        <LinkNav to={"./"}>
-          <Home style={{fontSize: 35}}/> 홈
+        <LinkNav to={routes.home}>
+          <div onClick={() => handlePage(0)}>
+            {page[0] ? <GoHomeFill fontSize={28}/> : <GoHome fontSize={28} />}
+          </div>
+          <div>홈</div>
         </LinkNav>
-        <LinkNav to={"./"}>
-          <LocalFireDepartmentOutlined style={{fontSize: 35}}/>HOT 게시판
+        <LinkNav to={routes.hot}>
+          <div onClick={() => handlePage(1)}>
+            { page[1] ? <AiFillFire fontSize={28}/> : <AiOutlineFire fontSize={28}/>}
+          </div>
+          <div>HOT</div>
         </LinkNav>
         <LinkNav to={""}>
-          <BorderColorOutlined style={{fontSize: 35}}/>투표 등록하기
+          <div>
+            <GoPlusCircle fontSize={40}/>
+          </div>
         </LinkNav>
-        <LinkNav to={"./"} >
-          <CheckBoxOutlined style={{fontSize: 35}}/>완료된 질문
+        <LinkNav to={routes.complete} >
+          <div onClick={() => handlePage(2)}>
+            { page[2] ? <BsClipboardCheckFill fontSize={28}/> : <BsClipboardCheck fontSize={28} /> }
+          </div>
+          <div>완료</div>
         </LinkNav>
-        <LinkNav to={"./login"}>
-          <AccountBoxOutlined style={{fontSize: 35}}/>로그인/가입
+        <LinkNav to={routes.login}>
+          <div>
+            <BsPerson fontSize={28}/>
+          </div>
+          <div>로그인</div>
         </LinkNav>
       </LinkBox>
     </Nav>
@@ -42,26 +61,22 @@ const Nav = styled.nav`
   width: 100%;
   height: 68px;
   background-color: #FFF;
-  font-size: 13px;
+  font-size: 12px;
 `;
 
 const LinkBox = styled.div`
   display: flex;
   justify-content: space-between;
-  &:nth-child(1){
-    margin-left: 15px;
-  }
-  &:nth-child(n){
-    margin-right: 15px;
-  }
+  margin: 0 30px ;
 `;
 
 const LinkNav = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 7px;
-  margin-bottom: 7px;
+  margin: 11px 0;
   color: #7192FF;
-`;
-
+  >div {
+    height: 28px;
+  }
+`

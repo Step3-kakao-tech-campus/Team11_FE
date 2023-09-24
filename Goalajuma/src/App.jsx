@@ -15,6 +15,8 @@ function App() {
           <Route path={routes.signup} element={<SignUpPage />}></Route>
           <Route element={<Layout/>}>
             <Route path={routes.home} element={<MainPage />}></Route>
+            <Route path={routes.hot} element={<MainPage/>}></Route>
+            <Route path={routes.complete} element={<MainPage/>}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
