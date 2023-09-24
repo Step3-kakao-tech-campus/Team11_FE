@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { MainButtonSt, BtnContents } from "../../../styles/VotingBtnStyle";
 import PercentNnumber from "./PercentNumber";
 import styled from "styled-components";
+import Modal from "react-modal";
 
 const MainButton = ({
   value,
@@ -11,20 +12,15 @@ const MainButton = ({
   choice,
   name,
   id,
+  img,
 }) => {
-  const [choices, setChoice] = useState(choice);
   //choice 할 때
-
-  useEffect(() => {
-    if (participant && choice == id) {
-      setChoice(true);
-    }
-  }, [choices, choice]);
 
   return (
     <ButtonContainer>
-      <MainButtonSt onClick={clickButton} choice={choices} id={id}>
-        <BtnContents choice={choices} id={id}>
+      {img ? <img src={img} alt="" /> : <></>}
+      <MainButtonSt onClick={clickButton} choice={choice} id={id}>
+        <BtnContents choice={choice} id={id}>
           {name}
         </BtnContents>
         <progress id={id} max="100" value={participant ? value : 0}>
@@ -32,7 +28,7 @@ const MainButton = ({
         </progress>
       </MainButtonSt>
       {participant ? (
-        <PercentNnumber value={value} number={number} choice={choices} />
+        <PercentNnumber value={value} number={number} choice={choice} />
       ) : (
         <></>
       )}

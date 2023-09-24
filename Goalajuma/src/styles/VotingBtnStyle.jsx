@@ -21,7 +21,7 @@ export const MainButtonSt = styled.div`
   }
   ::-webkit-progress-value {
     background-color: ${(props) =>
-      props.choice ? Palette["main_blue"] : Palette["main_gray"]};
+      props.choice == props.id ? Palette["main_blue"] : Palette["main_gray"]};
 
     transition: all 0.3s;
 
@@ -32,7 +32,7 @@ export const MainButtonSt = styled.div`
 export const BtnContents = styled.p`
   margin: 0 1.5rem;
   color: ${(props) =>
-    props.choice ? Palette["font_blue"] : Palette["font_gray"]};
+    props.choice == props.id ? Palette["font_blue"] : Palette["font_gray"]};
 
   position: relative;
   top: 2.1rem;
@@ -52,7 +52,7 @@ export const PercentNnumberSt = styled.div`
     font-weight: 600;
 
     color: ${(props) =>
-      props.choice ? Palette["font_blue"] : Palette["font_gray"]};
+      props.choice == props.id ? Palette["font_blue"] : Palette["font_gray"]};
   }
   p:first-child::after {
     content: "|";
