@@ -16,8 +16,10 @@
     "@mui/material": "^5.14.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.16.0",
-    "styled-components": "^6.0.8"
+    "styled-components": "^6.0.8",
+    "sweetalert2": "^11.7.28"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
