@@ -1,14 +1,16 @@
 import styled from "styled-components";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import InputGroup from "../../components/login/InputGroup"
 import Button from "../../components/login/Button";
 import { useState } from "react";
+import {GoChevronLeft} from "react-icons/go"
+import {RiKakaoTalkFill} from "react-icons/ri"
 
 
 const LoginPage = () => {
   const [value, setValue] = useState({email:"", password:""})
-  const handleClick = () => {
+  const handleClick = (e) => {
     window.history.back();
+    console.log(e)
   }
 
   const handleOnChange = (e) => {
@@ -19,7 +21,9 @@ const LoginPage = () => {
   return (
     <>
       <Header>
-        <ArrowBackIosNewIcon onClick={handleClick}/>
+        <StyledButton onClick={handleClick}> 
+          <GoChevronLeft />
+        </StyledButton>
         <Title>Goalajuma</Title>
       </Header>
       <Subheader>
@@ -28,6 +32,7 @@ const LoginPage = () => {
       </Subheader>
       <Group>
         <InputGroup
+          className="input"
           id="email"
           type="email"
           placeholder="이메일을 입력해주세요"
@@ -36,6 +41,7 @@ const LoginPage = () => {
           onChange={handleOnChange}
         />
         <InputGroup
+          className="input"
           id="password"
           type="password"
           placeholder="******"
@@ -44,13 +50,20 @@ const LoginPage = () => {
           onChange={handleOnChange}
         />
       </Group>
-      <Button>로그인</Button>
+      <Group>
+        <Button color="#9EB0EA">로그인</Button>
+        <Button color="#FEE500"> <Icon><RiKakaoTalkFill style={{paddingRight: '8px', fontSize: '20px'}}/></Icon>카카오 로그인</Button>
+      </Group>
     </>
   );
 };
 
 export default LoginPage;
 
+const Icon=styled.i`
+  position: relative;
+  top: 4px;
+`
 const Title = styled.div`
   font-size: 30px;
   font-weight: bold;
@@ -58,8 +71,8 @@ const Title = styled.div`
   width: 100%;
   margin: 0 auto;
   position: relative;
-  bottom: 10px;
-  right: 20px;
+  right: 35px;
+  top: 3px;
 `;
 const Header = styled.div`
   display: flex;
@@ -78,9 +91,18 @@ const Subheader = styled.div`
   }
 `
 const Group = styled.div`
-  position: relative;
-  bottom: 60px;
+
   display: flex;
   flex-direction: column;
   gap: 30px;
+  .input{
+    position: relative;
+    bottom: 60px;
+  }
+`
+const StyledButton = styled.button`
+  border: none;
+  padding: 10px;
+  background: none;
+  font-size:30px;
 `
