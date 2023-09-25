@@ -11,7 +11,7 @@ const ButtonLayout = ({ options, participants, isOwner }) => {
   const [choice, setChoice] = useState(options?.choice);
 
   const clickButton = (e) => {
-    if (participant === true) {
+    if (participant === true && choice !== e.target.id) {
       Swal.fire({
         icon: "info",
         text: "투표를 수정하시겠습니까?",
@@ -23,14 +23,13 @@ const ButtonLayout = ({ options, participants, isOwner }) => {
       }).then((result) => {
         if (result.isConfirmed) {
           setChoice(e.target.id);
-          //서버에 수정 요청 보내기
+          /** 서버에 수정 요청 보내기*/
         }
       });
     } else {
       setParticipant(true);
       setChoice(e.target.id);
     }
-    //이미 클릭된거는 클릭 막기.............
   };
   return (
     <>
@@ -46,6 +45,7 @@ const ButtonLayout = ({ options, participants, isOwner }) => {
               participant={participant}
               clickButton={clickButton}
               choice={choice}
+              src={option.image}
             />
           );
         })}
@@ -59,6 +59,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
+  align-items: flex-end;
 `;
 
 export default ButtonLayout;

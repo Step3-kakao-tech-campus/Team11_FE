@@ -21,7 +21,9 @@ export const MainButtonSt = styled.div`
   }
   ::-webkit-progress-value {
     background-color: ${(props) =>
-      props.choice == props.id ? Palette["main_blue"] : Palette["main_gray"]};
+      props.choice == props.id
+        ? Palette["percent_blue"]
+        : Palette["percent_gray"]};
 
     transition: all 0.3s;
 
@@ -56,7 +58,7 @@ export const PercentNnumberSt = styled.div`
   }
   p:first-child::after {
     content: "|";
-    color: ${Palette["main_gray"]};
+    color: ${Palette["percent_gray"]};
     font-weight: 800;
     margin: 0 0.3rem;
   }
