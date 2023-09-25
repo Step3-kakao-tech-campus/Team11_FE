@@ -4,21 +4,23 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: "NanumGothic";
-    //폰트 이게 아닌데
     line-height: 1.5;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: start;
     
-  }
-  #root {
-    max-width: 393px;
-    height: 852px;
-    padding: 0 48px;
-    margin-top: 5rem;
+    outline: none;
 
   }
+  * {
+    text-decoration: none;
+}
+  #root {
+  max-width: 390px;
+  max-height: 844px;
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+  margin-top: 5rem;
+}
+ 
 `;
 
 export default GlobalStyle;
