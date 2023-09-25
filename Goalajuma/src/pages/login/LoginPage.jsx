@@ -89,7 +89,6 @@ const Subheader = styled.div`
   }
 `
 const Group = styled.div`
-
   display: flex;
   flex-direction: column;
   gap: 30px;
