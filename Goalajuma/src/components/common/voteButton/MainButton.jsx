@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { MainButtonSt, BtnContents } from "../../../styles/VotingBtnStyle";
 import PercentNnumber from "./PercentNumber";
 import styled from "styled-components";
+import Modal from "react-modal";
+import Img from "../Img";
 
 const MainButton = ({
   value,
@@ -11,20 +13,15 @@ const MainButton = ({
   choice,
   name,
   id,
+  src,
 }) => {
-  const [choices, setChoice] = useState(choice);
   //choice 할 때
-
-  useEffect(() => {
-    if (participant && choice == id) {
-      setChoice(true);
-    }
-  }, [choices, choice]);
 
   return (
     <ButtonContainer>
-      <MainButtonSt onClick={clickButton} choice={choices} id={id}>
-        <BtnContents choice={choices} id={id}>
+      {src ? <Img src={src} /> : <></>}
+      <MainButtonSt onClick={clickButton} choice={choice} id={id}>
+        <BtnContents choice={choice} id={id}>
           {name}
         </BtnContents>
         <progress id={id} max="100" value={participant ? value : 0}>
@@ -32,7 +29,7 @@ const MainButton = ({
         </progress>
       </MainButtonSt>
       {participant ? (
-        <PercentNnumber value={value} number={number} choice={choices} />
+        <PercentNnumber value={value} number={number} choice={choice} />
       ) : (
         <></>
       )}
@@ -43,6 +40,7 @@ const MainButton = ({
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export default MainButton;
