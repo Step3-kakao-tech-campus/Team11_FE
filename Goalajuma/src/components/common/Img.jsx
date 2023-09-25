@@ -3,15 +3,14 @@ import styled from "styled-components";
 const ImgStyle = styled.img`
   width: 111px;
 `;
-export const ImgContainer = styled.div`
+const ImgContainer = styled.div`
   width: 111px;
   height: 111px;
   overflow: hidden;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: #fdfd00; */
 `;
 
 const Img = ({ src }) => {

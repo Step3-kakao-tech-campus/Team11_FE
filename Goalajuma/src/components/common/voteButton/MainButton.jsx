@@ -4,7 +4,6 @@ import PercentNnumber from "./PercentNumber";
 import styled from "styled-components";
 import Modal from "react-modal";
 import Img from "../Img";
-import { ImgContainer } from "../Img";
 
 const MainButton = ({
   value,

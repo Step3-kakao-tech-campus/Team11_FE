@@ -16,7 +16,7 @@ export const ButtonTest = {
       result: [
         {
           id: 1,
-          image: `vv.jpg`,
+          // image: `vv.jpg`,
           optionName: "걍 가라",
           optionCount: 500,
           optionRatio: 50,
@@ -29,7 +29,6 @@ export const ButtonTest = {
         },
         {
           id: 3,
-          image: `vv.jpg`,
           optionName: "마음대로해라마음대로",
           optionCount: 200,
           optionRatio: 20,
