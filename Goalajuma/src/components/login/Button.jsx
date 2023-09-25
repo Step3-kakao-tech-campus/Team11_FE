@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
-const Button = ({children, onClick, disabled, className}) => {
+const Button = ({children, color, onClick, disabled, className}) => {
 	return (
-		<StyledButton className = {className} disabled={disabled} onClick={(e) => {
+		<StyledButton color={color} className = {className} disabled={disabled} onClick={(e) => {
 			e.preventDefault()
 			onClick(e)
 		}}>
@@ -14,9 +14,10 @@ const Button = ({children, onClick, disabled, className}) => {
 export default Button;
 
 const StyledButton = styled.button`
-	padding:15px 120px;
+	width: 280px;
+	height: 50px;
   border-radius: 50px;
   font-size: 15px;
 	font-weight: bold;
-	background-color: #9EB0EA;
+	background-color: ${(props)=> props.color};
 `

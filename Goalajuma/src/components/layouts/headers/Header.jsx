@@ -46,7 +46,7 @@ export const Header = () => {
   return (
     <Nav>
       <CategoryBox>
-        <Dropdown items={sortList} />
+        <Dropdown items={sortList}/>
         <Dropdown items={contentList} />
       </CategoryBox>
       <SearchButton className="search-button">
