@@ -1,25 +1,41 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Palette } from "../../../styles/Palette";
 
 export const Dropdown = (items) => {
-  const [open, setOpen] = useState(false);
-  const [main, setMain] = useState(0);
+  const [drop, setDrop] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(items.items[0].category);
+  const dropdownRef = useRef(null);
 
   const handleDrop = () => {
-    setOpen(prev => !prev);
+    setDrop(prev => !prev);
   };
 
   const handleCategory = (num) => {
-    setMain(num);
+    setSelectedCategory(items.items[num].category);
     handleDrop();
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDrop(false);
+      }
+    };
+    // Add
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Remove 
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <Category className="dropdown">
-      <MainButton onClick={handleDrop}>{items.items[main].category}<ExpandMoreIcon style={{fontSize: 30}}/></MainButton>
-      {open ? (
+    <Category className="dropdown" ref={dropdownRef}>
+      <MainButton onClick={handleDrop}>{selectedCategory}<ExpandMoreIcon style={{fontSize: 30}}/></MainButton>
+      {drop ? (
       <Ul>
         {items.items.map((item) => 
           <Li key={item.id} className="item">
@@ -27,7 +43,7 @@ export const Dropdown = (items) => {
               {/* 다시 해보기 */}
               <div 
                 onClick={() => handleCategory(item.id)} 
-                style={item.id === main ? {color: Palette.font_blue, fontWeight: "bolder"}: null}
+                style={item.category === selectedCategory ? {color: Palette.font_blue, fontWeight: "bolder"}: null}
               > 
                 {item.category}
               </div>
