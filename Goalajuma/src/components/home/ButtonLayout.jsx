@@ -75,9 +75,10 @@ const ButtonLayout = ({ options, participants, isOwner }) => {
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2.5rem;
   justify-content: center;
   align-items: flex-end;
+  margin-bottom: 1rem;
 `;
 
 export default ButtonLayout;
