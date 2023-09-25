@@ -4,13 +4,13 @@ import { ButtonTest } from "../../components/home/ButtonTest";
 const MainPage = () => {
   const data = ButtonTest.data;
 
+  /**
+   * 무한스크롤 구현하기
+   */
+
   return (
     <div>
-      <HomeLayout
-        options={data.options}
-        participants={data.participant}
-        isOwner={data.isOwner}
-      />
+      <HomeLayout data={data} options={data.options} />
     </div>
   );
 };
