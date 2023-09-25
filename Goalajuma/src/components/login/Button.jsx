@@ -2,8 +2,7 @@ import styled from "styled-components"
 
 const Button = ({children, color, onClick, disabled, className}) => {
 	return (
-		<StyledButton color={color} className = {className} disabled={disabled} onClick={(e) => {
-			e.preventDefault()
+		<StyledButton color={color} className={`button ${className}`} disabled={disabled} onClick={(e) => {
 			onClick(e)
 		}}>
 			{children}

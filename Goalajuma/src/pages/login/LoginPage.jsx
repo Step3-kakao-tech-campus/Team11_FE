@@ -19,9 +19,9 @@ const LoginPage = () => {
   return (
     <>
       <Header>
-        <StyledButton onClick={()=>navigate(-1)}> 
+        <StyledIcon onClick={()=>navigate(-1)}> 
           <GoChevronLeft />
-        </StyledButton>
+        </StyledIcon>
         <Title>Goalajuma</Title>
       </Header>
       <Subheader>
@@ -63,14 +63,12 @@ const Icon=styled.i`
   top: 4px;
 `
 const Title = styled.div`
-  font-size: 30px;
+  font-size: 32px;
   font-weight: bold;
   color: #9EB0EA;
-  width: 100%;
-  margin: 0 auto;
   position: relative;
-  right: 60px;
-
+  bottom: 3px;
+  left: 25px;
 `;
 const Header = styled.div`
   display: flex;
@@ -84,7 +82,11 @@ const Subheader = styled.div`
   position: absolute;
   top: 120px;
   button{
-    margin-left: 30px;
+    border: none;
+    font-size: 15px;
+    border-radius: 50px;
+    padding: 10px 15px;
+    margin-left: 35px;
     color: #9EB0EA;
   }
 `
@@ -92,16 +94,16 @@ const Group = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  .input{
-    position: relative;
-    bottom: 60px;
+  position: relative;
+  top: 100px;
+  align-items: center;
+  .input:last-child{
+    margin-bottom: 50px;
   }
 `
-const StyledButton = styled.button`
+const StyledIcon = styled.button`
   border: none;
-  position: relative;
-  bottom: 10px;
-  right: 30px;
   background: none;
-  font-size:30px;
+  font-size:35px;
+  margin: 0 5px;
 `
