@@ -20,5 +20,9 @@ const StyledButton = styled.button`
   font-size: 15px;
 	background-color: ${(props)=> props.color};
   padding: 0.6em 1.2em;
-  font-weight: 500;
+  font-weight: 600;
+	color: #fff;
+	.kakao{
+		color: #333;
+	}
 `

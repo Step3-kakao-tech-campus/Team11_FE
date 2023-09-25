@@ -30,7 +30,7 @@ const LoginPage = () => {
       </Subheader>
       <Group>
         <InputGroup
-          className="input"
+          className="email"
           id="email"
           type="email"
           placeholder="이메일을 입력해주세요"
@@ -39,7 +39,7 @@ const LoginPage = () => {
           onChange={handleOnChange}
         />
         <InputGroup
-          className="input"
+          className="password"
           id="password"
           type="password"
           placeholder="******"
@@ -48,10 +48,10 @@ const LoginPage = () => {
           onChange={handleOnChange}
         />
       </Group>
-      <Group>
+      <ButtonGroup>
         <Button color="#9EB0EA" onClick={()=>{navigate("/")}}>로그인</Button>
-        <Button color="#FEE500"> <Icon><RiKakaoTalkFill style={{paddingRight: '8px', fontSize: '20px'}}/></Icon>카카오 로그인</Button>
-      </Group>
+        <Button className="kakao" color="#FEE500"> <Icon><RiKakaoTalkFill style={{paddingRight: '8px', fontSize: '20px'}}/></Icon>카카오 로그인</Button>
+      </ButtonGroup>
     </>
   );
 };
@@ -61,6 +61,7 @@ export default LoginPage;
 const Icon=styled.i`
   position: relative;
   top: 4px;
+  color: #333;
 `
 const Title = styled.div`
   font-size: 32px;
@@ -97,9 +98,14 @@ const Group = styled.div`
   position: relative;
   top: 100px;
   align-items: center;
-  .input:last-child{
-    margin-bottom: 50px;
-  }
+`
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;  
+  align-items: center;
+  position: relative;
+  top: 150px;
 `
 const StyledIcon = styled.button`
   border: none;
