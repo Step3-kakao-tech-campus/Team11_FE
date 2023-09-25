@@ -3,7 +3,7 @@ import { Footer } from "./footers/Footer";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
-export const Layout = () => {
+export const MainLayout = () => {
   return (
     <div>
       <Header></Header>
