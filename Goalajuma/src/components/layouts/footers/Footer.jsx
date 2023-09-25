@@ -7,7 +7,7 @@ import {AiOutlineFire, AiFillFire} from 'react-icons/ai';
 import {BsClipboardCheck, BsClipboardCheckFill, BsPerson} from 'react-icons/bs';
 
 
-export const Footer = () => {
+export const Footer = () => { // state를 페이지 명으로 해서 관리하는 것이 더 좋을 수도.. 시간 될 때 수정하자!!
   const [page, setPage] = useState([true, false, false]); // home, hot, complete 
   const handlePage = (index) => {
     if (page[index] === true) {

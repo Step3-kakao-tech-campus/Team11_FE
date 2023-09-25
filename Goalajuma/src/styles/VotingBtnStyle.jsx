@@ -5,6 +5,7 @@ export const MainButtonSt = styled.div`
   font-family: "NanumGothic";
   max-width: 295px;
   min-width: 120px;
+  margin-top: -1rem;
 
   ::-webkit-progress-bar {
     border-radius: 20px;

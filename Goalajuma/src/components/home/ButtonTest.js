@@ -10,7 +10,8 @@ export const ButtonTest = {
     endDate: "2023.09.14 18:00",
     active: "continue",
     title: "군대 가야할까요?..",
-    content: "여자친구와 ...",
+    content:
+      "대학교 2학년 학생입니다.여자친구와 사귄지 300일이 조금 넘었습니다. 여기 멘트 추천좀..ㅎ",
     options: {
       choice: null,
       result: [
@@ -23,6 +24,7 @@ export const ButtonTest = {
         },
         {
           id: 2,
+          // image: `vv.jpg`,
           optionName: "가지마라",
           optionCount: 300,
           optionRatio: 30,
