@@ -17,7 +17,9 @@ const StyledButton = styled.button`
 	width: 280px;
 	height: 50px;
   border-radius: 50px;
+	border: 1px solid transparent;
   font-size: 15px;
-	font-weight: bold;
 	background-color: ${(props)=> props.color};
+  padding: 0.6em 1.2em;
+  font-weight: 500;
 `
