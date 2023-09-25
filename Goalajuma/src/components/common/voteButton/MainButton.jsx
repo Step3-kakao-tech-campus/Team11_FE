@@ -3,6 +3,7 @@ import { MainButtonSt, BtnContents } from "../../../styles/VotingBtnStyle";
 import PercentNnumber from "./PercentNumber";
 import styled from "styled-components";
 import Modal from "react-modal";
+import Img from "../Img";
 
 const MainButton = ({
   value,
@@ -12,13 +13,13 @@ const MainButton = ({
   choice,
   name,
   id,
-  img,
+  src,
 }) => {
   //choice 할 때
 
   return (
     <ButtonContainer>
-      {img ? <img src={img} alt="" /> : <></>}
+      {src ? <Img src={src} /> : <></>}
       <MainButtonSt onClick={clickButton} choice={choice} id={id}>
         <BtnContents choice={choice} id={id}>
           {name}
@@ -39,6 +40,7 @@ const MainButton = ({
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export default MainButton;
