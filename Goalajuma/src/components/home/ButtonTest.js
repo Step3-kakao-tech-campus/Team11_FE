@@ -33,9 +33,37 @@ export const ButtonTest = {
       },
       {
         id: 2,
-        voteCount: 9000,
+        isOwner: false,
+        voteCount: 826,
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.14 18:00",
+        avtive: "continue",
+        participate: false,
+        title: "군대 가야할까요?..",
+        content:
+          "여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?",
+        options: [
+          {
+            id: 5,
+            optionName: "걍 가라",
+
+            optionCount: 12,
+            optionRatio: 50,
+          },
+          {
+            id: 6,
+            optionName: "가지마라",
+
+            optionCount: 12,
+            optionRatio: 50,
+          },
+        ],
+      },
+      {
+        id: 3,
+        voteCount: 9000,
+        createDate: "2023.09.14 18:00",
+        endDate: "2023.09.14 18:30",
         active: "continue",
         participate: false,
         title: "어떤걸 먹을까요?..",
@@ -44,14 +72,14 @@ export const ButtonTest = {
           {
             id: 3,
             optionName: "치킨",
-
+            image: "fire.png",
             optionCount: 12,
             optionRatio: 12,
           },
           {
             id: 4,
             optionName: "피자",
-
+            image: "vv.jpg",
             optionCount: 12,
             optionRatio: 12,
           },

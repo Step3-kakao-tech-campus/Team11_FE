@@ -22,6 +22,7 @@ const VoteButtom = ({ onClick, clickShare }) => {
 
 const VoteButtomStyle = styled.div`
   margin-top: 2rem;
+
   display: flex;
   justify-content: space-between;
   align-items: center;

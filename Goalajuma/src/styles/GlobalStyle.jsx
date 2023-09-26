@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
   
   text-align: center;
   margin-top: 5rem;
+  padding-bottom: 6rem;
 }
  
 `;
