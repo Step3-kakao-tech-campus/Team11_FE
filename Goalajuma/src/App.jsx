@@ -5,6 +5,8 @@ import routes from "./routes";
 import { MainLayout } from "./components/layouts/MainLayout";
 import MainPage from "./pages/main/MainPage";
 import GlobalStyle from "./styles/GlobalStyle";
+import HotPage from "./pages/hot/HotPage";
+import CompletePage from "./pages/complete/CompletePage";
 
 function App() {
   return (
@@ -17,8 +19,8 @@ function App() {
           <Route path={routes.signup} element={<SignUpPage />}></Route>
           <Route element={<MainLayout />}>
             <Route path={routes.home} element={<MainPage />}></Route>
-            <Route path={routes.hot} element={<MainPage />}></Route>
-            <Route path={routes.complete} element={<MainPage />}></Route>
+            <Route path={routes.hot} element={<HotPage />}></Route>
+            <Route path={routes.complete} element={<CompletePage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
