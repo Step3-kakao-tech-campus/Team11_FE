@@ -78,4 +78,5 @@ const SearchButton  = styled.button`
   color: #7192FF;
   position: fixed;
   right: 10px;
+  border-width: 0px;
 `;

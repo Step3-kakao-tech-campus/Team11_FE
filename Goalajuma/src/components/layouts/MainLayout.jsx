@@ -16,3 +16,4 @@ export const MainLayout = () => {
 const Content = styled(Outlet)`
   margin-top: 55px;
 `;
+
