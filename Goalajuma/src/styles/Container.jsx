@@ -8,3 +8,7 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const HomeContainer = styled.div`
+  padding-bottom: 7rem;
+`;
