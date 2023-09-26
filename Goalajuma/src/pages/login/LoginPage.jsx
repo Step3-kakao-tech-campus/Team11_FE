@@ -19,9 +19,9 @@ const LoginPage = () => {
   return (
     <>
       <Header>
-        <StyledButton onClick={()=>navigate(-1)}> 
+        <StyledIcon onClick={()=>navigate(-1)}> 
           <GoChevronLeft />
-        </StyledButton>
+        </StyledIcon>
         <Title>Goalajuma</Title>
       </Header>
       <Subheader>
@@ -30,7 +30,7 @@ const LoginPage = () => {
       </Subheader>
       <Group>
         <InputGroup
-          className="input"
+          className="email"
           id="email"
           type="email"
           placeholder="이메일을 입력해주세요"
@@ -39,7 +39,7 @@ const LoginPage = () => {
           onChange={handleOnChange}
         />
         <InputGroup
-          className="input"
+          className="password"
           id="password"
           type="password"
           placeholder="******"
@@ -48,10 +48,10 @@ const LoginPage = () => {
           onChange={handleOnChange}
         />
       </Group>
-      <Group>
+      <ButtonGroup>
         <Button color="#9EB0EA" onClick={()=>{navigate("/")}}>로그인</Button>
-        <Button color="#FEE500"> <Icon><RiKakaoTalkFill style={{paddingRight: '8px', fontSize: '20px'}}/></Icon>카카오 로그인</Button>
-      </Group>
+        <Button className="kakao" color="#FEE500"> <Icon><RiKakaoTalkFill style={{paddingRight: '8px', fontSize: '20px'}}/></Icon>카카오 로그인</Button>
+      </ButtonGroup>
     </>
   );
 };
@@ -61,16 +61,15 @@ export default LoginPage;
 const Icon=styled.i`
   position: relative;
   top: 4px;
+  color: #333;
 `
 const Title = styled.div`
-  font-size: 30px;
+  font-size: 32px;
   font-weight: bold;
   color: #9EB0EA;
-  width: 100%;
-  margin: 0 auto;
   position: relative;
-  right: 60px;
-
+  bottom: 3px;
+  left: 25px;
 `;
 const Header = styled.div`
   display: flex;
@@ -84,7 +83,11 @@ const Subheader = styled.div`
   position: absolute;
   top: 120px;
   button{
-    margin-left: 30px;
+    border: none;
+    font-size: 15px;
+    border-radius: 50px;
+    padding: 10px 15px;
+    margin-left: 35px;
     color: #9EB0EA;
   }
 `
@@ -92,16 +95,21 @@ const Group = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  .input{
-    position: relative;
-    bottom: 60px;
-  }
-`
-const StyledButton = styled.button`
-  border: none;
   position: relative;
-  bottom: 10px;
-  right: 30px;
+  top: 100px;
+  align-items: center;
+`
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;  
+  align-items: center;
+  position: relative;
+  top: 150px;
+`
+const StyledIcon = styled.button`
+  border: none;
   background: none;
-  font-size:30px;
+  font-size:35px;
+  margin: 0 5px;
 `
