@@ -1,41 +1,91 @@
 export const ButtonTest = {
   status: "200",
-  message: "투표 조회 성공",
+  message: "응답 성공",
   data: {
-    id: 1,
-    isOwner: false,
-    participant: false,
-    voteCount: 826,
-    createDate: "2023.09.13 18:00",
-    endDate: "2023.09.14 18:00",
-    active: "continue",
-    title: "군대 가야할까요?..",
-    content:
-      "대학교 2학년 학생입니다.여자친구와 사귄지 300일이 조금 넘었습니다. 여기 멘트 추천좀..ㅎ",
-    options: {
-      choice: null,
-      result: [
-        {
-          id: 1,
-          // image: `vv.jpg`,
-          optionName: "걍 가라",
-          optionCount: 500,
-          optionRatio: 50,
-        },
-        {
-          id: 2,
-          // image: `vv.jpg`,
-          optionName: "가지마라",
-          optionCount: 300,
-          optionRatio: 30,
-        },
-        {
-          id: 3,
-          optionName: "마음대로해라마음대로",
-          optionCount: 200,
-          optionRatio: 20,
-        },
-      ],
-    },
+    votes: [
+      {
+        id: 1,
+        isOwner: false,
+        voteCount: 826,
+        createDate: "2023.09.14 18:00",
+        endDate: "2023.09.14 18:00",
+        avtive: "continue",
+        participate: false,
+        title: "군대 가야할까요?..",
+        content:
+          "여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?",
+        options: [
+          {
+            id: 1,
+            optionName: "걍 가라",
+
+            optionCount: 12,
+            optionRatio: 50,
+          },
+          {
+            id: 2,
+            optionName: "가지마라",
+
+            optionCount: 12,
+            optionRatio: 50,
+          },
+        ],
+      },
+      {
+        id: 2,
+        isOwner: false,
+        voteCount: 826,
+        createDate: "2023.09.14 18:00",
+        endDate: "2023.09.14 18:00",
+        avtive: "continue",
+        participate: false,
+        title: "군대 가야할까요?..",
+        content:
+          "여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?",
+        options: [
+          {
+            id: 5,
+            optionName: "걍 가라",
+
+            optionCount: 12,
+            optionRatio: 50,
+          },
+          {
+            id: 6,
+            optionName: "가지마라",
+
+            optionCount: 12,
+            optionRatio: 50,
+          },
+        ],
+      },
+      {
+        id: 3,
+        voteCount: 9000,
+        createDate: "2023.09.14 18:00",
+        endDate: "2023.09.14 18:30",
+        active: "continue",
+        participate: false,
+        title: "어떤걸 먹을까요?..",
+        content: " 치킨이랑 피자중에 뭐먹을까요? 코파일럿 사용했어요",
+        options: [
+          {
+            id: 3,
+            optionName: "치킨",
+            image: "fire.png",
+            optionCount: 12,
+            optionRatio: 12,
+          },
+          {
+            id: 4,
+            optionName: "피자",
+            image: "vv.jpg",
+            optionCount: 12,
+            optionRatio: 12,
+          },
+        ],
+      },
+    ],
   },
+  isLast: "true",
 };

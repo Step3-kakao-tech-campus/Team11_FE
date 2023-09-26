@@ -9,7 +9,7 @@ const ButtonLayout = ({ options, participants, isOwner }) => {
   //서버에서 받아온 value, number 값
   const login = localStorage.getItem("token");
   const navigate = useNavigate();
-  const optionList = options?.result;
+  const optionList = options;
   const [participant, setParticipant] = useState(participants);
   const [choice, setChoice] = useState(options?.choice);
 

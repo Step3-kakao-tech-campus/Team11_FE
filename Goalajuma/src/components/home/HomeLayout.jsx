@@ -4,13 +4,33 @@ import VoteHead from "./VoteHead";
 import MainContent from "./MainContent";
 import VoteButtom from "../common/voteButton/VoteButtom";
 import styled from "styled-components";
-const HomeLayout = ({ data, options }) => {
-  const { id, voteCount, participants, isOwner, title, content } = data;
-
+const HomeLayout = ({ data, options, what }) => {
+  const {
+    id,
+    voteCount,
+    participants,
+    isOwner,
+    title,
+    content,
+    createDate,
+    endDate,
+  } = data;
+  const clickModal = () => {
+    alert("모달창!!!!");
+  };
+  const share = () => {
+    alert("공유하기");
+  };
   return (
     <MainContainer>
+      {}
       <Container>
-        <VoteHead voteCount={voteCount}></VoteHead>
+        <VoteHead
+          voteCount={voteCount}
+          createDate={createDate}
+          endDate={endDate}
+          what={what}
+        ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 
         <ButtonLayout
@@ -19,7 +39,7 @@ const HomeLayout = ({ data, options }) => {
           isOwner={isOwner}
         ></ButtonLayout>
 
-        <VoteButtom></VoteButtom>
+        <VoteButtom onClick={clickModal} clickShare={share}></VoteButtom>
       </Container>
     </MainContainer>
   );
