@@ -15,11 +15,7 @@ function App() {
         <Routes>
           <Route path={routes.login} element={<LoginPage />}></Route>
           <Route path={routes.signup} element={<SignUpPage />}></Route>
-<<<<<<< HEAD
           <Route element={<MainLayout />}>
-=======
-          <Route element={<MainLayout/>}>
->>>>>>> 56df394aeaa4d3b88709f6722c2fc2a35c16b0c5
             <Route path={routes.home} element={<MainPage />}></Route>
             <Route path={routes.hot} element={<MainPage />}></Route>
             <Route path={routes.complete} element={<MainPage />}></Route>
