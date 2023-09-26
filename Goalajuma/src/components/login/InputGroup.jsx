@@ -13,3 +13,4 @@ const InputGroup = ({id, type, value, onChange, className, placeholder, label })
 }
 
 export default InputGroup
+
