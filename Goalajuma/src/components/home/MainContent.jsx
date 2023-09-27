@@ -19,7 +19,7 @@ const MainContentStyle = styled.div`
     font-size: 23px;
     font-weight: 900;
     color: #000000;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
   span {
     font-size: 13px;

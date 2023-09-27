@@ -1,15 +1,16 @@
 import HomeLayout from "../../components/home/HomeLayout";
-import { ButtonTest } from "../../components/home/ButtonTest";
+import { ButtonTest2 } from "../../components/home/ButtonTest";
 import { HomeContainer } from "../../styles/Container";
+const CompletePage = () => {
+  const datas = ButtonTest2.data.votes;
 
-const MainPage = () => {
-  const datas = ButtonTest.data.votes;
   /**
    * 무한스크롤 구현하기
    */
 
   return (
     <HomeContainer>
+      {" "}
       {datas &&
         datas.map((data, id) => (
           <>
@@ -17,9 +18,9 @@ const MainPage = () => {
             <HomeLayout
               id={id}
               data={data}
+              options={data.options.result}
               choice={data.options.choice}
-              options={data.options}
-              what="main"
+              what="complete"
             />
           </>
         ))}
@@ -27,4 +28,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default CompletePage;

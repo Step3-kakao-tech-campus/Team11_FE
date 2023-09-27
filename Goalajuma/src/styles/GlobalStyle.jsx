@@ -16,9 +16,10 @@ const GlobalStyle = createGlobalStyle`
   max-width: 390px;
   max-height: 844px;
   margin: 0 auto;
-  padding: 0 40px;
+  
   text-align: center;
   margin-top: 5rem;
+  padding-bottom: 6rem;
 }
  
 `;
