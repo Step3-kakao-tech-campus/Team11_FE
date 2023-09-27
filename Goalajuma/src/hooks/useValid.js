@@ -55,10 +55,9 @@ const useValid = (initialValue) => {
       setIsValid({...isValid, isPasswordConfirm: false})
     } else{
       setValidText('')
-      setIsValid({...isValid, isPasswordConfirm:true})
+      setIsValid({...isValid, isPasswordConfirm: initialValue.passwordConfirm ? true : false})
     }
-  },[initialValue.passwordConfirm])
-
+  },[initialValue.passwordConfirm, initialValue.password])
   return {validText, isValid}
 }
 
