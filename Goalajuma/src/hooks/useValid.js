@@ -2,16 +2,28 @@ import { useEffect, useState } from "react";
 
 const useValid = (initialValue) => {
   const [validText, setValidText] = useState({
+    nameText:'',
     emailText:'',
     passwordText:'',
     passwordConfirmText:''
   })
   const [isValid, setIsValid] = useState({
+    isName:false,
     isEmail: false,
     isPassword: false,
     isPasswordConfirm: false
   })
 
+  // name validation
+  useEffect(()=>{
+    if(!initialValue.name){
+      setValidText({...validText, nameText: '닉네임은 필수 입력사항입니다'})
+      setIsValid({...isValid, isName: false})
+    } else{
+      setValidText('')
+      setIsValid({...isValid, isName: true})
+    }
+  },[initialValue.name])
   // email validation
   useEffect(()=>{
     const exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
