@@ -50,12 +50,11 @@ export const PercentNnumberSt = styled.div`
   justify-content: center;
   margin-top: 0.7rem;
   height: 0.7rem;
+  color: ${(props) =>
+    props.choice == props.id ? Palette["font_blue"] : Palette["font_gray"]};
   p {
     font-size: 12px;
     font-weight: 600;
-
-    color: ${(props) =>
-      props.choice == props.id ? Palette["font_blue"] : Palette["font_gray"]};
   }
   p:first-child::after {
     content: "|";
