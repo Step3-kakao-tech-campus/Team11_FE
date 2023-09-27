@@ -1,8 +1,8 @@
 import HomeLayout from "../../components/home/HomeLayout";
-import { ButtonTest } from "../../components/home/ButtonTest";
+import { ButtonTest2 } from "../../components/home/ButtonTest";
 import { HomeContainer } from "../../styles/Container";
 const CompletePage = () => {
-  const datas = ButtonTest.data.votes;
+  const datas = ButtonTest2.data.votes;
 
   /**
    * 무한스크롤 구현하기
@@ -18,7 +18,8 @@ const CompletePage = () => {
             <HomeLayout
               id={id}
               data={data}
-              options={data.options}
+              options={data.options.result}
+              choice={data.options.choice}
               what="complete"
             />
           </>

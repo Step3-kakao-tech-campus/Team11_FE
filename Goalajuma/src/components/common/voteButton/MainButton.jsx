@@ -14,6 +14,8 @@ const MainButton = ({
   name,
   id,
   src,
+  isOwner,
+  active,
 }) => {
   //choice 할 때
 
@@ -24,12 +26,16 @@ const MainButton = ({
         <BtnContents choice={choice} id={id}>
           {name}
         </BtnContents>
-        <progress id={id} max="100" value={participant ? value : 0}>
+        <progress
+          id={id}
+          max="100"
+          value={participant || isOwner || active === "finish" ? value : 0}
+        >
           {" "}
         </progress>
       </MainButtonSt>
-      {participant ? (
-        <PercentNnumber value={value} number={number} choice={choice} />
+      {participant || isOwner || active === "finish" ? (
+        <PercentNnumber value={value} number={number} choice={choice} id={id} />
       ) : (
         <></>
       )}
