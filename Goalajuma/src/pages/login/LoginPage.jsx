@@ -148,7 +148,6 @@ const StyledErr = styled.div`
   position: absolute;
   left: 20px;
 `;
-
 const StyledEmailErr = styled(StyledErr)`
   top: 100px;
 `;
