@@ -3,7 +3,9 @@ import {GoChevronLeft} from "react-icons/go"
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/login/Button";
 import InputGroup from "../../components/login/InputGroup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {MainContainer} from '../../styles/Container';
+import useValid from "../../hooks/useValid";
 
 const SignUpPage = () => {
   const [allAgree, setAllAgree] = useState(false)
@@ -13,8 +15,10 @@ const SignUpPage = () => {
     name:"",
     email:"", 
     password:"",
-    checkPW:""
+    passwordConfirm:""
   })
+  // 유효성 검사 text 반환을 위한 커스텀 훅 
+  const {validText, isValid} = useValid(value)
   const navigate = useNavigate()
   const handleOnChange = (e) => {
     const {id, value} = e.target
@@ -40,7 +44,7 @@ const SignUpPage = () => {
   }
 
   return (
-    <>
+    <MainContainer>
       <Header>
         <StyledIcon onClick={()=>navigate(-1)}> 
           <GoChevronLeft />
@@ -57,6 +61,7 @@ const SignUpPage = () => {
           value={value.name}
           onChange={handleOnChange}
         />
+        <StyledNameErr>{validText.nameText}</StyledNameErr>
         <InputGroup
           className="email"
           id="email"
@@ -66,6 +71,7 @@ const SignUpPage = () => {
           value={value.email}
           onChange={handleOnChange}
         />
+        <StyledEmailErr>{validText.emailText}</StyledEmailErr>
         <InputGroup
           className="password"
           id="password"
@@ -75,15 +81,17 @@ const SignUpPage = () => {
           value={value.password}
           onChange={handleOnChange}
         />
+        <StyledPasswordErr>{validText.passwordText}</StyledPasswordErr>
         <InputGroup
-          className="checkPW"
-          id="checkPW"
-          type="checkPW"
+          className="passwordConfirm"
+          id="passwordConfirm"
+          type="passwordConfirm"
           placeholder="비밀번호를 다시 입력해주세요"
           label="비밀번호 확인"
-          value={value.password}
+          value={value.passwordConfirm}
           onChange={handleOnChange}
         />
+        <StyledPwConfirmErr>{validText.passwordConfirmText}</StyledPwConfirmErr>
       </Group>
       <StyledButton onClick={()=>navigate("/")}>중복 검사</StyledButton>
       <PolicyGroup>
@@ -101,9 +109,21 @@ const SignUpPage = () => {
         </Policy>
       </PolicyGroup>
       <ButtonGroup>
-        <Button color="#9EB0EA" onClick={()=>navigate("/login")}>가입 완료</Button>
+        <Button 
+        color="#9EB0EA" 
+        onClick={()=>navigate("/login")} 
+        disabled={
+          isValid.isName && 
+          isValid.isEmail && 
+          isValid.isPassword && 
+          isValid.isPasswordConfirm
+          ? false 
+          : true
+        }>
+          가입 완료
+        </Button>
       </ButtonGroup>
-    </>
+    </MainContainer>
   )
 }
 
@@ -158,7 +178,7 @@ const StyledButton = styled.button`
   font-weight: 500;
   color: #fff;
   position: absolute;
-  top: 290px;
+  top: 293px;
   right: 60px;
 `
 const PolicyGroup = styled.div`
@@ -166,13 +186,28 @@ const PolicyGroup = styled.div`
   flex-direction: column;
   gap: 10px;
   position: relative;
-  top: 70px;
+  top: 80px;
   text-align: left;
 `
 const Policy = styled.div`
   display: flex;
   gap: 5px;
-  input{
-    border-radius: 50px;
-  }
 `
+const StyledErr = styled.div`
+  color: #e45151;
+  font-size: 13px;
+  position: absolute;
+  left: 20px;
+`;
+const StyledNameErr = styled(StyledErr)`
+  top: 100px;
+`;
+const StyledEmailErr = styled(StyledErr)`
+  top: 225px;
+`
+const StyledPasswordErr = styled(StyledErr)`
+  top: 350px;
+`;
+const StyledPwConfirmErr = styled(StyledErr)`
+  top: 475px;
+`;
