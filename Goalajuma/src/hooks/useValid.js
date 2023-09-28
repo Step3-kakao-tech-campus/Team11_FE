@@ -24,6 +24,7 @@ const useValid = (initialValue) => {
       setIsValid({...isValid, isName: true})
     }
   },[initialValue.name])
+
   // email validation
   useEffect(()=>{
     const exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -37,16 +38,20 @@ const useValid = (initialValue) => {
   }, [initialValue.email])
 
   // password validation
-  useEffect(()=>{
-    const exp = /[\s\S]{8,}/
-    if(initialValue.password && !exp.test(initialValue.password)){
-      setValidText({...validText, passwordText:'8글자 이상 입력해주세요!' })
-      setIsValid({...isValid, isPassword: false})
-    } else{
-      setValidText('')
-      setIsValid({...isValid, isPassword: true})
+  useEffect(() => {
+    if (initialValue.password && initialValue.password.length < 8) {
+      const updatedValidText = { ...validText, passwordText: '8글자 이상 입력해주세요!' };
+      setValidText(updatedValidText);
+      
+      const updatedIsValid = { ...isValid, isPassword: false };
+      setIsValid(updatedIsValid);
+    } else {
+      setValidText({ ...validText, passwordText: '' });
+      
+      const updatedIsValid = { ...isValid, isPassword: true };
+      setIsValid(updatedIsValid);
     }
-  }, [initialValue.password])
+  }, [initialValue.password, validText.passwordText, isValid.isPassword]);
 
   // passwordConfirm validation
   useEffect(()=>{
@@ -58,6 +63,7 @@ const useValid = (initialValue) => {
       setIsValid({...isValid, isPasswordConfirm: initialValue.passwordConfirm ? true : false})
     }
   },[initialValue.passwordConfirm, initialValue.password])
+  
   return {validText, isValid}
 }
 

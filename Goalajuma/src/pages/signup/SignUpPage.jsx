@@ -28,7 +28,6 @@ const SignUpPage = () => {
     const value = e.target.checked
     setAgreeService(value)
     setAgreePollcy(value)
-
   }
   const handleAgree = (e)=>{
     const{name, checked} = e.target
@@ -42,7 +41,7 @@ const SignUpPage = () => {
       setAllAgree(false)
     }
   }
-
+  console.log('signup', isValid.isPassword)
   return (
     <MainContainer>
       <Header>
@@ -76,7 +75,7 @@ const SignUpPage = () => {
           className="password"
           id="password"
           type="password"
-          placeholder="영문, 숫자, 특수문자 포함 8자 이상"
+          placeholder="8글자 이상 입력해주세요"
           label="비밀번호"
           value={value.password}
           onChange={handleOnChange}
@@ -85,7 +84,7 @@ const SignUpPage = () => {
         <InputGroup
           className="passwordConfirm"
           id="passwordConfirm"
-          type="passwordConfirm"
+          type="password"
           placeholder="비밀번호를 다시 입력해주세요"
           label="비밀번호 확인"
           value={value.passwordConfirm}
@@ -116,7 +115,8 @@ const SignUpPage = () => {
           isValid.isName && 
           isValid.isEmail && 
           isValid.isPassword && 
-          isValid.isPasswordConfirm
+          isValid.isPasswordConfirm &&
+          agreePollcy && agreeService
           ? false 
           : true
         }>
