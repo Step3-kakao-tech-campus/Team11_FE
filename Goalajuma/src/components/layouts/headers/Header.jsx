@@ -1,4 +1,4 @@
-import { Dropdown } from "./Dropdown"
+import { Dropdown } from "./Dropdown";
 import styled from "styled-components";
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -44,28 +44,28 @@ export const Header = () => {
     },
   ];
   return (
-    <Nav>
-      <CategoryBox>
-        <Dropdown items={sortList}/>
-        <Dropdown items={contentList} />
-      </CategoryBox>
-      <SearchButton className="search-button">
-        <SearchIcon style={{fontSize: 35}}/>
-      </SearchButton>
-    </Nav>
+      <Nav>
+        <CategoryBox>
+          <Dropdown items={sortList}/>
+          <Dropdown items={contentList} />
+        </CategoryBox>
+        <SearchButton className="search-button">
+          <SearchIcon style={{fontSize: 35}}/>
+        </SearchButton>
+      </Nav>
   )
 }
 
 const Nav = styled.nav`
   height: 55px;
   position: fixed;
-  left: 0px;
   top: 0px;
-  width: 100%;
-  background: #FFF;
+  width: 390px;
+  background-color: #FFF;
   color: #000;
   display: flex;
   align-items: center;
+  z-index: 500;
 `;
 
 const CategoryBox = styled.div`
@@ -74,9 +74,11 @@ const CategoryBox = styled.div`
 
 const SearchButton  = styled.button`
   padding: 0%;
-  background-color: #FFF;
+  position: absolute;
+  right: 15px;
   color: #7192FF;
-  position: fixed;
-  right: 10px;
+  background-color: #fff;
+  /* position: fixed; */
+  /* right: 10px; */
   border-width: 0px;
 `;
