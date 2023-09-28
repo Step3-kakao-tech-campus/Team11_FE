@@ -10,6 +10,17 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+export const JoinContainer = styled.div`
+  max-width: 310px;
+  min-width: 210px;
+  height: 100%;
+
+  padding: 0 40px;
+  margin-top: 80px;
+
+  display: flex;
+  flex-direction: column;
+`;
 
 export const HomeContainer = styled.div`
   padding-bottom: 7rem;
