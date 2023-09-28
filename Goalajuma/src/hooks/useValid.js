@@ -39,17 +39,26 @@ const useValid = (initialValue) => {
 
   // password validation
   useEffect(() => {
-    if (initialValue.password && initialValue.password.length < 8) {
+    if(initialValue.password.length === 0){
+      const updatedIsValid = { ...isValid, isPassword: false };
+      setIsValid(updatedIsValid);
+      const updatedValidText = { ...validText, passwordText: '' };
+      setValidText(updatedValidText);
+    }
+    else if (initialValue.password.length < 8) {
       const updatedValidText = { ...validText, passwordText: '8글자 이상 입력해주세요!' };
       setValidText(updatedValidText);
       
       const updatedIsValid = { ...isValid, isPassword: false };
       setIsValid(updatedIsValid);
-    } else {
+    } 
+    else {
       setValidText({ ...validText, passwordText: '' });
       
-      const updatedIsValid = { ...isValid, isPassword: true };
-      setIsValid(updatedIsValid);
+      if (!isValid.isPassword) {
+        const updatedIsValid = { ...isValid, isPassword: true };
+        setIsValid(updatedIsValid);
+      }
     }
   }, [initialValue.password, validText.passwordText, isValid.isPassword]);
 
