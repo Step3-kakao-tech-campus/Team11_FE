@@ -19,7 +19,7 @@ const LoginPage = () => {
 
   // 유효성 검사 text 반환을 위한 커스텀 훅 
   const {validText, isValid} = useValid(value)
-  console.log(isValid.isPassword)
+
   return (
     <MainContainer>
       <Header>

@@ -41,7 +41,7 @@ const SignUpPage = () => {
       setAllAgree(false)
     }
   }
-  console.log('signup', isValid.isPassword)
+
   return (
     <MainContainer>
       <Header>
