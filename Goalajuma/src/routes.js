@@ -4,6 +4,7 @@ const routes = {
   login: "/login",
   hot: "/hot",
   complete: "/complete",
+  mypage: "/mypage",
 };
 
 export default routes;
