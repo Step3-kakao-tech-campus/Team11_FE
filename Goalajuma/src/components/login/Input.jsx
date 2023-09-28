@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Input = ({type, value, className, onChange, placeholder, id}) => {
+const Input = ({type, value, className, onChange, placeholder, id, valid}) => {
   return (
     <StyledInput 
       id={id}
@@ -9,6 +9,7 @@ const Input = ({type, value, className, onChange, placeholder, id}) => {
       value={value} 
       onChange={onChange} 
       placeholder={placeholder}
+      valid={valid}
     />
   )
 }

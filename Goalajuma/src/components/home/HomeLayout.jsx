@@ -4,7 +4,7 @@ import VoteHead from "./VoteHead";
 import MainContent from "./MainContent";
 import VoteButtom from "../common/voteButton/VoteButtom";
 import styled from "styled-components";
-const HomeLayout = ({ data, options, what }) => {
+const HomeLayout = ({ data, options, what, choice }) => {
   const {
     id,
     voteCount,
@@ -14,6 +14,7 @@ const HomeLayout = ({ data, options, what }) => {
     content,
     createDate,
     endDate,
+    active,
   } = data;
   const clickModal = () => {
     alert("모달창!!!!");
@@ -37,6 +38,8 @@ const HomeLayout = ({ data, options, what }) => {
           options={options}
           participants={participants}
           isOwner={isOwner}
+          active={active}
+          choice={choice}
         ></ButtonLayout>
 
         <VoteButtom onClick={clickModal} clickShare={share}></VoteButtom>

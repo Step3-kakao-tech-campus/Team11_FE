@@ -17,6 +17,7 @@ const MainPage = () => {
             <HomeLayout
               id={id}
               data={data}
+              choice={data.options.choice}
               options={data.options}
               what="main"
             />

@@ -15,7 +15,13 @@ const HotPage = () => {
       {datas &&
         datas.map((data, id) => (
           <>
-            <HomeLayout id={id} data={data} options={data.options} what="hot" />
+            <HomeLayout
+              id={id}
+              data={data}
+              options={data.options}
+              what="hot"
+              choice={data.options.choice}
+            />
           </>
         ))}
     </HomeContainer>
