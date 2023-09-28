@@ -18,7 +18,6 @@ const Profile = ({ userName, email, src }) => {
 const ProfileStyle = styled.div`
   width: 100%;
   height: 157px;
-  background-color: #ffe88d;
 
   display: flex;
   align-items: center;

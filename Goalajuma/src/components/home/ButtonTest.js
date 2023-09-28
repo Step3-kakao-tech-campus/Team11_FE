@@ -8,7 +8,7 @@ export const ButtonTest = {
         isOwner: true,
         voteCount: 826,
         createDate: "2023.09.14 18:00",
-        endDate: "2023.9.28 00:20",
+        endDate: "2023.9.29 00:37",
         active: "continue",
         participate: false,
         title: "군대 가야할까요?..",
