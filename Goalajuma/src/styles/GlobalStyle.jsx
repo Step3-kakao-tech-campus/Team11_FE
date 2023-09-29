@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
   margin: 0 auto;
   
   text-align: center;
-  margin-top: 5rem;
+  margin-top: 55px;
   padding-bottom: 6rem;
 }
  

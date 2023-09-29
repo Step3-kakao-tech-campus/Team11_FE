@@ -7,6 +7,9 @@ import MainPage from "./pages/main/MainPage";
 import GlobalStyle from "./styles/GlobalStyle";
 import HotPage from "./pages/hot/HotPage";
 import CompletePage from "./pages/complete/CompletePage";
+import MyPage from "./pages/my/Mypage";
+import MyQuestionPage from "./pages/my/MyQuestionPage";
+import MyParticipatePage from "./pages/my/MyParticipatePage";
 
 function App() {
   return (
@@ -21,6 +24,16 @@ function App() {
             <Route path={routes.home} element={<MainPage />}></Route>
             <Route path={routes.hot} element={<HotPage />}></Route>
             <Route path={routes.complete} element={<CompletePage />}></Route>
+            <Route path={routes.mypage} element={<MyPage />}></Route>
+            <Route
+              path={routes.myquestion}
+              element={<MyQuestionPage />}
+            ></Route>
+            <Route
+              path={routes.myparticipation}
+              element={<MyParticipatePage />}
+            ></Route>
+            {/* 마이페이지는 로그인 한 회원만 접근 가능하게 하기 */}
           </Route>
         </Routes>
       </BrowserRouter>

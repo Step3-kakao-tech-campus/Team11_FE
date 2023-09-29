@@ -5,7 +5,7 @@ import { useState } from "react";
 import { GoChevronLeft } from "react-icons/go";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import {MainContainer} from '../../styles/Container';
+import { MainContainer } from "../../styles/Container";
 import useValid from "../../hooks/useValid";
 
 const LoginPage = () => {
@@ -17,8 +17,8 @@ const LoginPage = () => {
     setValue((prev) => ({ ...prev, [id]: value }));
   };
 
-  // 유효성 검사 text 반환을 위한 커스텀 훅 
-  const {validText, isValid} = useValid(value)
+  // 유효성 검사 text 반환을 위한 커스텀 훅
+  const { validText, isValid } = useValid(value);
 
   return (
     <MainContainer>
@@ -75,7 +75,12 @@ const LoginPage = () => {
         <Button color="#FEE500">
           <Icon>
             <RiKakaoTalkFill
-              style={{ paddingRight: "8px", fontSize: "20px", position: "relative", top:'4px'}}
+              style={{
+                paddingRight: "8px",
+                fontSize: "20px",
+                position: "relative",
+                top: "4px",
+              }}
             />
             카카오 로그인
           </Icon>
@@ -93,7 +98,7 @@ const Icon = styled.div`
 const Title = styled.div`
   font-size: 32px;
   font-weight: bold;
-  color: #9EB0EA;
+  color: #9eb0ea;
   position: relative;
   bottom: 3px;
   left: 25px;
@@ -112,7 +117,7 @@ const Subheader = styled.div`
   button {
     margin-left: 40px;
     color: #9eb0ea;
-    border :none;
+    border: none;
     padding: 8px 15px;
     border-radius: 50px;
   }
@@ -123,23 +128,23 @@ const Group = styled.div`
   gap: 30px;
   align-items: center;
   position: relative;
-  top: 80px;
+  top: 110px;
 `;
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;  
+  gap: 30px;
   align-items: center;
   position: relative;
   top: 100px;
-  .firstButton{
-    margin-top: 20px;
+  .firstButton {
+    margin-top: 50px;
   }
-`
+`;
 const StyledIcon = styled.button`
   border: none;
   background: none;
-  font-size:35px;
+  font-size: 35px;
   margin: 0 5px;
 `;
 const StyledErr = styled.div`
