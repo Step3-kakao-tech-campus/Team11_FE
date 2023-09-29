@@ -1,6 +1,6 @@
 import Profile from "../../components/common/mypage/Profile";
 import { MyContainer } from "../../styles/Container";
-import MyList from "../../components/common/mypage/MyList";
+import MyPageUl from "../../components/common/mypage/MyPageUl";
 const Mypage = () => {
   let votingNumber = 3;
   let questionNumber = 2;
@@ -10,10 +10,10 @@ const Mypage = () => {
   return (
     <MyContainer>
       <Profile userName={userName} email={email} src={src}></Profile>
-      <MyList
+      <MyPageUl
         votingNumber={votingNumber}
         questionNumber={questionNumber}
-      ></MyList>
+      ></MyPageUl>
     </MyContainer>
   );
 };
