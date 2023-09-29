@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Input = ({type, value, className, onChange, placeholder, id}) => {
+const Input = ({type, value, className, onChange, placeholder, id, valid}) => {
   return (
     <StyledInput 
       id={id}
@@ -9,6 +9,7 @@ const Input = ({type, value, className, onChange, placeholder, id}) => {
       value={value} 
       onChange={onChange} 
       placeholder={placeholder}
+      valid={valid}
     />
   )
 }
@@ -17,7 +18,8 @@ export default Input;
 
 const StyledInput = styled.input`
   width: 240px;
-  padding:15px 20px;
-  border-radius: 50px;
-  font-size: 15px;
+  padding:15px;
+  font-size: 13px;
+  border: none;
+  border-bottom: 2px solid #9EB0EA;
 `

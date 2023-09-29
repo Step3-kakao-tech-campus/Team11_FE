@@ -5,7 +5,7 @@ import routes from "../../../routes";
 import {GoHome, GoHomeFill, GoPlusCircle } from 'react-icons/go';
 import {AiOutlineFire, AiFillFire} from 'react-icons/ai';
 import {BsClipboardCheck, BsClipboardCheckFill, BsPerson} from 'react-icons/bs';
-
+import { Palette } from "../../../styles/Palette";
 
 export const Footer = () => { // state를 페이지 명으로 해서 관리하는 것이 더 좋을 수도.. 시간 될 때 수정하자!!
   const [page, setPage] = useState([true, false, false]); // home, hot, complete 
@@ -32,11 +32,11 @@ export const Footer = () => { // state를 페이지 명으로 해서 관리하�
           </div>
           <div>HOT</div>
         </LinkNav>
-        <LinkNav to={""}>
+        <UploadLink to={""} className="upload-button">
           <div>
             <GoPlusCircle fontSize={40}/>
           </div>
-        </LinkNav>
+        </UploadLink>
         <LinkNav to={routes.complete} >
           <div onClick={() => handlePage(2)}>
             { page[2] ? <BsClipboardCheckFill fontSize={28}/> : <BsClipboardCheck fontSize={28} /> }
@@ -56,27 +56,30 @@ export const Footer = () => { // state를 페이지 명으로 해서 관리하�
 
 const Nav = styled.nav`
   position: fixed;
-  left: 0px;
   bottom: 0px;
-  width: 100%;
+  width: 390px;
   height: 68px;
   background-color: #FFF;
   font-size: 12px;
+  z-index: 500;
 `;
 
 const LinkBox = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0 30px ;
 `;
 
 const LinkNav = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 11px 0;
+  margin-top: 15px;
   color: #7192FF;
   >div {
-    height: 28px;
+    height: 26px;
   }
+`;
+
+const UploadLink = styled(Link)`
+  color: ${Palette.font_blue};
+  margin-top: 7px;
 `
