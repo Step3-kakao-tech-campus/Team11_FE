@@ -19,18 +19,19 @@ export const HomeContainer = styled.div`
 `;
 
 export const MyContainer = styled.div`
-  .root {
-    margin-top: 0;
-  }
-  max-width: 310px;
+  width: 100%;
   min-width: 210px;
+  max-width: 400px;
   height: 100%;
 
-  padding: 0 33px;
-  margin: 0;
+  margin-top: 63px;
 
   display: flex;
   flex-direction: column;
+  ul,
+  li {
+    list-style-type: none;
+  }
 
   border-top: 3px solid rgba(243, 242, 243, 0.46);
 `;
