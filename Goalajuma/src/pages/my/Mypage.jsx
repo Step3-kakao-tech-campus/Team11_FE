@@ -1,6 +1,7 @@
 import Profile from "../../components/common/mypage/Profile";
 import { MyContainer } from "../../styles/Container";
 import MyPageUl from "../../components/common/mypage/MyPageUl";
+
 const Mypage = () => {
   let votingNumber = 3;
   let questionNumber = 2;
