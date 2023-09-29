@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: "NanumGothic";
     line-height: 1.5;
-    
+    margin:0;
     outline: none;
 
   }
@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
   margin-top: 55px;
   padding-bottom: 6rem;
 }
- 
+
 `;
 
 export default GlobalStyle;
