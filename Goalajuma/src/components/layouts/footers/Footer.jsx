@@ -32,7 +32,7 @@ export const Footer = () => { // state를 페이지 명으로 해서 관리하�
           </div>
           <div>HOT</div>
         </LinkNav>
-        <UploadLink to={""} className="upload-button">
+        <UploadLink to={routes.upload} className="upload-button">
           <div>
             <GoPlusCircle fontSize={40}/>
           </div>
