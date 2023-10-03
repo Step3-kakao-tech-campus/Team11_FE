@@ -7,6 +7,7 @@ const routes = {
   mypage: "/mypage",
   myquestion: "/mypage/myquestion",
   myparticipation: "/mypage/myparticipation",
+  upload: "/upload",
 };
 
 export default routes;
