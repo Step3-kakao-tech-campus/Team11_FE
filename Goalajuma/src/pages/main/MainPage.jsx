@@ -11,7 +11,7 @@ const MainPage = () => {
   return (
     <>
       {" "}
-      <MainLayout />
+      <MainLayout page={"main"}/>
       <HomeContainer>
         {datas &&
           datas.map((data, id) => (

@@ -3,12 +3,12 @@ import { Footer } from "./footers/Footer";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
-const MainLayout = () => {
+const MainLayout = ({page}) => {
   return (
     <div>
-      <MainHeader></MainHeader>
+      <MainHeader page={page}></MainHeader>
       <Content />
-      <Footer></Footer>
+      <Footer page={page}></Footer>
     </div>
   );
 };

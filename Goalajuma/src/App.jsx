@@ -9,7 +9,6 @@ import CompletePage from "./pages/complete/CompletePage";
 import MyPage from "./pages/my/Mypage";
 import MyQuestionPage from "./pages/my/MyQuestionPage";
 import MyParticipatePage from "./pages/my/MyParticipatePage";
-import UploadPage from "./pages/upload/UploadPage";
 function App() {
   return (
     <>
@@ -33,7 +32,6 @@ function App() {
             path={routes.myparticipation}
             element={<MyParticipatePage />}
           ></Route>
-          <Route path={routes.upload} element={<UploadPage />}></Route>
         </Routes>
       </BrowserRouter>
     </>
