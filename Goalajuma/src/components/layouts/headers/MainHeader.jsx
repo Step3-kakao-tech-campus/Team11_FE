@@ -12,7 +12,7 @@ const pageInfo = {
     search: true,
   },
   hot: {
-    back: false,
+    back: true,
     title: "HOT 게시판",
     search: true,
     icon: <AiOutlineFire fontSize={28}/>
@@ -88,7 +88,7 @@ export const MainHeader = ({page}) => {
       <Nav>
         {pageInfoData.back ?
           <BackButton>
-            <GoChevronLeft fontSize={28}/>
+            <GoChevronLeft fontSize={35}/>
           </BackButton> :
           null
         }
@@ -147,8 +147,6 @@ const SearchButton  = styled.button`
   right: 15px;
   color: #7192FF;
   background-color: #fff;
-  /* position: fixed; */
-  /* right: 10px; */
   border-width: 0px;
 `;
 

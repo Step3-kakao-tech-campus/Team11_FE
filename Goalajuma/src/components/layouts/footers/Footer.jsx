@@ -21,13 +21,13 @@ export const Footer = ({page}) => { // state를 페이지 명으로 해서 관�
     <Nav>
       <LinkBox>
         <LinkNav to={routes.home}>
-          <div onClick={() => handlePage(0)}>
+          <div>
             {page==='main' ? <GoHomeFill fontSize={28}/> : <GoHome fontSize={28} />}
           </div>
           <div>홈</div>
         </LinkNav>
         <LinkNav to={routes.hot}>
-          <div onClick={() => handlePage(1)}>
+          <div>
             { page==='hot' ? <AiFillFire fontSize={28}/> : <AiOutlineFire fontSize={28}/>}
           </div>
           <div>HOT</div>
@@ -38,7 +38,7 @@ export const Footer = ({page}) => { // state를 페이지 명으로 해서 관�
           </div>
         </UploadLink>
         <LinkNav to={routes.complete} >
-          <div onClick={() => handlePage(2)}>
+          <div>
             { page==='complete' ? <BsClipboardCheckFill fontSize={28}/> : <BsClipboardCheck fontSize={28} /> }
           </div>
           <div>완료</div>
