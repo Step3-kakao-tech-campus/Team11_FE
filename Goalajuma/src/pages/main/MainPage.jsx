@@ -16,13 +16,7 @@ const MainPage = () => {
         {datas &&
           datas.map((data, id) => (
             <>
-              <HomeLayout
-                id={id}
-                data={data}
-                choice={data.options.choice}
-                options={data.options}
-                what="main"
-              />
+              <HomeLayout id={id} data={data} what="main" />
             </>
           ))}
       </HomeContainer>

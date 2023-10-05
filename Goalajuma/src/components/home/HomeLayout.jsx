@@ -4,18 +4,29 @@ import VoteHead from "./VoteHead";
 import MainContent from "./MainContent";
 import VoteButtom from "../common/voteButton/VoteButtom";
 import styled from "styled-components";
-const HomeLayout = ({ data, options, what, choice }) => {
+import { useState } from "react";
+
+/**
+ *
+ * @param {object} data
+ * @param {string} what
+ */
+const HomeLayout = ({ data, what }) => {
   const {
-    id,
     voteCount,
-    participants,
+    participate,
     isOwner,
     title,
     content,
     createDate,
     endDate,
     active,
+    options,
   } = data;
+  const [participateState, setParticipate] = useState(participate);
+  const clickButton = () => {
+    setParticipate(!participateState);
+  };
   const clickModal = () => {
     alert("모달창!!!!");
   };
@@ -24,7 +35,6 @@ const HomeLayout = ({ data, options, what, choice }) => {
   };
   return (
     <MainContainer>
-      {}
       <Container>
         <VoteHead
           voteCount={voteCount}
@@ -35,11 +45,11 @@ const HomeLayout = ({ data, options, what, choice }) => {
         <MainContent title={title} content={content}></MainContent>
 
         <ButtonLayout
-          options={options}
-          participants={participants}
+          participate={participateState}
           isOwner={isOwner}
           active={active}
-          choice={choice}
+          options={options}
+          onClick={clickButton}
         ></ButtonLayout>
 
         <VoteButtom onClick={clickModal} clickShare={share}></VoteButtom>
