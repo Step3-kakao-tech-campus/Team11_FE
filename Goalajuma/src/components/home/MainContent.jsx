@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+/**
+ *
+ * @param {string} title
+ * @param {string} content
+ */
 const MainContent = ({ title, content }) => {
   return (
     <MainContentStyle>
