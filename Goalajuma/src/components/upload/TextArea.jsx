@@ -4,6 +4,10 @@ import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { uploadState } from "../../utils/Atom";
 
+/**
+ *
+ * @param {string} name
+ */
 const TextArea = ({ name }) => {
   const [upload, setUpload] = useRecoilState(uploadState);
   const textArea = useRef();

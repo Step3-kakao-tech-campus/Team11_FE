@@ -2,6 +2,11 @@ import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { uploadState } from "../../utils/Atom";
 
+/**
+ *
+ * @param {string} name
+ * @param {string} placeholder
+ */
 const Input = ({ name, placeholder }) => {
   const [upload, setUpload] = useRecoilState(uploadState);
   return (

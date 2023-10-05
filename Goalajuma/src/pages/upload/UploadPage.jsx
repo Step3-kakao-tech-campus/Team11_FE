@@ -6,6 +6,7 @@ import AddChoice from "../../components/upload/AddChoice";
 import Options from "../../components/upload/Options";
 import { useRecoilValue } from "recoil";
 import { uploadState } from "../../utils/Atom";
+
 const UploadPage = () => {
   const count = useRecoilValue(uploadState);
   console.log(count);
