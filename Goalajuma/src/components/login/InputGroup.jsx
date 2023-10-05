@@ -1,6 +1,7 @@
 import Box from "./Box";
 import Label from "./Label";
 import Input from "./Input";
+import PropTypes from 'prop-types';
 
 const InputGroup = ({
   id,
@@ -26,5 +27,16 @@ const InputGroup = ({
     </Box>
   );
 };
+
+InputGroup.propTypes = {
+  id: PropTypes.string,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+  label: PropTypes.string,
+  valid: PropTypes.bool,
+}
 
 export default InputGroup;
