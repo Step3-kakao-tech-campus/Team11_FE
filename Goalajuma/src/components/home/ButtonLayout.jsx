@@ -44,7 +44,7 @@ const ButtonLayout = ({ onClick, options, participate, isOwner, active }) => {
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 2.5rem;
+  gap: 2rem;
   justify-content: center;
   align-items: flex-end;
   margin-bottom: 1rem;

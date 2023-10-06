@@ -1,25 +1,23 @@
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { uploadState } from "../../utils/Atom";
+import { titleState } from "../../utils/UploadAtom";
 
 /**
- *
- * @param {string} name
- * @param {string} placeholder
+ * @param {object} param
+ * @param {string} param.name
+ * @param {string} param.placeholder
  */
 const Input = ({ name, placeholder }) => {
-  const [upload, setUpload] = useRecoilState(uploadState);
+  const [upload, setUpload] = useRecoilState(titleState);
   return (
     <InputStyle>
-      <label htmlFor="1">{name}</label>
+      <label htmlFor="title">{name}</label>
       <input
-        id="1"
-        maxLength="50"
-        rows="3"
+        id="title"
         name={name}
         placeholder={placeholder}
-        onBlur={(e) => {
-          setUpload({ ...upload, title: e.target.value });
+        onChange={(e) => {
+          setUpload(e.target.value);
         }}
       />
     </InputStyle>

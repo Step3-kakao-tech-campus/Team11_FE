@@ -1,10 +1,107 @@
+import ChoiceOption from "./ChoiceOption";
+import { useRecoilState } from "recoil";
+import { optionState } from "../../utils/UploadAtom";
+import styled from "styled-components";
+import PlusBtn from "./PlusBtn";
+
 const AddChoice = () => {
+  const [option, setOption] = useRecoilState(optionState);
+  const AddOption = () => {
+    // 선택지 추가 버튼
+    setOption((prop) => {
+      if (prop.length < 6) {
+        return [...prop, { name: "", img: "" }];
+      } else {
+        return prop;
+      }
+    });
+  };
+  //선택지 삭제 버튼
+  const deleteOption = (e) => {
+    setOption((prop) => {
+      let list = [...prop];
+      return list.filter((item, index) => {
+        return index != e.target.parentElement.id;
+      });
+    });
+  };
+  //선택지 인풋 값 바꾸기
+  const inputOption = (e) => {
+    const id = e.target.id;
+    setOption((prop) => {
+      return prop.map((choice, index) => {
+        if (id == index) {
+          return { ...choice, name: e.target.value };
+        } else {
+          return choice;
+        }
+      });
+    });
+  };
+
   return (
-    <div>
-      <label htmlFor="3">선택지 추가 *</label>
-    </div>
+    <Container>
+      <div className="labelBtn">
+        <label>선택지 추가 *</label>
+        <button onClick={() => setOption([{ name: "" }, { name: "" }])}>
+          초기화
+        </button>
+      </div>
+
+      <OptionContainer>
+        {option.map((choice, index) => {
+          // console.log(choice.img);
+          return (
+            <>
+              <ChoiceOption
+                id={index}
+                data={choice}
+                inputOption={inputOption}
+                deleteOption={deleteOption}
+                src={choice.img}
+              ></ChoiceOption>
+            </>
+          );
+        })}
+      </OptionContainer>
+      <PlusBtn onClick={AddOption}></PlusBtn>
+    </Container>
   );
 };
+
+const OptionContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+`;
+
+const Container = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .labelBtn {
+    margin: 0 0 5px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .labelBtn > label {
+    font-size: 14px;
+    color: #999999;
+    margin: 0 0 5px 13px;
+  }
+
+  .labelBtn > button {
+    position: relative;
+    left: 180px;
+    background-color: #d6deed;
+    border: none;
+    border-radius: 1rem;
+    font-size: 12px;
+    color: #797979;
+  }
+`;
 
 export default AddChoice;
 

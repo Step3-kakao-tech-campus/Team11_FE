@@ -2,14 +2,14 @@ import { InputStyle } from "./input";
 import styled from "styled-components";
 import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { uploadState } from "../../utils/Atom";
+import { contentState } from "../../utils/UploadAtom";
 
 /**
  *
  * @param {string} name
  */
 const TextArea = ({ name }) => {
-  const [upload, setUpload] = useRecoilState(uploadState);
+  const [upload, setUpload] = useRecoilState(contentState);
   const textArea = useRef();
 
   const textAreaHeight = () => {
@@ -19,13 +19,13 @@ const TextArea = ({ name }) => {
   };
   return (
     <TextAreaStyle>
-      <label htmlFor="2">{name}</label>
+      <label htmlFor="content">{name}</label>
       <textarea
-        id="2"
+        id="content"
         placeholder="상세설명을 입력해주세요"
         ref={textArea}
         onBlur={(e) => {
-          setUpload({ ...upload, content: e.target.value });
+          setUpload(e.target.value);
         }}
         onChange={textAreaHeight}
         rows={1}
@@ -47,6 +47,8 @@ const TextAreaStyle = styled(InputStyle)`
 
     box-shadow: 0px 2px 2px rgba(126, 126, 126, 0.25);
     resize: none;
+
+    font-family: "NanumGothic";
   }
 `;
 
