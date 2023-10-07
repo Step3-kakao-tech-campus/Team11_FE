@@ -12,12 +12,12 @@ export const contentState = atom({
 
 export const categoryState = atom({
   key: "categoryState",
-  default: false,
+  default: "total",
 });
 
 export const timeLimitState = atom({
   key: "timeLimitState",
-  default: false,
+  default: 1440,
 });
 
 export const optionState = atom({
