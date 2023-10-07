@@ -6,9 +6,17 @@ import { useEffect, useState } from "react";
 const UploadButton = () => {
   const [count, setCount] = useRecoilState(uploadSelector);
   const [active, setActive] = useState(false);
+
   useEffect(() => {
-    if (count.title && count.option[0].name && count.option[1].name) {
-      setActive(true);
+    if (count.title && count.option.length > 1) {
+      const act = count.option.filter((item) => {
+        return item.name == "";
+      });
+      if (act.length > 0) {
+        setActive(false);
+      } else {
+        setActive(true);
+      }
     }
   }, [count]);
 
