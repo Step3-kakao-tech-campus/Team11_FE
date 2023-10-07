@@ -22,7 +22,10 @@ export const timeLimitState = atom({
 
 export const optionState = atom({
   key: "optionState",
-  default: [{ name: "" }, { name: "" }],
+  default: [
+    { name: "", img: "" },
+    { name: "", img: "" },
+  ],
 });
 
 //전부 가져와서 selector 로 합쳐 get 으로 내보내기

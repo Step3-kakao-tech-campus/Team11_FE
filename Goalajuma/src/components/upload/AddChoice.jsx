@@ -43,7 +43,14 @@ const AddChoice = () => {
     <Container>
       <div className="labelBtn">
         <label>선택지 추가 *</label>
-        <button onClick={() => setOption([{ name: "" }, { name: "" }])}>
+        <button
+          onClick={() =>
+            setOption([
+              { name: "", img: "" },
+              { name: "", img: "" },
+            ])
+          }
+        >
           초기화
         </button>
       </div>
