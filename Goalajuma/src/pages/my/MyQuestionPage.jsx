@@ -9,7 +9,7 @@ const MyQuestionPage = () => {
     <MainLayout page="myquestion"/>
     <div>
         {datas &&
-          datas.map((data, id) => (
+          datas.map((data) => (
             <>
               <MyVoteList data={data} />
             </>
