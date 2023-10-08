@@ -12,7 +12,7 @@ const CompletePage = () => {
   return (
     <>
       {" "}
-      <MainLayout />
+      <MainLayout page="complete"/>
       <HomeContainer>
         {datas &&
           datas.map((data, id) => (

@@ -10,8 +10,7 @@ import Button from '../../login/Button';
 const Practice = () => {
   // 모달 보임 여부 결정 
   const [modalVisible, setModalVisible] = useState(false) 
-  const data = ModalTest.data;
-  const id = ModalTest.data.id;
+  const data = ModalTest.data.vote;
 
   const openModal = () =>{
     setModalVisible(true)
@@ -32,7 +31,7 @@ const Practice = () => {
           maskClosable={true}
           onClose={closeModal}>
             <HomeContainer>
-              <ModalLayout id={id} data={data} what="main" />
+              <ModalLayout data={data} what="main" />
             </HomeContainer>
         </Modal>
       }
