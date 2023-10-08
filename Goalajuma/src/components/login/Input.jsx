@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from 'prop-types';
 
 const Input = ({
   type,
@@ -21,6 +22,16 @@ const Input = ({
     />
   );
 };
+
+Input.propTypes = {
+  type: PropTypes.string,
+  value: PropTypes.string,
+  className: PropTypes.string,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  id: PropTypes.string,
+  valid: PropTypes.bool
+}
 
 export default Input;
 

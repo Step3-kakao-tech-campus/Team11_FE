@@ -11,6 +11,7 @@ import MyQuestionPage from "./pages/my/MyQuestionPage";
 import MyParticipatePage from "./pages/my/MyParticipatePage";
 import UploadPage from "./pages/upload/UploadPage";
 import { RecoilRoot } from "recoil";
+import Practice from "./components/common/modal/Practice"
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
             <Route path={routes.hot} element={<HotPage />}></Route>
             <Route path={routes.complete} element={<CompletePage />}></Route>
             <Route path={routes.mypage} element={<MyPage />}></Route>
+            <Route path={routes.practice} element={<Practice />}></Route>
             <Route
               path={routes.myquestion}
               element={<MyQuestionPage />}

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from 'prop-types'
 
 const Label = ({children, htmlFor}) => {
   return (
@@ -8,6 +9,10 @@ const Label = ({children, htmlFor}) => {
   )
 }
 
+Label.propTypes = {
+  children: PropTypes.node.isRequired,
+  htmlFor: PropTypes.string.isRequired
+}
 export default Label;
 
 const StyledLabel = styled.label`

@@ -5,7 +5,7 @@ import { FaShare } from "react-icons/fa";
 
 const VoteButtom = ({ onClick, clickShare }) => {
   return (
-    <VoteButtomStyle>
+    <VoteButtonStyle>
       <div className="chat" onClick={onClick}>
         <Icon reverse={true} color="#676767" size="20px">
           {" "}
@@ -16,11 +16,11 @@ const VoteButtom = ({ onClick, clickShare }) => {
       <Icon color="#676767" size="20px" onClick={clickShare}>
         <FaShare />
       </Icon>
-    </VoteButtomStyle>
+    </VoteButtonStyle>
   );
 };
 
-const VoteButtomStyle = styled.div`
+const VoteButtonStyle = styled.div`
   margin-top: 2rem;
 
   display: flex;
