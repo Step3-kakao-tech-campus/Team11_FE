@@ -59,7 +59,7 @@ export const Dropdown = (items) => {
 const Category = styled.div`
   display: inline-block;
   position: relative;
-  margin-right: 3px;
+  margin-right: 10px;
 `;
 
 const MainButton = styled.button`
@@ -67,19 +67,22 @@ const MainButton = styled.button`
   align-items: center;
   background-color: #fff;
   color: ${Palette.font_gray};
-  padding: 0 0 0 5px;
   border-radius: 10px;
-  width: 93px;
-`
+  border-width: 0px;
+  padding: 0px;
+  font-size: 15px;
+`;
+
 const StyledButton = styled.button`
   display: flex;
   align-items: center;
   background-color: #fff;
   color: ${Palette.font_gray};
   padding: 5px;
-  width: 93px;
+  width: 65px;
   height: 32px;
-  border-radius: 0px;
+  border-width: 0px;
+  font-size: 15px;
 `; 
 // useRef로 크기 유지 고려
 
@@ -90,6 +93,7 @@ const Ul = styled.ul`
   padding-left: 0px;
   padding-bottom: 0px;
   border : 1px ${Palette.main_gray} solid;
+  border-radius: 2px;
   margin: 0;
 `;
 

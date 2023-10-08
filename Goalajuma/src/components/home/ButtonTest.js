@@ -8,9 +8,9 @@ export const ButtonTest = {
         isOwner: true,
         voteCount: 826,
         createDate: "2023.09.14 18:00",
-        endDate: "2023.10.30 11:00",
+        endDate: "2023.9.29 00:37",
         active: "continue",
-        participate: false,
+        participate: true,
         title: "군대 가야할까요?..",
         content:
           "여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?",
@@ -18,14 +18,14 @@ export const ButtonTest = {
           {
             id: 1,
             optionName: "걍 가라",
-
+            choiced: true,
             optionCount: 12,
             optionRatio: 50,
           },
           {
             id: 2,
             optionName: "가지마라",
-
+            choiced: false,
             optionCount: 12,
             optionRatio: 50,
           },
@@ -46,14 +46,14 @@ export const ButtonTest = {
           {
             id: 5,
             optionName: "걍 가라",
-
+            choiced: false,
             optionCount: 12,
             optionRatio: 50,
           },
           {
             id: 6,
             optionName: "가지마라",
-
+            choiced: false,
             optionCount: 12,
             optionRatio: 50,
           },
@@ -76,6 +76,7 @@ export const ButtonTest = {
             image: "fire.png",
             optionCount: 12,
             optionRatio: 12,
+            choiced: false,
           },
           {
             id: 4,
@@ -83,6 +84,7 @@ export const ButtonTest = {
             image: "vv.jpg",
             optionCount: 12,
             optionRatio: 12,
+            choiced: false,
           },
         ],
       },
@@ -104,27 +106,26 @@ export const ButtonTest2 = {
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.30 18:00",
         active: "finish",
-        participate: false,
+        participate: true,
         title: "군대 가야할까요?..",
         content:
           "여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?",
-        options: {
-          choice: 1,
-          result: [
-            {
-              id: 1,
-              optionName: "걍 가라",
-              optionCount: 50,
-              optionRatio: 33,
-            },
-            {
-              id: 2,
-              optionName: "가지마라",
-              optionCount: 100,
-              optionRatio: 67,
-            },
-          ],
-        },
+        options: [
+          {
+            id: 1,
+            optionName: "걍 가라",
+            optionCount: 50,
+            optionRatio: 33,
+            choiced: false,
+          },
+          {
+            id: 2,
+            optionName: "가지마라",
+            optionCount: 100,
+            optionRatio: 67,
+            choiced: true,
+          },
+        ],
       },
       {
         id: 10,
@@ -137,24 +138,24 @@ export const ButtonTest2 = {
         title: "군대 가야할까요?..",
         content:
           "여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?",
-        options: {
-          choice: 3,
-          result: [
-            {
-              id: 3,
-              optionName: "걍 가라",
-              optionCount: 50,
-              optionRatio: 33,
-            },
-            {
-              id: 4,
-              optionName: "가지마라",
-              optionCount: 100,
-              optionRatio: 67,
-            },
-          ],
-        },
+        options: [
+          {
+            id: 3,
+            optionName: "걍 가라",
+            optionCount: 50,
+            optionRatio: 33,
+            choiced: false,
+          },
+          {
+            id: 4,
+            optionName: "가지마라",
+            optionCount: 100,
+            optionRatio: 67,
+            choiced: false,
+          },
+        ],
       },
+
       {
         id: 20,
         voteCount: 9000,
@@ -164,23 +165,22 @@ export const ButtonTest2 = {
         participate: false,
         title: "어떤걸 먹을까요?..",
         content: " 치킨이랑 피자중에 뭐먹을까요? 코파일럿 사용했어요",
-        options: {
-          choice: 5,
-          result: [
-            {
-              id: 4,
-              optionName: "걍 가라",
-              optionCount: 50,
-              optionRatio: 33,
-            },
-            {
-              id: 5,
-              optionName: "가지마라",
-              optionCount: 100,
-              optionRatio: 67,
-            },
-          ],
-        },
+        options: [
+          {
+            id: 4,
+            optionName: "걍 가라",
+            optionCount: 50,
+            optionRatio: 33,
+            choiced: false,
+          },
+          {
+            id: 5,
+            optionName: "가지마라",
+            optionCount: 100,
+            optionRatio: 67,
+            choiced: false,
+          },
+        ],
       },
     ],
   },
