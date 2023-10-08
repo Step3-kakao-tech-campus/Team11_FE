@@ -7,39 +7,39 @@ import {AiOutlineFire, AiFillFire} from 'react-icons/ai';
 import {BsClipboardCheck, BsClipboardCheckFill, BsPerson} from 'react-icons/bs';
 import { Palette } from "../../../styles/Palette";
 
-export const Footer = () => { // state를 페이지 명으로 해서 관리하는 것이 더 좋을 수도.. 시간 될 때 수정하자!!
-  const [page, setPage] = useState([true, false, false]); // home, hot, complete 
+export const Footer = ({page}) => { // state를 페이지 명으로 해서 관리하는 것이 더 좋을 수도.. 시간 될 때 수정하자!!
+  // const [page, setPage] = useState([true, false, false]); // home, hot, complete 
   const handlePage = (index) => {
-    if (page[index] === true) {
+    if (page[index] === true) { // 맨위로 이동
       console.log();
     }
-    const newPage = page.map((item, i) => i === index);
-    setPage(newPage);
+    // const newPage = page.map((item, i) => i === index);
+    // setPage(newPage);
   };
 
   return (
     <Nav>
       <LinkBox>
         <LinkNav to={routes.home}>
-          <div onClick={() => handlePage(0)}>
-            {page[0] ? <GoHomeFill fontSize={28}/> : <GoHome fontSize={28} />}
+          <div>
+            {page==='main' ? <GoHomeFill fontSize={28}/> : <GoHome fontSize={28} />}
           </div>
           <div>홈</div>
         </LinkNav>
         <LinkNav to={routes.hot}>
-          <div onClick={() => handlePage(1)}>
-            { page[1] ? <AiFillFire fontSize={28}/> : <AiOutlineFire fontSize={28}/>}
+          <div>
+            { page==='hot' ? <AiFillFire fontSize={28}/> : <AiOutlineFire fontSize={28}/>}
           </div>
           <div>HOT</div>
         </LinkNav>
-        <UploadLink to={""} className="upload-button">
+        <UploadLink to={routes.upload} className="upload-button">
           <div>
             <GoPlusCircle fontSize={40}/>
           </div>
         </UploadLink>
         <LinkNav to={routes.complete} >
-          <div onClick={() => handlePage(2)}>
-            { page[2] ? <BsClipboardCheckFill fontSize={28}/> : <BsClipboardCheck fontSize={28} /> }
+          <div>
+            { page==='complete' ? <BsClipboardCheckFill fontSize={28}/> : <BsClipboardCheck fontSize={28} /> }
           </div>
           <div>완료</div>
         </LinkNav>

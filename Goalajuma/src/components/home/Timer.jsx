@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
-const Timer = ({ createDate, endDate }) => {
+const Timer = ({ endDate }) => {
   let time = remaindTime(endDate)[0];
   const [endTime, setEndTime] = useState(time);
   const [oneMinute, setOneMinute] = useState(false);

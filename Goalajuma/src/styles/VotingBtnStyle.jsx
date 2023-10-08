@@ -4,7 +4,7 @@ import { Palette } from "./Palette";
 export const MainButtonSt = styled.div`
   font-family: "NanumGothic";
   max-width: 295px;
-  min-width: 120px;
+  min-width: 110px;
   margin-top: -1rem;
 
   ::-webkit-progress-bar {
@@ -22,9 +22,7 @@ export const MainButtonSt = styled.div`
   }
   ::-webkit-progress-value {
     background-color: ${(props) =>
-      props.choice == props.id
-        ? Palette["percent_blue"]
-        : Palette["percent_gray"]};
+      props.choice ? Palette["percent_blue"] : Palette["percent_gray"]};
 
     transition: all 0.3s;
 
@@ -35,7 +33,7 @@ export const MainButtonSt = styled.div`
 export const BtnContents = styled.p`
   margin: 0 1.5rem;
   color: ${(props) =>
-    props.choice == props.id ? Palette["font_blue"] : Palette["font_gray"]};
+    props.choice ? Palette["font_blue"] : Palette["font_gray"]};
 
   position: relative;
   top: 2.1rem;
@@ -51,7 +49,7 @@ export const PercentNnumberSt = styled.div`
   margin-top: 0.7rem;
   height: 0.7rem;
   color: ${(props) =>
-    props.choice == props.id ? Palette["font_blue"] : Palette["font_gray"]};
+    props.choice ? Palette["font_blue"] : Palette["font_gray"]};
   p {
     font-size: 12px;
     font-weight: 600;
