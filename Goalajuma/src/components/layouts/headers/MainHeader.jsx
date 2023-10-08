@@ -12,7 +12,7 @@ const pageInfo = {
     search: true,
   },
   hot: {
-    back: true,
+    back: false,
     title: "HOT 게시판",
     search: true,
     icon: <AiOutlineFire fontSize={28}/>
@@ -33,7 +33,16 @@ const pageInfo = {
     search: false,
     icon: <BsPerson fontSize={28}/>,
   },
-
+  myvoted: {
+    back: true,
+    title: "내가 참여한 투표",
+    data: 3,
+  },
+  myquestion: {
+    back: true,
+    title: "내가 한 질문",
+    data: 1,
+  }
 };
 const sortList = [  // recoil atom으로 리팩토링?
   {
@@ -80,9 +89,9 @@ const contentList = [
 
 /**
  @param 
- page: string
+ 
  **/
-export const MainHeader = ({page}) => {
+const MainHeader = ({page}) => {
   const pageInfoData = pageInfo[page];
   return (
       <Nav>
@@ -96,7 +105,7 @@ export const MainHeader = ({page}) => {
           <PageName>
             {pageInfoData.icon}
             <Title>
-              {pageInfoData.title}
+              {pageInfoData.title}{pageInfoData.data ? `(${pageInfoData.data})` : null }
             </Title>
           </PageName> :
           <CategoryBox>
@@ -159,3 +168,4 @@ const BackButton  = styled.button`
   border-width: 0px;
 `;
 
+export default MainHeader;

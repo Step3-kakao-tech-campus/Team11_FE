@@ -1,5 +1,20 @@
+import MainLayout from "../../components/layouts/MainLayout";
+import { MyParticipateData } from "../../components/common/mypage/mypageTestData";
+import { MyVoteList } from "../../components/common/mypage/MyVoteList";
 const MyParticipatePage = () => {
-  return <div>내가 참가한 페이지</div>;
+  const datas = MyParticipateData.data.votes;
+  return (
+  <div>
+    <MainLayout page="myvoted"/>
+    <div>
+        {datas &&
+          datas.map((data) => (
+            <>
+              <MyVoteList data={data} />
+            </>
+          ))}
+      </div>
+  </div>);
 };
 
 export default MyParticipatePage;

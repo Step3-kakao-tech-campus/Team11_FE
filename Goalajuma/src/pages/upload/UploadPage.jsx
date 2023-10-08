@@ -1,4 +1,4 @@
-import MainLayout from "../../components/layouts/MainLayout";
+import MainHeader from "../../components/layouts/headers/MainHeader";
 import TextArea from "../../components/upload/TextArea";
 import Input from "../../components/upload/input";
 import styled from "styled-components";
@@ -6,7 +6,7 @@ import styled from "styled-components";
 const UploadPage = () => {
   return (
     <div>
-      <MainLayout name="투표 등록하기" />
+      <MainHeader page="upload"/>
       <UploadContainer>
         <Input name="질문 추가 *" placeholder="Q. 질문을 입력해주세요." />
         <TextArea
