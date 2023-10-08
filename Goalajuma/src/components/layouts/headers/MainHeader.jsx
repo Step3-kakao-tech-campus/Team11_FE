@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { AiOutlineFire } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
 import { GoChevronLeft } from "react-icons/go";
-
+import { useNavigate } from "react-router-dom";
 const pageInfo = {
   main: {
     back: false,
@@ -93,11 +93,12 @@ const contentList = [
  **/
 const MainHeader = ({page}) => {
   const pageInfoData = pageInfo[page];
+  const navigate = useNavigate();
   return (
       <Nav>
         {pageInfoData.back ?
           <BackButton>
-            <GoChevronLeft fontSize={35}/>
+            <GoChevronLeft fontSize={35} onClick={() => navigate(-1)}/>
           </BackButton> :
           null
         }
