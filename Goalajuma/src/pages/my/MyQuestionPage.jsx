@@ -1,7 +1,21 @@
+import MainLayout from "../../components/layouts/MainLayout";
+import { MyQuestionsData } from "../../components/common/mypage/mypageTestData";
+import { MyVoteList } from "../../components/common/mypage/MyVoteList";
+
 const MyQuestionPage = () => {
-  return <div>내가한질문
-    내가 참여한 투표라ㅏ ㄴ똑같은 템플릿 사용하기
-  </div>;
+  const datas = MyQuestionsData.data.votes;
+  return (
+  <div>
+    <MainLayout page="myquestion"/>
+    <div>
+        {datas &&
+          datas.map((data, id) => (
+            <>
+              <MyVoteList data={data} />
+            </>
+          ))}
+      </div>
+  </div>);
 };
 
 export default MyQuestionPage;
