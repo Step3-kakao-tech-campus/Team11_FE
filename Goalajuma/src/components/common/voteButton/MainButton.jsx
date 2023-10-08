@@ -7,6 +7,20 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import routes from "../../../routes";
 
+/**
+ * @param {object} props
+ * @param {boolean} props.choiced
+ * @param {number} props.value
+ * @param {number} props.number
+ * @param {string} props.name
+ * @param {number} props.id
+ * @param {string} props.src
+ * @param {boolean} props.participate
+ * @param {boolean} props.isOwner
+ * @param {string} props.active
+ * @param {function} props.onClick 투표시 실행. 참여 여부 변경
+ */
+
 const MainButton = ({
   choiced,
   value,

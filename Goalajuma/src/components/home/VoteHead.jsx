@@ -3,12 +3,13 @@ import Icon from "../common/Icon";
 import { BsPeopleFill } from "react-icons/bs";
 import Timer from "./Timer";
 /**
- *
- *  완료된 게시판, 핫게, 메인페이지 별로 바뀔 수 있도록 하기....
- * 즉,
- *
+ * @param {object} props
+ * @param {number} props.voteCount
+ * @param {string} props.createDate
+ * @param {string} props.endDate
+ * @param {string} props.what hot,complete,main
  */
-const VoteHead = ({ voteCount, createDate, endDate, what }) => {
+const VoteHead = ({ voteCount, endDate, what }) => {
   return (
     <VoteHeadCss>
       {what == "hot" ? (
@@ -29,7 +30,7 @@ const VoteHead = ({ voteCount, createDate, endDate, what }) => {
       ) : (
         <div className="voteTitle">
           <div className="voteNumber">{voteCount}명이 투표중입니다.</div>
-          <Timer createDate={createDate} endDate={endDate}></Timer>
+          <Timer endDate={endDate}></Timer>
         </div>
       )}
     </VoteHeadCss>

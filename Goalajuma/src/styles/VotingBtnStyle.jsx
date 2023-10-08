@@ -4,7 +4,7 @@ import { Palette } from "./Palette";
 export const MainButtonSt = styled.div`
   font-family: "NanumGothic";
   max-width: 295px;
-  min-width: 120px;
+  min-width: 110px;
   margin-top: -1rem;
 
   ::-webkit-progress-bar {
