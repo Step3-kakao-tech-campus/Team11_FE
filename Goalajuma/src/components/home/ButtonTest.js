@@ -73,7 +73,7 @@ export const ButtonTest = {
           {
             id: 3,
             optionName: "치킨",
-            image: "fire.png",
+            image: "tst.jpeg",
             optionCount: 12,
             optionRatio: 12,
             choiced: false,

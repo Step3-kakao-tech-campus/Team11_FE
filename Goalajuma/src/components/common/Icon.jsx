@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+/**
+ *
+ * @param {boolean} reverse 죄우반전 여부
+ * @param {string} size 기본값 26px
+ * @param {string} color 기본값 검정
+ * @param {function} onClick 클릭 이벤트
+ *
+ */
 const Icon = ({ children, reverse, size, color, onClick }) => {
   return (
     <IconCss reverse={reverse} size={size} color={color} onClick={onClick}>

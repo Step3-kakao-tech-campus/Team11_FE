@@ -8,9 +8,10 @@ import { useState } from "react";
 
 /**
  *
- * @param {object} data
- * @param {string} what
+ * @param {object} props.data
+ * @param {string} props.what
  */
+
 const HomeLayout = ({ data, what }) => {
   const {
     voteCount,
@@ -18,14 +19,15 @@ const HomeLayout = ({ data, what }) => {
     isOwner,
     title,
     content,
-    createDate,
     endDate,
     active,
     options,
   } = data;
   const [participateState, setParticipate] = useState(participate);
+
   const clickButton = () => {
     setParticipate(!participateState);
+    // 투표 참여 안했을때
   };
   const clickModal = () => {
     alert("모달창!!!!");
@@ -38,7 +40,6 @@ const HomeLayout = ({ data, what }) => {
       <Container>
         <VoteHead
           voteCount={voteCount}
-          createDate={createDate}
           endDate={endDate}
           what={what}
         ></VoteHead>

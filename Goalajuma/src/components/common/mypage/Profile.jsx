@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import { Palette } from "../../../styles/Palette";
 
+/**
+ *
+ * @param {string} userName
+ * @param {string} email
+ * @param {string} src
+ */
 const Profile = ({ userName, email, src }) => {
   return (
     <ProfileStyle>

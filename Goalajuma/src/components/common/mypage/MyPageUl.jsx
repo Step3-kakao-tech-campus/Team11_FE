@@ -3,6 +3,11 @@ import MypageMainLi from "./MypageMainLi";
 import { useNavigate } from "react-router-dom";
 import route from "../../../routes";
 
+/**
+ *
+ * @param {number} votingNumber
+ * @param {number} questionNumber
+ */
 const MyPageUl = ({ votingNumber, questionNumber }) => {
   const navigate = useNavigate();
   return (
@@ -10,17 +15,17 @@ const MyPageUl = ({ votingNumber, questionNumber }) => {
       <MypageMainLi
         content="내가 참여한 투표"
         number={votingNumber}
-        onClick={() => navigate(route.myparticipation)}
+        onClick={navigate(route.myparticipation)}
       ></MypageMainLi>
       <MypageMainLi
         content="내가 한 질문"
         number={questionNumber}
-        onClick={() => navigate(route.myquestion)}
+        onClick={navigate(route.myquestion)}
       ></MypageMainLi>
 
       <MypageMainLi
         content="내 정보 수정"
-        onClick={() => alert("모달창")}
+        onClick={alert("모달창")}
       ></MypageMainLi>
     </MyUlStyle>
   );
