@@ -1,6 +1,7 @@
 import HomeLayout from "../../components/home/HomeLayout";
 import { ButtonTest } from "../../components/home/ButtonTest";
 import { HomeContainer } from "../../styles/Container";
+import MainLayout from "../../components/layouts/MainLayout";
 
 const HotPage = () => {
   const datas = ButtonTest.data.votes;
@@ -10,7 +11,9 @@ const HotPage = () => {
    */
 
   return (
-    <HomeContainer>
+    <>
+      <MainLayout page="hot"/>
+      <HomeContainer>
       {" "}
       {datas &&
         datas.map((data, id) => (
@@ -24,7 +27,9 @@ const HotPage = () => {
             />
           </>
         ))}
-    </HomeContainer>
+      </HomeContainer>
+    </>
+    
   );
 };
 

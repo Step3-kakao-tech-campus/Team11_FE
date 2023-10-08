@@ -84,7 +84,6 @@ const StyledButton = styled.button`
   border-width: 0px;
   font-size: 15px;
 `; 
-// useRef로 크기 유지 고려
 
 const Ul = styled.ul`
   top : 34px;

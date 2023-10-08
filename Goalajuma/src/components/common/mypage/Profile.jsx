@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import { Palette } from "../../../styles/Palette";
 
+/**
+ *
+ * @param {string} userName
+ * @param {string} email
+ * @param {string} src
+ */
 const Profile = ({ userName, email, src }) => {
   return (
     <ProfileStyle>
@@ -21,11 +27,16 @@ const ProfileStyle = styled.div`
 
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+
   gap: 30px;
+
+  border-bottom: 16px solid #f3f2f3;
 
   .userImg {
     width: 95px;
     height: 95px;
+    margin-left: 35px;
 
     overflow: hidden;
 

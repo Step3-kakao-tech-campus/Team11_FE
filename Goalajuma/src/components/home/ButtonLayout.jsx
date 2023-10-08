@@ -1,55 +1,20 @@
-import { useState } from "react";
 import MainButton from "../common/voteButton/MainButton";
 import styled from "styled-components";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
-import routes from "../../routes";
-//map 으로 버튼 받아온거 뿌려주기
-const ButtonLayout = ({ options, participants, isOwner, active, choice }) => {
-  //서버에서 받아온 value, number 값
-  const login = localStorage.getItem("token");
-  const navigate = useNavigate();
-  const optionList = options;
-  const [participant, setParticipant] = useState(participants);
-  const [choices, setChoice] = useState(choice);
+/**
+ * @param {object} props
+ * @param {function} props.onClick 투표시 실행. 참여 여부 변경
+ * @param { array } props.options 옵션 리스트
+ * @param { boolean } props.participate 참여여부
+ * @param { boolean } props.isOwner 투표자인지의 여부
+ * @param {string} props.active  투표 상태
+ */
 
-  const clickButton = (e) => {
-    if (active !== "finish" && isOwner === false) {
-      if (!login) {
-        Swal.fire({
-          icon: "error",
-          html: "로그인 해야 투표가 가능합니다.<br> 로그인 하시겠습니까?",
-          showCancelButton: true,
-          confirmButtonText: "예",
-          cancelButtonText: "아니오",
-          confirmButtonColor: "#429f50",
-          cancelButtonColor: "#d33",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            navigate(routes.login);
-          }
-        });
-      } else if (participant === true && choices !== e.target.id) {
-        Swal.fire({
-          icon: "info",
-          text: "투표를 수정하시겠습니까?",
-          showCancelButton: true,
-          confirmButtonText: "예",
-          cancelButtonText: "아니오",
-          confirmButtonColor: "#429f50",
-          cancelButtonColor: "#d33",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            setChoice(e.target.id);
-            /** 서버에 수정 요청 보내기*/
-          }
-        });
-      } else {
-        setParticipant(true);
-        setChoice(e.target.id);
-      }
-    }
-  };
+const ButtonLayout = ({ onClick, options, participate, isOwner, active }) => {
+  //서버에서 받아온 value, number 값
+
+  const optionList = options;
+
+  //choice 하나만 선택할 수 있는 함수 구현해서 프롭스로 보내주기
 
   return (
     <>
@@ -57,15 +22,15 @@ const ButtonLayout = ({ options, participants, isOwner, active, choice }) => {
         {optionList?.map((option) => {
           return (
             <MainButton
+              onClick={onClick}
               key={option.id}
               id={option.id}
               name={option.optionName}
               value={option.optionRatio}
               number={option.optionCount}
-              participant={participant}
-              clickButton={clickButton}
-              choice={choices}
               src={option.image}
+              choiced={option.choiced}
+              participate={participate}
               isOwner={isOwner}
               active={active}
             />
@@ -79,7 +44,7 @@ const ButtonLayout = ({ options, participants, isOwner, active, choice }) => {
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 2.5rem;
+  gap: 2rem;
   justify-content: center;
   align-items: flex-end;
   margin-bottom: 1rem;

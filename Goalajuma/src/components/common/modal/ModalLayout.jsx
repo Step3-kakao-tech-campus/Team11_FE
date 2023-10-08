@@ -1,45 +1,48 @@
-import { MainContainer } from "../../styles/Container";
-import ButtonLayout from "./ButtonLayout";
-import VoteHead from "./VoteHead";
-import MainContent from "./MainContent";
-import VoteButtom from "../common/voteButton/VoteButtom";
+import { MainContainer } from "../../../styles/Container";
+import ButtonLayout from "../../home/ButtonLayout";
+import VoteHead from "../../home/VoteHead";
+import MainContent from "../../home/MainContent";
+import VoteButtom from "../voteButton/VoteButtom";
 import styled from "styled-components";
 import { useState } from "react";
-
+import PropTypes from 'prop-types';
 /**
  *
- * @param {object} props.data
- * @param {string} props.what
+ * @param {object} data
+ * @param {string} what
  */
 
-const HomeLayout = ({ data, what }) => {
+const ModalLayout = ({ data, what }) => {
   const {
     voteCount,
     participate,
     isOwner,
     title,
     content,
+    createDate,
     endDate,
     active,
     options,
   } = data;
   const [participateState, setParticipate] = useState(participate);
+  const optionsList = options.result
 
   const clickButton = () => {
     setParticipate(!participateState);
-    // 투표 참여 안했을때
   };
-  const clickModal = () => {
-    alert("모달창!!!!");
-  };
+  // const clickModal = () => {
+  //   alert("모달창!!!!");
+  // };
   const share = () => {
-    alert("공유하기");
+    alert("공유하기 모달창 !!!");
   };
+
   return (
     <MainContainer>
       <Container>
         <VoteHead
           voteCount={voteCount}
+          createDate={createDate}
           endDate={endDate}
           what={what}
         ></VoteHead>
@@ -49,11 +52,11 @@ const HomeLayout = ({ data, what }) => {
           participate={participateState}
           isOwner={isOwner}
           active={active}
-          options={options}
+          options={optionsList}
           onClick={clickButton}
         ></ButtonLayout>
 
-        <VoteButtom onClick={clickModal} clickShare={share}></VoteButtom>
+        <VoteButtom clickShare={share}></VoteButtom>
       </Container>
     </MainContainer>
   );
@@ -68,5 +71,8 @@ const Container = styled.div`
   margin-top: 1.5rem;
   padding-bottom: 1rem;
 `;
-
-export default HomeLayout;
+ModalLayout.propTypes = {
+  data: PropTypes.object,
+  what: PropTypes.string
+}
+export default ModalLayout;
