@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { Palette } from "../../../styles/Palette";
-export const ActiveSign = ({active}) => {
+/**
+ * 
+ * @param {string} active 
+ * @return {JSX.Element} 
+ */
+const ActiveSign = ({active}) => {
   return (
     <>
     {active === "continue" ? <Label className="continue">진행중</Label> : <Label className="closed">종료</Label>}
@@ -24,3 +29,5 @@ const Label = styled.div`
   border-color: ${Palette.font_gray};
  }
 `;
+
+export default ActiveSign;

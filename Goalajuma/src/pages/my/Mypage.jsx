@@ -5,7 +5,7 @@ import MainLayout from "../../components/layouts/MainLayout";
 
 const Mypage = () => {
   let votingNumber = 3;
-  let questionNumber = 2;
+  let questionNumber = 1;
   let userName = "김코딩";
   let email = "kkj@naver.com";
   let src = "vv.jpg";

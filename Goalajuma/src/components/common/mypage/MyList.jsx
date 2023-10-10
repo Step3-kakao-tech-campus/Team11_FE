@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import { Palette } from "../../../styles/Palette";
 
+/**
+ * 
+ * @param {number} votingNumber
+ * @param {number} questionNumber
+ * @return {JSX.Element}
+ */
 const MyList = ({ votingNumber, questionNumber }) => {
   return (
     <MyListStyle>
