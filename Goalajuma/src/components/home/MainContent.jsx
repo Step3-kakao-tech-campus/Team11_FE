@@ -1,9 +1,11 @@
 import styled from "styled-components";
+import PropTypes from 'prop-types'
 
 /**
  *
- * @param {string} title
- * @param {string} content
+ * @param {object} prop
+ * @param {string} prop.title
+ * @param {string} prop.content
  */
 const MainContent = ({ title, content }) => {
   return (
@@ -13,6 +15,10 @@ const MainContent = ({ title, content }) => {
     </MainContentStyle>
   );
 };
+MainContent.propTypes = {
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+}
 const MainContentStyle = styled.div`
   display: flex;
   flex-direction: column;

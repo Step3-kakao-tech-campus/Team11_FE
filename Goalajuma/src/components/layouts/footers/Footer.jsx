@@ -1,20 +1,22 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useState } from "react";
 import routes from "../../../routes";
 import {GoHome, GoHomeFill, GoPlusCircle } from 'react-icons/go';
 import {AiOutlineFire, AiFillFire} from 'react-icons/ai';
-import {BsClipboardCheck, BsClipboardCheckFill, BsPerson} from 'react-icons/bs';
+import {BsClipboardCheck, BsClipboardCheckFill, BsPerson, BsPersonFill} from 'react-icons/bs';
 import { Palette } from "../../../styles/Palette";
+import PropTypes from 'prop-types'
 
-export const Footer = ({page}) => { // state를 페이지 명으로 해서 관리하는 것이 더 좋을 수도.. 시간 될 때 수정하자!!
-  // const [page, setPage] = useState([true, false, false]); // home, hot, complete 
+/**
+ * @param {string} page 각 페이지 이름 
+ */
+export const Footer = ({page}) => {  
+  
+  // 해당 푸터 버튼 클릭시 맨 위로 이동 
   const handlePage = (index) => {
     if (page[index] === true) { // 맨위로 이동
       console.log();
     }
-    // const newPage = page.map((item, i) => i === index);
-    // setPage(newPage);
   };
 
   return (
@@ -43,9 +45,9 @@ export const Footer = ({page}) => { // state를 페이지 명으로 해서 관�
           </div>
           <div>완료</div>
         </LinkNav>
-        <LinkNav to={routes.login}>
+        <LinkNav to={routes.login}> 
           <div>
-            <BsPerson fontSize={28}/>
+            {page==='mypage' ? <BsPersonFill fontSize={28}/> :<BsPerson fontSize={28}/>}
           </div>
           <div>로그인</div>
         </LinkNav>
@@ -53,7 +55,9 @@ export const Footer = ({page}) => { // state를 페이지 명으로 해서 관�
     </Nav>
   )
 }
-
+Footer.propTypes ={
+  page: PropTypes.string.isRequired
+}
 const Nav = styled.nav`
   position: fixed;
   bottom: 0px;

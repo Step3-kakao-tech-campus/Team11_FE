@@ -1,13 +1,14 @@
-import { ActiveSign } from "./ActiveSign"
+import ActiveSign from "./ActiveSign"
 import { GoChevronRight } from "react-icons/go"
 import styled from "styled-components"
 import { Palette } from "../../../styles/Palette"
+import PropTypes from 'prop-types'
 
 /**
- * @param
- * @returns 
+ * @param {object} data
+ * @returns {JSX.Element}
  */
-export const MyVoteList = ({data}) => {
+const MyVoteList = ({data}) => {
   return (
     <MyVote>
       <VoteInfo>
@@ -22,6 +23,9 @@ export const MyVoteList = ({data}) => {
   )
 }
 
+MyVoteList.propTypes = {
+  data: PropTypes.object.isRequired
+}
 const MyVote = styled.div`
   height: 4rem;
   display: flex;
@@ -48,3 +52,5 @@ const Vote = styled.div`
     color: ${Palette.font_blue};
   }
 `;
+
+export default MyVoteList;
