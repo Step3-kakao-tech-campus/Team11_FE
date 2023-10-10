@@ -6,6 +6,7 @@ import { Palette } from "../../../styles/Palette";
  * @param {string} userName
  * @param {string} email
  * @param {string} src
+ * @return {JSX.Element}
  */
 const Profile = ({ userName, email, src }) => {
   return (

@@ -3,6 +3,13 @@ import { GoChevronRight } from "react-icons/go";
 import { Palette } from "../../../styles/Palette";
 import styled from "styled-components";
 
+/**
+ * 
+ * @param {string} content
+ * @param {number} number
+ * @param {function(): void} onClick 
+ * @returns {JSX.Element}
+ */
 const MypageMainLi = ({ content, number, onClick }) => {
   return (
     <DivLi onClick={onClick}>
