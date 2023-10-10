@@ -1,10 +1,7 @@
 import { GoChevronLeft } from "react-icons/go"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components";
-/**
- * 
- * @returns {JSX.Element}
- */
+
 const BackButton = () => {
   const navigate = useNavigate();
   return (
@@ -16,6 +13,7 @@ const BackButton = () => {
   )
 };
 
+// 이거 없애고 Icon 컴포넌트 사용하기 
 const Back  = styled.button`
   margin-top: 3px;
   margin-left: 5px;

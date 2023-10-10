@@ -5,7 +5,7 @@ export const MainContainer = styled.div`
   min-width: 210px;
   height: 100%;
 
-  padding: 0 40px;
+  padding: ${(props)=>props.className=="modal"?'0 30px':"0 40px"};
 
   display: flex;
   flex-direction: column;

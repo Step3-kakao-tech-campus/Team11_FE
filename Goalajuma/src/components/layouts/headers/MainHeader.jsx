@@ -1,3 +1,4 @@
+//없앨거임
 import Dropdown from "./Dropdown";
 import styled from "styled-components";
 import SearchIcon from '@mui/icons-material/Search';
@@ -138,7 +139,7 @@ const Nav = styled.nav`
 `;
 
 const Title = styled.div`
-  margin: 2px 0 0 5px
+  margin: 2px 0 0 5px;
 `;
 const PageName = styled.div`
   margin: auto;

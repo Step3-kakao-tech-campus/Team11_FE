@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { AiOutlineFire } from "react-icons/ai";
-import { SearchButton } from "./headers/SearchButton";
+import { SearchButton } from "./SearchButton";
 
-
-
+// 핫게 헤더
 const HotPageHeader = () => {
   return (
     <Nav>
@@ -31,7 +30,7 @@ const Nav = styled.nav`
 `;
 
 const Title = styled.div`
-  margin: 2px 0 0 5px
+  margin: 2px 0 0 5px;
 `;
 const PageName = styled.div`
   margin: auto;
