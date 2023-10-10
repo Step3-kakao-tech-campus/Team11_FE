@@ -4,6 +4,7 @@ import VoteHead from "../../home/VoteHead";
 import MainContent from "../../home/MainContent";
 import VoteButtom from "../voteButton/VoteButtom";
 import ChatForm from "./ChatForm";
+import ChatWriteForm from "./ChatWriteForm";
 import styled from "styled-components";
 import { useState } from "react";
 import PropTypes from 'prop-types';
@@ -61,6 +62,7 @@ const ModalLayout = ({ data, what }) => {
         <VoteButtom clickShare={share}></VoteButtom>
       </Container>
       <ChatForm/>
+      <ChatWriteForm/>
     </MainContainer>
   );
 };
