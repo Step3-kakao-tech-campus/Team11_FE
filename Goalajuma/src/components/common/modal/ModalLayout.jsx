@@ -3,9 +3,12 @@ import ButtonLayout from "../../home/ButtonLayout";
 import VoteHead from "../../home/VoteHead";
 import MainContent from "../../home/MainContent";
 import VoteButtom from "../voteButton/VoteButtom";
+import ChatForm from "./ChatForm";
+import ChatWriteForm from "./ChatWriteForm";
 import styled from "styled-components";
 import { useState } from "react";
 import PropTypes from 'prop-types';
+
 /**
  *
  * @param {object} data
@@ -38,7 +41,7 @@ const ModalLayout = ({ data, what }) => {
   };
 
   return (
-    <MainContainer>
+    <MainContainer className="modal">
       <Container>
         <VoteHead
           voteCount={voteCount}
@@ -58,6 +61,8 @@ const ModalLayout = ({ data, what }) => {
 
         <VoteButtom clickShare={share}></VoteButtom>
       </Container>
+      <ChatForm/>
+      <ChatWriteForm/>
     </MainContainer>
   );
 };
