@@ -1,11 +1,11 @@
 import { MainContainer } from "../../styles/Container";
-import ButtonLayout from "./ButtonLayout";
-import VoteHead from "./VoteHead";
+import ButtonLayout from "../common/voteButton/ButtonLayout";
+import VoteHead from "../common/voteButton/VoteHead";
 import MainContent from "./MainContent";
 import VoteButtom from "../common/voteButton/VoteButtom";
 import styled from "styled-components";
 import { useState } from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 /**
  *
@@ -35,7 +35,7 @@ const HomeLayout = ({ data, what }) => {
   };
   const share = () => {
     alert("공유하기");
-  }
+  };
   return (
     <MainContainer>
       <Container>
@@ -61,8 +61,8 @@ const HomeLayout = ({ data, what }) => {
 };
 HomeLayout.propTypes = {
   data: PropTypes.object,
-  what: PropTypes.string
-}
+  what: PropTypes.string,
+};
 const Container = styled.div`
   display: flex;
   flex-direction: column;
