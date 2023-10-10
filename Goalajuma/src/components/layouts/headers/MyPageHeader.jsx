@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import { BsPerson } from "react-icons/bs";
 
-
 /**
  * 
  * @returns {JSX.Element}
  */
-const HotPageHeader = () => {
+const MyPageHeader = () => {
   return (
     <Nav>
       <PageName>
@@ -32,7 +31,7 @@ const Nav = styled.nav`
 `;
 
 const Title = styled.div`
-  margin: 2px 0 0 5px
+  margin: 2px 0 0 5px;
 `;
 const PageName = styled.div`
   margin: auto;
@@ -41,4 +40,4 @@ const PageName = styled.div`
   display:flex;
 `;
 
-export default HotPageHeader;
+export default MyPageHeader;

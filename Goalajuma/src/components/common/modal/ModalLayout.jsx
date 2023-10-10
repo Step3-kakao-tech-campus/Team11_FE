@@ -59,7 +59,7 @@ const ModalLayout = ({ data, what }) => {
           onClick={clickButton}
         ></ButtonLayout>
 
-        <VoteButtom clickShare={share}></VoteButtom>
+        <VoteButtom onClickShare={share}></VoteButtom>
       </Container>
       <ChatForm/>
       <ChatWriteForm/>

@@ -2,12 +2,13 @@ import styled from "styled-components";
 import Icon from "../common/Icon";
 import { BsPeopleFill } from "react-icons/bs";
 import Timer from "./Timer";
+import PropTypes from 'prop-types'
+
 /**
  * @param {object} props
- * @param {number} props.voteCount
- * @param {string} props.createDate
- * @param {string} props.endDate
- * @param {string} props.what hot,complete,main
+ * @param {number} props.voteCount 투표자 수
+ * @param {string} props.endDate 작성자가 설정한 투표 마감 시간 
+ * @param {string} props.what hot,complete,main 
  */
 const VoteHead = ({ voteCount, endDate, what }) => {
   return (
@@ -36,7 +37,11 @@ const VoteHead = ({ voteCount, endDate, what }) => {
     </VoteHeadCss>
   );
 };
-
+VoteHead.propTypes = {
+  voteCount: PropTypes.number.isRequired, 
+  endDate: PropTypes.string.isRequired, 
+  what: PropTypes.string.isRequired, 
+}
 const VoteHeadCss = styled.div`
   width: 100%;
   display: flex;

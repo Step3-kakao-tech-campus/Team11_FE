@@ -1,5 +1,6 @@
 import Dropdown from "./Dropdown"
 
+//value로 영어 추가 하기
 const sortList = [  
   {
     id: 0,
@@ -16,6 +17,7 @@ const contentList = [
   {
     id: 0,
     category:'골라조',
+    value: ''
   }, 
   {
     id: 1,
@@ -43,10 +45,6 @@ const contentList = [
   },
 ];
 
-/**
- * 
- * @returns {JSX.Element}
- */
 export const CategoryBox = () => {
   return (
     <div style={{paddingLeft: 20}}>

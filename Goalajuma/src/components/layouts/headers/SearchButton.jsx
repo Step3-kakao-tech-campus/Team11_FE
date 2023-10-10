@@ -1,11 +1,9 @@
 import SearchIcon from '@mui/icons-material/Search';
 import styled from 'styled-components';
 
-/**
- * @param {string} key
- * @return {JSX.Element}
- */
-const SearchButton = ({key}) => {
+// Icon 으로 감싸기 
+// 클릭이벤트 줘야함-> 모달까지 구현 
+const SearchButton = () => {
   return (
     <div>
       <Search >

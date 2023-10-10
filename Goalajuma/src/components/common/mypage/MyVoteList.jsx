@@ -2,6 +2,7 @@ import ActiveSign from "./ActiveSign"
 import { GoChevronRight } from "react-icons/go"
 import styled from "styled-components"
 import { Palette } from "../../../styles/Palette"
+import PropTypes from 'prop-types'
 
 /**
  * @param {object} data
@@ -22,6 +23,9 @@ const MyVoteList = ({data}) => {
   )
 }
 
+MyVoteList.propTypes = {
+  data: PropTypes.object.isRequired
+}
 const MyVote = styled.div`
   height: 4rem;
   display: flex;
