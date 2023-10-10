@@ -7,8 +7,8 @@ import styled from "styled-components";
 import { Palette } from "../../styles/Palette";
 
 const MyParticipatePage = () => {
-  const datas = MyParticipateData.data.votes;
-  // const datas = null;
+  // const datas = MyParticipateData.data.votes;
+  const datas = null;
 
   const navigate = useNavigate();
 
