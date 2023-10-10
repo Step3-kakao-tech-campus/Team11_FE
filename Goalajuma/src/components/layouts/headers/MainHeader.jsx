@@ -1,4 +1,5 @@
-import { Dropdown } from "./Dropdown";
+//없앨거임
+import Dropdown from "./Dropdown";
 import styled from "styled-components";
 import SearchIcon from '@mui/icons-material/Search';
 import { AiOutlineFire } from "react-icons/ai";
@@ -88,8 +89,8 @@ const contentList = [
 ];
 
 /**
- @param 
- 
+* @param {string} page
+* @return {JSX.Element}
  **/
 const MainHeader = ({page}) => {
   const pageInfoData = pageInfo[page];
@@ -138,7 +139,7 @@ const Nav = styled.nav`
 `;
 
 const Title = styled.div`
-  margin: 2px 0 0 5px
+  margin: 2px 0 0 5px;
 `;
 const PageName = styled.div`
   margin: auto;

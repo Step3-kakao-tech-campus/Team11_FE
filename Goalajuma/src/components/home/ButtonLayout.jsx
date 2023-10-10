@@ -1,5 +1,7 @@
 import MainButton from "../common/voteButton/MainButton";
 import styled from "styled-components";
+import PropTypes from 'prop-types'
+
 /**
  * @param {object} props
  * @param {function} props.onClick 투표시 실행. 참여 여부 변경
@@ -18,12 +20,11 @@ const ButtonLayout = ({ onClick, options, participate, isOwner, active }) => {
   return (
     <>
       <Container>
-        {optionList?.map((option) => {
+        {optionList?.map((option,index) => {
           return (
             <MainButton
               onClick={onClick}
-              key={option.id}
-              id={option.id}
+              key={index}
               name={option.optionName}
               value={option.optionRatio}
               number={option.optionCount}
@@ -40,6 +41,13 @@ const ButtonLayout = ({ onClick, options, participate, isOwner, active }) => {
   );
 };
 
+ButtonLayout.propTypes = {
+  onClick: PropTypes.func.isRequired, 
+  options: PropTypes.object.isRequired, 
+  participate: PropTypes.bool.isRequired, 
+  isOwner: PropTypes.bool.isRequired, 
+  active: PropTypes.string.isRequired
+}
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -47,6 +55,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: flex-end;
   margin-bottom: 1rem;
+  text-align: center;
 `;
 
 export default ButtonLayout;

@@ -2,7 +2,15 @@ import Icon from "../Icon";
 import { GoChevronRight } from "react-icons/go";
 import { Palette } from "../../../styles/Palette";
 import styled from "styled-components";
+import PropTypes from 'prop-types'
 
+/**
+ * 
+ * @param {string} content
+ * @param {number} number
+ * @param {function(): void} onClick 
+ * @returns {JSX.Element}
+ */
 const MypageMainLi = ({ content, number, onClick }) => {
   return (
     <DivLi onClick={onClick}>
@@ -16,6 +24,11 @@ const MypageMainLi = ({ content, number, onClick }) => {
   );
 };
 
+MypageMainLi.propTypes = {
+  content: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired
+}
 const DivLi = styled.div`
   text-align: start;
   height: 68px;

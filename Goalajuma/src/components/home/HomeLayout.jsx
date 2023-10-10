@@ -5,6 +5,7 @@ import MainContent from "./MainContent";
 import VoteButtom from "../common/voteButton/VoteButtom";
 import styled from "styled-components";
 import { useState } from "react";
+import PropTypes from 'prop-types'
 
 /**
  *
@@ -34,7 +35,7 @@ const HomeLayout = ({ data, what }) => {
   };
   const share = () => {
     alert("공유하기");
-  };
+  }
   return (
     <MainContainer>
       <Container>
@@ -53,11 +54,15 @@ const HomeLayout = ({ data, what }) => {
           onClick={clickButton}
         ></ButtonLayout>
 
-        <VoteButtom onClick={clickModal} clickShare={share}></VoteButtom>
+        <VoteButtom onClick={clickModal} onClickShare={share}></VoteButtom>
       </Container>
     </MainContainer>
   );
 };
+HomeLayout.propTypes = {
+  data: PropTypes.object,
+  what: PropTypes.string
+}
 const Container = styled.div`
   display: flex;
   flex-direction: column;
