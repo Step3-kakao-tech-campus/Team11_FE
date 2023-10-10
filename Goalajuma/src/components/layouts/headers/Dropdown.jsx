@@ -3,7 +3,12 @@ import styled from "styled-components";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Palette } from "../../../styles/Palette";
 
-export const Dropdown = (items) => {
+/**
+ *
+ * @param {array} items
+ * @return {JSX.Element}
+ */
+const Dropdown = (items) => {
   const [drop, setDrop] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(items.items[0].category);
   const dropdownRef = useRef(null);
@@ -100,3 +105,4 @@ const Li = styled.li`
   margin: 0;
 `;
 
+export default Dropdown;

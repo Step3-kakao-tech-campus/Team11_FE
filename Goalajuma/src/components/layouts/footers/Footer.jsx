@@ -4,7 +4,7 @@ import { useState } from "react";
 import routes from "../../../routes";
 import {GoHome, GoHomeFill, GoPlusCircle } from 'react-icons/go';
 import {AiOutlineFire, AiFillFire} from 'react-icons/ai';
-import {BsClipboardCheck, BsClipboardCheckFill, BsPerson} from 'react-icons/bs';
+import {BsClipboardCheck, BsClipboardCheckFill, BsPerson, BsPersonFill} from 'react-icons/bs';
 import { Palette } from "../../../styles/Palette";
 
 export const Footer = ({page}) => { // state를 페이지 명으로 해서 관리하는 것이 더 좋을 수도.. 시간 될 때 수정하자!!
@@ -45,7 +45,7 @@ export const Footer = ({page}) => { // state를 페이지 명으로 해서 관�
         </LinkNav>
         <LinkNav to={routes.login}>
           <div>
-            <BsPerson fontSize={28}/>
+            {page==='mypage' ? <BsPersonFill fontSize={28}/> :<BsPerson fontSize={28}/>}
           </div>
           <div>로그인</div>
         </LinkNav>

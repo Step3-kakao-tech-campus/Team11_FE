@@ -24,8 +24,8 @@ const ModalLayout = ({ data, what }) => {
     active,
     options,
   } = data;
+  console.log(options);
   const [participateState, setParticipate] = useState(participate);
-  const optionsList = options.result
 
   const clickButton = () => {
     setParticipate(!participateState);
@@ -52,7 +52,7 @@ const ModalLayout = ({ data, what }) => {
           participate={participateState}
           isOwner={isOwner}
           active={active}
-          options={optionsList}
+          options={options}
           onClick={clickButton}
         ></ButtonLayout>
 

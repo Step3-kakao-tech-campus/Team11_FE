@@ -7,6 +7,7 @@ import route from "../../../routes";
  *
  * @param {number} votingNumber
  * @param {number} questionNumber
+ * @return {JSX.Element}
  */
 const MyPageUl = ({ votingNumber, questionNumber }) => {
   const navigate = useNavigate(); // Li tag 아래 버튼을 주고 onclick 주기

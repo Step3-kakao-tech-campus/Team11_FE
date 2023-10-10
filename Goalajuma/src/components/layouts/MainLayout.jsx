@@ -3,7 +3,11 @@ import { Footer } from "./footers/Footer";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
-
+/**
+ * 
+ * @param {string} page 
+ * @return {JSX.Element}
+ */
 const MainLayout = ({page}) => {
   return (
     <div>

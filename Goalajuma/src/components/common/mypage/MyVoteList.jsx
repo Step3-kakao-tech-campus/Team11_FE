@@ -1,13 +1,13 @@
-import { ActiveSign } from "./ActiveSign"
+import ActiveSign from "./ActiveSign"
 import { GoChevronRight } from "react-icons/go"
 import styled from "styled-components"
 import { Palette } from "../../../styles/Palette"
 
 /**
- * @param
- * @returns 
+ * @param {object} data
+ * @returns {JSX.Element}
  */
-export const MyVoteList = ({data}) => {
+const MyVoteList = ({data}) => {
   return (
     <MyVote>
       <VoteInfo>
@@ -48,3 +48,5 @@ const Vote = styled.div`
     color: ${Palette.font_blue};
   }
 `;
+
+export default MyVoteList;
