@@ -21,7 +21,7 @@ const Icon = ({ children, reverse, size, color, onClick }) => {
 Icon.propTypes = {
   children: PropTypes.node.isRequired,
   reverse: PropTypes.bool,
-  size: PropTypes.number,
+  size: PropTypes.string,
   color: PropTypes.string,
   onClick: PropTypes.func
 }
