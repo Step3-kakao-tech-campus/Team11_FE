@@ -61,6 +61,7 @@ const AddChoice = () => {
           return (
             <>
               <ChoiceOption
+                key={index}
                 id={index}
                 data={choice}
                 inputOption={inputOption}

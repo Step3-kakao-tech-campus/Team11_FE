@@ -2,6 +2,17 @@ import styled from "styled-components";
 import Img from "./Img";
 import { GoX } from "react-icons/go";
 
+/**
+ *
+ * @param {object} param
+ * @param {number} param.id
+ * @param {object} param.data
+ * @param {func} param.inputOption
+ * @param {func} param.deleteOption
+ *  @param {string} param.src
+ * @returns
+ */
+
 const ChoiceOption = ({ id, data, inputOption, deleteOption, src }) => {
   const optionId = id + 1;
 
