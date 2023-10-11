@@ -24,10 +24,10 @@ const TextArea = ({ name }) => {
         id="content"
         placeholder="상세설명을 입력해주세요"
         ref={textArea}
-        onBlur={(e) => {
+        onChange={(e) => {
+          textAreaHeight(e);
           setUpload(e.target.value);
         }}
-        onChange={textAreaHeight}
         rows={1}
       ></textarea>
     </TextAreaStyle>
