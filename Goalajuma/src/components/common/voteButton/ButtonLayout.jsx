@@ -1,6 +1,6 @@
-import MainButton from "../common/voteButton/MainButton";
+import MainButton from "./MainButton";
 import styled from "styled-components";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 /**
  * @param {object} props
@@ -20,7 +20,7 @@ const ButtonLayout = ({ onClick, options, participate, isOwner, active }) => {
   return (
     <>
       <Container>
-        {optionList?.map((option,index) => {
+        {optionList?.map((option, index) => {
           return (
             <MainButton
               onClick={onClick}
@@ -42,12 +42,12 @@ const ButtonLayout = ({ onClick, options, participate, isOwner, active }) => {
 };
 
 ButtonLayout.propTypes = {
-  onClick: PropTypes.func.isRequired, 
-  options: PropTypes.object.isRequired, 
-  participate: PropTypes.bool.isRequired, 
-  isOwner: PropTypes.bool.isRequired, 
-  active: PropTypes.string.isRequired
-}
+  onClick: PropTypes.func.isRequired,
+  options: PropTypes.array.isRequired,
+  participate: PropTypes.bool.isRequired,
+  isOwner: PropTypes.bool.isRequired,
+  active: PropTypes.string.isRequired,
+};
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
