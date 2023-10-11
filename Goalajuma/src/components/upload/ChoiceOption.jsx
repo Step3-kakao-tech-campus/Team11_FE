@@ -16,7 +16,7 @@ const ChoiceOption = ({ id, data, inputOption, deleteOption, src }) => {
               deleteOption(e);
             }}
           >
-            <GoX />
+            <GoX id={id} />
           </div>
         ) : (
           <div className="box"></div>

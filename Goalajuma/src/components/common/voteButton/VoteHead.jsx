@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 const VoteHead = ({ voteCount, endDate, what }) => {
   return (
     <VoteHeadCss>
-      {what == "hot" ? (
+      {what === "hot" ? (
         <img src={`public/image/fire.png`} />
       ) : (
         <Icon>
