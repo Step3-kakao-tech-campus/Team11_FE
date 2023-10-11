@@ -2,8 +2,14 @@ import Icon from "../Icon";
 import styled from "styled-components";
 import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2";
 import { FaShare } from "react-icons/fa";
+import PropTypes from 'prop-types'
 
-const VoteButtom = ({ onClick, clickShare }) => {
+/**
+ * @param {object} props
+ * @param {object} onClick - 댓글 모달
+ * @param {object} onClickShare - 공유 버튼 모달
+ */
+const VoteButtom = ({ onClick, onClickShare }) => {
   return (
     <VoteButtonStyle>
       <div className="chat" onClick={onClick}>
@@ -13,13 +19,17 @@ const VoteButtom = ({ onClick, clickShare }) => {
         </Icon>
         <p>댓글</p>
       </div>
-      <Icon color="#676767" size="20px" onClick={clickShare}>
+      <Icon color="#676767" size="20px" onClick={onClickShare}>
         <FaShare />
       </Icon>
     </VoteButtonStyle>
   );
 };
 
+VoteButtom.propTypes = {
+  onClickShare: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+}
 const VoteButtonStyle = styled.div`
   margin-top: 2rem;
 

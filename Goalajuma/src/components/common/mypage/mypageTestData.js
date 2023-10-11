@@ -1,3 +1,4 @@
+// 내가 참여한 투표
 export const MyParticipateData ={
 	status : "200",
 	message : "응답한 투표 리스트 조회 요청 성공",
@@ -20,6 +21,7 @@ export const MyParticipateData ={
 	},
 };
 
+// 내가 한 질문
 export const MyQuestionsData = {
     status : "200",
     message : "올린 투표 리스트 요청 성공",

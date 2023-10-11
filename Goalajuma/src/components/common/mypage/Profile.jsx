@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { Palette } from "../../../styles/Palette";
-
+import PropTypes from 'prop-types'
 /**
  *
  * @param {string} userName
  * @param {string} email
  * @param {string} src
+ * @return {JSX.Element}
  */
 const Profile = ({ userName, email, src }) => {
   return (
@@ -21,6 +22,11 @@ const Profile = ({ userName, email, src }) => {
   );
 };
 
+Profile.propTypes = {
+  userName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  src: PropTypes.string,
+}
 const ProfileStyle = styled.div`
   width: 100%;
   height: 157px;
