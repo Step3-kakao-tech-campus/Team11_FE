@@ -1,5 +1,5 @@
 import HomeLayout from "../../components/home/HomeLayout";
-import { ButtonTest2 } from "../../components/home/ButtonTest";
+import { ButtonTest2 } from "../../components/common/voteButton/ButtonTest";
 import { HomeContainer } from "../../styles/Container";
 import MainLayout from "../../components/layouts/headers/MainLayout";
 const CompletePage = () => {
