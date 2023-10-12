@@ -6,8 +6,15 @@ import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { categoryState, timeLimitState } from "../../utils/UploadAtom";
 import { category, deadline } from "../upload/CategoryNDeadLine";
+import PropTypes from "prop-types";
 
-const Option = ({ datas, name, def }) => {
+/**
+ *
+ * @param {*} param
+ * @param {array} param.datas
+ * @param {string} param.name
+ */
+const Option = ({ datas, name }) => {
   const downRef = useRef();
   const [list, setList] = useState(false);
   const [categoryStates, setCategoryState] = useRecoilState(categoryState);
@@ -67,7 +74,6 @@ const Option = ({ datas, name, def }) => {
                 onClick={(e) => onClickCategory(e)}
                 value={data.value}
                 list={list}
-                id={name == "카테고리" ? index + 100 : index}
                 className={`optionLi ${className()}`}
               >
                 {" "}
@@ -80,6 +86,12 @@ const Option = ({ datas, name, def }) => {
     </div>
   );
 };
+
+Option.propTypes = {
+  datas: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
 const Select = styled.ul`
   list-style: none;
   padding: 0;

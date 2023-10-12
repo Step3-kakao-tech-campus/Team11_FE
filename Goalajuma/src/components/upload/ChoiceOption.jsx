@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Img from "./Img";
 import { GoX } from "react-icons/go";
+import PropTypes from "prop-types";
 
 /**
  *
@@ -45,6 +46,13 @@ const ChoiceOption = ({ id, data, inputOption, deleteOption, src }) => {
       </Container>
     </div>
   );
+};
+ChoiceOption.propTypes = {
+  id: PropTypes.number.isRequired,
+  data: PropTypes.object.isRequired,
+  inputOption: PropTypes.func.isRequired,
+  deleteOption: PropTypes.func.isRequired,
+  src: PropTypes.string.isRequired,
 };
 
 const Container = styled.div`

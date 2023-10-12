@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { contentState } from "../../utils/UploadAtom";
+import PropTypes from "prop-types";
 
 /**
- *
- * @param {string} name
+ * @param {object} param
+ * @param {string} param.name
  */
 const TextArea = ({ name }) => {
   const [upload, setUpload] = useRecoilState(contentState);
@@ -32,6 +33,10 @@ const TextArea = ({ name }) => {
       ></textarea>
     </TextAreaStyle>
   );
+};
+
+TextArea.propTypes = {
+  name: PropTypes.string.isRequired,
 };
 
 const TextAreaStyle = styled(InputStyle)`

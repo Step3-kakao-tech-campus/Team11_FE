@@ -44,6 +44,7 @@ const AddChoice = () => {
       <div className="labelBtn">
         <label>선택지 추가 *</label>
         <button
+          type="button"
           onClick={() =>
             setOption([
               { name: "", img: "" },
