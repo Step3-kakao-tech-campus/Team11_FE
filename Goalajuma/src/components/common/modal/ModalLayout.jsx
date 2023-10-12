@@ -27,7 +27,6 @@ const ModalLayout = ({ data, what }) => {
     active,
     options,
   } = data;
-  console.log(options);
   const [participateState, setParticipate] = useState(participate);
 
   const clickButton = () => {
@@ -61,8 +60,11 @@ const ModalLayout = ({ data, what }) => {
 
         <VoteButtom onClickShare={share}></VoteButtom>
       </Container>
-      <ChatForm />
-      <ChatWriteForm />
+      <Chat>
+        <ChatForm />
+        <ChatWriteForm />
+      </Chat>
+
     </MainContainer>
   );
 };
@@ -80,4 +82,9 @@ ModalLayout.propTypes = {
   data: PropTypes.object,
   what: PropTypes.string,
 };
+const Chat = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+`
 export default ModalLayout;
