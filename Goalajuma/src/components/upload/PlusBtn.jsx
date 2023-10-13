@@ -13,7 +13,12 @@ import PropTypes from "prop-types";
 const PlusBtn = ({ onClick }) => {
   return (
     <PlusBtnStyle>
-      <Icon size="30px" color={Palette["point_blue"]} onClick={onClick}>
+      <Icon
+        size="30px"
+        color={Palette["point_blue"]}
+        onClick={onClick}
+        hoverColor={Palette["font_blue"]}
+      >
         <AiFillPlusCircle />
       </Icon>
       <p>선택지 추가 (최대 6개)</p>

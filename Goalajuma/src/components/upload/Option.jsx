@@ -95,7 +95,7 @@ Option.propTypes = {
 const Select = styled.ul`
   list-style: none;
   padding: 0;
-  width: 150px;
+  width: 160px;
 
   display: flex;
   flex-direction: column;
@@ -103,6 +103,7 @@ const Select = styled.ul`
 
   font-size: 12px;
   color: #909090;
+  cursor: pointer;
 
   .selectBtn {
     width: 100%;
@@ -121,6 +122,9 @@ const Select = styled.ul`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .selectBtn:hover {
+    background-color: #ebebeb7a;
+  }
   .icon {
     position: relative;
     top: 3px;
@@ -132,7 +136,7 @@ const Select = styled.ul`
     justify-content: center;
     text-align: start;
 
-    height: 30px;
+    height: 35px;
     width: 100%;
 
     padding-left: 18px;

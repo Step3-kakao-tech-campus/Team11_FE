@@ -42,18 +42,18 @@ TextArea.propTypes = {
 const TextAreaStyle = styled(InputStyle)`
   margin-top: 2rem;
   textarea {
-    width: 271px;
-    height: 28px;
-    padding: 15px 20px 0 15px;
-    line-height: 140%;
+    padding: 20px 20px 0px 20px;
+    width: 266px;
+    height: 45px;
+    font-size: 14px;
+
+    line-height: 150%;
 
     border: 1px solid #4f4f4f;
     border-radius: 6px;
 
     box-shadow: 0px 2px 2px rgba(126, 126, 126, 0.25);
     resize: none;
-
-    font-family: "NanumGothic";
   }
 `;
 

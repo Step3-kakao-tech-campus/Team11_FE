@@ -28,7 +28,7 @@ const ChoiceOption = ({ id, data, inputOption, deleteOption, src }) => {
               deleteOption(e);
             }}
           >
-            <GoX id={id} />
+            <GoX className="xIcon" id={id} />
           </div>
         ) : (
           <div className="box"></div>
@@ -66,6 +66,11 @@ const Container = styled.div`
     position: relative;
     left: 65px;
     top: 5px;
+  }
+
+  .xIcon:hover {
+    background-color: #d2d2d2;
+    border-radius: 10px;
   }
   .nameInput {
     border: 1px solid #4f4f4f;
