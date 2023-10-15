@@ -1,7 +1,9 @@
 import HomeLayout from "../../components/home/HomeLayout";
 import { ButtonTest } from "../../components/common/voteButton/ButtonTest";
 import { HomeContainer } from "../../styles/Container";
-import MainLayout from "../../components/layouts/headers/MainLayout";
+import Main from "../../components/layouts/headers/Main";
+import Footer from "../../components/layouts/footers/Footer";
+
 const MainPage = () => {
   const datas = ButtonTest.data.votes;
   /**
@@ -11,15 +13,16 @@ const MainPage = () => {
   return (
     <>
       {" "}
-      <MainLayout page={"main"} />
+      <Main />
       <HomeContainer>
         {datas &&
           datas.map((data, id) => (
             <>
-              <HomeLayout id={id} data={data} what="main" />
+              <HomeLayout id={id} data={data} what="main" key={id} />
             </>
           ))}
       </HomeContainer>
+      <Footer page="main"/>
     </>
   );
 };

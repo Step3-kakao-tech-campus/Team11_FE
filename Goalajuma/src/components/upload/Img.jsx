@@ -5,10 +5,16 @@ import { useState } from "react";
 import Icon from "../common/Icon";
 import { GoFileMedia } from "react-icons/go";
 import { useRef } from "react";
+import PropTypes from "prop-types";
+/**
+ *
+ * @param {object} param
+ * @param {number} param.id
+ * @param {string} param.src
+ */
 
 const Img = ({ id, src }) => {
   const [imgFile, setImgFile] = useState("");
-  const [idState, setIdState] = useState(id);
   const [option, setOption] = useRecoilState(optionState);
   const imgRef = useRef();
   // 이미지 업로드 input의 onChange
@@ -69,6 +75,11 @@ const Img = ({ id, src }) => {
   );
 };
 
+Img.propTypes = {
+  id: PropTypes.number,
+  src: PropTypes.string,
+};
+
 const Container = styled.form`
   width: 134px;
   height: 48px;
@@ -80,6 +91,10 @@ const Container = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    background-color: #cacaca;
+  }
 `;
 const ImgContainer = styled.div`
   width: 111px;

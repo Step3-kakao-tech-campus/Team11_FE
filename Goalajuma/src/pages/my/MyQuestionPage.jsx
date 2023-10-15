@@ -1,4 +1,5 @@
-import MainLayout from "../../components/layouts/headers/MainLayout";
+import SubMyPageHeader from "../../components/layouts/headers/SubMyPageHeader";
+import Footer from "../../components/layouts/footers/Footer";
 import { MyQuestionsData } from "../../components/common/mypage/mypageTestData";
 import MyVoteList from "../../components/common/mypage/MyVoteList";
 import styled from "styled-components";
@@ -12,7 +13,7 @@ const MyQuestionPage = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <MainLayout page="myquestion" />
+      <SubMyPageHeader page="내가 한 질문" />
       {datas ? (
         <div>
           {datas &&
@@ -36,6 +37,7 @@ const MyQuestionPage = () => {
           </div>
         </Box>
       )}
+      <Footer page="mypage"/>
     </div>
   );
 };
