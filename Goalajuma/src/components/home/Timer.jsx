@@ -1,14 +1,18 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import PropTypes from 'prop-types'
 
+/**
+ *
+ * @param {object} prop
+ * @param {string} prop.endDate 작성자가 지정한 투표 종료 시간
+ */
 const Timer = ({ endDate }) => {
   let time = remaindTime(endDate)[0];
   const [endTime, setEndTime] = useState(time);
-  const [oneMinute, setOneMinute] = useState(false);
-
-  /**
-   * 타이머 함수
-   */
+  const [oneMinute, setOneMinute] = useState(false); // 일분 남았을 때 빨강 글씨 여부 
+  
+  //타이머 함수
   function remaindTime(endDate) {
     // 현재 시간을 구한다.
     var now = new Date();
@@ -39,9 +43,6 @@ const Timer = ({ endDate }) => {
       if (sec < 10) {
         sec = "0" + sec;
       }
-      if (et - nt < 60000) {
-        // setOneMinute(!oneMinute);
-      }
       return [days + "일 " + hour + ":" + min + ":" + sec, et - nt];
     } else {
       return ["종료", 60001];
@@ -63,6 +64,10 @@ const Timer = ({ endDate }) => {
     </TimerStyle>
   );
 };
+
+ Timer.propTypes = {
+  endDate: PropTypes.string.isRequired
+ }
 const TimerStyle = styled.div`
   font-size: 13px;
   font-weight: 100;

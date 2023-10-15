@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import { Palette } from "../../../styles/Palette";
-export const ActiveSign = ({active}) => {
+import PropTypes from 'prop-types'
+
+/**
+ * 
+ * @param {string} active 
+ * @return {JSX.Element} 
+ */
+const ActiveSign = ({active}) => {
   return (
     <>
     {active === "continue" ? <Label className="continue">진행중</Label> : <Label className="closed">종료</Label>}
@@ -8,6 +15,9 @@ export const ActiveSign = ({active}) => {
   );
 }
 
+ActiveSign.propTypes = {
+  active: PropTypes.string
+}
 const Label = styled.div`
   font-size: 3px;
   width: 2.5rem;
@@ -24,3 +34,5 @@ const Label = styled.div`
   border-color: ${Palette.font_gray};
  }
 `;
+
+export default ActiveSign;

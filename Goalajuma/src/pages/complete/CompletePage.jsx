@@ -1,7 +1,7 @@
 import HomeLayout from "../../components/home/HomeLayout";
-import { ButtonTest2 } from "../../components/home/ButtonTest";
+import { ButtonTest2 } from "../../components/common/voteButton/ButtonTest";
 import { HomeContainer } from "../../styles/Container";
-import MainLayout from "../../components/layouts/MainLayout";
+import MainLayout from "../../components/layouts/headers/MainLayout";
 const CompletePage = () => {
   const datas = ButtonTest2.data.votes;
 
@@ -12,7 +12,7 @@ const CompletePage = () => {
   return (
     <>
       {" "}
-      <MainLayout page="complete"/>
+      <MainLayout page="complete" />
       <HomeContainer>
         {datas &&
           datas.map((data, id) => (

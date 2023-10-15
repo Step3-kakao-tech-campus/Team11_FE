@@ -2,16 +2,24 @@ import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Palette } from "../../../styles/Palette";
+import PropTypes from 'prop-types';
 
-export const Dropdown = (items) => {
-  const [drop, setDrop] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(items.items[0].category);
-  const dropdownRef = useRef(null);
+/**
+ *
+ * @param {array} items
+ * @return {JSX.Element}
+ */
+const Dropdown = (items) => {
+  const [drop, setDrop] = useState(false); // list on off 여부 
+  const [selectedCategory, setSelectedCategory] = useState(items.items[0].category); // 유저가 선택한 카테고리
+  const dropdownRef = useRef(null); // 다른 배경 선택 시 닫힘 
 
   const handleDrop = () => {
     setDrop(prev => !prev);
   };
 
+  // recoil 사용: 클릭된 값을 atom에 넣어주기 
+  // atom 폴더에 파일 새로 만들기: HeaderAtom.js
   const handleCategory = (num) => {
     setSelectedCategory(items.items[num].category);
     handleDrop();
@@ -55,7 +63,9 @@ export const Dropdown = (items) => {
     </Category>
   );
 }
-
+Dropdown.propTypes={
+  items: PropTypes.array.isRequired
+}
 const Category = styled.div`
   display: inline-block;
   position: relative;
@@ -100,3 +110,4 @@ const Li = styled.li`
   margin: 0;
 `;
 
+export default Dropdown;
