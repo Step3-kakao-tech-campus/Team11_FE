@@ -21,6 +21,9 @@ const GlobalStyle = createGlobalStyle`
   margin-top: 55px;
   padding-bottom: 6rem;
 }
+*{
+  font-family: "NanumGothic";
+}
 
 `;
 

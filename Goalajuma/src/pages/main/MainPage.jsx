@@ -18,7 +18,7 @@ const MainPage = () => {
         {datas &&
           datas.map((data, id) => (
             <>
-              <HomeLayout id={id} data={data} what="main" />
+              <HomeLayout id={id} data={data} what="main" key={id} />
             </>
           ))}
       </HomeContainer>
