@@ -62,7 +62,7 @@ const UploadButtonStyle = styled.div`
     color: #585858;
   }
   .resetBtn:hover {
-    background-color: #ffaeaeb1;
+    background-color: #ffaeaeee;
   }
   .uploadBtn {
     background-color: ${(prop) =>
@@ -73,10 +73,6 @@ const UploadButtonStyle = styled.div`
     height: 60px;
     font-size: 19px;
     border: 0;
-  }
-
-  .uploadBtn:hover {
-    background-color: #869ae7;
   }
 
   display: flex;
