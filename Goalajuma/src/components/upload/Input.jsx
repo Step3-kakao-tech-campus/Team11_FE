@@ -19,6 +19,7 @@ const Input = ({ name, placeholder }) => {
         onChange={(e) => {
           setUpload(e.target.value);
         }}
+        autoFocus
       />
     </InputStyle>
   );

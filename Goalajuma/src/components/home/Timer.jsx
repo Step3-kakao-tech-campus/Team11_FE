@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 /**
  *
@@ -10,19 +10,19 @@ import PropTypes from 'prop-types'
 const Timer = ({ endDate }) => {
   let time = remaindTime(endDate)[0];
   const [endTime, setEndTime] = useState(time);
-  const [oneMinute, setOneMinute] = useState(false); // 일분 남았을 때 빨강 글씨 여부 
-  
+  const [oneMinute, setOneMinute] = useState(false); // 일분 남았을 때 빨강 글씨 여부
+
   //타이머 함수
   function remaindTime(endDate) {
     // 현재 시간을 구한다.
-    var now = new Date();
+    let now = new Date();
     // 마감 기간을 가져온다.
-    var end = new Date(endDate);
+    let end = new Date(endDate);
 
     // 현재 시간을 ms로 반환한다.
-    var nt = now.getTime();
+    let nt = now.getTime();
     // 마감 기간을 ms로 반환한다.
-    var et = end.getTime();
+    let et = end.getTime();
 
     // 마감 기간이 현재 시간보다 클 경우
     if (nt < et) {
@@ -65,9 +65,9 @@ const Timer = ({ endDate }) => {
   );
 };
 
- Timer.propTypes = {
-  endDate: PropTypes.string.isRequired
- }
+Timer.propTypes = {
+  endDate: PropTypes.string.isRequired,
+};
 const TimerStyle = styled.div`
   font-size: 13px;
   font-weight: 100;

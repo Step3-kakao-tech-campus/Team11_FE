@@ -9,7 +9,7 @@ import UploadButton from "../../components/upload/UploadButton";
 const UploadPage = () => {
   return (
     <div>
-      <MainHeader page="upload"/>
+      <MainHeader page="upload" />
       <UploadContainer>
         <p className="p">*은 필수 질문 입니다.</p>
         <Input name="질문 추가 *" placeholder="Q. 질문을 입력해주세요." />
@@ -19,7 +19,6 @@ const UploadPage = () => {
         />
         <AddChoice />
         <CategoryNDeadLine />
-        {/* 이미지 리사이즈공부 */}
         <UploadButton></UploadButton>
       </UploadContainer>
     </div>
