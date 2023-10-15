@@ -40,4 +40,14 @@ export const uploadSelector = selector({
       option: get(optionState),
     };
   },
+  set: ({ set }, value) => {
+    return (
+      set(titleState, value),
+      set(contentState, value),
+      set(titleState, value),
+      set(categoryState, value),
+      set(timeLimitState, value),
+      set(optionState, value)
+    );
+  },
 });
