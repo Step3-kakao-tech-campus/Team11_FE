@@ -1,7 +1,7 @@
 // 메인페이지, 완료된 페이지 헤더 
 import styled from "styled-components";
 import { CategoryBox } from "./CategoryBox";
-import { SearchButton } from "./SearchButton";
+import SearchButton from "./SearchButton";
 
 const Main = () => {
   return (

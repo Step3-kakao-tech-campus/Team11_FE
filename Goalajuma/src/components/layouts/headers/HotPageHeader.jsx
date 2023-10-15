@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { AiOutlineFire } from "react-icons/ai";
-import { SearchButton } from "./SearchButton";
+import SearchButton from "./SearchButton";
 
 // 핫게 헤더
 const HotPageHeader = () => {
@@ -23,7 +23,7 @@ const Nav = styled.nav`
   top: 0px;
   width: 390px;
   background-color: #FFF;
-  color: #000;
+  color: #535763 ;
   display: flex;
   align-items: center;
   z-index: 500;
