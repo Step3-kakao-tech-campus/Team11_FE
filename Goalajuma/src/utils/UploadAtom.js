@@ -2,12 +2,12 @@ import { atom, selector } from "recoil";
 
 export const titleState = atom({
   key: "titleState",
-  default: false,
+  default: "",
 });
 
 export const contentState = atom({
   key: "contentState",
-  default: false,
+  default: "",
 });
 
 export const categoryState = atom({
