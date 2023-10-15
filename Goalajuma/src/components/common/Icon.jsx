@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
  * @param {string} prop.color 기본값 검정
  * @param {function} prop.onClick 클릭 이벤트
  * @param {string} prop.hoverColor 호버 시 색깔
- *  @param {string} prop.hoverBackColor 호버 시 배경색깔
+ * @param {string} prop.hoverBackColor 호버 시 배경색깔
  *
  */
 const Icon = ({
@@ -41,7 +41,8 @@ Icon.propTypes = {
   size: PropTypes.string,
   color: PropTypes.string,
   onClick: PropTypes.func,
-  hover: PropTypes.string,
+  hoverColor: PropTypes.string,
+  hoverBackColor: PropTypes.string,
 };
 const IconCss = styled.div`
   font-size: ${(props) => props.size || "26px"};

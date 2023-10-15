@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
  */
 const Input = ({ name, placeholder }) => {
   const [upload, setUpload] = useRecoilState(titleState);
+
   return (
     <InputStyle>
       <label htmlFor="title">{name}</label>
@@ -20,6 +21,7 @@ const Input = ({ name, placeholder }) => {
         onChange={(e) => {
           setUpload(e.target.value);
         }}
+        value={upload}
         autoFocus
       />
     </InputStyle>

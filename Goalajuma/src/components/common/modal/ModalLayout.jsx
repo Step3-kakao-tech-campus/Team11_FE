@@ -86,5 +86,6 @@ const Chat = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-bottom: 30px;
 `
 export default ModalLayout;

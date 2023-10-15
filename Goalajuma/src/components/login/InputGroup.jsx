@@ -3,6 +3,16 @@ import Label from "./Label";
 import Input from "./Input";
 import PropTypes from 'prop-types';
 
+/**
+ * @param {string} id
+ * @param {string} type
+ * @param { func } onChange
+ * @param { string } value
+ * @param { string } className
+ * @param {string} placeholder
+ * @param {string} label
+ * @param {boolean} valid
+ */
 const InputGroup = ({
   id,
   type,
