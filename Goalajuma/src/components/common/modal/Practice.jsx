@@ -28,9 +28,7 @@ const Practice = () => {
           closable={true}
           maskClosable={true}
           onClose={closeModal}>
-            <HomeContainer>
-              <ModalLayout data={data} what="main" />
-            </HomeContainer>
+          <ModalLayout data={data} what="main" />
         </Modal>
       }
     </>
