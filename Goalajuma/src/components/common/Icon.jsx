@@ -1,11 +1,13 @@
 import styled from "styled-components";
+import PropTypes from 'prop-types';
 
 /**
  *
- * @param {boolean} reverse 죄우반전 여부
- * @param {string} size 기본값 26px
- * @param {string} color 기본값 검정
- * @param {function} onClick 클릭 이벤트
+ * @param {object} prop 
+ * @param {boolean} prop.reverse 죄우반전 여부
+ * @param {string} prop.size 기본값 26px
+ * @param {string} prop.color 기본값 검정
+ * @param {function} prop.onClick 클릭 이벤트
  *
  */
 const Icon = ({ children, reverse, size, color, onClick }) => {
@@ -16,6 +18,13 @@ const Icon = ({ children, reverse, size, color, onClick }) => {
   );
 };
 
+Icon.propTypes = {
+  children: PropTypes.node.isRequired,
+  reverse: PropTypes.bool,
+  size: PropTypes.string,
+  color: PropTypes.string,
+  onClick: PropTypes.func
+}
 const IconCss = styled.div`
   font-size: ${(props) => props.size || "26px"};
   transform: ${(props) => props.reverse && "scaleX(-1)"};

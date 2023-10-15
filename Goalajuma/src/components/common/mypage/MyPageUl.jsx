@@ -2,11 +2,12 @@ import styled from "styled-components";
 import MypageMainLi from "./MypageMainLi";
 import { useNavigate } from "react-router-dom";
 import route from "../../../routes";
+import PropTypes from 'prop-types'
 
 /**
  *
- * @param {number} votingNumber
- * @param {number} questionNumber
+ * @param {number} votingNumber 내가 한 투표수
+ * @param {number} questionNumber 내가 한 질문
  * @return {JSX.Element}
  */
 const MyPageUl = ({ votingNumber, questionNumber }) => {
@@ -23,7 +24,6 @@ const MyPageUl = ({ votingNumber, questionNumber }) => {
         number={questionNumber}
         onClick={()=>navigate(route.myquestion)}
       ></MypageMainLi>
-
       <MypageMainLi
         content="내 정보 수정"
         onClick={""}
@@ -32,6 +32,10 @@ const MyPageUl = ({ votingNumber, questionNumber }) => {
   );
 };
 
+MyPageUl.propTypes={
+  votingNumber: PropTypes.number.isRequired,
+  questionNumber: PropTypes.number.isRequired
+}
 const MyUlStyle = styled.ul`
   display: flex;
   flex-direction: column;

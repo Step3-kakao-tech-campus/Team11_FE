@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BackButton from "./headers/BackButton";
+import BackButton from "./BackButton";
 
 /**
  * 
@@ -31,7 +31,7 @@ const Nav = styled.nav`
 `;
 
 const Title = styled.div`
-  margin: 2px 0 0 5px
+  margin: 2px 0 0 5px;
 `;
 const PageName = styled.div`
   width: 100%;

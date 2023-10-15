@@ -1,5 +1,6 @@
-import MainHeader from "./headers/MainHeader";
-import { Footer } from "./footers/Footer";
+// 없앨거임
+import MainHeader from "./MainHeader";
+import Footer from "../footers/Footer";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 

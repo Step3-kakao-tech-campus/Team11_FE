@@ -1,36 +1,60 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useState } from "react";
 import routes from "../../../routes";
 import {GoHome, GoHomeFill, GoPlusCircle } from 'react-icons/go';
 import {AiOutlineFire, AiFillFire} from 'react-icons/ai';
 import {BsClipboardCheck, BsClipboardCheckFill, BsPerson, BsPersonFill} from 'react-icons/bs';
 import { Palette } from "../../../styles/Palette";
+import PropTypes from 'prop-types'
 
-export const Footer = ({page}) => { // state를 페이지 명으로 해서 관리하는 것이 더 좋을 수도.. 시간 될 때 수정하자!!
-  // const [page, setPage] = useState([true, false, false]); // home, hot, complete 
+/**
+ * @param {string} page 각 페이지 이름 
+ */
+const Footer = ({page}) => {  
+  const token = localStorage.getItem('token');
+  // 해당 푸터 버튼 클릭시 맨 위로 이동 
   const handlePage = (index) => {
     if (page[index] === true) { // 맨위로 이동
       console.log();
     }
-    // const newPage = page.map((item, i) => i === index);
-    // setPage(newPage);
   };
 
   return (
     <Nav>
       <LinkBox>
         <LinkNav to={routes.home}>
-          <div>
-            {page==='main' ? <GoHomeFill fontSize={28}/> : <GoHome fontSize={28} />}
-          </div>
-          <div>홈</div>
+          {page==='main' ? 
+            <>
+              <div>
+                <GoHomeFill style={{fontSize: 28, color: Palette.point_blue}}/> 
+              </div>
+              <div style={{color: Palette.point_blue}}>홈</div>
+            </>
+            : 
+            <>
+              <div>
+                <GoHome fontSize={28}/> 
+              </div>
+              <div style={{color: Palette.button_gray}}>홈</div>
+            </>
+          }
         </LinkNav>
         <LinkNav to={routes.hot}>
-          <div>
-            { page==='hot' ? <AiFillFire fontSize={28}/> : <AiOutlineFire fontSize={28}/>}
-          </div>
-          <div>HOT</div>
+          {page==='hot' ? 
+            <>
+              <div>
+                <AiFillFire style={{fontSize: 28, color: Palette.point_blue}}/> 
+              </div>
+              <div style={{color: Palette.point_blue}}>HOT</div>
+            </>
+            : 
+            <>
+              <div>
+                <AiOutlineFire fontSize={28}/> 
+              </div>
+              <div style={{color: Palette.button_gray}}>HOT</div>
+            </>
+          }
         </LinkNav>
         <UploadLink to={routes.upload} className="upload-button">
           <div>
@@ -38,22 +62,55 @@ export const Footer = ({page}) => { // state를 페이지 명으로 해서 관�
           </div>
         </UploadLink>
         <LinkNav to={routes.complete} >
-          <div>
-            { page==='complete' ? <BsClipboardCheckFill fontSize={28}/> : <BsClipboardCheck fontSize={28} /> }
-          </div>
-          <div>완료</div>
+          {page==='complete' ? 
+            <>
+              <div>
+                <BsClipboardCheckFill style={{fontSize: 28, color: Palette.point_blue}}/> 
+              </div>
+              <div style={{color: Palette.point_blue}}>완료</div>
+            </>
+            : 
+            <>
+              <div>
+                <BsClipboardCheck fontSize={28}/> 
+              </div>
+              <div style={{color: Palette.button_gray}}>완료</div>
+            </>
+          }
         </LinkNav>
-        <LinkNav to={routes.login}>
-          <div>
-            {page==='mypage' ? <BsPersonFill fontSize={28}/> :<BsPerson fontSize={28}/>}
-          </div>
-          <div>로그인</div>
-        </LinkNav>
+        {token ? 
+          <LinkNav to={routes.mypage}> 
+            {page==='mypage' ? 
+              <>
+                <div>
+                  <BsPersonFill style={{fontSize: 28, color: Palette.point_blue}}/> 
+                </div>
+                <div style={{color: Palette.point_blue}}>마이페이지</div>
+              </>
+              : 
+              <>
+                <div>
+                  <BsPerson fontSize={28}/> 
+                </div>
+                <div style={{color: Palette.button_gray}}>마이페이지</div>
+              </>
+            }
+          </LinkNav>
+          :
+          <LinkNav to={routes.login}>
+            <div>
+              <BsPerson fontSize={28}/> 
+            </div>
+            <div style={{color: Palette.button_gray}}>로그인</div>
+          </LinkNav>
+        }
       </LinkBox>
     </Nav>
   )
 }
-
+Footer.propTypes ={
+  page: PropTypes.string.isRequired
+}
 const Nav = styled.nav`
   position: fixed;
   bottom: 0px;
@@ -73,13 +130,14 @@ const LinkBox = styled.div`
 
 const LinkNav = styled(Link)`
   margin-top: 15px;
-  color: #7192FF;
+  color: ${Palette.button_gray};
   >div {
     height: 26px;
   }
 `;
 
 const UploadLink = styled(Link)`
-  color: ${Palette.font_blue};
+  color: ${Palette.button_gray};
   margin-top: 7px;
 `
+export default Footer;

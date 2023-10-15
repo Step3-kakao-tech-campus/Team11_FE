@@ -32,6 +32,7 @@ const MainButton = ({
   isOwner,
   active,
   onClick,
+  className,
 }) => {
   const navigate = useNavigate();
   const login = localStorage.getItem("token");
@@ -54,38 +55,36 @@ const MainButton = ({
           }
         });
       } else if (participate == true) {
-        if (choice == true) {
-          Swal.fire({
-            icon: "info",
-            text: "투표를 취소하겠습니까?",
-            showCancelButton: true,
-            confirmButtonText: "예",
-            cancelButtonText: "아니오",
-            confirmButtonColor: "#429f50",
-            cancelButtonColor: "#d33",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              setChoiced(!choice);
-              onClick();
-              /** 서버에 취소 요청 보내기*/
-            }
-          });
-        } else {
-          Swal.fire({
-            icon: "info",
-            text: "투표를 수정하시겠습니까?",
-            showCancelButton: true,
-            confirmButtonText: "예",
-            cancelButtonText: "아니오",
-            confirmButtonColor: "#429f50",
-            cancelButtonColor: "#d33",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              setChoiced(!choice);
-              /** 서버에 수정 요청 보내기*/
-            }
-          });
-        }
+        choice == true
+          ? Swal.fire({
+              icon: "info",
+              text: "투표를 취소하겠습니까?",
+              showCancelButton: true,
+              confirmButtonText: "예",
+              cancelButtonText: "아니오",
+              confirmButtonColor: "#429f50",
+              cancelButtonColor: "#d33",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                setChoiced(!choice);
+                onClick();
+                /** 서버에 취소 요청 보내기*/
+              }
+            })
+          : Swal.fire({
+              icon: "info",
+              text: "투표를 수정하시겠습니까?",
+              showCancelButton: true,
+              confirmButtonText: "예",
+              cancelButtonText: "아니오",
+              confirmButtonColor: "#429f50",
+              cancelButtonColor: "#d33",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                setChoiced(!choice);
+                /** 서버에 수정 요청 보내기*/
+              }
+            });
       } else {
         //투표 안한 기본 상태...
         setChoiced(true);

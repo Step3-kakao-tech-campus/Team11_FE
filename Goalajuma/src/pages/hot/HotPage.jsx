@@ -1,7 +1,8 @@
 import HomeLayout from "../../components/home/HomeLayout";
-import { ButtonTest } from "../../components/home/ButtonTest";
+import { ButtonTest } from "../../components/common/voteButton/ButtonTest";
 import { HomeContainer } from "../../styles/Container";
-import MainLayout from "../../components/layouts/MainLayout";
+import HotPageHeader from "../../components/layouts/headers/HotPageHeader";
+import Footer from "../../components/layouts/footers/Footer";
 
 const HotPage = () => {
   const datas = ButtonTest.data.votes;
@@ -12,24 +13,24 @@ const HotPage = () => {
 
   return (
     <>
-      <MainLayout page="hot"/>
+      <HotPageHeader/>
       <HomeContainer>
-      {" "}
-      {datas &&
-        datas.map((data, id) => (
-          <>
-            <HomeLayout
-              id={id}
-              data={data}
-              options={data.options}
-              what="hot"
-              choice={data.options.choice}
-            />
-          </>
-        ))}
+        {" "}
+        {datas &&
+          datas.map((data, id) => (
+            <>
+              <HomeLayout
+                id={id}
+                data={data}
+                options={data.options}
+                what="hot"
+                choice={data.options.choice}
+              />
+            </>
+          ))}
       </HomeContainer>
+      <Footer page="hot" />
     </>
-    
   );
 };
 

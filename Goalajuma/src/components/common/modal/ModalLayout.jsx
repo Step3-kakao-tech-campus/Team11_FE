@@ -1,11 +1,14 @@
 import { MainContainer } from "../../../styles/Container";
-import ButtonLayout from "../../home/ButtonLayout";
-import VoteHead from "../../home/VoteHead";
+import ButtonLayout from "../voteButton/ButtonLayout";
+import VoteHead from "../voteButton/VoteHead";
 import MainContent from "../../home/MainContent";
 import VoteButtom from "../voteButton/VoteButtom";
+import ChatForm from "./ChatForm";
+import ChatWriteForm from "./ChatWriteForm";
 import styled from "styled-components";
 import { useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+
 /**
  *
  * @param {object} data
@@ -24,7 +27,6 @@ const ModalLayout = ({ data, what }) => {
     active,
     options,
   } = data;
-  console.log(options);
   const [participateState, setParticipate] = useState(participate);
 
   const clickButton = () => {
@@ -38,7 +40,7 @@ const ModalLayout = ({ data, what }) => {
   };
 
   return (
-    <MainContainer>
+    <MainContainer className="modal">
       <Container>
         <VoteHead
           voteCount={voteCount}
@@ -56,8 +58,13 @@ const ModalLayout = ({ data, what }) => {
           onClick={clickButton}
         ></ButtonLayout>
 
-        <VoteButtom clickShare={share}></VoteButtom>
+        <VoteButtom onClickShare={share}></VoteButtom>
       </Container>
+      <Chat>
+        <ChatForm />
+        <ChatWriteForm />
+      </Chat>
+
     </MainContainer>
   );
 };
@@ -73,6 +80,11 @@ const Container = styled.div`
 `;
 ModalLayout.propTypes = {
   data: PropTypes.object,
-  what: PropTypes.string
-}
+  what: PropTypes.string,
+};
+const Chat = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+`
 export default ModalLayout;

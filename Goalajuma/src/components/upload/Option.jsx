@@ -2,16 +2,19 @@
 import styled from "styled-components";
 import { GoChevronDown } from "react-icons/go";
 import Icon from "../common/Icon";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { categoryState, timeLimitState } from "../../utils/UploadAtom";
 import { category, deadline } from "../upload/CategoryNDeadLine";
+
 const Option = ({ datas, name, def }) => {
+  const downRef = useRef();
   const [list, setList] = useState(false);
   const [categoryStates, setCategoryState] = useRecoilState(categoryState);
   const [timeLimitStates, setTimeLimitState] = useRecoilState(timeLimitState);
 
   const selectCategory = (e) => {
+    downRef.current?.scrollIntoView({ behavior: "smooth" });
     setList(!list);
   };
 
@@ -38,7 +41,7 @@ const Option = ({ datas, name, def }) => {
   };
 
   return (
-    <>
+    <div ref={downRef}>
       <Select list={list}>
         <button onClick={selectCategory} className="selectBtn">
           <p>
@@ -74,7 +77,7 @@ const Option = ({ datas, name, def }) => {
           );
         })}
       </Select>
-    </>
+    </div>
   );
 };
 const Select = styled.ul`

@@ -1,19 +1,19 @@
 import styled from "styled-components";
-import { AiOutlineFire } from "react-icons/ai";
-import { SearchButton } from "./headers/SearchButton";
+import { BsPerson } from "react-icons/bs";
 
-
-
-const HotPageHeader = () => {
+/**
+ * 
+ * @returns {JSX.Element}
+ */
+const MyPageHeader = () => {
   return (
     <Nav>
       <PageName>
-        <AiOutlineFire fontSize={28}/>
+        <BsPerson fontSize={28}/>
         <Title>
-          HOT 게시판
+          마이 페이지
         </Title>
       </PageName>
-      <SearchButton/>
     </Nav>
   )
 }
@@ -31,7 +31,7 @@ const Nav = styled.nav`
 `;
 
 const Title = styled.div`
-  margin: 2px 0 0 5px
+  margin: 2px 0 0 5px;
 `;
 const PageName = styled.div`
   margin: auto;
@@ -40,4 +40,4 @@ const PageName = styled.div`
   display:flex;
 `;
 
-export default HotPageHeader;
+export default MyPageHeader;

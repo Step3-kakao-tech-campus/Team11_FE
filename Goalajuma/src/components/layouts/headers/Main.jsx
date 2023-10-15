@@ -1,17 +1,13 @@
+// 메인페이지, 완료된 페이지 헤더 
 import styled from "styled-components";
-import { CategoryBox } from "./headers/CategoryBox";
-import { SearchButton } from "./headers/SearchButton";
+import { CategoryBox } from "./CategoryBox";
+import SearchButton from "./SearchButton";
 
-/**
- * 
- * @param {string} key
- * @return {JSX.Element}
- */
-const Main = ({key}) => {
+const Main = () => {
   return (
     <Nav>
       <CategoryBox/>
-      <SearchButton key={key}/>
+      <SearchButton/>
     </Nav>
   );
 }

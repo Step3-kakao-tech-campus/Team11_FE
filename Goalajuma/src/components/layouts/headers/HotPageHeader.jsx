@@ -1,20 +1,18 @@
 import styled from "styled-components";
-import { BsPerson } from "react-icons/bs";
+import { AiOutlineFire } from "react-icons/ai";
+import SearchButton from "./SearchButton";
 
-
-/**
- * 
- * @returns {JSX.Element}
- */
+// 핫게 헤더
 const HotPageHeader = () => {
   return (
     <Nav>
       <PageName>
-        <BsPerson fontSize={28}/>
+        <AiOutlineFire fontSize={28}/>
         <Title>
-          마이 페이지
+          HOT 게시판
         </Title>
       </PageName>
+      <SearchButton/>
     </Nav>
   )
 }
@@ -25,14 +23,14 @@ const Nav = styled.nav`
   top: 0px;
   width: 390px;
   background-color: #FFF;
-  color: #000;
+  color: #535763 ;
   display: flex;
   align-items: center;
   z-index: 500;
 `;
 
 const Title = styled.div`
-  margin: 2px 0 0 5px
+  margin: 2px 0 0 5px;
 `;
 const PageName = styled.div`
   margin: auto;

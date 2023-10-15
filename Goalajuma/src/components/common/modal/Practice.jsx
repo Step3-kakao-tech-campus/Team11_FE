@@ -2,8 +2,6 @@ import { useState } from 'react';
 import Modal from './Modal'
 import {ModalTest} from './ModalTest';
 import ModalLayout from './ModalLayout';
-// import HomeLayout from "../home/HomeLayout"
-// import { ButtonTest } from "../home/ButtonTest.js";
 import { HomeContainer } from "../../../styles/Container";
 import Button from '../../login/Button';
 
