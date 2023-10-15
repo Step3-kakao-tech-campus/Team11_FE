@@ -12,11 +12,7 @@ const UploadButton = () => {
       const act = count.option.filter((item) => {
         return item.name == "";
       });
-      if (act.length > 0) {
-        setActive(false);
-      } else {
-        setActive(true);
-      }
+      act.length > 0 ? setActive(false) : setActive(true);
     }
   }, [count]);
 

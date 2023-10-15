@@ -44,6 +44,8 @@ const AddChoice = () => {
       <div className="labelBtn">
         <label>선택지 추가 *</label>
         <button
+          type="button"
+          className="reset"
           onClick={() =>
             setOption([
               { name: "", img: "" },
@@ -61,6 +63,7 @@ const AddChoice = () => {
           return (
             <>
               <ChoiceOption
+                key={index}
                 id={index}
                 data={choice}
                 inputOption={inputOption}
@@ -99,7 +102,7 @@ const Container = styled.div`
     margin: 0 0 5px 13px;
   }
 
-  .labelBtn > button {
+  .reset {
     position: relative;
     left: 180px;
     background-color: #d6deed;
@@ -107,6 +110,9 @@ const Container = styled.div`
     border-radius: 1rem;
     font-size: 12px;
     color: #797979;
+  }
+  .reset:hover {
+    background-color: #c8d1e1;
   }
 `;
 

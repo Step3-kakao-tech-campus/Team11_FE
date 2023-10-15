@@ -1,6 +1,18 @@
 import styled from "styled-components";
 import Img from "./Img";
 import { GoX } from "react-icons/go";
+import PropTypes from "prop-types";
+
+/**
+ *
+ * @param {object} param
+ * @param {number} param.id
+ * @param {object} param.data
+ * @param {func} param.inputOption
+ * @param {func} param.deleteOption
+ *  @param {string} param.src
+ * @returns
+ */
 
 const ChoiceOption = ({ id, data, inputOption, deleteOption, src }) => {
   const optionId = id + 1;
@@ -16,7 +28,7 @@ const ChoiceOption = ({ id, data, inputOption, deleteOption, src }) => {
               deleteOption(e);
             }}
           >
-            <GoX />
+            <GoX className="xIcon" id={id} />
           </div>
         ) : (
           <div className="box"></div>
@@ -35,6 +47,13 @@ const ChoiceOption = ({ id, data, inputOption, deleteOption, src }) => {
     </div>
   );
 };
+ChoiceOption.propTypes = {
+  id: PropTypes.number.isRequired,
+  data: PropTypes.object.isRequired,
+  inputOption: PropTypes.func.isRequired,
+  deleteOption: PropTypes.func.isRequired,
+  src: PropTypes.string.isRequired,
+};
 
 const Container = styled.div`
   background-color: #ececec;
@@ -47,6 +66,11 @@ const Container = styled.div`
     position: relative;
     left: 65px;
     top: 5px;
+  }
+
+  .xIcon:hover {
+    background-color: #d2d2d2;
+    border-radius: 10px;
   }
   .nameInput {
     border: 1px solid #4f4f4f;

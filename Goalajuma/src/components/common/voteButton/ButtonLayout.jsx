@@ -43,7 +43,7 @@ const ButtonLayout = ({ onClick, options, participate, isOwner, active }) => {
 
 ButtonLayout.propTypes = {
   onClick: PropTypes.func.isRequired,
-  options: PropTypes.object.isRequired,
+  options: PropTypes.array.isRequired,
   participate: PropTypes.bool.isRequired,
   isOwner: PropTypes.bool.isRequired,
   active: PropTypes.string.isRequired,

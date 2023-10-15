@@ -14,8 +14,7 @@ function Modal({
   }) {
   // 배경 누르면 동작 
   const onMaskClick = (e) => {
-    console.log(e.target)  // 모달 배경 
-    console.log(e.currentTarget) // 유저가 클릭한 것 
+  // target : 모달 배경, currentTarget : 유저가 클릭한 것 
     if (e.target === e.currentTarget) {
       onClose(e)
     }

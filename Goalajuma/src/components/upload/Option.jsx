@@ -2,16 +2,26 @@
 import styled from "styled-components";
 import { GoChevronDown } from "react-icons/go";
 import Icon from "../common/Icon";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { categoryState, timeLimitState } from "../../utils/UploadAtom";
 import { category, deadline } from "../upload/CategoryNDeadLine";
-const Option = ({ datas, name, def }) => {
+import PropTypes from "prop-types";
+
+/**
+ *
+ * @param {*} param
+ * @param {array} param.datas
+ * @param {string} param.name
+ */
+const Option = ({ datas, name }) => {
+  const downRef = useRef();
   const [list, setList] = useState(false);
   const [categoryStates, setCategoryState] = useRecoilState(categoryState);
   const [timeLimitStates, setTimeLimitState] = useRecoilState(timeLimitState);
 
   const selectCategory = (e) => {
+    downRef.current?.scrollIntoView({ behavior: "smooth" });
     setList(!list);
   };
 
@@ -38,7 +48,7 @@ const Option = ({ datas, name, def }) => {
   };
 
   return (
-    <>
+    <div ref={downRef}>
       <Select list={list}>
         <button onClick={selectCategory} className="selectBtn">
           <p>
@@ -64,7 +74,6 @@ const Option = ({ datas, name, def }) => {
                 onClick={(e) => onClickCategory(e)}
                 value={data.value}
                 list={list}
-                id={name == "카테고리" ? index + 100 : index}
                 className={`optionLi ${className()}`}
               >
                 {" "}
@@ -74,13 +83,19 @@ const Option = ({ datas, name, def }) => {
           );
         })}
       </Select>
-    </>
+    </div>
   );
 };
+
+Option.propTypes = {
+  datas: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
 const Select = styled.ul`
   list-style: none;
   padding: 0;
-  width: 150px;
+  width: 160px;
 
   display: flex;
   flex-direction: column;
@@ -88,6 +103,7 @@ const Select = styled.ul`
 
   font-size: 12px;
   color: #909090;
+  cursor: pointer;
 
   .selectBtn {
     width: 100%;
@@ -106,6 +122,9 @@ const Select = styled.ul`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .selectBtn:hover {
+    background-color: #ebebeb7a;
+  }
   .icon {
     position: relative;
     top: 3px;
@@ -117,7 +136,7 @@ const Select = styled.ul`
     justify-content: center;
     text-align: start;
 
-    height: 30px;
+    height: 35px;
     width: 100%;
 
     padding-left: 18px;

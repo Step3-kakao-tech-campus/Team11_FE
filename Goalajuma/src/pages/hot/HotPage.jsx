@@ -1,7 +1,8 @@
 import HomeLayout from "../../components/home/HomeLayout";
 import { ButtonTest } from "../../components/common/voteButton/ButtonTest";
 import { HomeContainer } from "../../styles/Container";
-import MainLayout from "../../components/layouts/headers/MainLayout";
+import HotPageHeader from "../../components/layouts/headers/HotPageHeader";
+import Footer from "../../components/layouts/footers/Footer";
 
 const HotPage = () => {
   const datas = ButtonTest.data.votes;
@@ -12,7 +13,7 @@ const HotPage = () => {
 
   return (
     <>
-      <MainLayout page="hot" />
+      <HotPageHeader/>
       <HomeContainer>
         {" "}
         {datas &&
@@ -28,6 +29,7 @@ const HotPage = () => {
             </>
           ))}
       </HomeContainer>
+      <Footer page="hot" />
     </>
   );
 };

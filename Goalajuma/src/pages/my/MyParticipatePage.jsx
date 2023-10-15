@@ -1,4 +1,5 @@
-import MainLayout from "../../components/layouts/headers/MainLayout";
+import SubMyPageHeader from "../../components/layouts/headers/SubMyPageHeader"
+import Footer from "../../components/layouts/footers/Footer";
 import { MyParticipateData } from "../../components/common/mypage/mypageTestData";
 import MyVoteList from "../../components/common/mypage/MyVoteList";
 import { useNavigate } from "react-router-dom";
@@ -7,14 +8,14 @@ import styled from "styled-components";
 import { Palette } from "../../styles/Palette";
 
 const MyParticipatePage = () => {
-  const datas = MyParticipateData.data.votes;
-  // const datas = null;
+  // const datas = MyParticipateData.data.votes;
+  const datas = null;
 
   const navigate = useNavigate();
 
   return (
     <div>
-      <MainLayout page="myvoted" />
+      <SubMyPageHeader page="내가 참여한 투표" />
       {datas ? (
         <div>
           {datas &&
@@ -35,6 +36,7 @@ const MyParticipatePage = () => {
           </div>
         </Box>
       )}
+      <Footer page="mypage"/>
     </div>
   );
 };
