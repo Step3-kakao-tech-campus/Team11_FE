@@ -1,9 +1,15 @@
 import styled from "styled-components";
 import Icon from "../common/Icon";
 import { GoFileMedia } from "react-icons/go";
-import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { optionState } from "../../utils/UploadAtom";
+import PropTypes from "prop-types";
+
+/**
+ *
+ * @param {object} param
+ * @param {func} param.func
+ * @param {number} param.id
+ * @returns
+ */
 
 const FileUpload = ({ func, id }) => {
   return (
@@ -25,6 +31,11 @@ const FileUpload = ({ func, id }) => {
       />
     </FileUploadContainer>
   );
+};
+
+FileUpload.propTypes = {
+  func: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 //이미지 타입 어떤거 받을지 정해야함(전부 받을지, 특정 타입만 받을지)
