@@ -1,15 +1,20 @@
 // import PropTypes from 'prop-types'
 import Img from '../Img'
-import styled from "styled-components";
+import styled from "styled-components"; 
 
 const ChatWriteForm = () => {
+  
+  const handleUpload = ()=>{
+    console.log("upload")
+  }
+
   return (
     <>
     <FormStyled>
       <Img src="맹구.png" size="35px"/>
       <WriteStyled>
         <CommentStyled>댓글 작성하기</CommentStyled>
-        <UploadStyled>게시</UploadStyled>
+        <UploadStyled onClick={handleUpload}>게시</UploadStyled>
       </WriteStyled>
     </FormStyled>
     </>

@@ -1,6 +1,15 @@
 import styled from "styled-components"
 import PropTypes from 'prop-types'
 
+
+/**
+ * @param {string} children
+ * @param {string} color background color
+ * @param { func } onClick 버튼 클릭 이벤트 
+ * @param { boolean } disabled 버튼 활성화 여부 
+ * @param { string } className 
+ */
+
 const Button = ({children, color, onClick, disabled, className}) => {
 	return (
 		<StyledButton color={color} className={`button ${className}`} disabled={disabled} onClick={(e) => {
