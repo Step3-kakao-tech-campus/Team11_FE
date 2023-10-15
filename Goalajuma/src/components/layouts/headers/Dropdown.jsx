@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Palette } from "../../../styles/Palette";
-import { useRecoilState } from "recoil";
 import PropTypes from 'prop-types';
 
 /**
@@ -20,7 +19,6 @@ const Dropdown = (items) => {
   };
 
   // recoil 사용: 클릭된 값을 atom에 넣어주기 
-  // atom 폴더에 파일 새로 만들기: HeaderAtom.js
   const handleCategory = (num) => {
     setSelectedCategory(items.items[num].category);
     handleDrop();
@@ -65,7 +63,7 @@ const Dropdown = (items) => {
   );
 }
 Dropdown.propTypes={
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
 }
 const Category = styled.div`
   display: inline-block;

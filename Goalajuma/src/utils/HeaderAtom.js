@@ -5,7 +5,17 @@ export const sortState = atom({
   default: "latest",
 });
 
-export const contentState = atom({
-  key: "contentState",
+export const segmentState = atom({
+  key: "segmentState",
   default: "total",
 });
+
+export const totalCategoryState = selector({
+  key: "totalCategoryState",
+  get: ({get}) => {
+    return{
+      sort : get(sortState),
+      content : get(segmentState)
+    };
+  }
+})
