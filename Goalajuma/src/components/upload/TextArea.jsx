@@ -30,6 +30,7 @@ const TextArea = ({ name }) => {
           setUpload(e.target.value);
         }}
         rows={1}
+        value={upload}
       ></textarea>
     </TextAreaStyle>
   );
