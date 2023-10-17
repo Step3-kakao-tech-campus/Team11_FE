@@ -11,7 +11,7 @@ import MyQuestionPage from "./pages/my/MyQuestionPage";
 import MyParticipatePage from "./pages/my/MyParticipatePage";
 import UploadPage from "./pages/upload/UploadPage";
 import { RecoilRoot } from "recoil";
-import Practice from "./components/common/modal/Practice"
+import Practice from "./components/common/modal/Practice";
 function App() {
   return (
     <>

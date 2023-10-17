@@ -42,7 +42,7 @@ Icon.propTypes = {
   color: PropTypes.string,
   onClick: PropTypes.func,
   hoverColor: PropTypes.string,
-  hoverBackColor: PropTypes.string,
+  hoverBackColor:PropTypes.string,
 };
 const IconCss = styled.div`
   font-size: ${(props) => props.size || "26px"};

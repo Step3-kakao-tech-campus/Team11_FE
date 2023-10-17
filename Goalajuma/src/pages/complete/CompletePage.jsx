@@ -13,17 +13,14 @@ const CompletePage = () => {
   return (
     <>
       {" "}
-      <Main/>
+      <Main />
       <HomeContainer>
         {datas &&
           datas.map((data, id) => (
-            <>
-              {" "}
-              <HomeLayout id={id} data={data} what="complete" />
-            </>
+            <HomeLayout id={id} data={data} what="complete" key={id} />
           ))}
       </HomeContainer>
-      <Footer page="complete"/>
+      <Footer page="complete" />
     </>
   );
 };

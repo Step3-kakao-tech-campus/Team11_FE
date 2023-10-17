@@ -40,26 +40,13 @@ const AddChoice = () => {
   };
 
   return (
-    <Container>
+    <Container hasValue={option.length}>
       <div className="labelBtn">
-        <label>선택지 추가 *</label>
-        <button
-          type="button"
-          className="reset"
-          onClick={() =>
-            setOption([
-              { name: "", img: "" },
-              { name: "", img: "" },
-            ])
-          }
-        >
-          초기화
-        </button>
+        <label>선택지 추가 (2개이상) *</label>
       </div>
 
       <OptionContainer>
         {option.map((choice, index) => {
-          // console.log(choice.img);
           return (
             <ChoiceOption
               key={index}
@@ -88,7 +75,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
+  position: relative;
+  right: ${(prop) => (prop.hasValue ? "0" : "5.1rem")};
   .labelBtn {
     margin: 0 0 5px 0;
     display: flex;
