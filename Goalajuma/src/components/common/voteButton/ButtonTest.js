@@ -37,7 +37,7 @@ export const ButtonTest = {
         voteCount: 826,
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.30 18:00",
-        avtive: "continue",
+        active: "continue",
         participate: false,
         title: "군대 가야할까요?..",
         content:
