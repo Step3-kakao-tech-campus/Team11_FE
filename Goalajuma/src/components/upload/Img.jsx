@@ -81,6 +81,13 @@ Img.propTypes = {
 };
 
 const Container = styled.form`
+  /* img,
+  svg,
+  label,
+  div,
+  p {
+    background-color: #d8d8d8;
+  } */
   width: 134px;
   height: 48px;
   text-align: center;
