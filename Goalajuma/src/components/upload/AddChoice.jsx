@@ -1,6 +1,6 @@
 import ChoiceOption from "./ChoiceOption";
 import { useRecoilState } from "recoil";
-import { optionState } from "../../utils/UploadAtom";
+import { optionState } from "@/utils/UploadAtom";
 import styled from "styled-components";
 import PlusBtn from "./PlusBtn";
 
@@ -42,7 +42,7 @@ const AddChoice = () => {
   return (
     <Container hasValue={option.length}>
       <div className="labelBtn">
-        <label>선택지 추가 (2개이상) *</label>
+        <label>선택지 추가 (최소 2개이상) *</label>
       </div>
 
       <OptionContainer>

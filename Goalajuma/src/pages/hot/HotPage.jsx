@@ -1,8 +1,8 @@
-import HomeLayout from "../../components/home/HomeLayout";
-import { ButtonTest } from "../../components/common/voteButton/ButtonTest";
-import { HomeContainer } from "../../styles/Container";
-import HotPageHeader from "../../components/layouts/headers/HotPageHeader";
-import Footer from "../../components/layouts/footers/Footer";
+import HomeLayout from "@/components/home/HomeLayout";
+import { ButtonTest } from "@/components/common/voteButton/ButtonTest";
+import { HomeContainer } from "@/styles/Container";
+import HotPageHeader from "@/components/layouts/headers/HotPageHeader";
+import Footer from "@/components/layouts/footers/Footer";
 
 const HotPage = () => {
   const datas = ButtonTest.data.votes;

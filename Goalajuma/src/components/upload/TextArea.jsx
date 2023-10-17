@@ -2,7 +2,7 @@ import { InputStyle } from "./input";
 import styled from "styled-components";
 import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { contentState } from "../../utils/UploadAtom";
+import { contentState } from "@/utils/UploadAtom";
 import PropTypes from "prop-types";
 
 /**
