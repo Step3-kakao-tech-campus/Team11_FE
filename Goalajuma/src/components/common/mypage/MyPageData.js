@@ -6,7 +6,7 @@ export const MainMyData = {
 				nickName:"김코딩",
 				email:"kkj@gmail.com",
 				image: "vv.jpg",
-				createVoteCount: 3,
-				participateVoteCount: 1,
+				createVoteCount: 1,
+				participateVoteCount: 3,
 	}
 }

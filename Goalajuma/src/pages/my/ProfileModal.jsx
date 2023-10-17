@@ -1,27 +1,74 @@
-import { MainMyData } from "../../components/common/mypage/MyPageData";
 import styled from "styled-components";
 import { Palette } from "../../styles/Palette";
-import { Button } from "@mui/material";
+import { useRef, useState } from "react";
+import PropTypes from "prop-types";
 
-const ProfileModal = () => {
-  const datas = MainMyData.data;
+/**
+ * 
+ * @param {string} nickName
+ * @param {string} email 
+ * @param {string} img
+ * @returns 
+ */
+const ProfileModal = ({nickName, email, img}) => {
+  const [input, setInput] = useState(false);
+  const nicknameRef = useRef(null);
+  const emailRef = useRef(null);
+  const handleMyInfo = () => {
+    setInput(prev => !prev)
+    if (!input) {
+      // If the "수정하기" button is clicked, save the default values
+      nicknameRef.current.defaultValue = nickName;
+      emailRef.current.defaultValue = email;
+    } else {
+      // If "취소" is clicked, reset the input values to their default values
+      nicknameRef.current.value = nickName;
+      emailRef.current.value = email;
+    }
+  }
+  
   return (
     <div>
-      <Img src={`public/image/${datas.image}`} alt="사용자 프로필" />
+      <Img src={`public/image/${img}`} alt="사용자 프로필" />
+      {!input && <Modify onClick={() => handleMyInfo()}>수정하기</Modify>}
       <InputBox>
         <label htmlFor="nickname">닉네임</label>
-        <input type="text" id="nickname" placeholder={datas.nickName}/>
+        <input 
+          type="text" 
+          id="nickname" 
+          defaultValue={nickName}
+          ref={nicknameRef}
+          disabled={!input}  
+        />
         <label htmlFor="email">이메일</label>
-        <input type="email" id="email" placeholder={datas.email} />
+        <input 
+          type="email" 
+          id="email" 
+          defaultValue={email} 
+          ref={emailRef}
+          disabled={!input}
+        />
       </InputBox>
       <ButtonBox>
-        <SubmitButton>저장</SubmitButton>
-        <LogOutButton>로그아웃</LogOutButton>
+        {input && <SubmitButton >저장</SubmitButton>}
+        {input ? <LogOutButton onClick={() => handleMyInfo()}>취소</LogOutButton>:
+         <LogOutButton>로그아웃</LogOutButton>}
       </ButtonBox>
     </div>
   );
 }
 
+ProfileModal.propTypes = {
+  nickName : PropTypes.string.isRequired,
+  email : PropTypes.string.isRequired,
+  img : PropTypes.string,
+};
+
+
+const Modify = styled.div`
+  font-size: 8px;
+  text-align: right;
+`
 const InputBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -52,7 +99,7 @@ const Img = styled.img`
   justify-content: center;
   align-items: center;
   border-radius: 1000000000px;
-  box-shadow: 0 0 0 2.3px #ffffff, 0 0 0 4.6px ${Palette["point_blue"]};
+  box-shadow: 0 0 0 2.3px #ffffff, 0 0 0 4.6px ${Palette.point_blue};
 `;
 
 const SubmitButton = styled.button`
@@ -68,7 +115,7 @@ const SubmitButton = styled.button`
 `
 const LogOutButton = styled.div`
   font-size: 8px;
-  margin: 10px 0 0 60%;
-  right: 10%;
+  margin: 10px 0 0 85%;
+  /* right: 10%; */
 `
 export default ProfileModal;

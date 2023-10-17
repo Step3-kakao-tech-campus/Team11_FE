@@ -5,8 +5,8 @@ import route from "../../../routes";
 import PropTypes from 'prop-types'
 import { useState } from "react";
 import Modal from '../modal/Modal'
-import {ModalTest} from '../modal/ModalTest';
 import ProfileModal from "../../../pages/my/ProfileModal";
+import { MainMyData } from "./MyPageData";
 
 /**
  *
@@ -17,7 +17,7 @@ import ProfileModal from "../../../pages/my/ProfileModal";
 const MyPageUl = ({ votingNumber, questionNumber }) => {
   const navigate = useNavigate(); // Li tag 아래 버튼을 주고 onclick 주기
   const [profile, setProfile] = useState(false);
-  const data = ModalTest.data.vote;
+  const datas = MainMyData.data;
   
   const openProfile = () => {
     setProfile(true);
@@ -29,12 +29,12 @@ const MyPageUl = ({ votingNumber, questionNumber }) => {
     <MyUlStyle> 
       <MypageMainLi
         content="내가 참여한 투표"
-        number={votingNumber}
+        number={datas.participateVoteCount}
         onClick={()=>navigate(route.myparticipation)}
       ></MypageMainLi>
       <MypageMainLi
         content="내가 한 질문"
-        number={questionNumber}
+        number={datas.createVoteCount}
         onClick={()=>navigate(route.myquestion)}
       ></MypageMainLi>
       <MypageMainLi
@@ -49,7 +49,11 @@ const MyPageUl = ({ votingNumber, questionNumber }) => {
             closable={true}
             maskClosable={true}
             onClose={closeProfile}>
-            <ProfileModal/>
+            <ProfileModal
+              nickName ={datas.nickName}
+              email={datas.email}
+              img={datas.image}
+            />
           </Modal>
       }
     </MyUlStyle>
