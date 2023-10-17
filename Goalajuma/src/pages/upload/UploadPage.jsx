@@ -5,8 +5,23 @@ import styled from "styled-components";
 import AddChoice from "../../components/upload/AddChoice";
 import CategoryNDeadLine from "../../components/upload/CategoryNDeadLine";
 import UploadButton from "../../components/upload/UploadButton";
+import { useEffect } from "react";
 
 const UploadPage = () => {
+  const preventRefresh = (e) => {
+    e.preventDefault();
+    e.returnValue = "";
+  };
+  useEffect(() => {
+    (() => {
+      window.addEventListener("beforeunload", preventRefresh);
+    })();
+
+    return () => {
+      window.removeEventListener("beforeunload", preventRefresh);
+    };
+  }, []);
+
   return (
     <div>
       <MainHeader page="upload" />

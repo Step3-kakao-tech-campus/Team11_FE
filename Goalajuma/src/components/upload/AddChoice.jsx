@@ -61,16 +61,14 @@ const AddChoice = () => {
         {option.map((choice, index) => {
           // console.log(choice.img);
           return (
-            <>
-              <ChoiceOption
-                key={index}
-                id={index}
-                data={choice}
-                inputOption={inputOption}
-                deleteOption={deleteOption}
-                src={choice.img}
-              ></ChoiceOption>
-            </>
+            <ChoiceOption
+              key={index}
+              id={index}
+              data={choice}
+              inputOption={inputOption}
+              deleteOption={deleteOption}
+              src={choice.img}
+            ></ChoiceOption>
           );
         })}
       </OptionContainer>

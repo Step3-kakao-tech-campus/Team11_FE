@@ -11,7 +11,8 @@ const GlobalStyle = createGlobalStyle`
   }
   * {
     text-decoration: none;
-}
+    font-family: "NanumGothic";
+  }
   #root {
   max-width: 390px;
   max-height: 844px;
@@ -20,11 +21,7 @@ const GlobalStyle = createGlobalStyle`
   text-align: center;
   margin-top: 55px;
   padding-bottom: 6rem;
-}
-*{
-  font-family: "NanumGothic";
-}
-
+  }
 `;
 
 export default GlobalStyle;
