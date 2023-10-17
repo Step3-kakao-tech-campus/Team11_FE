@@ -12,17 +12,14 @@ const MainPage = () => {
 
   return (
     <>
-      {" "}
       <Main />
       <HomeContainer>
         {datas &&
           datas.map((data, id) => (
-            <>
-              <HomeLayout id={id} data={data} what="main" key={id} />
-            </>
+            <HomeLayout id={id} data={data} what="main" key={id} />
           ))}
       </HomeContainer>
-      <Footer page="main"/>
+      <Footer page="main" />
     </>
   );
 };

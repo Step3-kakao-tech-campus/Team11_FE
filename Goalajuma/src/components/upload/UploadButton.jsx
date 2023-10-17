@@ -56,20 +56,20 @@ const UploadButton = () => {
 const UploadButtonStyle = styled.div`
   .resetBtn {
     height: 40px;
-    background-color: #ffcece;
+    background-color: #ffffff;
     font-size: 15px;
-    border: 0;
+    border: 1px solid #a8a8a8;
     color: #585858;
   }
   .resetBtn:hover {
-    background-color: #ffaeaeee;
+    background-color: #f0f0f0;
   }
   .uploadBtn {
     background-color: ${(prop) =>
       prop.active ? Palette["button_blue"] : Palette["percent_gray"]};
     color: ${(prop) => (prop.active ? "#FFFFFF" : "#000000")};
     width: 100%;
-    max-width: 490px;
+    max-width: 450px;
     height: 60px;
     font-size: 19px;
     border: 0;
@@ -79,7 +79,7 @@ const UploadButtonStyle = styled.div`
   /* justify-content: center;
   align-items: center; */
   width: 100%;
-  max-width: 490px;
+  max-width: 450px;
   flex-direction: column;
   position: fixed;
   bottom: 0;

@@ -13,20 +13,19 @@ const HotPage = () => {
 
   return (
     <>
-      <HotPageHeader/>
+      <HotPageHeader />
       <HomeContainer>
         {" "}
         {datas &&
           datas.map((data, id) => (
-            <>
-              <HomeLayout
-                id={id}
-                data={data}
-                options={data.options}
-                what="hot"
-                choice={data.options.choice}
-              />
-            </>
+            <HomeLayout
+              key={id}
+              id={id}
+              data={data}
+              options={data.options}
+              what="hot"
+              choice={data.options.choice}
+            />
           ))}
       </HomeContainer>
       <Footer page="hot" />

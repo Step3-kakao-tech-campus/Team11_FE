@@ -56,6 +56,9 @@ ChoiceOption.propTypes = {
 };
 
 const Container = styled.div`
+  /* div {
+    background-color: #ececec;
+  } */
   background-color: #ececec;
   width: 162px;
   display: flex;
