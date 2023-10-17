@@ -22,6 +22,22 @@ const GlobalStyle = createGlobalStyle`
   margin-top: 55px;
   padding-bottom: 6rem;
   }
+
+  @media screen and (min-width: 1100px) {
+
+  #background{
+    width: 100vw;
+    height: 100vh;
+      background-image: url('public/image/background.jpg');
+      position: fixed;
+    }
+    #root{
+      position: relative;
+      left: 25%;
+    }
+
+  } 
+
 `;
 
 export default GlobalStyle;

@@ -120,6 +120,10 @@ const MainButton = ({
 };
 
 const ButtonContainer = styled.div`
+  div,
+  p {
+    background-color: transparent;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;

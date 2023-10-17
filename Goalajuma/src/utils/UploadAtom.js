@@ -2,12 +2,12 @@ import { atom, selector } from "recoil";
 
 export const titleState = atom({
   key: "titleState",
-  default: false,
+  default: "",
 });
 
 export const contentState = atom({
   key: "contentState",
-  default: false,
+  default: "",
 });
 
 export const categoryState = atom({
@@ -39,5 +39,15 @@ export const uploadSelector = selector({
       timeLimit: get(timeLimitState),
       option: get(optionState),
     };
+  },
+  set: ({ set }, value) => {
+    return (
+      set(titleState, value),
+      set(contentState, value),
+      set(titleState, value),
+      set(categoryState, value),
+      set(timeLimitState, value),
+      set(optionState, value)
+    );
   },
 });
