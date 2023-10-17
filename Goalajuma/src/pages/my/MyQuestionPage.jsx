@@ -8,8 +8,8 @@ import routes from "../../routes";
 import { Palette } from "../../styles/Palette";
 
 const MyQuestionPage = () => {
-  // const datas = MyQuestionsData.data.votes;
-  const datas = null;
+  const datas = MyQuestionsData.data.votes;
+  // const datas = null;
   const navigate = useNavigate();
   return (
     <div>
