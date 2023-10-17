@@ -20,19 +20,16 @@ const ChoiceOption = ({ id, data, inputOption, deleteOption, src }) => {
   return (
     <div>
       <Container>
-        {optionId > 2 ? (
-          <div
-            className="xbutton"
-            id={id}
-            onClick={(e) => {
-              deleteOption(e);
-            }}
-          >
-            <GoX className="xIcon" id={id} />
-          </div>
-        ) : (
-          <div className="box"></div>
-        )}
+        <div
+          className="xbutton"
+          id={id}
+          onClick={(e) => {
+            deleteOption(e);
+          }}
+        >
+          <GoX className="xIcon" id={id} />
+        </div>
+
         <input
           value={data?.name}
           onChange={(e) => {
@@ -56,9 +53,6 @@ ChoiceOption.propTypes = {
 };
 
 const Container = styled.div`
-  /* div {
-    background-color: #ececec;
-  } */
   background-color: #ececec;
   width: 162px;
   display: flex;
@@ -83,9 +77,6 @@ const Container = styled.div`
     padding-left: 10px;
 
     box-shadow: 0px 2px 2px rgba(126, 126, 126, 0.25);
-  }
-  .box {
-    margin-top: 15px;
   }
 `;
 

@@ -1,37 +1,21 @@
 import styled from "styled-components";
-import { Palette } from "../../styles/Palette";
-import { useRecoilState, useResetRecoilState } from "recoil";
-import { uploadSelector } from "../../utils/UploadAtom";
+import { Palette } from "@/styles/Palette";
+import { useRecoilState } from "recoil";
+import { uploadSelector } from "@/utils/UploadAtom";
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
 const UploadButton = () => {
   const [count, setCount] = useRecoilState(uploadSelector);
   const [active, setActive] = useState(false);
-  const resetList = useResetRecoilState(uploadSelector);
-
-  const resetClick = (e) => {
-    Swal.fire({
-      icon: "info",
-      text: "전체 내용을 초기화 하겠습니까?",
-      showCancelButton: true,
-      confirmButtonText: "예",
-      cancelButtonText: "아니오",
-      confirmButtonColor: "#429f50",
-      cancelButtonColor: "#d33",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        resetList();
-        setActive(false);
-      }
-    });
-  };
 
   useEffect(() => {
-    if (count.title && count.option.length > 1) {
+    if (!!count.title && count.option.length > 1) {
       const act = count.option.filter((item) => {
         return item.name == "";
       });
       act.length > 0 ? setActive(false) : setActive(true);
+    }
+    if (count.option.length < 2 || !count.title) {
+      setActive(false);
     }
   }, [count]);
 
@@ -43,9 +27,6 @@ const UploadButton = () => {
 
   return (
     <UploadButtonStyle active={active ? true : false}>
-      <button className="resetBtn" onClick={resetClick}>
-        전체 초기화
-      </button>
       <button className="uploadBtn" onClick={uploadButton}>
         등록
       </button>
@@ -54,16 +35,6 @@ const UploadButton = () => {
 };
 
 const UploadButtonStyle = styled.div`
-  .resetBtn {
-    height: 40px;
-    background-color: #ffffff;
-    font-size: 15px;
-    border: 1px solid #a8a8a8;
-    color: #585858;
-  }
-  .resetBtn:hover {
-    background-color: #f0f0f0;
-  }
   .uploadBtn {
     background-color: ${(prop) =>
       prop.active ? Palette["button_blue"] : Palette["percent_gray"]};
