@@ -1,7 +1,7 @@
 import Icon from "../common/Icon";
 import styled from "styled-components";
 import { AiFillPlusCircle } from "react-icons/ai";
-import { Palette } from "../../styles/Palette";
+import { Palette } from "@/styles/Palette";
 import PropTypes from "prop-types";
 
 /**

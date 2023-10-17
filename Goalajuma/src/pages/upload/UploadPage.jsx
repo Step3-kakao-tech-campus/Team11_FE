@@ -1,14 +1,16 @@
-import MainHeader from "../../components/layouts/headers/MainHeader";
-import TextArea from "../../components/upload/TextArea";
-import Input from "../../components/upload/input";
+import MainHeader from "@/components/layouts/headers/MainHeader";
+import TextArea from "@/components/upload/TextArea";
+import Input from "@/components/upload/input";
 import styled from "styled-components";
-import AddChoice from "../../components/upload/AddChoice";
-import CategoryNDeadLine from "../../components/upload/CategoryNDeadLine";
-import UploadButton from "../../components/upload/UploadButton";
+import AddChoice from "@/components/upload/AddChoice";
+import CategoryNDeadLine from "@/components/upload/CategoryNDeadLine";
+import UploadButton from "@/components/upload/UploadButton";
 import { useEffect } from "react";
-import { uploadSelector } from "../../utils/UploadAtom";
+import { uploadSelector } from "@/utils/UploadAtom";
 import { useResetRecoilState } from "recoil";
+import { BiReset } from "react-icons/bi";
 import Swal from "sweetalert2";
+import Icon from "@/components/common/Icon";
 const UploadPage = () => {
   const resetList = useResetRecoilState(uploadSelector);
 
@@ -45,8 +47,16 @@ const UploadPage = () => {
     <div>
       <MainHeader page="upload" />
       <UploadContainer>
-        <p className="p">*은 필수 질문 입니다.</p>
-        <button onClick={resetClick}>초기화</button>
+        <div className="uploadHead">
+          {" "}
+          <p>*은 필수 질문 입니다.</p>
+          <button onClick={resetClick}>
+            RESET
+            <Icon size="15px">
+              <BiReset />
+            </Icon>
+          </button>
+        </div>
 
         <Input name="질문 추가 *" placeholder="Q. 질문을 입력해주세요." />
         <TextArea
@@ -68,7 +78,7 @@ const UploadContainer = styled.div`
   justify-content: center;
   padding-bottom: 80px;
 
-  .p {
+  .uploadHead > p {
     font-size: 12px;
     font-weight: 300;
 
@@ -76,7 +86,33 @@ const UploadContainer = styled.div`
     margin: 1rem 0 1rem 0;
 
     position: relative;
-    left: 100px;
+    /* left: 100px; */
+  }
+  .uploadHead {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .uploadHead > button {
+    height: 35px;
+    width: 70px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff9c9cb1;
+
+    box-shadow: 1.5px 2px 2px rgb(126, 126, 126);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 13px;
+    color: #343434;
+  }
+  .uploadHead > button:hover {
+    background-color: #e39b9b;
   }
 `;
 export default UploadPage;
