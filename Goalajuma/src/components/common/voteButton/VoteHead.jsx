@@ -4,16 +4,20 @@ import { BsPeopleFill } from "react-icons/bs";
 import Timer from "@/components/home/Timer";
 import PropTypes from "prop-types";
 import { Palette } from "@/styles/Palette";
-
+import EndButton from "@/components/common/voteButton/EndButton";
 /**
  * @param {object} props
  * @param {number} props.voteCount 투표자 수
  * @param {string} props.endDate 작성자가 설정한 투표 마감 시간
  * @param {string} props.what hot,complete,main
  * @param {string} props.username 작성자 이름
+ * @param {boolean} props.isOwner 작성자 확인 
+ * @param {string} props.active 투표 진행중 여부 : continue, complete
  */
-const VoteHead = ({ voteCount, endDate, what, username }) => {
+const VoteHead = ({ voteCount, endDate, what, username, isOwner, active}) => {
   return (
+    <>
+    <EndButton isOwner={isOwner} active={active} />
     <VoteHeadCss>
       {what === "hot" ? (
         <img src={`public/image/fire.png`} />
@@ -22,14 +26,12 @@ const VoteHead = ({ voteCount, endDate, what, username }) => {
           <BsPeopleFill />{" "}
         </Icon>
       )}
-
-      {what === "complete" ? (
+      {active === "complete" ? (
         <div>
           <div className="completeTitle">
             <div className="complete">
               <p>투표자수</p>
               <p>{voteCount}</p>
-
               <p>{username}</p>
             </div>
           </div>
@@ -41,6 +43,7 @@ const VoteHead = ({ voteCount, endDate, what, username }) => {
         </div>
       )}
     </VoteHeadCss>
+    </>
   );
 };
 VoteHead.propTypes = {
@@ -48,6 +51,8 @@ VoteHead.propTypes = {
   endDate: PropTypes.string.isRequired,
   what: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
+  isOwner: PropTypes.bool.isRequired,
+  active: PropTypes.string.isRequired,
 };
 const VoteHeadCss = styled.div`
   width: 100%;
@@ -106,5 +111,10 @@ const VoteHeadCss = styled.div`
     right: 1rem;
   } */
 `;
+// const VoteHeadLayout = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   gap: 50px;
+// `
 
 export default VoteHead;
