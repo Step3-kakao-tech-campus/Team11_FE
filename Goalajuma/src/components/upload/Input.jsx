@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { titleState } from "../../utils/UploadAtom";
+import { titleState } from "@/utils/UploadAtom";
 import PropTypes from "prop-types";
 
 /**

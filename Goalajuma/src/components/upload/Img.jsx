@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { optionState } from "../../utils/UploadAtom";
+import { optionState } from "@/utils/UploadAtom";
 import { useState } from "react";
 import Icon from "../common/Icon";
 import { GoFileMedia } from "react-icons/go";
