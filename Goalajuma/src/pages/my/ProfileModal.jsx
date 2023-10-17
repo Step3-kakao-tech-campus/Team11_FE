@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Palette } from "../../styles/Palette";
+import { Palette } from "@/styles/Palette";
 import { useRef, useState } from "react";
 import PropTypes from "prop-types";
 
@@ -11,20 +11,31 @@ import PropTypes from "prop-types";
  * @returns 
  */
 const ProfileModal = ({nickName, email, img}) => {
+  const [newInfo, setNewInfo] = useState({name: nickName, newEmail: email});
   const [input, setInput] = useState(false);
   const nicknameRef = useRef(null);
   const emailRef = useRef(null);
+  
+
   const handleMyInfo = () => {
     setInput(prev => !prev)
     if (!input) {
-      // If the "수정하기" button is clicked, save the default values
       nicknameRef.current.defaultValue = nickName;
       emailRef.current.defaultValue = email;
     } else {
-      // If "취소" is clicked, reset the input values to their default values
       nicknameRef.current.value = nickName;
       emailRef.current.value = email;
+      setNewInfo({newName: nickName, newEmail: email});
     }
+  }
+
+  const handleOnChange = (e) => {
+    const { id, value} = e.target;
+    setNewInfo((prev) => ({...prev, [id]: value}));
+  };
+
+  const handleSubmit = () => {
+    console.log(newInfo);
   }
   
   return (
@@ -35,10 +46,11 @@ const ProfileModal = ({nickName, email, img}) => {
         <label htmlFor="nickname">닉네임</label>
         <input 
           type="text" 
-          id="nickname" 
+          id="name" 
           defaultValue={nickName}
           ref={nicknameRef}
           disabled={!input}  
+          onChange={handleOnChange}
         />
         <label htmlFor="email">이메일</label>
         <input 
@@ -47,10 +59,11 @@ const ProfileModal = ({nickName, email, img}) => {
           defaultValue={email} 
           ref={emailRef}
           disabled={!input}
+          onChange={handleOnChange}
         />
       </InputBox>
       <ButtonBox>
-        {input && <SubmitButton >저장</SubmitButton>}
+        {input && <SubmitButton onClick={() => handleSubmit()}>저장</SubmitButton>}
         {input ? <LogOutButton onClick={() => handleMyInfo()}>취소</LogOutButton>:
          <LogOutButton>로그아웃</LogOutButton>}
       </ButtonBox>
