@@ -88,7 +88,7 @@ const StyledButton = styled.button`
   background-color: #fff;
   color: ${Palette.font_gray};
   padding: 5px;
-  width: 65px;
+  width: auto;
   height: 32px;
   border-width: 0px;
   font-size: 15px;
@@ -98,11 +98,13 @@ const Ul = styled.ul`
   top : 34px;
   position: absolute;
   list-style: none;
-  padding-left: 0px;
-  padding-bottom: 0px;
+  padding-left: 0;
+  padding-bottom: 0;
   border : 1px ${Palette.main_gray} solid;
   border-radius: 2px;
   margin: 0;
+  width :70px; 
+  background-color: #fff;
 `;
 
 const Li = styled.li`

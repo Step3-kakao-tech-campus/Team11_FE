@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Modal from './Modal'
 import {ModalTest} from './ModalTest';
 import ModalLayout from './ModalLayout';
-import { HomeContainer } from "../../../styles/Container";
 import Button from '../../login/Button';
 
 const Practice = () => {
@@ -28,9 +27,7 @@ const Practice = () => {
           closable={true}
           maskClosable={true}
           onClose={closeModal}>
-            <HomeContainer>
-              <ModalLayout data={data} what="main" />
-            </HomeContainer>
+          <ModalLayout data={data} what="main" />
         </Modal>
       }
     </>

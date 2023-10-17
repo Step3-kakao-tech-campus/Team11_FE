@@ -1,6 +1,6 @@
 import ChoiceOption from "./ChoiceOption";
 import { useRecoilState } from "recoil";
-import { optionState } from "../../utils/UploadAtom";
+import { optionState } from "@/utils/UploadAtom";
 import styled from "styled-components";
 import PlusBtn from "./PlusBtn";
 
@@ -40,34 +40,22 @@ const AddChoice = () => {
   };
 
   return (
-    <Container>
+    <Container hasValue={option.length}>
       <div className="labelBtn">
-        <label>선택지 추가 *</label>
-        <button
-          onClick={() =>
-            setOption([
-              { name: "", img: "" },
-              { name: "", img: "" },
-            ])
-          }
-        >
-          초기화
-        </button>
+        <label>선택지 추가 (최소 2개이상) *</label>
       </div>
 
       <OptionContainer>
         {option.map((choice, index) => {
-          // console.log(choice.img);
           return (
-            <>
-              <ChoiceOption
-                id={index}
-                data={choice}
-                inputOption={inputOption}
-                deleteOption={deleteOption}
-                src={choice.img}
-              ></ChoiceOption>
-            </>
+            <ChoiceOption
+              key={index}
+              id={index}
+              data={choice}
+              inputOption={inputOption}
+              deleteOption={deleteOption}
+              src={choice.img}
+            ></ChoiceOption>
           );
         })}
       </OptionContainer>
@@ -87,7 +75,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
+  position: relative;
+  right: ${(prop) => (prop.hasValue ? "0" : "5.1rem")};
   .labelBtn {
     margin: 0 0 5px 0;
     display: flex;
@@ -99,7 +88,7 @@ const Container = styled.div`
     margin: 0 0 5px 13px;
   }
 
-  .labelBtn > button {
+  .reset {
     position: relative;
     left: 180px;
     background-color: #d6deed;
@@ -107,6 +96,9 @@ const Container = styled.div`
     border-radius: 1rem;
     font-size: 12px;
     color: #797979;
+  }
+  .reset:hover {
+    background-color: #c8d1e1;
   }
 `;
 

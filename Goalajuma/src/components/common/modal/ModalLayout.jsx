@@ -27,6 +27,7 @@ const ModalLayout = ({ data, what }) => {
     active,
     options,
   } = data;
+
   const [participateState, setParticipate] = useState(participate);
 
   const clickButton = () => {
@@ -86,5 +87,6 @@ const Chat = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-bottom: 30px;
 `
 export default ModalLayout;

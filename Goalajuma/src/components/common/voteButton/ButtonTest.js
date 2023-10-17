@@ -5,6 +5,7 @@ export const ButtonTest = {
     votes: [
       {
         id: 1,
+        username: "홍길동",
         isOwner: true,
         voteCount: 826,
         createDate: "2023.09.14 18:00",
@@ -33,11 +34,12 @@ export const ButtonTest = {
       },
       {
         id: 2,
+        username: "홍길동",
         isOwner: false,
         voteCount: 826,
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.30 18:00",
-        avtive: "continue",
+        active: "continue",
         participate: false,
         title: "군대 가야할까요?..",
         content:
@@ -61,6 +63,7 @@ export const ButtonTest = {
       },
       {
         id: 3,
+        username: "홍길동",
         isOwner: false,
         voteCount: 9000,
         createDate: "2023.09.14 18:00",
@@ -101,6 +104,7 @@ export const ButtonTest2 = {
     votes: [
       {
         id: 1,
+        username: "홍길동",
         isOwner: false,
         voteCount: 826,
         createDate: "2023.09.14 18:00",
@@ -130,6 +134,7 @@ export const ButtonTest2 = {
       {
         id: 10,
         isOwner: false,
+        username: "홍길동",
         voteCount: 826,
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.30 18:00",
@@ -158,6 +163,7 @@ export const ButtonTest2 = {
 
       {
         id: 20,
+        username: "홍길동",
         voteCount: 9000,
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.30 18:00",

@@ -1,8 +1,8 @@
-import HomeLayout from "../../components/home/HomeLayout";
-import { ButtonTest } from "../../components/common/voteButton/ButtonTest";
-import { HomeContainer } from "../../styles/Container";
-import Main from "../../components/layouts/headers/Main";
-import Footer from "../../components/layouts/footers/Footer";
+import HomeLayout from "@/components/home/HomeLayout";
+import { ButtonTest } from "@/components/common/voteButton/ButtonTest";
+import { HomeContainer } from "@/styles/Container";
+import Main from "@/components/layouts/headers/Main";
+import Footer from "@/components/layouts/footers/Footer";
 
 const MainPage = () => {
   const datas = ButtonTest.data.votes;
@@ -12,17 +12,14 @@ const MainPage = () => {
 
   return (
     <>
-      {" "}
       <Main />
       <HomeContainer>
         {datas &&
           datas.map((data, id) => (
-            <>
-              <HomeLayout id={id} data={data} what="main" />
-            </>
+            <HomeLayout id={id} data={data} what="main" key={id} />
           ))}
       </HomeContainer>
-      <Footer page="main"/>
+      <Footer page="main" />
     </>
   );
 };

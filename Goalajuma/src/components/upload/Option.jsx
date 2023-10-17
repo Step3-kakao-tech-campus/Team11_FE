@@ -4,10 +4,17 @@ import { GoChevronDown } from "react-icons/go";
 import Icon from "../common/Icon";
 import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { categoryState, timeLimitState } from "../../utils/UploadAtom";
+import { categoryState, timeLimitState } from "@/utils/UploadAtom";
 import { category, deadline } from "../upload/CategoryNDeadLine";
+import PropTypes from "prop-types";
 
-const Option = ({ datas, name, def }) => {
+/**
+ *
+ * @param {*} param
+ * @param {array} param.datas
+ * @param {string} param.name
+ */
+const Option = ({ datas, name }) => {
   const downRef = useRef();
   const [list, setList] = useState(false);
   const [categoryStates, setCategoryState] = useRecoilState(categoryState);
@@ -34,9 +41,11 @@ const Option = ({ datas, name, def }) => {
     if (name == "카테고리") {
       const { value } = e.target;
       setCategoryState(value);
+      setList(!list);
     } else {
       const { value } = e.target;
       setTimeLimitState(value);
+      setList(!list);
     }
   };
 
@@ -45,7 +54,7 @@ const Option = ({ datas, name, def }) => {
       <Select list={list}>
         <button onClick={selectCategory} className="selectBtn">
           <p>
-            {name == "카테고리" ? categoryList[0].name : deadLineList[0].name}
+            {name === "카테고리" ? categoryList[0].name : deadLineList[0].name}
           </p>
           {/* 여기 부분이 atom 에서 값 가져와서 넣어주기, 아래 리스트 클릭 시 상태 바뀌게 하기.. */}
           <Icon size="20px" color="#585858">
@@ -54,7 +63,7 @@ const Option = ({ datas, name, def }) => {
         </button>
         {datas.map((data, index) => {
           const className = () => {
-            if (name == "카테고리") {
+            if (name === "카테고리") {
               return data.value == categoryStates ? "active" : "";
             } else {
               return data.value == timeLimitStates ? "active" : "";
@@ -62,12 +71,11 @@ const Option = ({ datas, name, def }) => {
           };
 
           return (
-            <li key={name == "카테고리" ? index + 100 : index} className="Li">
+            <li key={name === "카테고리" ? index + 100 : index} className="Li">
               <button
                 onClick={(e) => onClickCategory(e)}
                 value={data.value}
                 list={list}
-                id={name == "카테고리" ? index + 100 : index}
                 className={`optionLi ${className()}`}
               >
                 {" "}
@@ -80,10 +88,16 @@ const Option = ({ datas, name, def }) => {
     </div>
   );
 };
+
+Option.propTypes = {
+  datas: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
 const Select = styled.ul`
   list-style: none;
   padding: 0;
-  width: 150px;
+  width: 160px;
 
   display: flex;
   flex-direction: column;
@@ -91,6 +105,7 @@ const Select = styled.ul`
 
   font-size: 12px;
   color: #909090;
+  cursor: pointer;
 
   .selectBtn {
     width: 100%;
@@ -109,6 +124,9 @@ const Select = styled.ul`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .selectBtn:hover {
+    background-color: #ebebeb7a;
+  }
   .icon {
     position: relative;
     top: 3px;
@@ -120,7 +138,7 @@ const Select = styled.ul`
     justify-content: center;
     text-align: start;
 
-    height: 30px;
+    height: 35px;
     width: 100%;
 
     padding-left: 18px;

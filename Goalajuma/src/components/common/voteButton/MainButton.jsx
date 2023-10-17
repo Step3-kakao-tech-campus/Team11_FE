@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { MainButtonSt, BtnContents } from "../../../styles/VotingBtnStyle";
+import { MainButtonSt, BtnContents } from "@/styles/VotingBtnStyle";
 import PercentNnumber from "./PercentNumber";
 import styled from "styled-components";
 import Img from "../Img";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import routes from "../../../routes";
+import routes from "@/routes";
 
 /**
  * @param {object} props
@@ -120,6 +120,10 @@ const MainButton = ({
 };
 
 const ButtonContainer = styled.div`
+  div,
+  p {
+    background-color: transparent;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;

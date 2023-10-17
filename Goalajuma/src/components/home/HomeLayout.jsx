@@ -1,4 +1,4 @@
-import { MainContainer } from "../../styles/Container";
+import { MainContainer } from "@/styles/Container";
 import ButtonLayout from "../common/voteButton/ButtonLayout";
 import VoteHead from "../common/voteButton/VoteHead";
 import MainContent from "./MainContent";
@@ -6,6 +6,9 @@ import VoteButtom from "../common/voteButton/VoteButtom";
 import styled from "styled-components";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Modal from "../common/modal/Modal";
+import { ModalTest } from "../common/modal/ModalTest";
+import ModalLayout from "../common/modal/ModalLayout";
 
 /**
  *
@@ -23,15 +26,21 @@ const HomeLayout = ({ data, what }) => {
     endDate,
     active,
     options,
+    username,
   } = data;
   const [participateState, setParticipate] = useState(participate);
+  const [modalVisible, setModalVisible] = useState(false);
+  const Data = ModalTest.data.vote;
 
   const clickButton = () => {
     setParticipate(!participateState);
     // 투표 참여 안했을때
   };
   const clickModal = () => {
-    alert("모달창!!!!");
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
   };
   const share = () => {
     alert("공유하기");
@@ -43,6 +52,7 @@ const HomeLayout = ({ data, what }) => {
           voteCount={voteCount}
           endDate={endDate}
           what={what}
+          username={username}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 
@@ -55,6 +65,16 @@ const HomeLayout = ({ data, what }) => {
         ></ButtonLayout>
 
         <VoteButtom onClick={clickModal} onClickShare={share}></VoteButtom>
+        {modalVisible && (
+          <Modal
+            visible={modalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={closeModal}
+          >
+            <ModalLayout data={Data} what="main" />
+          </Modal>
+        )}
       </Container>
     </MainContainer>
   );
