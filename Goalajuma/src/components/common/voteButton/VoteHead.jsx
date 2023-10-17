@@ -1,16 +1,18 @@
 import styled from "styled-components";
 import Icon from "../Icon";
 import { BsPeopleFill } from "react-icons/bs";
-import Timer from "../../home/Timer";
+import Timer from "@/components/home/Timer";
 import PropTypes from "prop-types";
+import { Palette } from "@/styles/Palette";
 
 /**
  * @param {object} props
  * @param {number} props.voteCount 투표자 수
  * @param {string} props.endDate 작성자가 설정한 투표 마감 시간
  * @param {string} props.what hot,complete,main
+ * @param {string} props.username 작성자 이름
  */
-const VoteHead = ({ voteCount, endDate, what }) => {
+const VoteHead = ({ voteCount, endDate, what, username }) => {
   return (
     <VoteHeadCss>
       {what === "hot" ? (
@@ -22,16 +24,20 @@ const VoteHead = ({ voteCount, endDate, what }) => {
       )}
 
       {what === "complete" ? (
-        <>
+        <div>
           <div className="completeTitle">
-            <p>투표자수</p>
-            <p>{voteCount}</p>
+            <div className="complete">
+              <p>투표자수</p>
+              <p>{voteCount}</p>
+
+              <p>{username}</p>
+            </div>
           </div>
-        </>
+        </div>
       ) : (
         <div className="voteTitle">
           <div className="voteNumber">{voteCount}명이 투표중입니다.</div>
-          <Timer endDate={endDate}></Timer>
+          <Timer endDate={endDate} username={username}></Timer>
         </div>
       )}
     </VoteHeadCss>
@@ -41,6 +47,7 @@ VoteHead.propTypes = {
   voteCount: PropTypes.number.isRequired,
   endDate: PropTypes.string.isRequired,
   what: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
 };
 const VoteHeadCss = styled.div`
   width: 100%;
@@ -54,7 +61,6 @@ const VoteHeadCss = styled.div`
     flex-direction: column;
     align-items: flex-start;
     margin-left: 10px;
-    margin-bottom: 1rem;
   }
   .voteNumber {
     font-size: 15.57px;
@@ -62,7 +68,9 @@ const VoteHeadCss = styled.div`
   }
 
   .completeTitle {
+    height: 50px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin-left: 10px;
     position: relative;
@@ -72,10 +80,31 @@ const VoteHeadCss = styled.div`
     font-size: 10px;
     margin-right: 0.3rem;
   }
-  .completeTitle p:last-child {
+  .completeTitle p:nth-child(2) {
     font-size: 20px;
     font-weight: 900;
   }
+  .completeTitle p:nth-child(3) {
+    font-size: 13px;
+    margin-left: 0.3rem;
+    color: ${Palette.font_gray};
+  }
+  .completeTitle p:nth-child(3)::before {
+    content: "|";
+    color: ${Palette.percent_gray};
+    margin-right: 5px;
+  }
+
+  .complete {
+    display: flex;
+    align-items: center;
+  }
+  /* .username {
+    font-size: 13px;
+    position: relative;
+    bottom: 2.5rem;
+    right: 1rem;
+  } */
 `;
 
 export default VoteHead;

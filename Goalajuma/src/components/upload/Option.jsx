@@ -4,7 +4,7 @@ import { GoChevronDown } from "react-icons/go";
 import Icon from "../common/Icon";
 import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { categoryState, timeLimitState } from "../../utils/UploadAtom";
+import { categoryState, timeLimitState } from "@/utils/UploadAtom";
 import { category, deadline } from "../upload/CategoryNDeadLine";
 import PropTypes from "prop-types";
 

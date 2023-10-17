@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Palette } from "../../styles/Palette";
+import { Palette } from "@/styles/Palette";
 import { useRecoilState } from "recoil";
-import { uploadSelector } from "../../utils/UploadAtom";
+import { uploadSelector } from "@/utils/UploadAtom";
 import { useEffect, useState } from "react";
 
 const UploadButton = () => {
