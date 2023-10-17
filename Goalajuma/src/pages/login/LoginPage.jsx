@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import InputGroup from "../../components/login/InputGroup";
-import Button from "../../components/login/Button";
+import InputGroup from "@/components/login/InputGroup";
+import Button from "@/components/login/Button";
 import { useState } from "react";
 import { GoChevronLeft } from "react-icons/go";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { MainContainer } from "../../styles/Container";
-import useValid from "../../hooks/useValid";
+import { MainContainer } from "@/styles/Container";
+import useValid from "@/hooks/useValid";
 
 const LoginPage = () => {
   const [value, setValue] = useState({ email: "", password: "" });
