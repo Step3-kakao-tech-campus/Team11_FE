@@ -27,6 +27,7 @@ const ModalLayout = ({ data, what }) => {
     active,
     options,
   } = data;
+
   const [participateState, setParticipate] = useState(participate);
 
   const clickButton = () => {

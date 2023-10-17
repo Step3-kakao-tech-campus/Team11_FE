@@ -28,7 +28,7 @@ function Modal({
 
   // 모달 동작 시 스크롤 중지 
   useEffect(() => {
-    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`
+    document.body.style.cssText = `position: fixed; left: 41.49%; top: -${window.scrollY}px`
     return () => {
       const scrollY = document.body.style.top
       document.body.style.cssText = `position: ""; top: "";`
@@ -45,7 +45,7 @@ function Modal({
         visible={visible}
       >
         <ModalInner tabIndex="0" className="modal-inner">
-          {closable && <GoX className="modal-close" onClick={close} />}
+          {closable && <GoX className="modal-close" onClick={close} style={{position:'relative', bottom: '10px'}}/>}
           {children}
         </ModalInner>
       </ModalWrapper>
