@@ -41,10 +41,10 @@ const MainButton = ({
   const [alert, setIsAlert] = useState(false);
 
   const clickButton = () => {
-    if (active === "finish") {
+    if (active === "complete") {
       setIsAlert(true);
     }
-    if (active !== "finish" && isOwner === false) {
+    if (active !== "complete" && isOwner === false) {
       if (!login) {
         setIsAlert(true);
       } else if (participate === true) {
@@ -63,7 +63,7 @@ const MainButton = ({
   return (
     <>
       {alert ? (
-        active === "finish" ? (
+        active === "complete" ? (
           <Alert setIsAlert={setIsAlert}>
             종료된 게시글은 투표가 불가합니다.
           </Alert>
@@ -78,7 +78,7 @@ const MainButton = ({
         <MainButtonSt
           onClick={clickButton}
           choice={
-            isOwner || participate || active === "finish" ? choice : false
+            isOwner || participate || active === "complete" ? choice : false
           }
           id={id}
         >
@@ -88,10 +88,10 @@ const MainButton = ({
           <progress
             id={id}
             max="100"
-            value={isOwner || participate || active === "finish" ? value : 0}
+            value={isOwner || participate || active === "complete" ? value : 0}
           ></progress>
         </MainButtonSt>
-        {isOwner || participate || active === "finish" ? (
+        {isOwner || participate || active === "complete" ? (
           <PercentNnumber
             value={value}
             number={number}

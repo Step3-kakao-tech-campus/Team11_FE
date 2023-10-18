@@ -109,7 +109,7 @@ export const ButtonTest2 = {
         voteCount: 826,
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.30 18:00",
-        active: "finish",
+        active: "complete",
         participate: true,
         title: "군대 가야할까요?..",
         content:
@@ -138,7 +138,7 @@ export const ButtonTest2 = {
         voteCount: 826,
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.30 18:00",
-        active: "finish",
+        active: "complete",
         participate: false,
         title: "군대 가야할까요?..",
         content:
@@ -167,7 +167,7 @@ export const ButtonTest2 = {
         voteCount: 9000,
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.30 18:00",
-        active: "finish",
+        active: "complete",
         participate: false,
         title: "어떤걸 먹을까요?..",
         content: " 치킨이랑 피자중에 뭐먹을까요? 코파일럿 사용했어요",
