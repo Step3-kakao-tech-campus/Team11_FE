@@ -1,8 +1,8 @@
-import { MainContainer } from "../../../styles/Container";
-import ButtonLayout from "../voteButton/ButtonLayout";
-import VoteHead from "../voteButton/VoteHead";
-import MainContent from "../../home/MainContent";
-import VoteButtom from "../voteButton/VoteButtom";
+import { MainContainer } from "@/styles/Container"
+import ButtonLayout from "@/components/common/voteButton/ButtonLayout";
+import VoteHead from "@/components/common/voteButton/VoteHead";
+import MainContent from "@/components/home/MainContent";
+import VoteButtom from "@/components/common/voteButton/VoteButtom";
 import ChatForm from "./ChatForm";
 import ChatWriteForm from "./ChatWriteForm";
 import styled from "styled-components";
