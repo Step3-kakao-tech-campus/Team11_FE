@@ -11,39 +11,40 @@ import EndButton from "@/components/common/voteButton/EndButton";
  * @param {string} props.endDate 작성자가 설정한 투표 마감 시간
  * @param {string} props.what hot,complete,main
  * @param {string} props.username 작성자 이름
- * @param {boolean} props.isOwner 작성자 확인 
+ * @param {boolean} props.isOwner 작성자 확인
  * @param {string} props.active 투표 진행중 여부 : continue, complete
  */
-const VoteHead = ({ voteCount, endDate, what, username, isOwner, active}) => {
+const VoteHead = ({ voteCount, endDate, what, username, isOwner, active }) => {
   return (
-    <VoteHeadLayout>
-    <VoteHeadCss>
-      {what === "hot" ? (
-        <img src={`public/image/fire.png`} />
+
+    <>
+      <EndButton isOwner={isOwner} active={active} />
+      <VoteHeadCss>
+        {what === "hot" ? (
+          <img src={`public/image/fire.png`} />
         ) : (
           <Icon>
-          <BsPeopleFill />{" "}
-        </Icon>
-      )}
-      {active === "complete" ? (
-        <div>
-          <div className="completeTitle">
-            <div className="complete">
-              <p>투표자수</p>
-              <p>{voteCount}</p>
-              <p>{username}</p>
+            <BsPeopleFill />{" "}
+          </Icon>
+        )}
+        {active === "complete" ? (
+          <div>
+            <div className="completeTitle">
+              <div className="complete">
+                <p>투표자수</p>
+                <p>{voteCount}</p>
+                <p>{username}</p>
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="voteTitle">
-          <div className="voteNumber">{voteCount}명이 투표중입니다.</div>
-          <Timer endDate={endDate} username={username}></Timer>
-        </div>
-      )}
-    </VoteHeadCss>
-    <EndButton isOwner={isOwner} active={active} />
-    </VoteHeadLayout>
+        ) : (
+          <div className="voteTitle">
+            <div className="voteNumber">{voteCount}명이 투표중입니다.</div>
+            <Timer endDate={endDate} username={username}></Timer>
+          </div>
+        )}
+      </VoteHeadCss>
+    </>
   );
 };
 VoteHead.propTypes = {
