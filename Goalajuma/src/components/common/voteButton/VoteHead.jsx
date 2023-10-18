@@ -14,7 +14,7 @@ import EndButton from "@/components/common/voteButton/EndButton";
  * @param {boolean} props.isOwner 작성자 확인 
  * @param {string} props.active 투표 진행중 여부 : continue, complete
  */
-const VoteHead = ({ voteCount, endDate, what, username, isOwner, active, className}) => {
+const VoteHead = ({ voteCount, endDate, what, username, isOwner, active}) => {
   return (
     <VoteHeadLayout>
     <VoteHeadCss>
@@ -42,7 +42,7 @@ const VoteHead = ({ voteCount, endDate, what, username, isOwner, active, classNa
         </div>
       )}
     </VoteHeadCss>
-    <EndButton isOwner={isOwner} active={active} className={className} />
+    <EndButton isOwner={isOwner} active={active} />
     </VoteHeadLayout>
   );
 };
