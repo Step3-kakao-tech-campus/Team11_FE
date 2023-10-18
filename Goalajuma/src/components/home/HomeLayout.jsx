@@ -53,6 +53,8 @@ const HomeLayout = ({ data, what }) => {
           endDate={endDate}
           what={what}
           username={username}
+          active={active}
+          isOwner={isOwner}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 

@@ -3,21 +3,17 @@ import { MyContainer } from "../../styles/Container";
 import MyPageUl from "../../components/common/mypage/MyPageUl";
 import MyPageHeader from "../../components/layouts/headers/MyPageHeader";
 import Footer from "../../components/layouts/footers/Footer";
-
+import { MainMyData } from "../../components/common/mypage/MyPageData";
 const Mypage = () => {
-  let votingNumber = 3;
-  let questionNumber = 1;
-  let userName = "김코딩";
-  let email = "kkj@naver.com";
-  let src = "vv.jpg";
+  const datas = MainMyData.data;
   return (
     <div>
       <MyPageHeader/>
       <MyContainer>
-        <Profile userName={userName} email={email} src={src}></Profile>
+        <Profile userName={datas.nickName} email={datas.email} src={datas.image}></Profile>
         <MyPageUl
-          votingNumber={votingNumber}
-          questionNumber={questionNumber}
+          votingNumber={datas.participateVoteCount}
+          questionNumber={datas.createVoteCount}
         ></MyPageUl>
       </MyContainer>
       <Footer page="mypage"/>

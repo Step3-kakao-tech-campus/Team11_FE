@@ -85,14 +85,14 @@ const Footer = ({page}) => {
                 <div>
                   <BsPersonFill style={{fontSize: 28, color: Palette.point_blue}}/> 
                 </div>
-                <div style={{color: Palette.point_blue}}>마이페이지</div>
+                <div style={{color: Palette.point_blue}}>MY</div>
               </>
               : 
               <>
                 <div>
                   <BsPerson fontSize={28}/> 
                 </div>
-                <div style={{color: Palette.button_gray}}>마이페이지</div>
+                <div style={{color: Palette.button_gray}}>MY</div>
               </>
             }
           </LinkNav>
