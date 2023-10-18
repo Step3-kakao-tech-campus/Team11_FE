@@ -7,7 +7,7 @@ import styled from 'styled-components'
  * @param {boolean} props.isOwner 작성자 확인 
  * @param {string} props.active 투표 진행중 여부 : continue, complete
  */
-const EndButton = ({isOwner, active: initialActive}) => {
+const EndButton = ({isOwner, active: initialActive, className}) => {
   const [active, setActive] = useState(initialActive);
 
   const handleOnClick = () => {
@@ -16,7 +16,7 @@ const EndButton = ({isOwner, active: initialActive}) => {
 
   if(isOwner && active==="continue") {
     return (
-      <ButtonStyled onClick={handleOnClick}>투표 종료</ButtonStyled>
+      <ButtonStyled onClick={handleOnClick}>끝내기</ButtonStyled>
     )
   }
 }
@@ -25,12 +25,12 @@ EndButton.propTypes = {
   active: PropTypes.string.isRequired
 }
 const ButtonStyled = styled.button`
-  width: 65px;
+  width: 60px;
   height: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px;
+  padding: 15px 12px;
   background: #FF8E8E;
   font-weight: 700;
   font-size: 10px;
@@ -38,7 +38,9 @@ const ButtonStyled = styled.button`
   border: none;
   position: relative;
   bottom: 5px;
-
+  line-height: 15px;
+  position: relative;
+  top: 2px;
   &:hover{
     background-color: #D47575;
     cursor: pointer;

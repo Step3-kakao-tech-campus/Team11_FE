@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import Img from '../Img'
+import Img from '@/components/common/Img'
 import styled from "styled-components";
 
 const Chat = ({data}) => {
