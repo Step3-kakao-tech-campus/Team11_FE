@@ -14,15 +14,14 @@ import EndButton from "@/components/common/voteButton/EndButton";
  * @param {boolean} props.isOwner 작성자 확인 
  * @param {string} props.active 투표 진행중 여부 : continue, complete
  */
-const VoteHead = ({ voteCount, endDate, what, username, isOwner, active}) => {
+const VoteHead = ({ voteCount, endDate, what, username, isOwner, active, className}) => {
   return (
-    <>
-    <EndButton isOwner={isOwner} active={active} />
+    <VoteHeadLayout>
     <VoteHeadCss>
       {what === "hot" ? (
         <img src={`public/image/fire.png`} />
-      ) : (
-        <Icon>
+        ) : (
+          <Icon>
           <BsPeopleFill />{" "}
         </Icon>
       )}
@@ -43,7 +42,8 @@ const VoteHead = ({ voteCount, endDate, what, username, isOwner, active}) => {
         </div>
       )}
     </VoteHeadCss>
-    </>
+    <EndButton isOwner={isOwner} active={active} className={className} />
+    </VoteHeadLayout>
   );
 };
 VoteHead.propTypes = {
@@ -54,6 +54,9 @@ VoteHead.propTypes = {
   isOwner: PropTypes.bool.isRequired,
   active: PropTypes.string.isRequired,
 };
+const VoteHeadLayout = styled.div`
+  display : flex;
+`
 const VoteHeadCss = styled.div`
   width: 100%;
   display: flex;

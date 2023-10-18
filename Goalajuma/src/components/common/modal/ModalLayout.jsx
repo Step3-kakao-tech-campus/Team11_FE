@@ -26,8 +26,8 @@ const ModalLayout = ({ data, what }) => {
     endDate,
     active,
     options,
+    username,
   } = data;
-
   const [participateState, setParticipate] = useState(participate);
 
   const clickButton = () => {
@@ -50,6 +50,7 @@ const ModalLayout = ({ data, what }) => {
           what={what}
           isOwner={isOwner}
           active={active}
+          username={username}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 
