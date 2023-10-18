@@ -5,7 +5,7 @@ export const ModalTest = {
     vote: {
       username: "rere",
       id: 1,
-      isOwner: false,
+      isOwner: true,
       participate: true,
       voteCount: 826,
       createDate: "2023.09.13 18:00",
