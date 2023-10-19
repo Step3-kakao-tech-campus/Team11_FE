@@ -7,7 +7,7 @@ import styled from 'styled-components'
  * @param {boolean} props.isOwner 작성자 확인 
  * @param {string} props.active 투표 진행중 여부 : continue, complete
  */
-const EndButton = ({isOwner, active: initialActive}) => {
+const EndButton = ({isOwner, active: initialActive, className}) => {
   const [active, setActive] = useState(initialActive);
 
   const handleOnClick = () => {
