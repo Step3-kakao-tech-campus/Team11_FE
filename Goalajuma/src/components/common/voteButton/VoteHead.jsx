@@ -16,8 +16,7 @@ import EndButton from "@/components/common/voteButton/EndButton";
  */
 const VoteHead = ({ voteCount, endDate, what, username, isOwner, active }) => {
   return (
-    <>
-      <EndButton isOwner={isOwner} active={active} />
+    <VoteHeadLayout>
       <VoteHeadCss>
         {what === "hot" ? (
           <img src={`public/image/fire.png`} />
@@ -43,7 +42,8 @@ const VoteHead = ({ voteCount, endDate, what, username, isOwner, active }) => {
           </div>
         )}
       </VoteHeadCss>
-    </>
+      <EndButton isOwner={isOwner} active={active} />
+    </VoteHeadLayout>
   );
 };
 VoteHead.propTypes = {

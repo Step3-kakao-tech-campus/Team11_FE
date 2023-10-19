@@ -33,9 +33,6 @@ const ModalLayout = ({ data, what }) => {
   const clickButton = () => {
     setParticipate(!participateState);
   };
-  // const clickModal = () => {
-  //   alert("모달창!!!!");
-  // };
   const share = () => {
     alert("공유하기 모달창 !!!");
   };
