@@ -1,8 +1,8 @@
-import { MainContainer } from "../../../styles/Container";
-import ButtonLayout from "../voteButton/ButtonLayout";
-import VoteHead from "../voteButton/VoteHead";
-import MainContent from "../../home/MainContent";
-import VoteButtom from "../voteButton/VoteButtom";
+import { MainContainer } from "@/styles/Container"
+import ButtonLayout from "@/components/common/voteButton/ButtonLayout";
+import VoteHead from "@/components/common/voteButton/VoteHead";
+import MainContent from "@/components/home/MainContent";
+import VoteButtom from "@/components/common/voteButton/VoteButtom";
 import ChatForm from "./ChatForm";
 import ChatWriteForm from "./ChatWriteForm";
 import styled from "styled-components";
@@ -26,16 +26,13 @@ const ModalLayout = ({ data, what }) => {
     endDate,
     active,
     options,
+    username,
   } = data;
-
   const [participateState, setParticipate] = useState(participate);
 
   const clickButton = () => {
     setParticipate(!participateState);
   };
-  // const clickModal = () => {
-  //   alert("모달창!!!!");
-  // };
   const share = () => {
     alert("공유하기 모달창 !!!");
   };
@@ -50,6 +47,7 @@ const ModalLayout = ({ data, what }) => {
           what={what}
           isOwner={isOwner}
           active={active}
+          username={username}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 

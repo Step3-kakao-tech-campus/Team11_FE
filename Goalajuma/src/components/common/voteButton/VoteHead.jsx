@@ -16,6 +16,7 @@ import EndButton from "@/components/common/voteButton/EndButton";
  */
 const VoteHead = ({ voteCount, endDate, what, username, isOwner, active }) => {
   return (
+
     <>
       <EndButton isOwner={isOwner} active={active} />
       <VoteHeadCss>
@@ -54,6 +55,9 @@ VoteHead.propTypes = {
   isOwner: PropTypes.bool.isRequired,
   active: PropTypes.string.isRequired,
 };
+const VoteHeadLayout = styled.div`
+  display : flex;
+`
 const VoteHeadCss = styled.div`
   width: 100%;
   display: flex;
