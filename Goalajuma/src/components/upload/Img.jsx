@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { optionState } from "../../utils/UploadAtom";
+import { optionState } from "@/utils/UploadAtom";
 import { useState } from "react";
 import Icon from "../common/Icon";
 import { GoFileMedia } from "react-icons/go";
@@ -81,6 +81,13 @@ Img.propTypes = {
 };
 
 const Container = styled.form`
+  /* img,
+  svg,
+  label,
+  div,
+  p {
+    background-color: #d8d8d8;
+  } */
   width: 134px;
   height: 48px;
   text-align: center;
