@@ -6,6 +6,7 @@ import Img from "../Img";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
+import Alert from "../Alert";
 
 /**
  * @param {object} props
@@ -37,54 +38,20 @@ const MainButton = ({
   const navigate = useNavigate();
   const login = localStorage.getItem("token");
   const [choice, setChoiced] = useState(choiced);
+  const [alert, setIsAlert] = useState(false);
 
   const clickButton = () => {
-    if (active !== "finish" && isOwner == false) {
+    if (active === "complete") {
+      setIsAlert(true);
+    }
+    if (active !== "complete" && isOwner === false) {
       if (!login) {
-        Swal.fire({
-          icon: "error",
-          html: "로그인 해야 투표가 가능합니다.<br> 로그인 하시겠습니까?",
-          showCancelButton: true,
-          confirmButtonText: "예",
-          cancelButtonText: "아니오",
-          confirmButtonColor: "#429f50",
-          cancelButtonColor: "#d33",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            navigate(routes.login);
-          }
-        });
-      } else if (participate == true) {
-        choice == true
-          ? Swal.fire({
-              icon: "info",
-              text: "투표를 취소하겠습니까?",
-              showCancelButton: true,
-              confirmButtonText: "예",
-              cancelButtonText: "아니오",
-              confirmButtonColor: "#429f50",
-              cancelButtonColor: "#d33",
-            }).then((result) => {
-              if (result.isConfirmed) {
-                setChoiced(!choice);
-                onClick();
-                /** 서버에 취소 요청 보내기*/
-              }
-            })
-          : Swal.fire({
-              icon: "info",
-              text: "투표를 수정하시겠습니까?",
-              showCancelButton: true,
-              confirmButtonText: "예",
-              cancelButtonText: "아니오",
-              confirmButtonColor: "#429f50",
-              cancelButtonColor: "#d33",
-            }).then((result) => {
-              if (result.isConfirmed) {
-                setChoiced(!choice);
-                /** 서버에 수정 요청 보내기*/
-              }
-            });
+        setIsAlert(true);
+      } else if (participate === true) {
+        choice === true
+          ? (setChoiced(!choice), onClick())
+          : setChoiced(!choice);
+        /** 서버에 수정 요청 보내기*/
       } else {
         //투표 안한 기본 상태...
         setChoiced(true);
@@ -94,28 +61,48 @@ const MainButton = ({
     }
   };
   return (
-    <ButtonContainer>
-      {src ? <Img src={src} /> : <></>}
-      <MainButtonSt
-        onClick={clickButton}
-        choice={isOwner || participate || active === "finish" ? choice : false}
-        id={id}
-      >
-        <BtnContents choice={choice} id={id}>
-          {name}
-        </BtnContents>
-        <progress
+    <>
+      {alert ? (
+        active === "complete" ? (
+          <Alert setIsAlert={setIsAlert}>
+            종료된 게시글은 투표가 불가합니다.
+          </Alert>
+        ) : (
+          <Alert setIsAlert={setIsAlert}>로그인 후 투표가 가능합니다</Alert>
+        )
+      ) : null}
+
+      <ButtonContainer>
+        {src ? <Img src={src} /> : <></>}
+
+        <MainButtonSt
+          onClick={clickButton}
+          choice={
+            isOwner || participate || active === "complete" ? choice : false
+          }
           id={id}
-          max="100"
-          value={isOwner || participate || active === "finish" ? value : 0}
-        ></progress>
-      </MainButtonSt>
-      {isOwner || participate || active === "finish" ? (
-        <PercentNnumber value={value} number={number} choice={choice} id={id} />
-      ) : (
-        <></>
-      )}
-    </ButtonContainer>
+        >
+          <BtnContents choice={choice} id={id}>
+            {name}
+          </BtnContents>
+          <progress
+            id={id}
+            max="100"
+            value={isOwner || participate || active === "complete" ? value : 0}
+          ></progress>
+        </MainButtonSt>
+        {isOwner || participate || active === "complete" ? (
+          <PercentNnumber
+            value={value}
+            number={number}
+            choice={choice}
+            id={id}
+          />
+        ) : (
+          <></>
+        )}
+      </ButtonContainer>
+    </>
   );
 };
 

@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
  * @param {array} items
  * @return {JSX.Element}
  */
-const Dropdown = (items) => {
+const Dropdown = ({items, select}) => {
   const [drop, setDrop] = useState(false); // list on off 여부 
-  const [selectedCategory, setSelectedCategory] = useState(items.items[0].category); // 유저가 선택한 카테고리
+  const [selectedCategory, setSelectedCategory] = useState(items[0].category); // 유저가 선택한 카테고리
   const dropdownRef = useRef(null); // 다른 배경 선택 시 닫힘 
 
   const handleDrop = () => {
@@ -20,7 +20,7 @@ const Dropdown = (items) => {
 
   // recoil 사용: 클릭된 값을 atom에 넣어주기 
   const handleCategory = (num) => {
-    setSelectedCategory(items.items[num].category);
+    setSelectedCategory(items[num].category);
     handleDrop();
   };
 
@@ -44,7 +44,7 @@ const Dropdown = (items) => {
       <MainButton onClick={handleDrop}>{selectedCategory}<ExpandMoreIcon style={{fontSize: 30}}/></MainButton>
       {drop ? (
       <Ul>
-        {items.items.map((item) => 
+        {items.map((item) => 
           <Li key={item.id} className="item">
             <StyledButton>
               {/* 다시 해보기 */}
@@ -64,6 +64,8 @@ const Dropdown = (items) => {
 }
 Dropdown.propTypes={
   items: PropTypes.array.isRequired,
+  select: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 }
 const Category = styled.div`
   display: inline-block;

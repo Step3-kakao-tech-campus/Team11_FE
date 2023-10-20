@@ -4,43 +4,46 @@ import { BsPeopleFill } from "react-icons/bs";
 import Timer from "@/components/home/Timer";
 import PropTypes from "prop-types";
 import { Palette } from "@/styles/Palette";
-
+import EndButton from "@/components/common/voteButton/EndButton";
 /**
  * @param {object} props
  * @param {number} props.voteCount 투표자 수
  * @param {string} props.endDate 작성자가 설정한 투표 마감 시간
  * @param {string} props.what hot,complete,main
  * @param {string} props.username 작성자 이름
+ * @param {boolean} props.isOwner 작성자 확인
+ * @param {string} props.active 투표 진행중 여부 : continue, complete
  */
-const VoteHead = ({ voteCount, endDate, what, username }) => {
+const VoteHead = ({ voteCount, endDate, what, username, isOwner, active }) => {
   return (
-    <VoteHeadCss>
-      {what === "hot" ? (
-        <img src={`public/image/fire.png`} />
-      ) : (
-        <Icon>
-          <BsPeopleFill />{" "}
-        </Icon>
-      )}
-
-      {what === "complete" ? (
-        <div>
-          <div className="completeTitle">
-            <div className="complete">
-              <p>투표자수</p>
-              <p>{voteCount}</p>
-
-              <p>{username}</p>
+    <VoteHeadLayout>
+      <VoteHeadCss>
+        {what === "hot" ? (
+          <img src={`public/image/fire.png`} />
+        ) : (
+          <Icon>
+            <BsPeopleFill />{" "}
+          </Icon>
+        )}
+        {active === "complete" ? (
+          <div>
+            <div className="completeTitle">
+              <div className="complete">
+                <p>투표자수</p>
+                <p>{voteCount}</p>
+                <p>{username}</p>
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="voteTitle">
-          <div className="voteNumber">{voteCount}명이 투표중입니다.</div>
-          <Timer endDate={endDate} username={username}></Timer>
-        </div>
-      )}
-    </VoteHeadCss>
+        ) : (
+          <div className="voteTitle">
+            <div className="voteNumber">{voteCount}명이 투표중입니다.</div>
+            <Timer endDate={endDate} username={username}></Timer>
+          </div>
+        )}
+      </VoteHeadCss>
+      <EndButton isOwner={isOwner} active={active} />
+    </VoteHeadLayout>
   );
 };
 VoteHead.propTypes = {
@@ -48,7 +51,12 @@ VoteHead.propTypes = {
   endDate: PropTypes.string.isRequired,
   what: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
+  isOwner: PropTypes.bool.isRequired,
+  active: PropTypes.string.isRequired,
 };
+const VoteHeadLayout = styled.div`
+  display : flex;
+`
 const VoteHeadCss = styled.div`
   width: 100%;
   display: flex;
@@ -106,5 +114,10 @@ const VoteHeadCss = styled.div`
     right: 1rem;
   } */
 `;
+// const VoteHeadLayout = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   gap: 50px;
+// `
 
 export default VoteHead;
