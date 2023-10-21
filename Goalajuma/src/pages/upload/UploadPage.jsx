@@ -1,4 +1,3 @@
-import MainHeader from "@/components/layouts/headers/MainHeader";
 import TextArea from "@/components/upload/TextArea";
 import Input from "@/components/upload/input";
 import styled from "styled-components";
@@ -11,6 +10,7 @@ import { useResetRecoilState } from "recoil";
 import { BiReset } from "react-icons/bi";
 import Swal from "sweetalert2";
 import Icon from "@/components/common/Icon";
+import UploadPageHeader from "@/components/layouts/headers/UploadPageHeader";
 const UploadPage = () => {
   const resetList = useResetRecoilState(uploadSelector);
 
@@ -45,7 +45,7 @@ const UploadPage = () => {
 
   return (
     <div>
-      <MainHeader page="upload" />
+      <UploadPageHeader/>
       <UploadContainer>
         <div className="uploadHead">
           {" "}

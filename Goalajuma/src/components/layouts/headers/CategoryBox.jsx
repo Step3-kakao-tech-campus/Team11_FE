@@ -1,5 +1,4 @@
 import { useRecoilState } from "recoil";
-import Dropdown from "./Dropdown"
 import { sortState, segmentState } from "@/utils/HeaderAtom";
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
@@ -95,6 +94,7 @@ export const CategoryBox = () => {
   const handleContent = (num) => {
     setContent(contentList[num].value);
     setContentName(contentList[num].category);
+    console.log(contentList[num].value);
     toggleDropdown("content");
     console.log(content);
   };
