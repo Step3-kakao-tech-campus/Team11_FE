@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Alert from "../Alert";
 
@@ -11,15 +11,6 @@ import Alert from "../Alert";
 const EndButton = ({isOwner, active: initialActive}) => {
   const [active, setActive] = useState(initialActive);
   const [alert, setIsAlert] = useState(false);
-
-  useEffect(() => {
-    // active 상태가 업데이트될 때마다 이 효과가 실행됩니다.
-    console.log(active); // 업데이트된 active 값을 여기서 사용할 수 있습니다.
-  }, [active]); 
-  useEffect(() => {
-    // active 상태가 업데이트될 때마다 이 효과가 실행됩니다.
-    console.log(alert); // 업데이트된 active 값을 여기서 사용할 수 있습니다.
-  }, [alert]); 
 
   const handleOnClick = () => {
     setActive("complete")
