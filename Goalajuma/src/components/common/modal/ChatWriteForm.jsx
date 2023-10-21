@@ -1,5 +1,5 @@
 // import PropTypes from 'prop-types'
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import Img from "@/components/common/Img"
 import styled from "styled-components"; 
 import PropTypes from "prop-types";
@@ -41,9 +41,7 @@ const ChatWriteForm = ({participate}) => {
       : setIsAlert(true)
     }
   }
-  useEffect(() =>{
-    console.log(alert)
-  },[alert])
+
   return (
     <>
     <FormStyled>

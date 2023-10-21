@@ -129,6 +129,10 @@ const Group = styled.div`
   align-items: center;
   position: relative;
   top: 110px;
+
+  @media (min-width: 1100px) {
+    top: 200px;
+  }
 `;
 const ButtonGroup = styled.div`
   display: flex;
@@ -139,6 +143,9 @@ const ButtonGroup = styled.div`
   top: 100px;
   .firstButton {
     margin-top: 50px;
+  }
+  @media (min-width: 1100px) {
+    top: 200px;
   }
 `;
 const StyledIcon = styled.button`

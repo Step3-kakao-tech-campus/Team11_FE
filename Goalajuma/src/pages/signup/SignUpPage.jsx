@@ -163,6 +163,9 @@ const Group = styled.div`
   .input:last-child {
     margin-bottom: 50px;
   }
+  @media (min-width: 1100px) {
+    top: 125px;
+  }
 `;
 const ButtonGroup = styled.div`
   display: flex;
@@ -171,6 +174,9 @@ const ButtonGroup = styled.div`
   align-items: center;
   position: relative;
   top: 100px;
+  @media (min-width: 1100px) {
+    top: 180px;
+  }
 `;
 const StyledIcon = styled.button`
   border: none;
@@ -205,6 +211,9 @@ const PolicyGroup = styled.div`
   position: relative;
   top: 80px;
   text-align: left;
+  @media (min-width: 1100px) {
+    top: 150px;
+  }
 `;
 const Policy = styled.div`
   display: flex;
