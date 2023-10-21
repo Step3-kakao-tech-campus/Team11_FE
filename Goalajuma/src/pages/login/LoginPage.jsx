@@ -105,21 +105,28 @@ const Title = styled.div`
 `;
 const Header = styled.div`
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: 30px;
   width: 360px;
+  @media (min-width: 1100px) {
+    left: 60%;
+  }
 `;
 const Subheader = styled.div`
   font-size: 16px;
   position: absolute;
   top: 120px;
+  left: 60px;
   button {
     margin-left: 40px;
     color: #9eb0ea;
     border: none;
     padding: 8px 15px;
     border-radius: 50px;
+  }
+  @media (min-width: 1100px) {
+    top:80px;
   }
 `;
 const Group = styled.div`
@@ -129,6 +136,10 @@ const Group = styled.div`
   align-items: center;
   position: relative;
   top: 110px;
+
+  @media (min-width: 1100px) {
+    top: 150px;
+  }
 `;
 const ButtonGroup = styled.div`
   display: flex;
@@ -139,6 +150,9 @@ const ButtonGroup = styled.div`
   top: 100px;
   .firstButton {
     margin-top: 50px;
+  }
+  @media (min-width: 1100px) {
+    top: 150px;
   }
 `;
 const StyledIcon = styled.button`

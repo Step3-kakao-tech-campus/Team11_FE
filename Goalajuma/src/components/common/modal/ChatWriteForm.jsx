@@ -1,12 +1,20 @@
 // import PropTypes from 'prop-types'
-import { useState } from 'react';
-import Img from '@/components/common/Img'
+import { useState } from "react";
+import Img from "@/components/common/Img"
 import styled from "styled-components"; 
+import PropTypes from "prop-types";
+import Alert from "../Alert"
 // import { useMutation, useQueryClient } from 'react-query';
 // import axios from 'axios';
 
-const ChatWriteForm = () => {
+/**
+ *
+ * @param {object} props.participate 투표 참여 여부 
+ */
+
+const ChatWriteForm = ({participate}) => {
   const [write, setWrite] = useState("")
+  const [alert, setIsAlert] = useState(false)
   //const queryClient = useQueryClient();
 
   // const addComment = async (comment) => {
@@ -28,19 +36,29 @@ const ChatWriteForm = () => {
     setWrite("")
   }
   const handleInputChange=(event) =>{
-    setWrite(event.target.value)
+    {participate 
+      ? setWrite(event.target.value)
+      : setIsAlert(true)
+    }
   }
+
   return (
     <>
     <FormStyled>
       <Img src="맹구.png" size="35px"/>
       <WriteStyled>
+        {alert && 
+          <Alert setIsAlert={setIsAlert}>투표를 해야 댓글 작성이 가능합니다.</Alert>
+        }
         <input placeholder='댓글 작성'onChange={handleInputChange} value={write}/>
         <UploadStyled onClick={handleUpload}>게시</UploadStyled>
       </WriteStyled>
     </FormStyled>
     </>
   )
+}
+ChatWriteForm.propTypes = {
+  participate: PropTypes.bool.isRequired
 }
 
 const FormStyled = styled.div`
