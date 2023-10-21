@@ -44,6 +44,6 @@ const StyledButton = styled.button`
 		color: #333;
 	}
 	&:hover{
-		background-color: ${(props) => (props.disabled ? "#ccc" : "#666")};
+		background-color: ${(props) => (props.disabled ? "#ccc" : "#8C9CCF")};
 	}
 `

@@ -148,10 +148,13 @@ export default SignUpPage;
 
 const Header = styled.div`
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: 30px;
   width: 360px;
+  @media (min-width: 1100px) {
+    left: 60%;
+  }
 `;
 const Group = styled.div`
   display: flex;
@@ -164,7 +167,7 @@ const Group = styled.div`
     margin-bottom: 50px;
   }
   @media (min-width: 1100px) {
-    top: 125px;
+    top: 60px;
   }
 `;
 const ButtonGroup = styled.div`
@@ -175,7 +178,7 @@ const ButtonGroup = styled.div`
   position: relative;
   top: 100px;
   @media (min-width: 1100px) {
-    top: 180px;
+    top: 130px;
   }
 `;
 const StyledIcon = styled.button`
@@ -203,6 +206,9 @@ const StyledButton = styled.button`
   position: absolute;
   top: 293px;
   right: 60px;
+  @media (min-width: 1100px) {
+    top: 234px;
+  }
 `;
 const PolicyGroup = styled.div`
   display: flex;
@@ -212,7 +218,7 @@ const PolicyGroup = styled.div`
   top: 80px;
   text-align: left;
   @media (min-width: 1100px) {
-    top: 150px;
+    top: 100px;
   }
 `;
 const Policy = styled.div`
