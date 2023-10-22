@@ -11,12 +11,12 @@ const sortList = [
   {
     id: 0,
     category: '최신순',
-    value: 'latest',
+    value: 'current',
   }, 
   {
     id: 1,
     category:'인기순',
-    value: 'popularity',
+    value: 'popular',
   },
 ];
 

@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import MypageMainLi from "./MypageMainLi";
 import { useNavigate } from "react-router-dom";
-import route from "../../../routes";
+import route from "@/routes";
 import PropTypes from 'prop-types'
 import { useState } from "react";
 import Modal from '../modal/Modal'
-import ProfileModal from "../../../pages/my/ProfileModal";
+import ProfileModal from "@/pages/my/ProfileModal"
 import { MainMyData } from "./MyPageData";
 
 /**
