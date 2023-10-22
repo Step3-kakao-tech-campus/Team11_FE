@@ -63,7 +63,7 @@ const ModalLayout = ({ data, what }) => {
       </Container>
       <Chat>
         <ChatForm />
-        <ChatWriteForm />
+        <ChatWriteForm participate={participate}/>
       </Chat>
 
     </MainContainer>
