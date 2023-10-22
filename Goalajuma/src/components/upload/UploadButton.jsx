@@ -13,7 +13,7 @@ const UploadButton = () => {
       const act = count.option.filter((item) => {
         return item.name == "";
       });
-      act.length > 0 ? setActive(false) : setActive(true);
+      setActive(!act.length > 0);
     }
     if (count.option.length < 2 || !count.title) {
       setActive(false);
@@ -27,7 +27,7 @@ const UploadButton = () => {
   };
 
   return (
-    <UploadButtonStyle active={active ? true : false}>
+    <UploadButtonStyle active={active}>
       <button className="uploadBtn" onClick={uploadButton}>
         등록
       </button>
