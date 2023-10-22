@@ -3,7 +3,6 @@ import { MainButtonSt, BtnContents } from "@/styles/VotingBtnStyle";
 import PercentNnumber from "./PercentNumber";
 import styled from "styled-components";
 import Img from "../Img";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import Alert from "../Alert";
