@@ -3,7 +3,6 @@ import { MainButtonSt, BtnContents } from "@/styles/VotingBtnStyle";
 import PercentNnumber from "./PercentNumber";
 import styled from "styled-components";
 import Img from "../Img";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import Alert from "../Alert";
@@ -39,7 +38,7 @@ const MainButton = ({
   const login = localStorage.getItem("token");
   const [choice, setChoiced] = useState(choiced);
   const [alert, setIsAlert] = useState(false);
-
+  console.log();
   const clickButton = () => {
     if (active === "complete") {
       setIsAlert(true);

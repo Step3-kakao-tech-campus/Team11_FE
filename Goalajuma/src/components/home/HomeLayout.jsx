@@ -28,6 +28,7 @@ const HomeLayout = ({ data, what }) => {
     options,
     username,
   } = data;
+
   const [participateState, setParticipate] = useState(participate);
   const [modalVisible, setModalVisible] = useState(false);
   const Data = ModalTest.data.vote;

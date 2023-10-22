@@ -48,7 +48,7 @@ const LoginPage = () => {
           valid={!isValid.isEmail}
           onChange={handleOnChange}
         />
-        <StyledEmailErr>{validText.emailText}</StyledEmailErr>
+        <StyledErr>{validText.emailText}</StyledErr>
         <InputGroup
           className="input"
           id="password"
@@ -59,7 +59,7 @@ const LoginPage = () => {
           valid={!isValid.isPassword}
           onChange={handleOnChange}
         />
-        <StyledPasswordErr>{validText.passwordText}</StyledPasswordErr>
+        <StyledErr>{validText.passwordText}</StyledErr>
       </Group>
       <ButtonGroup>
         <Button
@@ -105,38 +105,42 @@ const Title = styled.div`
 `;
 const Header = styled.div`
   display: flex;
-  position: absolute;
-  top: 50px;
-  left: 30px;
+  position: relative;
   width: 360px;
 `;
 const Subheader = styled.div`
   font-size: 16px;
-  position: absolute;
-  top: 120px;
+  position: relative;
+  top: 30px;
   button {
     margin-left: 40px;
     color: #9eb0ea;
     border: none;
     padding: 8px 15px;
     border-radius: 50px;
+    cursor: pointer;
+    &:hover {
+    background-color:#d3d3d6 ;
+    }
   }
+
+
 `;
 const Group = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
   position: relative;
-  top: 110px;
+  top: 50px;
 `;
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
   position: relative;
-  top: 100px;
+  top: 50px;
   .firstButton {
     margin-top: 50px;
   }
@@ -146,17 +150,13 @@ const StyledIcon = styled.button`
   background: none;
   font-size: 35px;
   margin: 0 5px;
+  cursor: pointer;
 `;
 const StyledErr = styled.div`
   color: #e45151;
   font-size: 13px;
-  position: absolute;
-  left: 20px;
-`;
-const StyledEmailErr = styled(StyledErr)`
-  top: 100px;
+  position: relative;
+  right: 60px;
+  bottom: 10px;
 `;
 
-const StyledPasswordErr = styled(StyledErr)`
-  top: 225px;
-`;

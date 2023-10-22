@@ -71,7 +71,8 @@ export const ButtonTest = {
         active: "continue",
         participate: false,
         title: "어떤걸 먹을까요?..",
-        content: " 치킨이랑 피자중에 뭐먹을까요? 코파일럿 사용했어요",
+        content:
+          " 치킨이랑 피자중에 뭐먹을까요? 치킨이랑 피자중에 뭐먹을까요? 저는 피자요 근데 치킨도 먹을래요.",
         options: [
           {
             id: 3,
