@@ -1,24 +1,48 @@
-import ActiveSign from "./ActiveSign"
-import { GoChevronRight } from "react-icons/go"
-import styled from "styled-components"
-import { Palette } from "../../../styles/Palette"
-import PropTypes from 'prop-types'
+import ActiveSign from "./ActiveSign";
+import { GoChevronRight } from "react-icons/go";
+import styled from "styled-components";
+import { Palette } from "@/styles/Palette";
+import PropTypes from 'prop-types';
+import Modal from "../modal/Modal";
+import { ModalTest } from "../modal/ModalTest";
+import ModalLayout from "../modal/ModalLayout";
+import { useState } from "react";
 
 /**
  * @param {object} data
  * @returns {JSX.Element}
  */
 const MyVoteList = ({data}) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const datas = ModalTest.data.vote;
+
+  const clickModal = () => {
+    setModalVisible(true);
+  }
+
+  const closeModal = () => {
+    setModalVisible(false);
+  }
+
   return (
     <MyVote>
       <VoteInfo>
         <ActiveSign active={data.active}/>
         <div>{data.title}</div>
       </VoteInfo>
-      <Vote>
+      <Vote onClick={clickModal}>
         더보기
         <GoChevronRight className="modal"/>
       </Vote>
+      {modalVisible && (
+        <Modal
+          visible={modalVisible}
+          closable={true}
+          maskClosable={true}
+          onClose={closeModal}>
+            <ModalLayout data={datas} />
+        </Modal>
+      )}
     </MyVote>
   )
 }

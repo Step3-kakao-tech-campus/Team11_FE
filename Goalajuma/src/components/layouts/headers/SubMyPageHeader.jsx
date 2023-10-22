@@ -31,7 +31,7 @@ const Nav = styled.nav`
   top: 0px;
   width: 390px;
   background-color: #FFF;
-  color: #000;
+  color: #535763;
   display: flex;
   align-items: center;
   z-index: 500;
@@ -42,7 +42,7 @@ const Title = styled.div`
 `;
 const PageName = styled.div`
   width: 100%;
-  margin : auto 20% auto 25% ;
+  margin : auto 0 auto 5.5rem;
   font-size: 18px;
   font-weight: bold;
   display:flex;
