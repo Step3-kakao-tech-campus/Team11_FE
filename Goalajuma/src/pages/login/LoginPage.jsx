@@ -48,7 +48,7 @@ const LoginPage = () => {
           valid={!isValid.isEmail}
           onChange={handleOnChange}
         />
-        <StyledEmailErr>{validText.emailText}</StyledEmailErr>
+        <StyledErr>{validText.emailText}</StyledErr>
         <InputGroup
           className="input"
           id="password"
@@ -59,7 +59,7 @@ const LoginPage = () => {
           valid={!isValid.isPassword}
           onChange={handleOnChange}
         />
-        <StyledPasswordErr>{validText.passwordText}</StyledPasswordErr>
+        <StyledErr>{validText.passwordText}</StyledErr>
       </Group>
       <ButtonGroup>
         <Button
@@ -129,7 +129,7 @@ const Subheader = styled.div`
 const Group = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
   position: relative;
   top: 50px;
@@ -137,7 +137,7 @@ const Group = styled.div`
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
   position: relative;
   top: 50px;
@@ -155,13 +155,8 @@ const StyledIcon = styled.button`
 const StyledErr = styled.div`
   color: #e45151;
   font-size: 13px;
-  position: absolute;
-  left: 20px;
-`;
-const StyledEmailErr = styled(StyledErr)`
-  top: 100px;
+  position: relative;
+  right: 60px;
+  bottom: 10px;
 `;
 
-const StyledPasswordErr = styled(StyledErr)`
-  top: 225px;
-`;
