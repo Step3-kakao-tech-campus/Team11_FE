@@ -1,41 +1,46 @@
-import MainLayout from "../../components/layouts/headers/MainLayout";
+import SubMyPageHeader from "../../components/layouts/headers/SubMyPageHeader";
+import Footer from "../../components/layouts/footers/Footer";
 import { MyQuestionsData } from "../../components/common/mypage/mypageTestData";
 import MyVoteList from "../../components/common/mypage/MyVoteList";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import routes from "../../routes";
 import { Palette } from "../../styles/Palette";
+import { MyContainer } from "../../styles/Container";
 
 const MyQuestionPage = () => {
-  // const datas = MyQuestionsData.data.votes;
-  const datas = null;
+  const datas = MyQuestionsData.data.votes;
+  // const datas = null;
   const navigate = useNavigate();
   return (
     <div>
-      <MainLayout page="myquestion" />
-      {datas ? (
-        <div>
-          {datas &&
-            datas.map((data) => (
-              <>
-                <MyVoteList data={data} />
-              </>
-            ))}
-        </div>
-      ) : (
-        <Box>
-          <Text>
-            내가 한 질문이 없습니다. <br />
-            첫 질문을 작성해보세요! <br />
-            당신의 고민을 <Goala>Goalajuma!</Goala>
-          </Text>
+      <SubMyPageHeader page="내가 한 질문" />
+      <MyContainer>
+        {datas ? (
           <div>
-            <Button onClick={() => navigate(routes.upload)}>
-              질문 작성 하러가기
-            </Button>
+            {datas &&
+              datas.map((data) => (
+                <>
+                  <MyVoteList data={data} />
+                </>
+              ))}
           </div>
-        </Box>
-      )}
+        ) : (
+          <Box>
+            <Text>
+              내가 한 질문이 없습니다. <br />
+              첫 질문을 작성해보세요! <br />
+              당신의 고민을 <Goala>Goalajuma!</Goala>
+            </Text>
+            <div>
+              <Button onClick={() => navigate(routes.upload)}>
+                질문 작성 하러가기
+              </Button>
+            </div>
+          </Box>
+        )}
+      </MyContainer>
+      <Footer page="mypage"/>
     </div>
   );
 };

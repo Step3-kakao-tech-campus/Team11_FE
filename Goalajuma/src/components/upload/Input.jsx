@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { titleState } from "../../utils/UploadAtom";
+import { titleState } from "@/utils/UploadAtom";
+import PropTypes from "prop-types";
 
 /**
  * @param {object} param
@@ -9,6 +10,7 @@ import { titleState } from "../../utils/UploadAtom";
  */
 const Input = ({ name, placeholder }) => {
   const [upload, setUpload] = useRecoilState(titleState);
+
   return (
     <InputStyle>
       <label htmlFor="title">{name}</label>
@@ -19,12 +21,17 @@ const Input = ({ name, placeholder }) => {
         onChange={(e) => {
           setUpload(e.target.value);
         }}
+        value={upload}
+        autoFocus
       />
     </InputStyle>
   );
 };
-//onChange 에서 쓰로틀? 로 해야하나 암튼 글자 입력 완료 시 setUpload 할수있게하기
-//함수 새로 만들기...(인풋에서 손 땠을때 실행되게 하기...)
+
+Input.propTypes = {
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+};
 
 export const InputStyle = styled.div`
   display: flex;

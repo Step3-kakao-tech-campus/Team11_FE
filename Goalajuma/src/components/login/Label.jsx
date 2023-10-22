@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import PropTypes from 'prop-types'
 
+
+/**
+ * @param {node} children
+ * @param {string} htmlFor
+ */
 const Label = ({children, htmlFor}) => {
   return (
     <StyledLabel htmlFor={htmlFor}>

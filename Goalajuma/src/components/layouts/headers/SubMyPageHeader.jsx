@@ -7,18 +7,16 @@ import PropTypes from 'prop-types'
  * 
  * @param {string} prop
  * @param {string} page
- * @param {number} prop.count 
  * @return {JSX.Element}
  */
-const SubMyPageHeader = ({page, count}) => {
-  count = count || 2;
+const SubMyPageHeader = ({page}) => {
   page = page ||"내가 한 질문"
   return (
     <Nav>
       <BackButton/>
       <PageName>
         <Title>
-          {page}{`(${count})`}
+          {page}
         </Title>
       </PageName>
     </Nav>
@@ -26,7 +24,6 @@ const SubMyPageHeader = ({page, count}) => {
 }
 SubMyPageHeader.propTypes = {
   page: PropTypes.string.isRequired,
-  count: PropTypes.number.isRequired
 }
 const Nav = styled.nav`
   height: 55px;
@@ -34,7 +31,7 @@ const Nav = styled.nav`
   top: 0px;
   width: 390px;
   background-color: #FFF;
-  color: #000;
+  color: #535763;
   display: flex;
   align-items: center;
   z-index: 500;
@@ -45,7 +42,7 @@ const Title = styled.div`
 `;
 const PageName = styled.div`
   width: 100%;
-  margin : auto 120px auto 73px ;
+  margin : auto 0 auto 5.5rem;
   font-size: 18px;
   font-weight: bold;
   display:flex;

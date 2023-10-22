@@ -5,15 +5,16 @@ export const ButtonTest = {
     votes: [
       {
         id: 1,
+        username: "홍길동",
         isOwner: true,
         voteCount: 826,
         createDate: "2023.09.14 18:00",
         endDate: "2023.9.29 00:37",
         active: "continue",
         participate: true,
-        title: "군대 가야할까요?..",
+        title: "군대 가야할까요?",
         content:
-          "여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?",
+          "여자친구와 결혼을 앞두고 있습니다여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?. 군대를 가야할까요? 아니면 안가야할까요?여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?여자친구와 결혼을 앞두고 있습니다. 군대를 가야할까요? 아니면 안가야할까요?",
         options: [
           {
             id: 1,
@@ -33,11 +34,12 @@ export const ButtonTest = {
       },
       {
         id: 2,
+        username: "홍길동",
         isOwner: false,
         voteCount: 826,
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.30 18:00",
-        avtive: "continue",
+        active: "continue",
         participate: false,
         title: "군대 가야할까요?..",
         content:
@@ -61,6 +63,7 @@ export const ButtonTest = {
       },
       {
         id: 3,
+        username: "홍길동",
         isOwner: false,
         voteCount: 9000,
         createDate: "2023.09.14 18:00",
@@ -68,7 +71,8 @@ export const ButtonTest = {
         active: "continue",
         participate: false,
         title: "어떤걸 먹을까요?..",
-        content: " 치킨이랑 피자중에 뭐먹을까요? 코파일럿 사용했어요",
+        content:
+          " 치킨이랑 피자중에 뭐먹을까요? 치킨이랑 피자중에 뭐먹을까요? 저는 피자요 근데 치킨도 먹을래요.",
         options: [
           {
             id: 3,
@@ -101,11 +105,12 @@ export const ButtonTest2 = {
     votes: [
       {
         id: 1,
+        username: "홍길동",
         isOwner: false,
         voteCount: 826,
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.30 18:00",
-        active: "finish",
+        active: "complete",
         participate: true,
         title: "군대 가야할까요?..",
         content:
@@ -130,10 +135,11 @@ export const ButtonTest2 = {
       {
         id: 10,
         isOwner: false,
+        username: "홍길동",
         voteCount: 826,
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.30 18:00",
-        active: "finish",
+        active: "complete",
         participate: false,
         title: "군대 가야할까요?..",
         content:
@@ -158,10 +164,11 @@ export const ButtonTest2 = {
 
       {
         id: 20,
+        username: "홍길동",
         voteCount: 9000,
         createDate: "2023.09.14 18:00",
         endDate: "2023.09.30 18:00",
-        active: "finish",
+        active: "complete",
         participate: false,
         title: "어떤걸 먹을까요?..",
         content: " 치킨이랑 피자중에 뭐먹을까요? 코파일럿 사용했어요",
