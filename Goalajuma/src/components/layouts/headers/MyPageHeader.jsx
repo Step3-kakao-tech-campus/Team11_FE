@@ -24,7 +24,7 @@ const Nav = styled.nav`
   top: 0px;
   width: 390px;
   background-color: #FFF;
-  color: #000;
+  color: #535763;
   display: flex;
   align-items: center;
   z-index: 500;
