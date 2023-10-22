@@ -22,14 +22,15 @@ const MainPage = () => {
     data,
   } = useInfiniteQuery({
     queryKey: ["mainInfo"],
-    queryFn: ({ pageParam = 1 }) => mainInquire(categoryData, pageParam),
+    queryFn: ({ pageParam = 0 }) => mainInquire(categoryData, pageParam),
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length;
-      const isLast = lastPage.response.data.isLast;
+      const isLast = lastPage?.response?.data.isLast;
       return isLast ? undefined : nextPage;
     },
   });
 
+  const Data = data?.pages[0].data.data.votes;
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => {
@@ -54,16 +55,16 @@ const MainPage = () => {
       }
     };
   }, [isLoading, hasNextPage, fetchNextPage]);
-  console.log(data);
+
   return (
     <>
       <Main />
       <HomeContainer>
-        {data &&
-          data.map((data, id) => (
+        {Data &&
+          Data?.map((data, id) => (
             <HomeLayout id={id} data={data} what="main" key={id} />
           ))}
-        <div ref={bottomObserver}>바닥</div>
+        <div ref={bottomObserver}></div>
       </HomeContainer>
       <Footer page="main" />
     </>
