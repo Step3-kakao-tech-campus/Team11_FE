@@ -38,7 +38,7 @@ const MainButton = ({
   const login = localStorage.getItem("token");
   const [choice, setChoiced] = useState(choiced);
   const [alert, setIsAlert] = useState(false);
-
+  console.log();
   const clickButton = () => {
     if (active === "complete") {
       setIsAlert(true);
