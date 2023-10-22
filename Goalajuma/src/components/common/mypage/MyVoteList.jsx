@@ -2,7 +2,7 @@ import ActiveSign from "./ActiveSign";
 import { GoChevronRight } from "react-icons/go";
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import Modal from "../modal/Modal";
 import { ModalTest } from "../modal/ModalTest";
 import ModalLayout from "../modal/ModalLayout";
