@@ -8,61 +8,59 @@ import { mainInquire } from "@/services/main";
 import { useEffect, useRef } from "react";
 import { useRecoilValue } from "recoil";
 import { totalCategoryState } from "@/utils/HeaderAtom";
-import Alert from "@/components/common/Alert";
 const MainPage = () => {
-  const datas = ButtonTest.data.votes;
+  // const datas = ButtonTest.data.votes;
   const categoryData = useRecoilValue(totalCategoryState);
   const bottomObserver = useRef(null);
 
-  // const {
-  //   fetchNextPage,
-  //   fetchPreviousPage,
-  //   hasNextPage,
-  //   hasPreviousPage,
-  //   isFetchingNextPage,
-  //   isFetchingPreviousPage,
-  //   data,
-  // } = useInfiniteQuery({
-  //   queryKey: ["mainInfo"],
-  //   queryFn: ({ pageParam = 1 }) => mainInquire(categoryData, pageParam),
-  //   getNextPageParam: (lastPage, allPages) => {
-  //     const nextPage = allPages.length;
-  //     const isLast = lastPage.response.data.isLast;
-  //     return isLast ? undefined : nextPage;
-  //   },
-  // });
+  const {
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetchingPreviousPage,
+    isLoading,
+    data,
+  } = useInfiniteQuery({
+    queryKey: ["mainInfo"],
+    queryFn: ({ pageParam = 1 }) => mainInquire(categoryData, pageParam),
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage = allPages.length;
+      const isLast = lastPage.response.data.isLast;
+      return isLast ? undefined : nextPage;
+    },
+  });
 
-  // useEffect(() => {
-  //   const io = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => {
-  //         if (entry.isIntersecting && !isLoading && hasNextPage) {
-  //           fetchNextPage();
-  //         }
-  //       });
-  //     },
-  //     {
-  //       threshold: 0.7,
-  //     }
-  //   );
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isLoading && hasNextPage) {
+            fetchNextPage();
+          }
+        });
+      },
+      {
+        threshold: 0.7,
+      }
+    );
 
-  //   if (bottomObserver.current) {
-  //     io1.observe(bottomObserver.current);
-  //   }
+    if (bottomObserver.current) {
+      io.observe(bottomObserver.current);
+    }
 
-  //   return () => {
-  //     if (bottomObserver.current) {
-  //       io1.unobserve(bottomObserver.current);
-  //     }
-  //   };
-  // }, [isLoading, hasNextPage, fetchNextPage]);
-
+    return () => {
+      if (bottomObserver.current) {
+        io.unobserve(bottomObserver.current);
+      }
+    };
+  }, [isLoading, hasNextPage, fetchNextPage]);
+  console.log(data);
   return (
     <>
       <Main />
       <HomeContainer>
-        {datas &&
-          datas.map((data, id) => (
+        {data &&
+          data.map((data, id) => (
             <HomeLayout id={id} data={data} what="main" key={id} />
           ))}
         <div ref={bottomObserver}>바닥</div>
