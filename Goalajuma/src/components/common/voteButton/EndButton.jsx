@@ -1,24 +1,34 @@
-import PropTypes from 'prop-types'
-import { useState } from 'react';
-import styled from 'styled-components'
+import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+import Alert from "../Alert";
 
 /**
  * @param {object} props
  * @param {boolean} props.isOwner 작성자 확인 
  * @param {string} props.active 투표 진행중 여부 : continue, complete
  */
-const EndButton = ({isOwner, active: initialActive, className}) => {
+const EndButton = ({isOwner, active: initialActive}) => {
   const [active, setActive] = useState(initialActive);
+  const [alert, setIsAlert] = useState(false);
 
   const handleOnClick = () => {
-    setActive("complete");
+    setActive("complete")
+    setIsAlert(true)
   };
 
-  if(isOwner && active==="continue") {
-    return (
-      <ButtonStyled onClick={handleOnClick}>끝내기</ButtonStyled>
+  return (
+    <>
+        {alert && 
+        <Alert setIsAlert={setIsAlert}>
+          투표가 종료됩니다.
+        </Alert>}
+        {isOwner && active === "continue"? 
+        <ButtonStyled onClick={handleOnClick}>끝내기</ButtonStyled>
+        :""}
+      </>
     )
-  }
+  
 }
 EndButton.propTypes = {
   isOwner: PropTypes.bool.isRequired,

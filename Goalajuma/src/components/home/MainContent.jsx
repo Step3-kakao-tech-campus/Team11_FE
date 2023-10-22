@@ -50,6 +50,7 @@ const MainContentStyle = styled.div`
     font-weight: 900;
     color: #000000;
     margin-bottom: 20px;
+    line-height: 150%;
   }
 
   .more p {

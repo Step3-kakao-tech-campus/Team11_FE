@@ -33,6 +33,7 @@ export default Button;
 const StyledButton = styled.button`
 	width: 280px;
 	height: 50px;
+	cursor: ${(props)=> (props.disabled ? "auto" : "pointer")};
   border-radius: 50px;
 	border: 1px solid transparent;
   font-size: 15px;
@@ -44,6 +45,6 @@ const StyledButton = styled.button`
 		color: #333;
 	}
 	&:hover{
-		background-color: ${(props) => (props.disabled ? "#ccc" : "#666")};
+		background-color: ${(props) => (props.disabled ? "#ccc" : "#8C9CCF")};
 	}
 `
