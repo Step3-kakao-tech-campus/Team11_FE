@@ -1,8 +1,8 @@
 import Icon from "../Icon";
 import { GoChevronRight } from "react-icons/go";
-import { Palette } from "../../../styles/Palette";
+import { Palette } from "@/styles/Palette";
 import styled from "styled-components";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
 
 /**
  * 
