@@ -36,7 +36,6 @@ const SignUpPage = () => {
     } else if (name === "policy-agree") {
       setAgreePollcy(checked);
     }
-
     if (!checked) {
       setAllAgree(false);
     }
@@ -60,7 +59,7 @@ const SignUpPage = () => {
           value={value.name}
           onChange={handleOnChange}
         />
-        <StyledNameErr>{validText.nameText}</StyledNameErr>
+        <StyledErr>{validText.nameText}</StyledErr>
         <InputGroup
           className="email"
           id="email"
@@ -70,7 +69,7 @@ const SignUpPage = () => {
           value={value.email}
           onChange={handleOnChange}
         />
-        <StyledEmailErr>{validText.emailText}</StyledEmailErr>
+        <StyledErr>{validText.emailText}</StyledErr>
         <InputGroup
           className="password"
           id="password"
@@ -80,7 +79,7 @@ const SignUpPage = () => {
           value={value.password}
           onChange={handleOnChange}
         />
-        <StyledPasswordErr>{validText.passwordText}</StyledPasswordErr>
+        <StyledErr>{validText.passwordText}</StyledErr>
         <InputGroup
           className="passwordConfirm"
           id="passwordConfirm"
@@ -90,7 +89,7 @@ const SignUpPage = () => {
           value={value.passwordConfirm}
           onChange={handleOnChange}
         />
-        <StyledPwConfirmErr>{validText.passwordConfirmText}</StyledPwConfirmErr>
+        <StyledErr>{validText.passwordConfirmText}</StyledErr>
       </Group>
       <StyledButton onClick={() => navigate("/")}>중복 검사</StyledButton>
       <PolicyGroup>
@@ -148,38 +147,25 @@ export default SignUpPage;
 
 const Header = styled.div`
   display: flex;
-  position: fixed;
-  top: 50px;
-  left: 30px;
+  position: relative;
   width: 360px;
-  @media (min-width: 1100px) {
-    left: 60%;
-  }
+  bottom: 25px;
 `;
 const Group = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  position: relative;
-  top: 40px;
+  gap: 15px;
   align-items: center;
   .input:last-child {
     margin-bottom: 50px;
-  }
-  @media (min-width: 1100px) {
-    top: 60px;
   }
 `;
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
   align-items: center;
   position: relative;
-  top: 100px;
-  @media (min-width: 1100px) {
-    top: 130px;
-  }
+  top: 15px;
 `;
 const StyledIcon = styled.button`
   border: none;
@@ -203,11 +189,13 @@ const StyledButton = styled.button`
   padding: 0.6em 1.2em;
   font-weight: 500;
   color: #fff;
-  position: absolute;
-  top: 293px;
-  right: 60px;
-  @media (min-width: 1100px) {
-    top: 234px;
+  position: relative;
+  width: 32%;
+  bottom: 303px;
+  left: 180px;
+  cursor: pointer;
+  &:hover{
+    background-color: #8C9CCF;
   }
 `;
 const PolicyGroup = styled.div`
@@ -215,11 +203,10 @@ const PolicyGroup = styled.div`
   flex-direction: column;
   gap: 10px;
   position: relative;
-  top: 80px;
+  bottom: 20px;
+  left: 10px;
   text-align: left;
-  @media (min-width: 1100px) {
-    top: 100px;
-  }
+
 `;
 const Policy = styled.div`
   display: flex;
@@ -228,18 +215,7 @@ const Policy = styled.div`
 const StyledErr = styled.div`
   color: #e45151;
   font-size: 13px;
-  position: absolute;
-  left: 20px;
-`;
-const StyledNameErr = styled(StyledErr)`
-  top: 100px;
-`;
-const StyledEmailErr = styled(StyledErr)`
-  top: 225px;
-`;
-const StyledPasswordErr = styled(StyledErr)`
-  top: 350px;
-`;
-const StyledPwConfirmErr = styled(StyledErr)`
-  top: 475px;
+  position: relative;
+  right: 60px;
+  bottom: 10px;
 `;
