@@ -148,9 +148,7 @@ export default SignUpPage;
 
 const Header = styled.div`
   display: flex;
-  position: fixed;
-  top: 50px;
-  left: 30px;
+  position: relative;
   width: 360px;
   @media (min-width: 1100px) {
     left: 60%;

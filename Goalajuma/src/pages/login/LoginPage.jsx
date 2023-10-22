@@ -105,29 +105,26 @@ const Title = styled.div`
 `;
 const Header = styled.div`
   display: flex;
-  position: fixed;
-  top: 50px;
-  left: 30px;
+  position: relative;
   width: 360px;
-  @media (min-width: 1100px) {
-    left: 60%;
-  }
 `;
 const Subheader = styled.div`
   font-size: 16px;
-  position: absolute;
-  top: 120px;
-  left: 60px;
+  position: relative;
+  top: 30px;
   button {
     margin-left: 40px;
     color: #9eb0ea;
     border: none;
     padding: 8px 15px;
     border-radius: 50px;
+    cursor: pointer;
+    &:hover {
+    background-color:#d3d3d6 ;
+    }
   }
-  @media (min-width: 1100px) {
-    top:80px;
-  }
+
+
 `;
 const Group = styled.div`
   display: flex;
@@ -135,11 +132,7 @@ const Group = styled.div`
   gap: 30px;
   align-items: center;
   position: relative;
-  top: 110px;
-
-  @media (min-width: 1100px) {
-    top: 150px;
-  }
+  top: 50px;
 `;
 const ButtonGroup = styled.div`
   display: flex;
@@ -147,12 +140,9 @@ const ButtonGroup = styled.div`
   gap: 30px;
   align-items: center;
   position: relative;
-  top: 100px;
+  top: 50px;
   .firstButton {
     margin-top: 50px;
-  }
-  @media (min-width: 1100px) {
-    top: 150px;
   }
 `;
 const StyledIcon = styled.button`
@@ -160,6 +150,7 @@ const StyledIcon = styled.button`
   background: none;
   font-size: 35px;
   margin: 0 5px;
+  cursor: pointer;
 `;
 const StyledErr = styled.div`
   color: #e45151;

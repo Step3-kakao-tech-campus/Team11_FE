@@ -17,16 +17,18 @@ const EndButton = ({isOwner, active: initialActive}) => {
     setIsAlert(true)
   };
 
-  if(isOwner && active === "continue") {
-    return (
-      <>
-        {alert && <Alert setIsAlert={setIsAlert}>
+  return (
+    <>
+        {alert && 
+        <Alert setIsAlert={setIsAlert}>
           투표가 종료됩니다.
         </Alert>}
+        {isOwner && active === "continue"? 
         <ButtonStyled onClick={handleOnClick}>끝내기</ButtonStyled>
+        :""}
       </>
     )
-  }
+  
 }
 EndButton.propTypes = {
   isOwner: PropTypes.bool.isRequired,
