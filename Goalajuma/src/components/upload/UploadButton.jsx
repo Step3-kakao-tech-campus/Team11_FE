@@ -14,9 +14,9 @@ const UploadButton = () => {
   const [count, setCount] = useRecoilState(uploadSelector);
   const resetList = useResetRecoilState(uploadSelector);
   const [active, setActive] = useState(false);
-  // const mutation = useMutation({
-  //   mutationFn: () => uploadVote(),
-  // });
+  const mutation = useMutation({
+    mutationFn: (payload) => uploadVote(payload),
+  });
   useEffect(() => {
     if (!!count.title && count.options.length > 1) {
       const act = count.options.filter((item) => {
@@ -31,26 +31,29 @@ const UploadButton = () => {
 
   const uploadButton = () => {
     if (active) {
-      uploadVote(count).then((res) => {
-        resetList();
-        Swal.fire({
-          icon: "success",
-          text: "투표 등록에 성공했습니다!",
-          confirmButtonColor: "#429f50",
-        }).then(() => {
-          navigate(routes.home);
-        });
-      });
-      // const payload = count;
-      // mutation.mutate(payload, {
-      //   onSuccess: () => {
-      //     Swal.fire({
-      //       icon: "success",
-      //       text: "투표 등록에 성공했습니다!",
-      //       confirmButtonColor: "#429f50",
-      //     }).then(() => navigate(routes.home));
-      //   },
+      // uploadVote(count).then((res) => {
+      //   resetList();
+      //   Swal.fire({
+      //     icon: "success",
+      //     text: "투표 등록에 성공했습니다!",
+      //     confirmButtonColor: "#429f50",
+      //   }).then(() => {
+      //     navigate(routes.home);
+      //   });
       // });
+      const payload = count;
+      mutation.mutate(payload, {
+        onSuccess: () => {
+          Swal.fire({
+            icon: "success",
+            text: "투표 등록에 성공했습니다!",
+            confirmButtonColor: "#429f50",
+          }).then(() => navigate(routes.home));
+        },
+        onError: (error) => {
+          alert(error?.data.message);
+        },
+      });
     }
   };
 
