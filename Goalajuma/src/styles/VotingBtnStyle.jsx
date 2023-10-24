@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Palette } from "./Palette";
 
 export const MainButtonSt = styled.div`
+  cursor: pointer;
   font-family: "NanumGothic";
   max-width: 295px;
   min-width: 110px;
@@ -26,8 +27,10 @@ export const MainButtonSt = styled.div`
 
     transition: all 0.3s;
 
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-right-radius: ${(props) => (props.border ? "20000px" : null)};
+    border-bottom-right-radius: ${(props) => (props.border ? "20000px" : null)};
+    border-top-left-radius: 20000px;
+    border-bottom-left-radius: 20000px;
   }
 `;
 export const BtnContents = styled.p`

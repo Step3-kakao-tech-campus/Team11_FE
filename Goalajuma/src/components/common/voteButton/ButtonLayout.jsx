@@ -27,10 +27,11 @@ const ButtonLayout = ({ onClick, options, participate, isOwner, active }) => {
               value={option.optionRatio}
               number={option.optionCount}
               src={option.image}
-              choiced={option.choiced}
+              choiced={option.choice}
               participate={participate}
               isOwner={isOwner}
               active={active}
+              id={option.id}
             />
           );
         })}
