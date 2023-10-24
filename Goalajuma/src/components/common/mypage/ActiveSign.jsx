@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Palette } from "../../../styles/Palette";
-import PropTypes from 'prop-types'
+import { Palette } from "@/styles/Palette";
+import PropTypes from "prop-types"
 
 /**
  * 

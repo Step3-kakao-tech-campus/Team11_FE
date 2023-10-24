@@ -1,5 +1,3 @@
-import HomeLayout from "@/components/home/HomeLayout";
-import { ButtonTest } from "@/components/common/voteButton/ButtonTest";
 import { HomeContainer } from "@/styles/Container";
 import Main from "@/components/layouts/headers/Main";
 import Footer from "@/components/layouts/footers/Footer";
@@ -8,64 +6,70 @@ import { mainInquire } from "@/services/main";
 import { useEffect, useRef } from "react";
 import { useRecoilValue } from "recoil";
 import { totalCategoryState } from "@/utils/HeaderAtom";
-import Alert from "@/components/common/Alert";
+import HomeTemplate from "@/components/template/HomeTemplate";
+import Loader from "@/assets/Loader";
 const MainPage = () => {
-  const datas = ButtonTest.data.votes;
+  // const datas = ButtonTest.data.votes;
   const categoryData = useRecoilValue(totalCategoryState);
   const bottomObserver = useRef(null);
 
-  // const {
-  //   fetchNextPage,
-  //   fetchPreviousPage,
-  //   hasNextPage,
-  //   hasPreviousPage,
-  //   isFetchingNextPage,
-  //   isFetchingPreviousPage,
-  //   data,
-  // } = useInfiniteQuery({
-  //   queryKey: ["mainInfo"],
-  //   queryFn: ({ pageParam = 1 }) => mainInquire(categoryData, pageParam),
-  //   getNextPageParam: (lastPage, allPages) => {
-  //     const nextPage = allPages.length;
-  //     const isLast = lastPage.response.data.isLast;
-  //     return isLast ? undefined : nextPage;
-  //   },
-  // });
+  const {
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    data,
+    isFetching,
+  } = useInfiniteQuery({
+    queryKey: ["mainInfo"],
+    queryFn: ({ pageParam = 0 }) => mainInquire(categoryData, pageParam),
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage = allPages.length;
+      const isLast = lastPage?.data.data.isLast;
+      return isLast ? undefined : nextPage;
+    },
+    retry: 0,
+  });
 
-  // useEffect(() => {
-  //   const io = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => {
-  //         if (entry.isIntersecting && !isLoading && hasNextPage) {
-  //           fetchNextPage();
-  //         }
-  //       });
-  //     },
-  //     {
-  //       threshold: 0.7,
-  //     }
-  //   );
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (
+            entry.isIntersecting &&
+            !isLoading &&
+            hasNextPage &&
+            !isFetchingNextPage
+          ) {
+            fetchNextPage();
+          }
+        });
+      },
+      {
+        threshold: 0.7,
+      }
+    );
 
-  //   if (bottomObserver.current) {
-  //     io1.observe(bottomObserver.current);
-  //   }
+    if (bottomObserver.current) {
+      io.observe(bottomObserver.current);
+    }
 
-  //   return () => {
-  //     if (bottomObserver.current) {
-  //       io1.unobserve(bottomObserver.current);
-  //     }
-  //   };
-  // }, [isLoading, hasNextPage, fetchNextPage]);
+    return () => {
+      if (bottomObserver.current) {
+        io.unobserve(bottomObserver.current);
+      }
+    };
+  }, [isLoading, hasNextPage, fetchNextPage]);
+
+  const Data = data?.pages.flatMap((param) => param.data.data.votes);
 
   return (
     <>
       <Main />
       <HomeContainer>
-        {datas &&
-          datas.map((data, id) => (
-            <HomeLayout id={id} data={data} what="main" key={id} />
-          ))}
-        <div ref={bottomObserver}>바닥</div>
+        <HomeTemplate datas={Data} isFetching={isFetching} />
+        <div ref={bottomObserver}></div>
+        {isFetching && <Loader />}
       </HomeContainer>
       <Footer page="main" />
     </>

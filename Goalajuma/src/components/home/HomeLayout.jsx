@@ -18,7 +18,7 @@ import ModalLayout from "../common/modal/ModalLayout";
 
 const HomeLayout = ({ data, what }) => {
   const {
-    voteCount,
+    totalCount,
     participate,
     isOwner,
     title,
@@ -28,6 +28,7 @@ const HomeLayout = ({ data, what }) => {
     options,
     username,
   } = data;
+
   const [participateState, setParticipate] = useState(participate);
   const [modalVisible, setModalVisible] = useState(false);
   const Data = ModalTest.data.vote;
@@ -49,7 +50,7 @@ const HomeLayout = ({ data, what }) => {
     <MainContainer>
       <Container>
         <VoteHead
-          voteCount={voteCount}
+          totalCount={totalCount}
           endDate={endDate}
           what={what}
           username={username}

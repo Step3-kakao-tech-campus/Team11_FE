@@ -6,8 +6,10 @@ import InputGroup from "../../components/login/InputGroup";
 import { useEffect, useState } from "react";
 import { JoinContainer } from "../../styles/Container";
 import useValid from "../../hooks/useValid";
+import {useMutation, useQueryClient} from"react-query";
 
 const SignUpPage = () => {
+  //const queryClient = useQueryClient();
   const [allAgree, setAllAgree] = useState(false);
   const [agreeService, setAgreeService] = useState(false);
   const [agreePollcy, setAgreePollcy] = useState(false);
@@ -41,6 +43,34 @@ const SignUpPage = () => {
     }
   };
 
+  // const mutation = useMutation(
+  //   (data) => {
+  //     return fetch('/auth/sign-up',{
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(data),
+  //     }).then((res)=>res.json())
+  //   },
+  //   {
+  //     //mutation 성공 시 실행될 함수
+  //     onSuccess: (data)=>{
+  //       console.log('회원가입 성공',data)
+  //       navigate("/login")
+  //       // 전역 상태로 토큰 저장
+  //       queryClient.setQueryData('token',data.token)
+  //     }
+  //   }
+  // )
+  const handleSignUp =()=>{
+    if(isValid.isName &&isValid.isEmail && isValid.isPassword && isValid.isPasswordConfirmation){
+      // mutation.mutate(value)
+      navigate("/login")
+    }else{
+      console.log('입력 내용이 올바르지 않습니다.')
+    }
+  }
   return (
     <JoinContainer>
       <Header>
@@ -124,7 +154,7 @@ const SignUpPage = () => {
       <ButtonGroup>
         <Button
           color="#9EB0EA"
-          onClick={() => navigate("/login")}
+          onClick={handleSignUp}
           disabled={
             isValid.isName &&
             isValid.isEmail &&

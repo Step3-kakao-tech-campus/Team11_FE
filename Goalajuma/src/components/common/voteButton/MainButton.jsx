@@ -3,10 +3,10 @@ import { MainButtonSt, BtnContents } from "@/styles/VotingBtnStyle";
 import PercentNnumber from "./PercentNumber";
 import styled from "styled-components";
 import Img from "../Img";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import Alert from "../Alert";
+import { vote, voteChange } from "@/services/vote";
 
 /**
  * @param {object} props
@@ -35,12 +35,10 @@ const MainButton = ({
   onClick,
   className,
 }) => {
-  const navigate = useNavigate();
   const login = localStorage.getItem("token");
-  const [choice, setChoiced] = useState(choiced);
-  const [alert, setIsAlert] = useState(false);
 
-  const clickButton = () => {
+  const [alert, setIsAlert] = useState(false);
+  const clickButton = (e) => {
     if (active === "complete") {
       setIsAlert(true);
     }
@@ -48,13 +46,10 @@ const MainButton = ({
       if (!login) {
         setIsAlert(true);
       } else if (participate === true) {
-        choice === true
-          ? (setChoiced(!choice), onClick())
-          : setChoiced(!choice);
-        /** 서버에 수정 요청 보내기*/
+        voteChange(e.target.id);
       } else {
         //투표 안한 기본 상태...
-        setChoiced(true);
+        vote(e.target.id);
         onClick();
         //투표 요청보내기
       }
@@ -76,13 +71,12 @@ const MainButton = ({
         {src ? <Img src={src} /> : <></>}
 
         <MainButtonSt
+          border={value == 100 ? true : false}
           onClick={clickButton}
-          choice={
-            isOwner || participate || active === "complete" ? choice : false
-          }
+          choice={choiced}
           id={id}
         >
-          <BtnContents choice={choice} id={id}>
+          <BtnContents choice={choiced} id={id}>
             {name}
           </BtnContents>
           <progress
@@ -95,7 +89,7 @@ const MainButton = ({
           <PercentNnumber
             value={value}
             number={number}
-            choice={choice}
+            choice={choiced}
             id={id}
           />
         ) : (

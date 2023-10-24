@@ -1,7 +1,7 @@
 // 내가 한 투표, 내가 한 질문 헤더 
 import styled from "styled-components";
 import BackButton from "./BackButton";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 /**
  * 
