@@ -1,28 +1,56 @@
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import { uploadSelector } from "@/utils/UploadAtom";
 import { useEffect, useState } from "react";
+import { uploadVote } from "@/services/vote";
+import { useMutation } from "@tanstack/react-query";
+import routes from "@/routes";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UploadButton = () => {
+  const navigate = useNavigate();
   const [count, setCount] = useRecoilState(uploadSelector);
+  const resetList = useResetRecoilState(uploadSelector);
   const [active, setActive] = useState(false);
-
+  // const mutation = useMutation({
+  //   mutationFn: () => uploadVote(),
+  // });
   useEffect(() => {
-    if (!!count.title && count.option.length > 1) {
-      const act = count.option.filter((item) => {
+    if (!!count.title && count.options.length > 1) {
+      const act = count.options.filter((item) => {
         return item.name == "";
       });
       setActive(!act.length > 0);
     }
-    if (count.option.length < 2 || !count.title) {
+    if (count.options.length < 2 || !count.title) {
       setActive(false);
     }
   }, [count]);
 
   const uploadButton = () => {
     if (active) {
-      console.log(count);
+      uploadVote(count).then((res) => {
+        resetList();
+        Swal.fire({
+          icon: "success",
+          text: "투표 등록에 성공했습니다!",
+          confirmButtonColor: "#429f50",
+        }).then(() => {
+          navigate(routes.home);
+        });
+      });
+      // const payload = count;
+      // mutation.mutate(payload, {
+      //   onSuccess: () => {
+      //     Swal.fire({
+      //       icon: "success",
+      //       text: "투표 등록에 성공했습니다!",
+      //       confirmButtonColor: "#429f50",
+      //     }).then(() => navigate(routes.home));
+      //   },
+      // });
     }
   };
 

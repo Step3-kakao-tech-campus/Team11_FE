@@ -37,7 +37,7 @@ export const uploadSelector = selector({
       content: get(contentState),
       category: get(categoryState),
       timeLimit: get(timeLimitState),
-      option: get(optionState),
+      options: get(optionState),
     };
   },
   set: ({ set }, value) => {
