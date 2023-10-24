@@ -19,7 +19,7 @@ const CategoryNDeadLine = () => {
 };
 
 export const category = [
-  { name: "(전체)", value: "total" },
+  { name: "골라조(전체)", value: "total" },
   { name: "뭐사조(상품-의류,잡화)", value: "buy" },
   { name: "어디가조(갈 곳 추천)", value: "where" },
   { name: "뭐하조(할 것 추천)", value: "what" },
