@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import { useRecoilValue } from "recoil";
 import { totalCategoryState } from "@/utils/HeaderAtom";
 import HomeTemplate from "@/components/template/HomeTemplate";
+import Loader from "@/assets/Loader";
 const MainPage = () => {
   // const datas = ButtonTest.data.votes;
   const categoryData = useRecoilValue(totalCategoryState);
@@ -64,11 +65,11 @@ const MainPage = () => {
 
   return (
     <>
-      {isLoading && <div>로딩중...</div>}
       <Main />
       <HomeContainer>
         <HomeTemplate datas={Data} isFetching={isFetching} />
         <div ref={bottomObserver}></div>
+        {isFetching && <Loader />}
       </HomeContainer>
       <Footer page="main" />
     </>

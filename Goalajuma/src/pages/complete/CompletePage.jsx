@@ -7,6 +7,7 @@ import { useRef, useEffect } from "react";
 import { totalCategoryState } from "@/utils/HeaderAtom";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { completeInquire } from "@/services/main";
+import Loader from "@/assets/Loader";
 
 const CompletePage = () => {
   const categoryData = useRecoilValue(totalCategoryState);
@@ -64,11 +65,11 @@ const CompletePage = () => {
 
   return (
     <>
-      {isLoading && <div>로딩중...</div>}
       <Main />
       <HomeContainer>
         <CompleteTemplate datas={Data} isFetching={isFetching} />
         <div ref={bottomObserver}></div>
+        {isFetching && <Loader />}
       </HomeContainer>
       <Footer page="complete" />
     </>

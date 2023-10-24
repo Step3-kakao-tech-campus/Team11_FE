@@ -2,7 +2,7 @@ import HomeLayout from "../home/HomeLayout";
 const HotTemplate = ({ datas, isFetching, error }) => {
   return (
     <div>
-      {isFetching || error ? (
+      {error ? (
         <>글이 없어용</>
       ) : (
         datas &&

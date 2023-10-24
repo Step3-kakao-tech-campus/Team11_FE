@@ -2,6 +2,7 @@ import { HomeContainer } from "@/styles/Container";
 import HotPageHeader from "@/components/layouts/headers/HotPageHeader";
 import Footer from "@/components/layouts/footers/Footer";
 import HotTemplate from "@/components/template/HotTemplate";
+import Loader from "@/assets/Loader";
 
 import { useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -67,6 +68,7 @@ const HotPage = () => {
       <HotPageHeader />
       <HomeContainer>
         <HotTemplate datas={Data} isFetching={isFetching} error={error} />
+        {isFetching && <Loader />}
       </HomeContainer>
       <Footer page="hot" />
     </>
