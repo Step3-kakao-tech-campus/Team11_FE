@@ -1,12 +1,12 @@
-import SubMyPageHeader from "../../components/layouts/headers/SubMyPageHeader";
-import Footer from "../../components/layouts/footers/Footer";
-import { MyQuestionsData } from "../../components/common/mypage/mypageTestData";
-import MyVoteList from "../../components/common/mypage/MyVoteList";
+import SubMyPageHeader from "@/components/layouts/headers/SubMyPageHeader";
+import Footer from "@/components/layouts/footers/Footer";
+import { MyQuestionsData } from "@/components/common/mypage/mypageTestData";
+import MyVoteList from "@/components/common/mypage/MyVoteList";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import routes from "../../routes";
-import { Palette } from "../../styles/Palette";
-import { MyContainer } from "../../styles/Container";
+import routes from "@/routes";
+import { Palette } from "@/styles/Palette";
+import { MyContainer } from "@/styles/Container";
 
 const MyQuestionPage = () => {
   const datas = MyQuestionsData.data.votes;

@@ -14,7 +14,7 @@ import EndButton from "@/components/common/voteButton/EndButton";
  * @param {boolean} props.isOwner 작성자 확인
  * @param {string} props.active 투표 진행중 여부 : continue, complete
  */
-const VoteHead = ({ voteCount, endDate, what, username, isOwner, active }) => {
+const VoteHead = ({ totalCount, endDate, what, username, isOwner, active }) => {
   return (
     <VoteHeadLayout>
       <VoteHeadCss>
@@ -30,14 +30,14 @@ const VoteHead = ({ voteCount, endDate, what, username, isOwner, active }) => {
             <div className="completeTitle">
               <div className="complete">
                 <p>투표자수</p>
-                <p>{voteCount}</p>
+                <p>{totalCount}</p>
                 <p>{username}</p>
               </div>
             </div>
           </div>
         ) : (
           <div className="voteTitle">
-            <div className="voteNumber">{voteCount}명이 투표중입니다.</div>
+            <div className="voteNumber">{totalCount}명이 투표중입니다.</div>
             <Timer endDate={endDate} username={username}></Timer>
           </div>
         )}
@@ -55,8 +55,8 @@ VoteHead.propTypes = {
   active: PropTypes.string.isRequired,
 };
 const VoteHeadLayout = styled.div`
-  display : flex;
-`
+  display: flex;
+`;
 const VoteHeadCss = styled.div`
   width: 100%;
   display: flex;
