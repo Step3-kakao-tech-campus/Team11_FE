@@ -8,6 +8,8 @@ import ChatWriteForm from "./ChatWriteForm";
 import styled from "styled-components";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Modal from "./Modal";
+import ShareForm from "./ShareForm";
 
 /**
  *
@@ -30,12 +32,17 @@ const ModalLayout = ({ data, what }) => {
     category,
   } = data;
   const [participateState, setParticipate] = useState(participate);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+  const share = () => {
+    setModalVisible(true);
+  };
 
   const clickButton = () => {
     setParticipate(!participateState);
-  };
-  const share = () => {
-    alert("공유하기 모달창 !!!");
   };
 
   return (
@@ -61,7 +68,18 @@ const ModalLayout = ({ data, what }) => {
           onClick={clickButton}
         ></ButtonLayout>
 
-        <VoteBottom onClickShare={share}></VoteBottom>
+        <VoteButtom onClickShare={share}></VoteButtom>
+        {modalVisible && (
+          <Modal
+            visible={modalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={closeModal}
+          >
+            <ShareForm/>
+          </Modal>
+        )}
+
       </Container>
       <Chat>
         <ChatForm />
