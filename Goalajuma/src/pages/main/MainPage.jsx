@@ -8,6 +8,7 @@ import { useRecoilValue } from "recoil";
 import { totalCategoryState } from "@/utils/HeaderAtom";
 import HomeTemplate from "@/components/template/HomeTemplate";
 import Loader from "@/assets/Loader";
+import ErrorScreen from "@/components/common/ErrorScreen";
 const MainPage = () => {
   // const datas = ButtonTest.data.votes;
   const categoryData = useRecoilValue(totalCategoryState);
@@ -20,6 +21,7 @@ const MainPage = () => {
     isLoading,
     data,
     isFetching,
+    error,
   } = useInfiniteQuery({
     queryKey: ["mainInfo"],
     queryFn: ({ pageParam = 0 }) => mainInquire(categoryData, pageParam),
@@ -67,9 +69,19 @@ const MainPage = () => {
     <>
       <Main />
       <HomeContainer>
-        <HomeTemplate datas={Data} isFetching={isFetching} />
-        <div ref={bottomObserver}></div>
-        {isFetching && <Loader />}
+        {error ? (
+          <ErrorScreen
+            status={error.data.status}
+            error={error.data.error}
+            message={error.data.message}
+          ></ErrorScreen>
+        ) : (
+          <>
+            <HomeTemplate datas={Data} isFetching={isFetching} />
+            <div ref={bottomObserver}></div>
+            {isFetching && <Loader />}
+          </>
+        )}
       </HomeContainer>
       <Footer page="main" />
     </>

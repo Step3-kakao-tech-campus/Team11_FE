@@ -3,7 +3,7 @@ import HotPageHeader from "@/components/layouts/headers/HotPageHeader";
 import Footer from "@/components/layouts/footers/Footer";
 import HotTemplate from "@/components/template/HotTemplate";
 import Loader from "@/assets/Loader";
-
+import ErrorScreen from "@/components/common/ErrorScreen";
 import { useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
@@ -62,13 +62,24 @@ const HotPage = () => {
   }, [isLoading, hasNextPage, fetchNextPage]);
 
   const Data = data?.pages.flatMap((param) => param.data.data.votes);
-
+  console.log(error);
   return (
     <>
       <HotPageHeader />
       <HomeContainer>
-        <HotTemplate datas={Data} isFetching={isFetching} error={error} />
-        {isFetching && <Loader />}
+        {error ? (
+          <ErrorScreen
+            status={error.data.status}
+            error={error.data.error}
+            message={error.data.message}
+          ></ErrorScreen>
+        ) : (
+          <>
+            {" "}
+            <HotTemplate datas={Data} isFetching={isFetching} />
+            {isFetching && <Loader />}
+          </>
+        )}
       </HomeContainer>
       <Footer page="hot" />
     </>

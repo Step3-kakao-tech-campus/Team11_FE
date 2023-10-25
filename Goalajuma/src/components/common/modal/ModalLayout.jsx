@@ -1,8 +1,8 @@
-import { MainContainer } from "@/styles/Container"
+import { MainContainer } from "@/styles/Container";
 import ButtonLayout from "@/components/common/voteButton/ButtonLayout";
 import VoteHead from "@/components/common/voteButton/VoteHead";
 import MainContent from "@/components/home/MainContent";
-import VoteButtom from "@/components/common/voteButton/VoteButtom";
+import VoteBottom from "@/components/common/voteButton/VoteBottom";
 import ChatForm from "./ChatForm";
 import ChatWriteForm from "./ChatWriteForm";
 import styled from "styled-components";
@@ -27,6 +27,7 @@ const ModalLayout = ({ data, what }) => {
     active,
     options,
     username,
+    category,
   } = data;
   const [participateState, setParticipate] = useState(participate);
 
@@ -48,6 +49,7 @@ const ModalLayout = ({ data, what }) => {
           isOwner={isOwner}
           active={active}
           username={username}
+          category={category}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 
@@ -59,13 +61,12 @@ const ModalLayout = ({ data, what }) => {
           onClick={clickButton}
         ></ButtonLayout>
 
-        <VoteButtom onClickShare={share}></VoteButtom>
+        <VoteBottom onClickShare={share}></VoteBottom>
       </Container>
       <Chat>
         <ChatForm />
-        <ChatWriteForm participate={participate}/>
+        <ChatWriteForm participate={participate} />
       </Chat>
-
     </MainContainer>
   );
 };
@@ -84,9 +85,9 @@ ModalLayout.propTypes = {
   what: PropTypes.string,
 };
 const Chat = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-bottom: 30px;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 30px;
+`;
 export default ModalLayout;
