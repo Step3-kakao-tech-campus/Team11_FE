@@ -27,6 +27,7 @@ const HomeLayout = ({ data, what }) => {
     active,
     options,
     username,
+    category,
   } = data;
 
   const [participateState, setParticipate] = useState(participate);
@@ -56,6 +57,7 @@ const HomeLayout = ({ data, what }) => {
           username={username}
           active={active}
           isOwner={isOwner}
+          categoryValue={category}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 

@@ -19,7 +19,7 @@ const sortList = [
   },
 ];
 
-const contentList = [
+export const contentList = [
   {
     id: 0,
     category: "골라조",

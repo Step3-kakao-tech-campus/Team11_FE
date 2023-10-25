@@ -5,6 +5,9 @@ import Timer from "@/components/home/Timer";
 import PropTypes from "prop-types";
 import { Palette } from "@/styles/Palette";
 import EndButton from "@/components/common/voteButton/EndButton";
+import { category } from "@/components/upload/CategoryNDeadLine";
+import { useEffect, useState } from "react";
+
 /**
  * @param {object} props
  * @param {number} props.voteCount 투표자 수
@@ -14,36 +17,57 @@ import EndButton from "@/components/common/voteButton/EndButton";
  * @param {boolean} props.isOwner 작성자 확인
  * @param {string} props.active 투표 진행중 여부 : continue, complete
  */
-const VoteHead = ({ totalCount, endDate, what, username, isOwner, active }) => {
+const VoteHead = ({
+  totalCount,
+  endDate,
+  what,
+  username,
+  isOwner,
+  active,
+  categoryValue,
+}) => {
+  const [categoryName, setCategoryName] = useState(null);
+  useEffect(() => {
+    category.map((prop) => {
+      if (prop.value === categoryValue) {
+        setCategoryName(prop.name);
+        return;
+      }
+    });
+  }, [categoryValue]);
+
   return (
-    <VoteHeadLayout>
-      <VoteHeadCss>
-        {what === "hot" ? (
-          <img src={`public/image/fire.png`} />
-        ) : (
-          <Icon>
-            <BsPeopleFill />{" "}
-          </Icon>
-        )}
-        {active === "complete" ? (
-          <div>
-            <div className="completeTitle">
-              <div className="complete">
-                <p>투표자수</p>
-                <p>{totalCount}</p>
-                <p>{username}</p>
+    <>
+      <HeadCategory>카테고리 | {categoryName}</HeadCategory>
+      <VoteHeadLayout>
+        <VoteHeadCss>
+          {what === "hot" ? (
+            <img src={`public/image/fire.png`} />
+          ) : (
+            <Icon>
+              <BsPeopleFill />{" "}
+            </Icon>
+          )}
+          {active === "complete" ? (
+            <div>
+              <div className="completeTitle">
+                <div className="complete">
+                  <p>투표자수</p>
+                  <p>{totalCount}</p>
+                  <p>{username}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <div className="voteTitle">
-            <div className="voteNumber">{totalCount}명이 투표중입니다.</div>
-            <Timer endDate={endDate} username={username}></Timer>
-          </div>
-        )}
-      </VoteHeadCss>
-      <EndButton isOwner={isOwner} active={active} />
-    </VoteHeadLayout>
+          ) : (
+            <div className="voteTitle">
+              <div className="voteNumber">{totalCount}명이 투표중입니다.</div>
+              <Timer endDate={endDate} username={username}></Timer>
+            </div>
+          )}
+        </VoteHeadCss>
+        <EndButton isOwner={isOwner} active={active} />
+      </VoteHeadLayout>
+    </>
   );
 };
 VoteHead.propTypes = {
@@ -53,9 +77,18 @@ VoteHead.propTypes = {
   username: PropTypes.string.isRequired,
   isOwner: PropTypes.bool.isRequired,
   active: PropTypes.string.isRequired,
+  totalCount: PropTypes.number.isRequired,
+  categoryValue: PropTypes.string.isRequired,
 };
 const VoteHeadLayout = styled.div`
   display: flex;
+`;
+const HeadCategory = styled.div`
+  width: 100%;
+  color: ${Palette.point_blue};
+  font-size: 13px;
+  display: flex;
+  justify-content: start;
 `;
 const VoteHeadCss = styled.div`
   width: 100%;
@@ -107,17 +140,6 @@ const VoteHeadCss = styled.div`
     display: flex;
     align-items: center;
   }
-  /* .username {
-    font-size: 13px;
-    position: relative;
-    bottom: 2.5rem;
-    right: 1rem;
-  } */
 `;
-// const VoteHeadLayout = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   gap: 50px;
-// `
 
 export default VoteHead;

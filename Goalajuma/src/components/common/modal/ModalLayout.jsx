@@ -27,6 +27,7 @@ const ModalLayout = ({ data, what }) => {
     active,
     options,
     username,
+    category,
   } = data;
   const [participateState, setParticipate] = useState(participate);
 
@@ -48,6 +49,7 @@ const ModalLayout = ({ data, what }) => {
           isOwner={isOwner}
           active={active}
           username={username}
+          category={category}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 
