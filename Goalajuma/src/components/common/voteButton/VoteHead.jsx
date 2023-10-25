@@ -5,8 +5,8 @@ import Timer from "@/components/home/Timer";
 import PropTypes from "prop-types";
 import { Palette } from "@/styles/Palette";
 import EndButton from "@/components/common/voteButton/EndButton";
-import { category } from "@/components/upload/CategoryNDeadLine";
 import { useEffect, useState } from "react";
+import { contentList } from "@/components/layouts/headers/CategoryBox";
 
 /**
  * @param {object} props
@@ -28,9 +28,9 @@ const VoteHead = ({
 }) => {
   const [categoryName, setCategoryName] = useState(null);
   useEffect(() => {
-    category.map((prop) => {
+    contentList.map((prop) => {
       if (prop.value === categoryValue) {
-        setCategoryName(prop.name);
+        setCategoryName(prop.category);
         return;
       }
     });
@@ -89,6 +89,7 @@ const HeadCategory = styled.div`
   font-size: 13px;
   display: flex;
   justify-content: start;
+  margin-bottom: 0.3rem;
 `;
 const VoteHeadCss = styled.div`
   width: 100%;
