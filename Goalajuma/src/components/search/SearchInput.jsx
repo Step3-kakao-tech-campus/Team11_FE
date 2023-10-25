@@ -13,17 +13,18 @@ const SearchInput = () => {
   const searchOnChange = (e) => {
     setValue(e.target.value);
   };
-  const goToSearch = () => {
+  const goToSearch = (e) => {
+    e.preventDefault();
     alert(`${value} 에 대한 내용을 검색합니다~`);
   };
   return (
-    <SearchStyle>
+    <SearchStyle onSubmit={(e) => goToSearch(e)}>
       <Icon
         size="21px"
         color={Palette.point_blue}
         onClick={() => {
           console.log("d");
-          navigate(-1);
+          navigate(routes.home);
         }}
       >
         <FaArrowLeft />
@@ -42,7 +43,7 @@ const SearchInput = () => {
   );
 };
 
-const SearchStyle = styled.div`
+const SearchStyle = styled.form`
   display: flex;
   align-items: center;
   position: relative;
