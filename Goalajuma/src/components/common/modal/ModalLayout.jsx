@@ -2,7 +2,7 @@ import { MainContainer } from "@/styles/Container";
 import ButtonLayout from "@/components/common/voteButton/ButtonLayout";
 import VoteHead from "@/components/common/voteButton/VoteHead";
 import MainContent from "@/components/home/MainContent";
-import VoteButtom from "@/components/common/voteButton/VoteBottom";
+import VoteBottom from "@/components/common/voteButton/VoteBottom";
 import ChatForm from "./ChatForm";
 import ChatWriteForm from "./ChatWriteForm";
 import styled from "styled-components";
@@ -59,7 +59,7 @@ const ModalLayout = ({ data, what }) => {
           onClick={clickButton}
         ></ButtonLayout>
 
-        <VoteButtom onClickShare={share}></VoteButtom>
+        <VoteBottom onClickShare={share}></VoteBottom>
       </Container>
       <Chat>
         <ChatForm />
