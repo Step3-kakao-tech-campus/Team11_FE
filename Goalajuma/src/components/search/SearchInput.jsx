@@ -1,29 +1,33 @@
 import styled from "styled-components";
 import Icon from "../common/Icon";
 import { FaSearch, FaArrowLeft } from "react-icons/fa";
-
+import { useParams } from "react-router-dom";
 import { Palette } from "@/styles/Palette";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
-
+import { useState } from "react";
 const SearchInput = () => {
+  let { query } = useParams();
   const navigate = useNavigate();
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(query);
+  const goToSearch = (e) => {
+    e.preventDefault();
+    navigate(`${routes.search}${value}`);
+    location.reload();
+  };
   const searchOnChange = (e) => {
     setValue(e.target.value);
+    // setSearchQuery();
   };
-  const goToSearch = () => {
-    alert(`${value} 에 대한 내용을 검색합니다~`);
-  };
+
   return (
-    <SearchStyle>
+    <SearchStyle onSubmit={(e) => goToSearch(e)}>
       <Icon
         size="21px"
         color={Palette.point_blue}
         onClick={() => {
           console.log("d");
-          navigate(-1);
+          navigate(routes.home);
         }}
       >
         <FaArrowLeft />
@@ -35,14 +39,18 @@ const SearchInput = () => {
         onChange={(e) => searchOnChange(e)}
       />
 
-      <Icon size="21px" color={Palette.point_blue} onClick={goToSearch}>
+      <Icon
+        size="21px"
+        color={Palette.point_blue}
+        onClick={(e) => goToSearch(e)}
+      >
         <FaSearch />
       </Icon>
     </SearchStyle>
   );
 };
 
-const SearchStyle = styled.div`
+const SearchStyle = styled.form`
   display: flex;
   align-items: center;
   position: relative;
