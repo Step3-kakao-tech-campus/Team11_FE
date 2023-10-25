@@ -2,7 +2,7 @@ import { MainContainer } from "@/styles/Container";
 import ButtonLayout from "../common/voteButton/ButtonLayout";
 import VoteHead from "../common/voteButton/VoteHead";
 import MainContent from "./MainContent";
-import VoteButtom from "../common/voteButton/VoteButtom";
+import VoteBottom from "../common/voteButton/VoteBottom";
 import styled from "styled-components";
 import { useState } from "react";
 import PropTypes from "prop-types";
@@ -27,6 +27,7 @@ const HomeLayout = ({ data, what }) => {
     active,
     options,
     username,
+    category,
   } = data;
 
   const [participateState, setParticipate] = useState(participate);
@@ -56,6 +57,7 @@ const HomeLayout = ({ data, what }) => {
           username={username}
           active={active}
           isOwner={isOwner}
+          categoryValue={category}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 
@@ -67,7 +69,7 @@ const HomeLayout = ({ data, what }) => {
           onClick={clickButton}
         ></ButtonLayout>
 
-        <VoteButtom onClick={clickModal} onClickShare={share}></VoteButtom>
+        <VoteBottom onClick={clickModal} onClickShare={share}></VoteBottom>
         {modalVisible && (
           <Modal
             visible={modalVisible}

@@ -31,16 +31,6 @@ const UploadButton = () => {
 
   const uploadButton = () => {
     if (active) {
-      // uploadVote(count).then((res) => {
-      //   resetList();
-      //   Swal.fire({
-      //     icon: "success",
-      //     text: "투표 등록에 성공했습니다!",
-      //     confirmButtonColor: "#429f50",
-      //   }).then(() => {
-      //     navigate(routes.home);
-      //   });
-      // });
       const payload = count;
       mutation.mutate(payload, {
         onSuccess: () => {
@@ -48,7 +38,10 @@ const UploadButton = () => {
             icon: "success",
             text: "투표 등록에 성공했습니다!",
             confirmButtonColor: "#429f50",
-          }).then(() => navigate(routes.home));
+          }).then(() => {
+            resetList();
+            navigate(routes.home);
+          });
         },
         onError: (error) => {
           alert(error?.data.message);

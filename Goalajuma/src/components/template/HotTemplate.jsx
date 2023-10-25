@@ -1,17 +1,13 @@
 import HomeLayout from "../home/HomeLayout";
-const HotTemplate = ({ datas, isFetching, error }) => {
+const HotTemplate = ({ datas, isFetching }) => {
   return (
     <div>
-      {error ? (
-        <>글이 없어용</>
-      ) : (
-        datas &&
+      {datas &&
         !isFetching &&
         // eslint-disable-next-line react/prop-types
         datas.map((data, id) => (
           <HomeLayout id={id} data={data} what="hot" key={id} />
-        ))
-      )}
+        ))}
     </div>
   );
 };
