@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import { AiOutlineFire } from "react-icons/ai";
 import SearchButton from "./SearchButton";
+import Icon from "@/components/common/Icon";
 
 // 핫게 헤더
 const HotPageHeader = () => {
   return (
     <Nav>
       <PageName>
-        <AiOutlineFire fontSize={28}/>
+        <Icon size="28px">
+          <AiOutlineFire/>
+        </Icon>
         <Title>
           HOT 게시판
         </Title>

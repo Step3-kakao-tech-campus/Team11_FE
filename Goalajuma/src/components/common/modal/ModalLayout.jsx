@@ -1,13 +1,15 @@
-import { MainContainer } from "@/styles/Container"
+import { MainContainer } from "@/styles/Container";
 import ButtonLayout from "@/components/common/voteButton/ButtonLayout";
 import VoteHead from "@/components/common/voteButton/VoteHead";
 import MainContent from "@/components/home/MainContent";
-import VoteButtom from "@/components/common/voteButton/VoteButtom";
+import VoteBottom from "@/components/common/voteButton/VoteBottom";
 import ChatForm from "./ChatForm";
 import ChatWriteForm from "./ChatWriteForm";
 import styled from "styled-components";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Modal from "./Modal";
+import ShareForm from "./ShareForm";
 
 /**
  *
@@ -27,14 +29,20 @@ const ModalLayout = ({ data, what }) => {
     active,
     options,
     username,
+    category,
   } = data;
   const [participateState, setParticipate] = useState(participate);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+  const share = () => {
+    setModalVisible(true);
+  };
 
   const clickButton = () => {
     setParticipate(!participateState);
-  };
-  const share = () => {
-    alert("공유하기 모달창 !!!");
   };
 
   return (
@@ -48,6 +56,7 @@ const ModalLayout = ({ data, what }) => {
           isOwner={isOwner}
           active={active}
           username={username}
+          category={category}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 
@@ -60,12 +69,22 @@ const ModalLayout = ({ data, what }) => {
         ></ButtonLayout>
 
         <VoteButtom onClickShare={share}></VoteButtom>
+        {modalVisible && (
+          <Modal
+            visible={modalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={closeModal}
+          >
+            <ShareForm/>
+          </Modal>
+        )}
+
       </Container>
       <Chat>
         <ChatForm />
-        <ChatWriteForm participate={participate}/>
+        <ChatWriteForm participate={participate} />
       </Chat>
-
     </MainContainer>
   );
 };
@@ -84,9 +103,9 @@ ModalLayout.propTypes = {
   what: PropTypes.string,
 };
 const Chat = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-bottom: 30px;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 30px;
+`;
 export default ModalLayout;
