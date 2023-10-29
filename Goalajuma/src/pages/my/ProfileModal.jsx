@@ -2,30 +2,33 @@ import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
 import { useRef, useState } from "react";
 import PropTypes from "prop-types";
+import useValid from "@/hooks/useValid";
 
 /**
  * 
- * @param {string} nickName
- * @param {string} email 
+ * @param {string} myNickName
+ * @param {string} myEmail 
  * @param {string} img
  * @returns 
  */
-const ProfileModal = ({nickName, email, img}) => {
-  const [newInfo, setNewInfo] = useState({name: nickName, newEmail: email});
+const ProfileModal = ({myNickName, myEmail, img}) => {
+  const [newInfo, setNewInfo] = useState({name: myNickName, email: myEmail, password: "",});
   const [input, setInput] = useState(false);
   const nicknameRef = useRef(null);
   const emailRef = useRef(null);
+  const {validText, isValid} = useValid(newInfo);
   
+  console.log(isValid);
 
   const handleMyInfo = () => {
     setInput(prev => !prev)
     if (!input) {
-      nicknameRef.current.defaultValue = nickName;
-      emailRef.current.defaultValue = email;
+      nicknameRef.current.defaultValue = myNickName;
+      emailRef.current.defaultValue = myEmail;
     } else {
-      nicknameRef.current.value = nickName;
-      emailRef.current.value = email;
-      setNewInfo({newName: nickName, newEmail: email});
+      nicknameRef.current.value = myNickName;
+      emailRef.current.value = myEmail;
+      setNewInfo({name: myNickName, email: myEmail});
     }
   }
 
@@ -37,6 +40,10 @@ const ProfileModal = ({nickName, email, img}) => {
   const handleSubmit = () => {
     console.log(newInfo);
   }
+
+  const handleLogOut = () => {
+
+  }
   
   return (
     <div>
@@ -47,40 +54,43 @@ const ProfileModal = ({nickName, email, img}) => {
         <input 
           type="text" 
           id="name" 
-          defaultValue={nickName}
+          defaultValue={myNickName}
           ref={nicknameRef}
           disabled={!input}  
           onChange={handleOnChange}
         />
+        <div className="error">{validText.nameText}</div>
         <label htmlFor="email">이메일</label>
         <input 
           type="email" 
           id="email" 
-          defaultValue={email} 
+          defaultValue={myEmail} 
           ref={emailRef}
           disabled={!input}
           onChange={handleOnChange}
         />
+        <div className="error">{validText.emailText}</div>
       </InputBox>
       <ButtonBox>
-        {input && <SubmitButton onClick={() => handleSubmit()}>저장</SubmitButton>}
+        {input && <SubmitButton onClick={() => handleSubmit()} disabled={!isValid.isName && !isValid.isEmail}>저장</SubmitButton>}
         {input ? <LogOutButton onClick={() => handleMyInfo()}>취소</LogOutButton>:
-         <LogOutButton>로그아웃</LogOutButton>}
+         <LogOutButton onClick={() => handleLogOut()}>로그아웃</LogOutButton>}
       </ButtonBox>
     </div>
   );
 }
 
 ProfileModal.propTypes = {
-  nickName : PropTypes.string.isRequired,
-  email : PropTypes.string.isRequired,
+  myNickName : PropTypes.string.isRequired,
+  myEmail : PropTypes.string.isRequired,
   img : PropTypes.string,
 };
 
 
 const Modify = styled.div`
-  font-size: 8px;
+  font-size: 13px;
   text-align: right;
+  cursor: pointer;
 `
 const InputBox = styled.div`
   display: flex;
@@ -95,7 +105,11 @@ const InputBox = styled.div`
     height: 2em;
     border: 0;
     border-bottom: 1px solid ${Palette.button_blue};
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+  }
+  .error {
+    color: #e45151;
+    font-size: 13px;
   }
 `;
 const ButtonBox = styled.div`
@@ -120,15 +134,19 @@ const SubmitButton = styled.button`
   width: 80%;
   height: 40px;
   border-radius: 20px;
-  background-color: ${Palette.button_blue};
+  background-color: ${props => (props.disabled ? Palette.button_gray : Palette.button_blue)};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   border: 0px;
   color: #fff;
   font-size: 18px;
   letter-spacing: 3px;
+
 `
 const LogOutButton = styled.div`
-  font-size: 8px;
+  width: 4rem;
+  font-size: 13px;
   margin: 10px 0 0 85%;
+  cursor: pointer;
   /* right: 10%; */
 `
 export default ProfileModal;

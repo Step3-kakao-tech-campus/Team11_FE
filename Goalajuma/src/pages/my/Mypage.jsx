@@ -4,6 +4,7 @@ import MyPageUl from "@/components/common/mypage/MyPageUl";
 import MyPageHeader from "@/components/layouts/headers/MyPageHeader";
 import Footer from "@/components/layouts/footers/Footer";
 import { MainMyData } from "@/components/common/mypage/MyPageData";
+
 const Mypage = () => {
   const datas = MainMyData.data;
   return (
