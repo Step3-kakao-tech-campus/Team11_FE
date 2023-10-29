@@ -6,7 +6,7 @@ import Img from "../Img";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import Alert from "../Alert";
-import { vote, voteChange } from "@/services/vote";
+import { deleteVote, vote, voteChange } from "@/services/vote";
 
 /**
  * @param {object} props
@@ -34,9 +34,9 @@ const MainButton = ({
   active,
   onClick,
   className,
+  voteId,
 }) => {
   const login = localStorage.getItem("token");
-
   const [alert, setIsAlert] = useState(false);
   const clickButton = (e) => {
     if (active === "complete") {
@@ -45,8 +45,18 @@ const MainButton = ({
     if (active !== "complete" && isOwner === false) {
       if (!login) {
         setIsAlert(true);
+      } else if (isOwner == true) {
+        console.log("자기");
+        setIsAlert(true);
       } else if (participate === true) {
-        voteChange(e.target.id);
+        console.log(e.target);
+        if (e.target.choiced === true) {
+          const voteId = e.target.parentElement.id;
+          const optionId = e.target.id;
+          voteChange(voteId, optionId);
+        } else {
+          deleteVote(e.target.id);
+        }
       } else {
         //투표 안한 기본 상태...
         vote(e.target.id);
@@ -67,14 +77,14 @@ const MainButton = ({
         )
       ) : null}
 
-      <ButtonContainer>
+      <ButtonContainer id={voteId}>
         {src ? <Img src={src} /> : <></>}
 
         <MainButtonSt
           border={value == 100 ? true : false}
           onClick={clickButton}
           choice={choiced}
-          id={id}
+          id={voteId}
         >
           <BtnContents choice={choiced} id={id}>
             {name}

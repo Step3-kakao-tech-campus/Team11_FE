@@ -28,6 +28,7 @@ const HomeLayout = ({ data, what }) => {
     options,
     username,
     category,
+    id,
   } = data;
 
   const [participateState, setParticipate] = useState(participate);
@@ -67,6 +68,7 @@ const HomeLayout = ({ data, what }) => {
           active={active}
           options={options}
           onClick={clickButton}
+          voteId={id}
         ></ButtonLayout>
 
         <VoteBottom onClick={clickModal} onClickShare={share}></VoteBottom>

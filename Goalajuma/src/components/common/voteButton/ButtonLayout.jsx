@@ -11,7 +11,14 @@ import PropTypes from "prop-types";
  * @param {string} props.active  투표 상태
  */
 
-const ButtonLayout = ({ onClick, options, participate, isOwner, active }) => {
+const ButtonLayout = ({
+  onClick,
+  options,
+  participate,
+  isOwner,
+  active,
+  voteId,
+}) => {
   const optionList = options;
   //choice 하나만 선택할 수 있는 함수 구현해서 프롭스로 보내주기
 
@@ -31,7 +38,8 @@ const ButtonLayout = ({ onClick, options, participate, isOwner, active }) => {
               participate={participate}
               isOwner={isOwner}
               active={active}
-              id={option.id}
+              id={option?.id}
+              voteId={voteId}
             />
           );
         })}
