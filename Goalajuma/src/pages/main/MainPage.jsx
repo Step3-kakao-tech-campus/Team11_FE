@@ -5,7 +5,11 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { mainInquire } from "@/services/main";
 import { useEffect, useRef } from "react";
 import { useRecoilValue } from "recoil";
-import { totalCategoryState } from "@/utils/HeaderAtom";
+import {
+  segmentState,
+  sortState,
+  totalCategoryState,
+} from "@/utils/HeaderAtom";
 import HomeTemplate from "@/components/template/HomeTemplate";
 import Loader from "@/assets/Loader";
 import ErrorScreen from "@/components/common/ErrorScreen";
@@ -70,11 +74,7 @@ const MainPage = () => {
       <Main />
       <HomeContainer>
         {error ? (
-          <ErrorScreen
-            status={error.data.status}
-            error={error.data.error}
-            message={error.data.message}
-          ></ErrorScreen>
+          <ErrorScreen error={error}></ErrorScreen>
         ) : (
           <>
             <HomeTemplate datas={Data} isFetching={isFetching} />

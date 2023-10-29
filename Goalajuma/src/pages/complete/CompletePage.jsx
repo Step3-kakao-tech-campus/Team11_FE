@@ -70,11 +70,7 @@ const CompletePage = () => {
       <Main />
       <HomeContainer>
         {error ? (
-          <ErrorScreen
-            status={error.data.status}
-            error={error.data.error}
-            message={error.data.message}
-          ></ErrorScreen>
+          <ErrorScreen error={error}></ErrorScreen>
         ) : (
           <>
             {" "}
