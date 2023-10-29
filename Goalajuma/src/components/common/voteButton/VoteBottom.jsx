@@ -32,6 +32,7 @@ VoteBottom.propTypes = {
 };
 const VoteButtonStyle = styled.div`
   margin-top: 2rem;
+  cursor: pointer;
 
   display: flex;
   justify-content: space-between;

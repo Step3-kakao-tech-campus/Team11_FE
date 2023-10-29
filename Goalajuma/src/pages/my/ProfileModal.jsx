@@ -9,7 +9,7 @@ import useValid from "@/hooks/useValid";
  * @param {string} myNickName
  * @param {string} myEmail 
  * @param {string} img
- * @returns 
+ * @returns
  */
 const ProfileModal = ({myNickName, myEmail, img}) => {
   const [newInfo, setNewInfo] = useState({name: myNickName, email: myEmail, password: "",});
@@ -21,7 +21,7 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   console.log(isValid);
 
   const handleMyInfo = () => {
-    setInput(prev => !prev)
+    setInput((prev) => !prev);
     if (!input) {
       nicknameRef.current.defaultValue = myNickName;
       emailRef.current.defaultValue = myEmail;
@@ -30,11 +30,11 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
       emailRef.current.value = myEmail;
       setNewInfo({name: myNickName, email: myEmail});
     }
-  }
+  };
 
   const handleOnChange = (e) => {
-    const { id, value} = e.target;
-    setNewInfo((prev) => ({...prev, [id]: value}));
+    const { id, value } = e.target;
+    setNewInfo((prev) => ({ ...prev, [id]: value }));
   };
 
   const handleSubmit = () => {
@@ -47,7 +47,7 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   
   return (
     <div>
-      <Img src={`public/image/${img}`} alt="사용자 프로필" />
+      <Img src={`/image/${img}`} alt="사용자 프로필" />
       {!input && <Modify onClick={() => handleMyInfo()}>수정하기</Modify>}
       <InputBox>
         <label htmlFor="nickname">닉네임</label>
@@ -56,7 +56,7 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
           id="name" 
           defaultValue={myNickName}
           ref={nicknameRef}
-          disabled={!input}  
+          disabled={!input}
           onChange={handleOnChange}
         />
         <div className="error">{validText.nameText}</div>
@@ -86,6 +86,11 @@ ProfileModal.propTypes = {
   img : PropTypes.string,
 };
 
+ProfileModal.propTypes = {
+  nickName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  img: PropTypes.string,
+};
 
 const Modify = styled.div`
   font-size: 13px;
@@ -96,12 +101,12 @@ const InputBox = styled.div`
   display: flex;
   flex-direction: column;
   border: 0;
-  >label {
+  > label {
     color: ${Palette.font_blue};
     font-size: 12px;
     margin-bottom: 5px;
   }
-  >input {
+  > input {
     height: 2em;
     border: 0;
     border-bottom: 1px solid ${Palette.button_blue};
@@ -116,7 +121,7 @@ const ButtonBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 const Img = styled.img`
   width: 95px;
   height: 95px;
@@ -148,5 +153,5 @@ const LogOutButton = styled.div`
   margin: 10px 0 0 85%;
   cursor: pointer;
   /* right: 10%; */
-`
+`;
 export default ProfileModal;
