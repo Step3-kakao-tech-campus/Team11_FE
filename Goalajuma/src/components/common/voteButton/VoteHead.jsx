@@ -42,7 +42,7 @@ const VoteHead = ({
       <VoteHeadLayout>
         <VoteHeadCss>
           {what === "hot" ? (
-            <img src={`public/image/fire.png`} />
+            <img src={`/image/fire.png`} />
           ) : (
             <Icon>
               <BsPeopleFill />{" "}
