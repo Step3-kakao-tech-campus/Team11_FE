@@ -7,6 +7,7 @@ import {BsClipboardCheck, BsClipboardCheckFill, BsPerson, BsPersonFill} from 're
 import { Palette } from "@/styles/Palette";
 import PropTypes from "prop-types";
 
+
 /**
  * @param {string} page 각 페이지 이름 
  */

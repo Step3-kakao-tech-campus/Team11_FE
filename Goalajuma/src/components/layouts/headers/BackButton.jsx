@@ -1,13 +1,16 @@
 import { GoChevronLeft } from "react-icons/go"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components";
+import Icon from "@/components/common/Icon";
 
 const BackButton = () => {
   const navigate = useNavigate();
   return (
     <div>
       <Back>
-        <GoChevronLeft fontSize={35} onClick={() => navigate(-1)}/>
+        <Icon size="35px" onClick={() => navigate(-1)}>
+          <GoChevronLeft/>
+        </Icon>
       </Back>
     </div>
   )
@@ -20,6 +23,7 @@ const Back  = styled.button`
   color: #7192FF;
   background-color: #fff;
   border-width: 0px;
+  cursor: pointer;
 `;
 
 export default BackButton;

@@ -5,9 +5,19 @@ export const sortState = atom({
   default: "current",
 });
 
+export const sortNameState = atom({
+  key: "sortNameState",
+  default: "최신순",
+});
+
 export const segmentState = atom({
   key: "segmentState",
   default: "total",
+});
+
+export const segmentNameState = atom({
+  key: "segmentNameState",
+  default: "골라조",
 });
 
 export const totalCategoryState = selector({
