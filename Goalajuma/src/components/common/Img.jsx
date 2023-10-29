@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 const Img = ({ src, size }) => {
   return (
     <ImgContainer size={size}>
-      <ImgStyle src={`public/image/${src}`} size={size}>
+      <ImgStyle src={`/image/${src}`} size={size}>
         {/* 백엔드 배포 주소 나오면 수정 */}
         {/* vite는 public 주소 제공 x */}
       </ImgStyle>
