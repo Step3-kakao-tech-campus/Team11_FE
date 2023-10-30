@@ -28,11 +28,10 @@ const Img = ({ id, src }) => {
     };
   };
   const inputImg = (src) => {
-    console.log(id);
     setOption((prop) => {
       return prop.map((choice, index) => {
         if (id == index) {
-          return { ...choice, img: src };
+          return { ...choice, image: src };
         } else {
           return choice;
         }
@@ -42,7 +41,7 @@ const Img = ({ id, src }) => {
 
   return (
     <>
-      {imgFile && src ? (
+      {imgFile || src ? (
         <ImgContainer>
           {" "}
           <div className="Div">
