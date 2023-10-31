@@ -23,8 +23,8 @@ export const timeLimitState = atom({
 export const optionState = atom({
   key: "optionState",
   default: [
-    { name: "", img: "" },
-    { name: "", img: "" },
+    { name: "", image: null },
+    { name: "", image: null },
   ],
 });
 

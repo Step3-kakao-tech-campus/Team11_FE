@@ -4,7 +4,7 @@ import VoteHead from "../common/voteButton/VoteHead";
 import MainContent from "./MainContent";
 import VoteBottom from "../common/voteButton/VoteBottom";
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
 import { ModalTest } from "../common/modal/ModalTest";
@@ -31,14 +31,30 @@ const HomeLayout = ({ data, what }) => {
     id,
   } = data;
 
-  const [participateState, setParticipate] = useState(participate);
+  const [participateState, setParticipate] = useState(
+    participate && participate
+  );
   const [modalVisible, setModalVisible] = useState(false);
+  const [optionState, setOptionState] = useState(options);
+  const [count, setCount] = useState(0);
+
   const Data = ModalTest.data.vote;
 
-  const clickButton = () => {
+  const changeVotes = (result) => {
     setParticipate(!participateState);
-    // 투표 참여 안했을때
+
+    const copyOptions = optionState?.map((choice, index) => {
+      return {
+        ...choice,
+        optionCount: result[index]?.optionCount,
+        optionRatio: result[index]?.optionRatio,
+        choice: result[index].choice,
+      };
+    });
+
+    setOptionState(copyOptions);
   };
+
   const clickModal = () => {
     setModalVisible(true);
   };
@@ -66,8 +82,8 @@ const HomeLayout = ({ data, what }) => {
           participate={participateState}
           isOwner={isOwner}
           active={active}
-          options={options}
-          onClick={clickButton}
+          options={optionState}
+          changeVotes={changeVotes}
           voteId={id}
         ></ButtonLayout>
 
