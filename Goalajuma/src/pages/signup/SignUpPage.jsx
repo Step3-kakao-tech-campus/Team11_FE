@@ -6,6 +6,7 @@ import InputGroup from "../../components/login/InputGroup";
 import { useState } from "react";
 import { JoinContainer } from "../../styles/Container";
 import useValid from "../../hooks/useValid";
+
 import routes from "@/routes";
 import Swal from "sweetalert2";
 import { emailCheckInquire, signupInquire } from "@/services/signup";
@@ -45,6 +46,7 @@ const SignUpPage = () => {
   };
 
 
+
   const handleSignUp =()=>{
     if(isValid.isName &&isValid.isEmail && isValid.isPassword && isValid.isPasswordConfirm){
       signupInquire(value)
@@ -71,6 +73,7 @@ const SignUpPage = () => {
       })
     )
   }
+
   return (
     <JoinContainer>
       <Header>
@@ -154,7 +157,7 @@ const SignUpPage = () => {
       <ButtonGroup>
         <Button
           color="#9EB0EA"
-          onClick={handleSignUp}
+          onClick={() => navigate("/login")}
           disabled={
             isValid.isName &&
             isValid.isEmail &&

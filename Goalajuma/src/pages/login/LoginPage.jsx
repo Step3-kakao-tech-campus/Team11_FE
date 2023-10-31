@@ -7,6 +7,7 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { MainContainer } from "@/styles/Container";
 import useValid from "@/hooks/useValid";
+
 import { loginInquire } from "@/services/login";
 
 
@@ -82,7 +83,9 @@ const LoginPage = () => {
         <Button
           className="firstButton"
           color="#9EB0EA"
-          onClick={handleLogin}
+          onClick={() => {
+            navigate("/");
+          }}
           disabled={isValid.isEmail && isValid.isPassword ? false : true}
         >
           로그인
@@ -174,4 +177,3 @@ const StyledErr = styled.div`
   right: 60px;
   bottom: 10px;
 `;
-
