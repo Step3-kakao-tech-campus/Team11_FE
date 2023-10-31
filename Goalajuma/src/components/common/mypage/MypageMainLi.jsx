@@ -38,7 +38,11 @@ const DivLi = styled.div`
   align-items: center;
   padding-left: 44px;
   padding-right: 20px;
-
+  cursor: pointer;
+  &:hover {
+    background-color: ${Palette.percent_gray}
+  }
+  
   li span {
     color: ${Palette["point_blue"]};
   }
