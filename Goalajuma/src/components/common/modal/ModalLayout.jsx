@@ -68,7 +68,7 @@ const ModalLayout = ({ data, what }) => {
           onClick={clickButton}
         ></ButtonLayout>
 
-        <VoteButtom onClickShare={share}></VoteButtom>
+        <VoteBottom onClickShare={share}></VoteBottom>
         {modalVisible && (
           <Modal
             visible={modalVisible}

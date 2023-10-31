@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { sortState, segmentState } from "@/utils/HeaderAtom";
+import { sortState, sortNameState, segmentState, segmentNameState } from "@/utils/HeaderAtom";
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
@@ -64,12 +64,12 @@ export const contentList = [
 
 export const CategoryBox = () => {
   const [sort, setSort] = useRecoilState(sortState);
+  const [sortName, setSortName] = useRecoilState(sortNameState);
   const [content, setContent] = useRecoilState(segmentState);
+  const [contentName, setContentName] = useRecoilState(segmentNameState);
 
   const [drops, setDrops] = useState({ sort: false, content: false });
 
-  const [sortName, setSortName] = useState("최신순");
-  const [contentName, setContentName] = useState("골라조");
   const sortDropdownRef = useRef(null);
   const contentDropdownRef = useRef(null);
 
@@ -81,6 +81,10 @@ export const CategoryBox = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(sort);
+    console.log(content);
+  }, [sort, content])
   // recoil 사용: 클릭된 값을 atom에 넣어주기
   const handleSort = (num) => {
     setSort(sortList[num].value);
@@ -95,6 +99,8 @@ export const CategoryBox = () => {
     console.log(contentList[num].value);
     toggleDropdown("content");
     console.log(content);
+    console.log(contentName);
+    // window.location.reload();
   };
 
   useEffect(() => {
@@ -202,6 +208,10 @@ const MainButton = styled.button`
   border-width: 0px;
   padding: 0px;
   font-size: 15px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${Palette.percent_gray}
+  }
 `;
 
 const StyledButton = styled.button`
@@ -210,10 +220,14 @@ const StyledButton = styled.button`
   background-color: #fff;
   color: ${Palette.font_gray};
   padding: 5px;
-  width: auto;
+  width: 4.2rem;
   height: 32px;
   border-width: 0px;
   font-size: 15px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${Palette.percent_gray}
+  }
 `;
 
 const Ul = styled.ul`
@@ -225,10 +239,13 @@ const Ul = styled.ul`
   border: 1px ${Palette.main_gray} solid;
   border-radius: 2px;
   margin: 0;
-  width: 70px;
+  width: 4.2rem;
   background-color: #fff;
 `;
 
 const Li = styled.li`
   margin: 0;
+  &:hover {
+    background-color: ${Palette.percent_gray}
+  }
 `;
