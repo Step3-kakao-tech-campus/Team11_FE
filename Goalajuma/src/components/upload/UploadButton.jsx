@@ -20,7 +20,7 @@ const UploadButton = () => {
   useEffect(() => {
     if (!!count.title && count.options.length > 1) {
       const act = count.options.filter((item) => {
-        return item.name == "";
+        return item.name === "";
       });
       setActive(!act.length > 0);
     }
@@ -41,6 +41,7 @@ const UploadButton = () => {
           }).then(() => {
             resetList();
             navigate(routes.home);
+            setTimeout(() => location.reload(), 0);
           });
         },
         onError: (error) => {

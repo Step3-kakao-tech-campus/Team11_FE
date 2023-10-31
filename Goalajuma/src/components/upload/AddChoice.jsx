@@ -10,7 +10,7 @@ const AddChoice = () => {
     // 선택지 추가 버튼
     setOption((prop) => {
       if (prop.length < 6) {
-        return [...prop, { name: "", img: "" }];
+        return [...prop, { name: "", image: null }];
       } else {
         return prop;
       }
@@ -54,7 +54,7 @@ const AddChoice = () => {
               data={choice}
               inputOption={inputOption}
               deleteOption={deleteOption}
-              src={choice.img}
+              src={choice.image}
             ></ChoiceOption>
           );
         })}
