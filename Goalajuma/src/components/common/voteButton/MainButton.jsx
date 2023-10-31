@@ -6,7 +6,8 @@ import Img from "../Img";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import Alert from "../Alert";
-import { deleteVote, vote, voteChange } from "@/services/vote";
+import { changeOption, deleteVote, vote } from "@/services/vote";
+import Swal from "sweetalert2";
 
 /**
  * @param {object} props
@@ -48,17 +49,24 @@ const MainButton = ({
       if (!login) {
         setIsAlert(true);
       } else if (participate === true) {
-        if (e.target.choiced === true) {
+        console.log(e.target);
+        if (choiced !== true) {
           const voteId = e.target.parentElement.id;
           const optionId = e.target.id;
-          voteChange(voteId, optionId).then((res) => {
+          changeOption(voteId, optionId).then((res) => {
             // console.log(res.data);
           });
         } else {
-          deleteVote(e.target.id).then((res) => {
-            const result = res?.data.data.result;
-            // changeOptions(result);
-            changeVotes(result);
+          Swal.fire({
+            icon: "question",
+            html: "투표 취소 시 댓글이 전부 삭제될 수 있습니다. \n 취소하시겠습니까?",
+            confirmButtonColor: "#429f50",
+          }).then(() => {
+            deleteVote(e.target.id).then((res) => {
+              const result = res?.data.data.result;
+              // changeOptions(result);
+              changeVotes(result);
+            });
           });
         }
       } else {
@@ -91,7 +99,7 @@ const MainButton = ({
       ) : null}
 
       <ButtonContainer id={voteId}>
-        {src ? <Img src={src} /> : <></>}
+        {src ? <Img src={src} server={true} /> : <></>}
 
         <MainButtonSt
           border={value == 100 ? true : false}

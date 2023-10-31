@@ -23,6 +23,7 @@ const Img = ({ id, src }) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
+      reader.result;
       setImgFile(reader.result);
       inputImg(reader.result);
     };
@@ -41,7 +42,7 @@ const Img = ({ id, src }) => {
 
   return (
     <>
-      {imgFile || src ? (
+      {imgFile && src ? (
         <ImgContainer>
           {" "}
           <div className="Div">

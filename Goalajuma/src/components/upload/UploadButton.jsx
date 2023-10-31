@@ -30,7 +30,6 @@ const UploadButton = () => {
   }, [count]);
 
   const uploadButton = () => {
-    console.log(count);
     if (active) {
       const payload = count;
       mutation.mutate(payload, {

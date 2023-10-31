@@ -24,21 +24,6 @@ const ButtonLayout = ({
   //choice 하나만 선택할 수 있는 함수 구현해서 프롭스로 보내주기
   const [optionState, setOptionState] = useState(optionList);
 
-  // const changeOptions = (result) => {
-  //   setOptionState((prop) => {
-  //     console.log(prop);
-  //     return prop.map((choice, index) => {
-  //       return {
-  //         ...choice,
-  //         optionCount: result[index].optionCount,
-  //         optionRatio: result[index].optionRatio,
-  //         // choice: result[index].choice,
-  //       };
-  //     });
-  //   });
-  // };
-  // useEffect(() => {}, [optionState]);
-
   return (
     <>
       <Container>
