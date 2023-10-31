@@ -58,15 +58,21 @@ const MainButton = ({
           });
         } else {
           Swal.fire({
-            icon: "question",
-            html: "투표 취소 시 댓글이 전부 삭제될 수 있습니다. \n 취소하시겠습니까?",
+            icon: "info",
+            html: "투표 취소 시 댓글이 전부 삭제될 수 있습니다. <br><br> 취소하시겠습니까?",
+            showCancelButton: true,
+            confirmButtonText: "예",
+            cancelButtonText: "아니오",
             confirmButtonColor: "#429f50",
-          }).then(() => {
-            deleteVote(e.target.id).then((res) => {
-              const result = res?.data.data.result;
-              // changeOptions(result);
-              changeVotes(result);
-            });
+            cancelButtonColor: "#d33",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              deleteVote(e.target.id).then((res) => {
+                const result = res?.data.data.result;
+                // changeOptions(result);
+                changeVotes(result);
+              });
+            }
           });
         }
       } else {
