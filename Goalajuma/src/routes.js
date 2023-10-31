@@ -9,7 +9,6 @@ const routes = {
   myparticipation: "/mypage/myparticipation",
   upload: "/upload",
   practice: "/practice",
-  search: "/search/",
 };
 
 export default routes;

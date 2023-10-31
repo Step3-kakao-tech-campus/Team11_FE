@@ -25,12 +25,12 @@ const MyVoteList = ({data}) => {
   }
 
   return (
-    <MyVote onClick={clickModal}>
+    <MyVote>
       <VoteInfo>
         <ActiveSign active={data.active}/>
         <div>{data.title}</div>
       </VoteInfo>
-      <Vote >
+      <Vote onClick={clickModal}>
         더보기
         <GoChevronRight className="modal"/>
       </Vote>
@@ -56,10 +56,6 @@ const MyVote = styled.div`
   border-top: 1px solid ${Palette.percent_gray};
   border-bottom: 1px solid ${Palette.percent_gray};
   position: relative;
-  cursor: pointer;
-  &:hover {
-    background-color: ${Palette.percent_gray}
-  }
 `;
 const VoteInfo = styled.div`
   display: flex;

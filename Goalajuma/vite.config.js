@@ -3,9 +3,6 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  server: {
-    host: true,
-  },
   resolve: {
     alias: [
       { find: "@components", replacement: "/src/components" },

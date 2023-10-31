@@ -1,3 +1,5 @@
+import HomeLayout from "@/components/home/HomeLayout";
+import { ButtonTest } from "@/components/common/voteButton/ButtonTest";
 import { HomeContainer } from "@/styles/Container";
 import Main from "@/components/layouts/headers/Main";
 import Footer from "@/components/layouts/footers/Footer";
@@ -5,14 +7,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { mainInquire } from "@/services/main";
 import { useEffect, useRef } from "react";
 import { useRecoilValue } from "recoil";
-import {
-  segmentState,
-  sortState,
-  totalCategoryState,
-} from "@/utils/HeaderAtom";
-import HomeTemplate from "@/components/template/HomeTemplate";
-import Loader from "@/assets/Loader";
-import ErrorScreen from "@/components/common/ErrorScreen";
+import { totalCategoryState } from "@/utils/HeaderAtom";
 const MainPage = () => {
   // const datas = ButtonTest.data.votes;
   const categoryData = useRecoilValue(totalCategoryState);
@@ -22,31 +17,25 @@ const MainPage = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
+    isFetchingPreviousPage,
     isLoading,
     data,
-    isFetching,
-    error,
   } = useInfiniteQuery({
     queryKey: ["mainInfo"],
     queryFn: ({ pageParam = 0 }) => mainInquire(categoryData, pageParam),
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length;
-      const isLast = lastPage?.data.data.isLast;
+      const isLast = lastPage?.response?.data.isLast;
       return isLast ? undefined : nextPage;
     },
-    retry: 0,
   });
 
+  const Data = data?.pages[0].data.data.votes;
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (
-            entry.isIntersecting &&
-            !isLoading &&
-            hasNextPage &&
-            !isFetchingNextPage
-          ) {
+          if (entry.isIntersecting && !isLoading && hasNextPage) {
             fetchNextPage();
           }
         });
@@ -67,21 +56,15 @@ const MainPage = () => {
     };
   }, [isLoading, hasNextPage, fetchNextPage]);
 
-  const Data = data?.pages.flatMap((param) => param.data.data.votes);
-
   return (
     <>
       <Main />
       <HomeContainer>
-        {error ? (
-          <ErrorScreen error={error}></ErrorScreen>
-        ) : (
-          <>
-            <HomeTemplate datas={Data} isFetching={isFetching} />
-            <div ref={bottomObserver}></div>
-            {isFetching && <Loader />}
-          </>
-        )}
+        {Data &&
+          Data?.map((data, id) => (
+            <HomeLayout id={id} data={data} what="main" key={id} />
+          ))}
+        <div ref={bottomObserver}></div>
       </HomeContainer>
       <Footer page="main" />
     </>

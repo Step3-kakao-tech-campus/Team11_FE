@@ -50,8 +50,8 @@ const MyPageUl = ({ votingNumber, questionNumber }) => {
             maskClosable={true}
             onClose={closeProfile}>
             <ProfileModal
-              myNickName ={datas.nickName}
-              myEmail={datas.email}
+              nickName ={datas.nickName}
+              email={datas.email}
               img={datas.image}
             />
           </Modal>

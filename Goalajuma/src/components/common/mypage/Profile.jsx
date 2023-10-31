@@ -12,7 +12,7 @@ const Profile = ({ userName, email, src }) => {
   return (
     <ProfileStyle>
       <div className="userImg">
-        <img src={`/image/${src}`} alt="user_image" />
+        <img src={`public/image/${src}`} alt="user_image" />
       </div>
       <div className="userInfo">
         <div>{userName}</div>
@@ -26,7 +26,7 @@ Profile.propTypes = {
   userName: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   src: PropTypes.string,
-};
+}
 const ProfileStyle = styled.div`
   width: 100%;
   height: 157px;

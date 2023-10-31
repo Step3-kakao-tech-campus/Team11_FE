@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
   #background{
     width:1280px;
     height: 832px;
-    background-image: url('/image/background2.png');
+    background-image: url('public/image/background2.png');
     background-size:530px;
     background-repeat:no-repeat;
     position: fixed;
@@ -46,7 +46,7 @@ const GlobalStyle = createGlobalStyle`
 #background{
   width:1280px;
   height: 832px;
-  background-image: url('/image/background2.png');
+  background-image: url('public/image/background2.png');
   background-size:630px;
   background-repeat:no-repeat;
   position: fixed;
@@ -64,7 +64,7 @@ const GlobalStyle = createGlobalStyle`
 #background{
   width:1280px;
   height: 832px;
-  background-image: url('/image/background2.png');
+  background-image: url('public/image/background2.png');
   background-size:800px;
   background-repeat:no-repeat;
   position: fixed;

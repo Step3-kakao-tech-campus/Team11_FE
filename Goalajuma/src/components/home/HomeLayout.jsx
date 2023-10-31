@@ -2,9 +2,9 @@ import { MainContainer } from "@/styles/Container";
 import ButtonLayout from "../common/voteButton/ButtonLayout";
 import VoteHead from "../common/voteButton/VoteHead";
 import MainContent from "./MainContent";
-import VoteBottom from "../common/voteButton/VoteBottom";
+import VoteButtom from "../common/voteButton/VoteButtom";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
 import { ModalTest } from "../common/modal/ModalTest";
@@ -18,7 +18,7 @@ import ModalLayout from "../common/modal/ModalLayout";
 
 const HomeLayout = ({ data, what }) => {
   const {
-    totalCount,
+    voteCount,
     participate,
     isOwner,
     title,
@@ -27,34 +27,16 @@ const HomeLayout = ({ data, what }) => {
     active,
     options,
     username,
-    category,
-    id,
   } = data;
 
-  const [participateState, setParticipate] = useState(
-    participate && participate
-  );
+  const [participateState, setParticipate] = useState(participate);
   const [modalVisible, setModalVisible] = useState(false);
-  const [optionState, setOptionState] = useState(options);
-  const [count, setCount] = useState(0);
-
   const Data = ModalTest.data.vote;
 
-  const changeVotes = (result) => {
+  const clickButton = () => {
     setParticipate(!participateState);
-
-    const copyOptions = optionState?.map((choice, index) => {
-      return {
-        ...choice,
-        optionCount: result[index]?.optionCount,
-        optionRatio: result[index]?.optionRatio,
-        choice: result[index].choice,
-      };
-    });
-
-    setOptionState(copyOptions);
+    // 투표 참여 안했을때
   };
-
   const clickModal = () => {
     setModalVisible(true);
   };
@@ -68,13 +50,12 @@ const HomeLayout = ({ data, what }) => {
     <MainContainer>
       <Container>
         <VoteHead
-          totalCount={totalCount}
+          voteCount={voteCount}
           endDate={endDate}
           what={what}
           username={username}
           active={active}
           isOwner={isOwner}
-          categoryValue={category}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 
@@ -82,12 +63,11 @@ const HomeLayout = ({ data, what }) => {
           participate={participateState}
           isOwner={isOwner}
           active={active}
-          options={optionState}
-          changeVotes={changeVotes}
-          voteId={id}
+          options={options}
+          onClick={clickButton}
         ></ButtonLayout>
 
-        <VoteBottom onClick={clickModal} onClickShare={share}></VoteBottom>
+        <VoteButtom onClick={clickModal} onClickShare={share}></VoteButtom>
         {modalVisible && (
           <Modal
             visible={modalVisible}

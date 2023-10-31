@@ -7,14 +7,13 @@ import PropTypes from "prop-types";
  * @param {string} prop.src 이미지 주소
  * @param {string} size 이미지 크기
  */
-const Img = ({ src, size, server }) => {
+const Img = ({ src, size }) => {
   return (
     <ImgContainer size={size}>
-      {server ? (
-        <ImgStyle src={`${src}`} size={size}></ImgStyle>
-      ) : (
-        <ImgStyle src={`/image/${src}`} size={size}></ImgStyle>
-      )}
+      <ImgStyle src={`public/image/${src}`} size={size}>
+        {/* 백엔드 배포 주소 나오면 수정 */}
+        {/* vite는 public 주소 제공 x */}
+      </ImgStyle>
     </ImgContainer>
   );
 };

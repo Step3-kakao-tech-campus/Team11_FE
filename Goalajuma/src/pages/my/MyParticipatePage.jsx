@@ -1,11 +1,11 @@
-import SubMyPageHeader from "@/components/layouts/headers/SubMyPageHeader";
+import SubMyPageHeader from "@/components/layouts/headers/SubMyPageHeader"
 import Footer from "@/components/layouts/footers/Footer";
 import { MyParticipateData } from "@/components/common/mypage/mypageTestData";
 import MyVoteList from "@/components/common/mypage/MyVoteList";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import styled from "styled-components";
-import { Palette } from "@/styles/Palette";
+import { Palette } from "@styles/Palette";
 import { MyContainer } from "@/styles/Container";
 
 const MyParticipatePage = () => {
@@ -34,14 +34,12 @@ const MyParticipatePage = () => {
               당신의 생각을 <Goala>Goala</Goala> 주세요!
             </Text>
             <div>
-              <Button onClick={() => navigate(routes.hot)}>
-                투표 하러가기
-              </Button>
+              <Button onClick={() => navigate(routes.hot)}>투표 하러가기</Button>
             </div>
           </Box>
         )}
       </MyContainer>
-      <Footer page="mypage" />
+      <Footer page="mypage"/>
     </div>
   );
 };

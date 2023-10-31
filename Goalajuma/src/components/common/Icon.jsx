@@ -20,7 +20,6 @@ const Icon = ({
   onClick,
   hoverColor,
   hoverBackColor,
-  margin,
 }) => {
   return (
     <IconCss
@@ -30,7 +29,6 @@ const Icon = ({
       onClick={onClick}
       hoverBackColor={hoverBackColor}
       hoverColor={hoverColor}
-      margin={margin}
     >
       {children}
     </IconCss>
@@ -45,10 +43,8 @@ Icon.propTypes = {
   onClick: PropTypes.func,
   hoverColor: PropTypes.string,
   hoverBackColor: PropTypes.string,
-  margin: PropTypes.number,
 };
 const IconCss = styled.div`
-  cursor: pointer;
   font-size: ${(props) => props.size || "26px"};
   transform: ${(props) => props.reverse && "scaleX(-1)"};
   color: ${(props) => props.color || "#000000"};
@@ -56,7 +52,6 @@ const IconCss = styled.div`
     color: ${(props) => props.hoverColor};
     background-color: ${(props) => props.hoverBackColor};
   }
-  margin: ${(props) => props.margin};
 `;
 
 export default Icon;

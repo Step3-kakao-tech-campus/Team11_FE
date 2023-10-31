@@ -23,8 +23,8 @@ export const timeLimitState = atom({
 export const optionState = atom({
   key: "optionState",
   default: [
-    { name: "", image: null },
-    { name: "", image: null },
+    { name: "", img: "" },
+    { name: "", img: "" },
   ],
 });
 
@@ -37,7 +37,7 @@ export const uploadSelector = selector({
       content: get(contentState),
       category: get(categoryState),
       timeLimit: get(timeLimitState),
-      options: get(optionState),
+      option: get(optionState),
     };
   },
   set: ({ set }, value) => {
