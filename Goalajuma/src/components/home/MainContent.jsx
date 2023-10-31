@@ -42,7 +42,7 @@ const MainContentStyle = styled.div`
   flex-direction: column;
   align-items: start;
   text-align: start;
-  margin: 0 1.5rem 2rem 1.5rem;
+  margin: 0 1rem 0rem 1rem;
   width: 90%;
   line-height: 1.5rem;
   & h1 {
@@ -55,11 +55,12 @@ const MainContentStyle = styled.div`
 
   .more p {
     font-size: 13px;
-    max-width: 95%;
+    max-width: 270px;
   }
   .short p {
     font-size: 13px;
-    max-width: 95%;
+    max-width: 270px;
+
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
