@@ -24,7 +24,7 @@ const FileUpload = ({ func, id }) => {
         type="file"
         className="fileInput"
         id="file"
-        accept="image/*"
+        accept="image/jpeg, image/png"
         onChange={(e) => {
           func(e);
         }}

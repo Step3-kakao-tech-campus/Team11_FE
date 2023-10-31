@@ -1,18 +1,21 @@
+import { CategoryBox } from "@/components/layouts/headers/CategoryBox";
+import SearchInput from "@/components/search/SearchInput";
 import { HomeContainer } from "@/styles/Container";
-import Main from "@/components/layouts/headers/Main";
-import Footer from "@/components/layouts/footers/Footer";
-import CompleteTemplate from "@/components/template/CompleteTemplate";
-import { useRecoilValue } from "recoil";
-import { useRef, useEffect } from "react";
-import { totalCategoryState } from "@/utils/HeaderAtom";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { completeInquire } from "@/services/main";
-import Loader from "@/assets/Loader";
 import ErrorScreen from "@/components/common/ErrorScreen";
+import Footer from "@/components/layouts/footers/Footer";
+import HomeTemplate from "@/components/template/HomeTemplate";
+import { useRef } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import Loader from "@/assets/Loader";
+import { search } from "@/services/search";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-const CompletePage = () => {
-  const categoryData = useRecoilValue(totalCategoryState);
+const SearchPage = () => {
   const bottomObserver = useRef(null);
+  const categoryData = { sort: "current", content: "total" };
+  //추후 헤더 완료 후 수정
+  let { query } = useParams();
 
   const {
     fetchNextPage,
@@ -23,8 +26,8 @@ const CompletePage = () => {
     isFetching,
     error,
   } = useInfiniteQuery({
-    queryKey: ["mainInfo"],
-    queryFn: ({ pageParam = 0 }) => completeInquire(categoryData, pageParam),
+    queryKey: ["searchInfo"],
+    queryFn: ({ pageParam = 0 }) => search(categoryData, query, pageParam),
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length;
       const isLast = lastPage?.data.data.isLast;
@@ -66,23 +69,29 @@ const CompletePage = () => {
   const Data = data?.pages.flatMap((param) => param.data.data.votes);
 
   return (
-    <>
-      <Main />
-      <HomeContainer>
-        {error ? (
-          <ErrorScreen error={error}></ErrorScreen>
-        ) : (
-          <>
-            {" "}
-            <CompleteTemplate datas={Data} isFetching={isFetching} />
-            <div ref={bottomObserver}></div>
-            {isFetching && <Loader />}
-          </>
-        )}
-      </HomeContainer>
-      <Footer page="complete" />
-    </>
+    <HomeContainer>
+      <SearchInput></SearchInput>
+      <CategoryBox />
+      {query && (
+        <HomeContainer>
+          {error ? (
+            <ErrorScreen
+              status={error.data.status}
+              error={error.data.error}
+              message={error.data.message}
+            ></ErrorScreen>
+          ) : (
+            <>
+              <HomeTemplate datas={Data} isFetching={isFetching} />
+              <div ref={bottomObserver}></div>
+              {isFetching && <Loader />}
+            </>
+          )}
+        </HomeContainer>
+      )}
+      <Footer page="main" />
+    </HomeContainer>
   );
 };
 
-export default CompletePage;
+export default SearchPage;

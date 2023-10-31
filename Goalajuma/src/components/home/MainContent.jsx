@@ -55,11 +55,12 @@ const MainContentStyle = styled.div`
 
   .more p {
     font-size: 13px;
-    max-width: 95%;
+    max-width: 270px;
   }
   .short p {
     font-size: 13px;
-    max-width: 95%;
+    max-width: 270px;
+
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
