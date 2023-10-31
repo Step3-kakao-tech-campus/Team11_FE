@@ -6,7 +6,6 @@ import InputGroup from "../../components/login/InputGroup";
 import { useState } from "react";
 import { JoinContainer } from "../../styles/Container";
 import useValid from "../../hooks/useValid";
-
 import routes from "@/routes";
 import Swal from "sweetalert2";
 import { emailCheckInquire, signupInquire } from "@/services/signup";
@@ -46,7 +45,6 @@ const SignUpPage = () => {
   };
 
 
-
   const handleSignUp =()=>{
     if(isValid.isName &&isValid.isEmail && isValid.isPassword && isValid.isPasswordConfirm){
       signupInquire(value)
@@ -58,22 +56,23 @@ const SignUpPage = () => {
   }
   const emailCheck=()=>{
     emailCheckInquire(value.email)
-    .then(
+    .then(res=>{
+      console.log(res)
       Swal.fire({
-      icon: "success",
-      text: "사용가능한 이메일 입니다!",
-      confirmButtonColor: "#429f50",
-      })
-    )
-    .catch(
+        icon: "success",
+        text: "사용가능한 이메일 입니다!",
+        confirmButtonColor: "#429f50",
+        })
+    })
+    .catch(err=>{
+      console.log(err)
       Swal.fire({
         icon: "error",
         text: "이미 사용중인 이메일입니다.",
         confirmButtonColor: "#d33",
       })
-    )
+    })
   }
-
   return (
     <JoinContainer>
       <Header>
@@ -157,7 +156,7 @@ const SignUpPage = () => {
       <ButtonGroup>
         <Button
           color="#9EB0EA"
-          onClick={() => navigate("/login")}
+          onClick={handleSignUp}
           disabled={
             isValid.isName &&
             isValid.isEmail &&
