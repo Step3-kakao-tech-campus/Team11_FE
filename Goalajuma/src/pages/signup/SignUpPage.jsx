@@ -3,13 +3,14 @@ import { GoChevronLeft } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/login/Button";
 import InputGroup from "../../components/login/InputGroup";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { JoinContainer } from "../../styles/Container";
 import useValid from "../../hooks/useValid";
-import {useMutation, useQueryClient} from"react-query";
+import routes from "@/routes";
+import Swal from "sweetalert2";
+import { emailCheckInquire, signupInquire } from "@/services/signup";
 
 const SignUpPage = () => {
-  //const queryClient = useQueryClient();
   const [allAgree, setAllAgree] = useState(false);
   const [agreeService, setAgreeService] = useState(false);
   const [agreePollcy, setAgreePollcy] = useState(false);
@@ -43,33 +44,32 @@ const SignUpPage = () => {
     }
   };
 
-  // const mutation = useMutation(
-  //   (data) => {
-  //     return fetch('/auth/sign-up',{
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(data),
-  //     }).then((res)=>res.json())
-  //   },
-  //   {
-  //     //mutation 성공 시 실행될 함수
-  //     onSuccess: (data)=>{
-  //       console.log('회원가입 성공',data)
-  //       navigate("/login")
-  //       // 전역 상태로 토큰 저장
-  //       queryClient.setQueryData('token',data.token)
-  //     }
-  //   }
-  // )
+
   const handleSignUp =()=>{
-    if(isValid.isName &&isValid.isEmail && isValid.isPassword && isValid.isPasswordConfirmation){
-      // mutation.mutate(value)
-      navigate("/login")
+    if(isValid.isName &&isValid.isEmail && isValid.isPassword && isValid.isPasswordConfirm){
+      signupInquire(value)
+      .then(navigate(routes.login))
+      .catch(err=>console.log(err))
     }else{
       console.log('입력 내용이 올바르지 않습니다.')
     }
+  }
+  const emailCheck=()=>{
+    emailCheckInquire(value.email)
+    .then(
+      Swal.fire({
+      icon: "success",
+      text: "사용가능한 이메일 입니다!",
+      confirmButtonColor: "#429f50",
+      })
+    )
+    .catch(
+      Swal.fire({
+        icon: "error",
+        text: "이미 사용중인 이메일입니다.",
+        confirmButtonColor: "#d33",
+      })
+    )
   }
   return (
     <JoinContainer>
@@ -121,7 +121,7 @@ const SignUpPage = () => {
         />
         <StyledErr>{validText.passwordConfirmText}</StyledErr>
       </Group>
-      <StyledButton onClick={() => navigate("/")}>중복 검사</StyledButton>
+      <StyledButton onClick={emailCheck}>중복 검사</StyledButton>
       <PolicyGroup>
         <Policy>
           <input

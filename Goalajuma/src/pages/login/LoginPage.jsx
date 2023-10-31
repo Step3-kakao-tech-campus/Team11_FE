@@ -7,10 +7,11 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { MainContainer } from "@/styles/Container";
 import useValid from "@/hooks/useValid";
-// import {useMutation, useQueryClient} from"react-query";
+import { loginInquire } from "@/services/login";
+
 
 const LoginPage = () => {
-  //const queryClient = useQueryClient();
+
   const [value, setValue] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
@@ -22,31 +23,16 @@ const LoginPage = () => {
   // 유효성 검사 text 반환을 위한 커스텀 훅
   const { validText, isValid } = useValid(value);
 
-  // const mutation = useMutation(
-  //   (data) => {
-  //     return fetch('/auth/login',{
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(data),
-  //     }).then((res)=>res.json())
-  //   },
-  //   {
-  //     //mutation 성공 시 실행될 함수
-  //     onSuccess: (data)=>{
-  //       console.log('로그인 성공',data)
-  //       localStorage.setItem('token', data.token)  
-  //       navigate("/")
-  //       // 전역 상태로 토큰 저장
-  //       queryClient.setQueryData('token',data.token)
-  //     }
-  //   }
-  // )
+
   const handleLogin =()=>{
     if(isValid.isEmail && isValid.isPassword){
-      // mutation.mutate(value)
-      navigate("/")
+
+      loginInquire(value)
+      .then(res => {
+        localStorage.setItem('token', res.data.data.accessToken)
+        navigate("/")
+      })
+      .catch(err => console.log(err.message))
     }else{
       console.log('입력 내용이 올바르지 않습니다.')
     }
