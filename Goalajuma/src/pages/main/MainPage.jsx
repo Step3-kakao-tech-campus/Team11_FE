@@ -17,7 +17,7 @@ const MainPage = () => {
   // const datas = ButtonTest.data.votes;
   const categoryData = useRecoilValue(totalCategoryState);
   const bottomObserver = useRef(null);
-  
+
   const {
     fetchNextPage,
     hasNextPage,

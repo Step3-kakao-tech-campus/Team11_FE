@@ -41,6 +41,7 @@ const UploadButton = () => {
           }).then(() => {
             resetList();
             navigate(routes.home);
+            setTimeout(() => location.reload(), 0);
           });
         },
         onError: (error) => {
