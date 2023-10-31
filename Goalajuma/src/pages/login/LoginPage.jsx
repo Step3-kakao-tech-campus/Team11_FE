@@ -8,7 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { MainContainer } from "@/styles/Container";
 import useValid from "@/hooks/useValid";
 
+import { loginInquire } from "@/services/login";
+
+
 const LoginPage = () => {
+
   const [value, setValue] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
@@ -20,6 +24,20 @@ const LoginPage = () => {
   // 유효성 검사 text 반환을 위한 커스텀 훅
   const { validText, isValid } = useValid(value);
 
+
+  const handleLogin =()=>{
+    if(isValid.isEmail && isValid.isPassword){
+
+      loginInquire(value)
+      .then(res => {
+        localStorage.setItem('token', res.data.data.accessToken)
+        navigate("/")
+      })
+      .catch(err => console.log(err.message))
+    }else{
+      console.log('입력 내용이 올바르지 않습니다.')
+    }
+  }
   return (
     <MainContainer>
       <Header>
