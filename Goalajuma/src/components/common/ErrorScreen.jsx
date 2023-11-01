@@ -1,11 +1,14 @@
 import styled from "styled-components";
-const ErrorScreen = ({ status, message, error }) => {
+const ErrorScreen = ({ error }) => {
+  // status={error.data.status}
+  // error={error.data.error}
+  // message={error.data.message}
   return (
     <ErrorStyle>
       <p>
-        {status} {error}
+        {error?.data?.status} {error?.data?.error}
       </p>
-      <p> {message} 🥲</p>
+      <p> {error?.data?.message} 🥲</p>
     </ErrorStyle>
   );
 };

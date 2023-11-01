@@ -23,7 +23,7 @@ const CompletePage = () => {
     isFetching,
     error,
   } = useInfiniteQuery({
-    queryKey: ["mainInfo"],
+    queryKey: ["completeInfo", categoryData],
     queryFn: ({ pageParam = 0 }) => completeInquire(categoryData, pageParam),
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length;
@@ -70,11 +70,7 @@ const CompletePage = () => {
       <Main />
       <HomeContainer>
         {error ? (
-          <ErrorScreen
-            status={error.data.status}
-            error={error.data.error}
-            message={error.data.message}
-          ></ErrorScreen>
+          <ErrorScreen error={error}></ErrorScreen>
         ) : (
           <>
             {" "}

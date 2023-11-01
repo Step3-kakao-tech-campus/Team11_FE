@@ -23,16 +23,16 @@ const Img = ({ id, src }) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
+      reader.result;
       setImgFile(reader.result);
       inputImg(reader.result);
     };
   };
   const inputImg = (src) => {
-    console.log(id);
     setOption((prop) => {
       return prop.map((choice, index) => {
         if (id == index) {
-          return { ...choice, img: src };
+          return { ...choice, image: src };
         } else {
           return choice;
         }
