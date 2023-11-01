@@ -10,6 +10,8 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "./Modal";
 import ShareForm from "./ShareForm";
+import { detailInquire } from "@/services/main";
+import { useQuery } from "react-query";
 
 /**
  *
@@ -17,20 +19,26 @@ import ShareForm from "./ShareForm";
  * @param {string} what
  */
 
-const ModalLayout = ({ data, what }) => {
+const ModalLayout = ({ id, what }) => {
+  const {data} = useQuery(`/votes/${id}`, 
+    async () => detailInquire(id), 
+    { enabled: !!id }
+  )
+  console.log(id)
   const {
-    voteCount,
+    totalCount,
     participate,
     isOwner,
     title,
     content,
-    createDate,
     endDate,
     active,
     options,
     username,
     category,
   } = data;
+  console.log(data)
+  
   const [participateState, setParticipate] = useState(participate);
   const [modalVisible, setModalVisible] = useState(false);
   console.log(category)
@@ -49,8 +57,7 @@ const ModalLayout = ({ data, what }) => {
     <MainContainer className="modal">
       <Container>
         <VoteHead
-          voteCount={voteCount}
-          createDate={createDate}
+          totalCount={totalCount}
           endDate={endDate}
           what={what}
           isOwner={isOwner}
@@ -99,7 +106,7 @@ const Container = styled.div`
   padding-bottom: 1rem;
 `;
 ModalLayout.propTypes = {
-  data: PropTypes.object,
+  id: PropTypes.number,
   what: PropTypes.string,
 };
 const Chat = styled.div`

@@ -10,7 +10,7 @@ import { contentList } from "@/components/layouts/headers/CategoryBox";
 
 /**
  * @param {object} props
- * @param {number} props.voteCount 투표자 수
+ * @param {number} props.totalCount 투표자 수
  * @param {string} props.endDate 작성자가 설정한 투표 마감 시간
  * @param {string} props.what hot,complete,main
  * @param {string} props.username 작성자 이름
@@ -71,7 +71,6 @@ const VoteHead = ({
   );
 };
 VoteHead.propTypes = {
-  voteCount: PropTypes.number,
   endDate: PropTypes.string.isRequired,
   what: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,

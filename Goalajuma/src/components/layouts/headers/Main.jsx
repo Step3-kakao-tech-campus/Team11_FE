@@ -2,15 +2,27 @@
 import styled from "styled-components";
 import { CategoryBox } from "./CategoryBox";
 import SearchButton from "./SearchButton";
+import { CompleteCategoryBox } from "./CompleteCategoryBox";
+import PropTypes from "prop-types";
 
-const Main = () => {
+
+/**
+ * 
+ * @param {string} page 
+ * @returns 
+ */
+const Main = ({page}) => {
   return (
     <Nav>
-      <CategoryBox/>
+      { page ==="main" ? <CategoryBox/> : <CompleteCategoryBox/>}
       <SearchButton/>
     </Nav>
   );
 }
+
+Main.propTypes = {
+  page : PropTypes.string.isRequired,
+};
 
 const Nav = styled.nav`
   height: 55px;

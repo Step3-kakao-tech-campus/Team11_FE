@@ -27,7 +27,7 @@ const MainPage = () => {
     isFetching,
     error,
   } = useInfiniteQuery({
-    queryKey: ["mainInfo"],
+    queryKey: ["mainInfo", categoryData],
     queryFn: ({ pageParam = 0 }) => mainInquire(categoryData, pageParam),
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length;
@@ -71,7 +71,7 @@ const MainPage = () => {
 
   return (
     <>
-      <Main />
+      <Main page="main"/>
       <HomeContainer>
         {error ? (
           <ErrorScreen error={error}></ErrorScreen>

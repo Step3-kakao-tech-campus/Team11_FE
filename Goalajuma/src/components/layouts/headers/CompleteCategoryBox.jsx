@@ -1,10 +1,9 @@
 import { useRecoilState } from "recoil";
-import { sortState, sortNameState, segmentState, segmentNameState } from "@/utils/HeaderAtom";
+import { completeSortState, completeSortNameState, completeSegmentState, completeSegmentNameState } from "@/utils/HeaderAtom";
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useNavigate } from "react-router-dom";
 
 //value로 영어 추가 하기
 const sortList = [
@@ -20,7 +19,7 @@ const sortList = [
   },
 ];
 
-export const contentList = [
+const contentList = [
   {
     id: 0,
     category: "골라조",
@@ -63,11 +62,11 @@ export const contentList = [
   },
 ];
 
-export const CategoryBox = () => {
-  const [sort, setSort] = useRecoilState(sortState);
-  const [sortName, setSortName] = useRecoilState(sortNameState);
-  const [content, setContent] = useRecoilState(segmentState);
-  const [contentName, setContentName] = useRecoilState(segmentNameState);
+export const CompleteCategoryBox = () => {
+  const [sort, setSort] = useRecoilState(completeSortState);
+  const [sortName, setSortName] = useRecoilState(completeSortNameState);
+  const [content, setContent] = useRecoilState(completeSegmentState);
+  const [contentName, setContentName] = useRecoilState(completeSegmentNameState);
 
   const [drops, setDrops] = useState({ sort: false, content: false });
 
