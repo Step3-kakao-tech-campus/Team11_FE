@@ -71,7 +71,7 @@ const VoteHead = ({
   );
 };
 VoteHead.propTypes = {
-  voteCount: PropTypes.number.isRequired,
+  voteCount: PropTypes.number,
   endDate: PropTypes.string.isRequired,
   what: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
