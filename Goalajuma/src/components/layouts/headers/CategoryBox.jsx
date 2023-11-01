@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useNavigate } from "react-router-dom";
 
 //value로 영어 추가 하기
 const sortList = [
@@ -82,8 +83,7 @@ export const CategoryBox = () => {
   };
 
   useEffect(() => {
-    console.log(sort);
-    console.log(content);
+
   }, [sort, content])
   // recoil 사용: 클릭된 값을 atom에 넣어주기
   const handleSort = (num) => {
