@@ -11,10 +11,13 @@ import MyQuestionPage from "./pages/my/MyQuestionPage";
 import MyParticipatePage from "./pages/my/MyParticipatePage";
 import UploadPage from "./pages/upload/UploadPage";
 import SearchPage from "./pages/search/SearchPage";
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Routes>
         <Route path={routes.login} element={<LoginPage />}></Route>
         <Route path={routes.signup} element={<SignUpPage />}></Route>
@@ -35,7 +38,7 @@ function App() {
         ></Route>
         <Route path={routes.upload} element={<UploadPage />}></Route>
       </Routes>
-    </>
+    </QueryClientProvider>
   );
 }
 

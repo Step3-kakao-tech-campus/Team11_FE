@@ -71,7 +71,7 @@ const MainPage = () => {
 
   return (
     <>
-      <Main />
+      <Main page="main"/>
       <HomeContainer>
         {error ? (
           <ErrorScreen error={error}></ErrorScreen>
