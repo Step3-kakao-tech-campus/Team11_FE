@@ -18,6 +18,6 @@ export const completeInquire = (categoryData, pageParam) => {
   );
 };
 
-export const detailInquire = (voteId)=>{
-  return instance.get(`/votes/${voteId}`)
-}
+export const detailInquire = (voteId) => {
+  return instance.get(`/votes/${voteId}`);
+};

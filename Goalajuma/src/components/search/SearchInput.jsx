@@ -40,7 +40,7 @@ const SearchInput = () => {
       />
 
       <Icon
-        size="21px"
+        size="23px"
         color={Palette.point_blue}
         onClick={(e) => goToSearch(e)}
       >

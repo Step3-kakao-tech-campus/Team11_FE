@@ -37,6 +37,7 @@ const HomeLayout = ({ data, what }) => {
   const [optionState, setOptionState] = useState(options);
   // const [count, setCount] = useState(0);
 
+  // const Data = ModalTest.data.vote;
   const changeVotes = (result) => {
     setParticipate(!participateState);
 
