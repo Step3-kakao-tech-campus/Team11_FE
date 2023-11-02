@@ -27,7 +27,7 @@ const MainPage = () => {
     isFetching,
     error,
   } = useInfiniteQuery({
-    queryKey: ["mainInfo"],
+    queryKey: ["mainInfo", categoryData],
     queryFn: ({ pageParam = 0 }) => mainInquire(categoryData, pageParam),
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length;

@@ -21,7 +21,7 @@ const HotPage = () => {
     isFetching,
     error,
   } = useInfiniteQuery({
-    queryKey: ["mainInfo"],
+    queryKey: ["hotInfo"],
     queryFn: ({ pageParam = 0 }) => hotInquire(pageParam),
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length;

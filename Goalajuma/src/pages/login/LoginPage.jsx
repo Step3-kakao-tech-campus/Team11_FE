@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom";
 import { MainContainer } from "@/styles/Container";
 import useValid from "@/hooks/useValid";
 import { loginInquire } from "@/services/login";
+import routes from "@/routes";
 
 
 const LoginPage = () => {
-
   const [value, setValue] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
@@ -26,13 +26,12 @@ const LoginPage = () => {
 
   const handleLogin =()=>{
     if(isValid.isEmail && isValid.isPassword){
-
       loginInquire(value)
       .then(res => {
         localStorage.setItem('token', res.data.data.accessToken)
         navigate("/")
       })
-      .catch(err => console.log(err.message))
+      .catch(err => console.log('Login 요청 실패:',err.message))
     }else{
       console.log('입력 내용이 올바르지 않습니다.')
     }
@@ -49,7 +48,7 @@ const LoginPage = () => {
         <span>계정이 없으신가요?</span>
         <button
           onClick={() => {
-            navigate("/signup");
+            navigate(routes.signup);
           }}
         >
           회원가입하기
