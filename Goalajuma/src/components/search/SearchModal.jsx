@@ -23,7 +23,7 @@ const SearchModal = ({ visible, children, onClose, maskClosable }) => {
 };
 
 const SearchModalInner = styled(ModalInner)`
-  top: 5.5%;
+  top: 5%;
   width: 100%;
   height: 0px;
   background-color: #fff;
