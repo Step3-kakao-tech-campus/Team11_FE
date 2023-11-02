@@ -1,9 +1,15 @@
 import { useRecoilState } from "recoil";
-import { sortState, sortNameState, segmentState, segmentNameState } from "@/utils/HeaderAtom";
+import {
+  sortState,
+  sortNameState,
+  segmentState,
+  segmentNameState,
+} from "@/utils/HeaderAtom";
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useNavigate } from "react-router-dom";
 
 //value로 영어 추가 하기
 const sortList = [
@@ -81,10 +87,7 @@ export const CategoryBox = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(sort);
-    console.log(content);
-  }, [sort, content])
+  useEffect(() => {}, [sort, content]);
   // recoil 사용: 클릭된 값을 atom에 넣어주기
   const handleSort = (num) => {
     setSort(sortList[num].value);
@@ -197,6 +200,7 @@ const Category = styled.div`
   display: inline-block;
   position: relative;
   margin-right: 10px;
+  z-index: 1000;
 `;
 
 const MainButton = styled.button`
@@ -210,7 +214,7 @@ const MainButton = styled.button`
   font-size: 15px;
   cursor: pointer;
   &:hover {
-    background-color: ${Palette.percent_gray}
+    background-color: ${Palette.percent_gray};
   }
 `;
 
@@ -226,7 +230,7 @@ const StyledButton = styled.button`
   font-size: 15px;
   cursor: pointer;
   &:hover {
-    background-color: ${Palette.percent_gray}
+    background-color: ${Palette.percent_gray};
   }
 `;
 
@@ -246,6 +250,6 @@ const Ul = styled.ul`
 const Li = styled.li`
   margin: 0;
   &:hover {
-    background-color: ${Palette.percent_gray}
+    background-color: ${Palette.percent_gray};
   }
 `;

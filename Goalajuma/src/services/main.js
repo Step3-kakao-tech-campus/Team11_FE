@@ -17,3 +17,7 @@ export const completeInquire = (categoryData, pageParam) => {
     `/votes?active=complete&sort=${sort}&category=${content}&page=${pageParam}`
   );
 };
+
+export const detailInquire = (voteId) => {
+  return instance.get(`/votes/${voteId}`);
+};

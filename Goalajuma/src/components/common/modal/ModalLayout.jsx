@@ -33,7 +33,7 @@ const ModalLayout = ({ data, what }) => {
   } = data;
   const [participateState, setParticipate] = useState(participate);
   const [modalVisible, setModalVisible] = useState(false);
-
+  console.log(category)
   const closeModal = () => {
     setModalVisible(false);
   };
@@ -56,7 +56,7 @@ const ModalLayout = ({ data, what }) => {
           isOwner={isOwner}
           active={active}
           username={username}
-          category={category}
+          categoryValue={category}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 
