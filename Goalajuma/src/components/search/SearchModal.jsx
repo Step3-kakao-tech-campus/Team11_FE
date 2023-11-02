@@ -23,11 +23,11 @@ const SearchModal = ({ visible, children, onClose, maskClosable }) => {
 };
 
 const SearchModalInner = styled(ModalInner)`
-  top: 5%;
+  top: 5.5%;
   width: 100%;
-  height: 95px;
+  height: 0px;
   background-color: #fff;
-  padding: 60px 0px 10px 0px;
+  padding: 50px 0px 30px 0px;
   border-radius: 0;
   display: flex;
   justify-content: center;
