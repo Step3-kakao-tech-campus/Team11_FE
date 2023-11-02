@@ -10,10 +10,13 @@ import Loader from "@/assets/Loader";
 import { search } from "@/services/search";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { totalCategoryState } from "@/utils/HeaderAtom";
+import styled from "styled-components";
 
 const SearchPage = () => {
   const bottomObserver = useRef(null);
-  const categoryData = { sort: "current", content: "total" };
+  const categoryData = useRecoilValue(totalCategoryState);
   //추후 헤더 완료 후 수정
   let { query } = useParams();
 
@@ -26,7 +29,7 @@ const SearchPage = () => {
     isFetching,
     error,
   } = useInfiniteQuery({
-    queryKey: ["searchInfo"],
+    queryKey: ["searchInfo", categoryData],
     queryFn: ({ pageParam = 0 }) => search(categoryData, query, pageParam),
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length;
@@ -70,7 +73,10 @@ const SearchPage = () => {
 
   return (
     <HomeContainer>
-      <SearchInput></SearchInput>
+      <SearchWrapper>
+        <SearchInput></SearchInput>
+      </SearchWrapper>
+
       <CategoryBox />
       {query && (
         <HomeContainer>
@@ -93,5 +99,11 @@ const SearchPage = () => {
     </HomeContainer>
   );
 };
+
+const SearchWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
 
 export default SearchPage;

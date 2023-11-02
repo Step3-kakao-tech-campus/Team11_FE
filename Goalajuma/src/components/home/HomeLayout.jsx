@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
 import { ModalTest } from "../common/modal/ModalTest";
 import ModalLayout from "../common/modal/ModalLayout";
-import { useQuery } from 'react-query';
+import { useQuery } from "react-query";
 import { detailInquire } from "@/services/main";
 
 /**
@@ -41,12 +41,13 @@ const HomeLayout = ({ data, what }) => {
   const [optionState, setOptionState] = useState(options);
   const [count, setCount] = useState(0);
 
-  const { data: detailData} = useQuery(['votes', id], 
-    async () => detailInquire(id), 
+  const { data: detailData } = useQuery(
+    ["votes", id],
+    async () => detailInquire(id),
     { enabled: !!id }
-  )
+  );
 
-  console.log(modalData)
+  console.log(modalData);
   // const Data = ModalTest.data.vote;
   const changeVotes = (result) => {
     setParticipate(!participateState);
