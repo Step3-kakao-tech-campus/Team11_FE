@@ -4,14 +4,14 @@ import Footer from "@/components/layouts/footers/Footer";
 import CompleteTemplate from "@/components/template/CompleteTemplate";
 import { useRecoilValue } from "recoil";
 import { useRef, useEffect } from "react";
-import { totalCategoryState } from "@/utils/HeaderAtom";
+import { completeTotalCategoryState } from "@/utils/HeaderAtom";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { completeInquire } from "@/services/main";
 import Loader from "@/assets/Loader";
 import ErrorScreen from "@/components/common/ErrorScreen";
 
 const CompletePage = () => {
-  const categoryData = useRecoilValue(totalCategoryState);
+  const categoryData = useRecoilValue(completeTotalCategoryState);
   const bottomObserver = useRef(null);
 
   const {
@@ -67,7 +67,7 @@ const CompletePage = () => {
 
   return (
     <>
-      <Main />
+      <Main page="complete"/>
       <HomeContainer>
         {error ? (
           <ErrorScreen error={error}></ErrorScreen>
