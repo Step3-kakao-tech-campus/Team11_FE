@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { totalCategoryState } from "@/utils/HeaderAtom";
 import styled from "styled-components";
+import NonePage from "@/components/common/NonePage";
 
 const SearchPage = () => {
   const bottomObserver = useRef(null);
@@ -77,23 +78,29 @@ const SearchPage = () => {
         <SearchInput></SearchInput>
       </SearchWrapper>
       <CategoryBox />
-      {query && (
-        <HomeContainer>
-          {error ? (
-            <ErrorScreen
-              status={error.data.status}
-              error={error.data.error}
-              message={error.data.message}
-            ></ErrorScreen>
-          ) : (
-            <>
-              <HomeTemplate datas={Data} isFetching={isFetching} />
-              <div ref={bottomObserver}></div>
-              {isFetching && <Loader />}
-            </>
-          )}
-        </HomeContainer>
+      {isFetching ? (
+        <Loader />
+      ) : (
+        query && (
+          <HomeContainer>
+            {!Data?.length ? (
+              <NonePage what="research" query={query} />
+            ) : (
+              // <ErrorScreen
+              //   // status={error.data.status}
+              //   error={error.data.error}
+              //   // message={error.data.message}
+              // ></ErrorScreen>
+              <>
+                <HomeTemplate datas={Data} isFetching={isFetching} />
+                <div ref={bottomObserver}></div>
+                {isFetching && <Loader />}
+              </>
+            )}
+          </HomeContainer>
+        )
       )}
+
       <Footer page="main" />
     </HomeContainer>
   );
