@@ -48,8 +48,11 @@ const SignUpPage = () => {
   const handleSignUp =()=>{
     if(isValid.isName &&isValid.isEmail && isValid.isPassword && isValid.isPasswordConfirm){
       signupInquire(value)
-      .then(navigate(routes.login))
-      .catch(err=>console.log(err))
+      .then(()=>{
+        alert("회원가입 성공!!")
+        navigate(routes.login)
+      })
+      .catch(err=>alert(err.data.message))
     }else{
       console.log('입력 내용이 올바르지 않습니다.')
     }
