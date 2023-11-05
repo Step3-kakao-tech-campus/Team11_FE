@@ -21,6 +21,7 @@ const Icon = ({
   hoverColor,
   hoverBackColor,
   margin,
+  className,
 }) => {
   return (
     <IconCss
@@ -31,6 +32,7 @@ const Icon = ({
       hoverBackColor={hoverBackColor}
       hoverColor={hoverColor}
       margin={margin}
+      className={className}
     >
       {children}
     </IconCss>

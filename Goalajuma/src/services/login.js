@@ -5,7 +5,7 @@ export const loginInquire = (data) => {
   
   return instance.post(`/api/auth/login`, {
     email: email,
-    password: password
+    password: password 
   })
   // .then(res =>{
   //   const expirationTime = new Date(res.data.data.expiredTime)

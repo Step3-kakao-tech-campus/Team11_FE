@@ -76,7 +76,6 @@ const SearchPage = () => {
       <SearchWrapper>
         <SearchInput></SearchInput>
       </SearchWrapper>
-
       <CategoryBox />
       {query && (
         <HomeContainer>
@@ -104,6 +103,7 @@ const SearchWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 2rem;
 `;
 
 export default SearchPage;

@@ -11,7 +11,7 @@ import MyQuestionPage from "./pages/my/MyQuestionPage";
 import MyParticipatePage from "./pages/my/MyParticipatePage";
 import UploadPage from "./pages/upload/UploadPage";
 import SearchPage from "./pages/search/SearchPage";
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
 
