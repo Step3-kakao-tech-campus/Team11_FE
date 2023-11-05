@@ -28,7 +28,7 @@ function Modal({
 
   // 모달 동작 시 스크롤 중지
   useEffect(() => {
-    document.body.style.cssText = `overflow: hidden; `;
+    document.body.style.cssText = `overflow: hidden;`;
     return () => {
       const scrollY = document.body.style.top;
       document.body.style.cssText = `position: ""; top: "";`;

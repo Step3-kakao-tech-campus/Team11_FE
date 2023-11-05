@@ -56,6 +56,27 @@ const HomeLayout = ({ data, what }) => {
   const clickModal = (data) => {
     setModalVisible(true);
     setModalId(data.id);
+    const { data: Data } = useQuery(
+      `/votes/${id}`,
+      async () => detailInquire(id),
+      {
+        enabled: !!id,
+      }
+    );
+    console.log(id);
+    const {
+      totalCount,
+      participate,
+      isOwner,
+      title,
+      content,
+      endDate,
+      active,
+      options,
+      username,
+      category,
+    } = data;
+    console.log(data);
   };
   const closeModal = () => {
     setModalVisible(false);
@@ -87,7 +108,10 @@ const HomeLayout = ({ data, what }) => {
           voteId={id}
         ></ButtonLayout>
 
-        <VoteBottom onClick={()=>clickModal(data)} onClickShare={share}></VoteBottom>
+        <VoteBottom
+          onClick={() => clickModal(data)}
+          onClickShare={share}
+        ></VoteBottom>
         {modalVisible && (
           <Modal
             visible={modalVisible}
