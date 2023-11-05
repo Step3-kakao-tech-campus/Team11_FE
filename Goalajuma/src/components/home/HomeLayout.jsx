@@ -92,6 +92,7 @@ const HomeLayout = ({ data, what }) => {
           voteId={id}
         ></ButtonLayout>
 
+
         <VoteBottom onClick={()=>clickModal(data)} onClickShare={shareOpenModal}></VoteBottom>
         {modalVisible && (
           <Modal

@@ -5,14 +5,11 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { mainInquire } from "@/services/main";
 import { useEffect, useRef } from "react";
 import { useRecoilValue } from "recoil";
-import {
-  segmentState,
-  sortState,
-  totalCategoryState,
-} from "@/utils/HeaderAtom";
+import { totalCategoryState } from "@/utils/HeaderAtom";
 import HomeTemplate from "@/components/template/HomeTemplate";
 import Loader from "@/assets/Loader";
 import ErrorScreen from "@/components/common/ErrorScreen";
+import NonePage from "@/components/common/NonePage";
 const MainPage = () => {
   // const datas = ButtonTest.data.votes;
   const categoryData = useRecoilValue(totalCategoryState);
@@ -71,18 +68,28 @@ const MainPage = () => {
 
   return (
     <>
-      <Main page="main"/>
-      <HomeContainer>
-        {error ? (
-          <ErrorScreen error={error}></ErrorScreen>
-        ) : (
-          <>
-            <HomeTemplate datas={Data} isFetching={isFetching} />
-            <div ref={bottomObserver}></div>
-            {isFetching && <Loader />}
-          </>
-        )}
-      </HomeContainer>
+      {" "}
+      <Main page="main" />
+      {isFetching ? (
+        <Loader />
+      ) : (
+        <>
+          {" "}
+          <HomeContainer>
+            {error ? (
+              <ErrorScreen error={error}></ErrorScreen>
+            ) : !Data?.length ? (
+              <NonePage what="main" />
+            ) : (
+              <>
+                <HomeTemplate datas={Data} isFetching={isFetching} />
+                <div ref={bottomObserver}></div>
+                {isFetching && <Loader />}
+              </>
+            )}
+          </HomeContainer>
+        </>
+      )}
       <Footer page="main" />
     </>
   );

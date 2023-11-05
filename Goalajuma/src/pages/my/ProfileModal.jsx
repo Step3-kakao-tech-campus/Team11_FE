@@ -42,7 +42,7 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   }
 
   const handleLogOut = () => {
-
+    localStorage.removeItem("token");
   }
   
   return (
@@ -84,12 +84,6 @@ ProfileModal.propTypes = {
   myNickName : PropTypes.string.isRequired,
   myEmail : PropTypes.string.isRequired,
   img : PropTypes.string,
-};
-
-ProfileModal.propTypes = {
-  nickName: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  img: PropTypes.string,
 };
 
 const Modify = styled.div`
