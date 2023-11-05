@@ -48,8 +48,11 @@ const SignUpPage = () => {
   const handleSignUp =()=>{
     if(isValid.isName &&isValid.isEmail && isValid.isPassword && isValid.isPasswordConfirm){
       signupInquire(value)
-      .then(navigate(routes.login))
-      .catch(err=>console.log(err))
+      .then(()=>{
+        alert("회원가입 성공!!")
+        navigate(routes.login)
+      })
+      .catch(err=>alert(err.data.message))
     }else{
       console.log('입력 내용이 올바르지 않습니다.')
     }
@@ -100,7 +103,9 @@ const SignUpPage = () => {
           label="Email"
           value={value.email}
           onChange={handleOnChange}
-        />
+        >
+          <StyledButton onClick={emailCheck}>중복 검사</StyledButton>
+        </InputGroup>
         <StyledErr>{validText.emailText}</StyledErr>
         <InputGroup
           className="password"
@@ -123,7 +128,6 @@ const SignUpPage = () => {
         />
         <StyledErr>{validText.passwordConfirmText}</StyledErr>
       </Group>
-      <StyledButton onClick={emailCheck}>중복 검사</StyledButton>
       <PolicyGroup>
         <Policy>
           <input
