@@ -20,13 +20,13 @@ import { useQuery } from "react-query";
  */
 
 const ModalLayout = ({ id, what }) => {
-
-  // const {data} = useQuery(["voteId",id], 
-  //   async (id) => {return detailInquire(id)}, 
-  //   { enabled: !!id }
-  // )
-  const data = detailInquire(id);
-  console.log(data.vote)
+  console.log(id)
+  const {data} = useQuery(["voteId",id], 
+    async (id) => {return detailInquire(id)}, 
+    { enabled: !!id }
+  )
+  // const data = detailInquire(id);
+  console.log(data)
   const {
     totalCount,
     participate,

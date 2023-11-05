@@ -103,7 +103,9 @@ const SignUpPage = () => {
           label="Email"
           value={value.email}
           onChange={handleOnChange}
-        />
+        >
+          <StyledButton onClick={emailCheck}>중복 검사</StyledButton>
+        </InputGroup>
         <StyledErr>{validText.emailText}</StyledErr>
         <InputGroup
           className="password"
@@ -126,7 +128,6 @@ const SignUpPage = () => {
         />
         <StyledErr>{validText.passwordConfirmText}</StyledErr>
       </Group>
-      <StyledButton onClick={emailCheck}>중복 검사</StyledButton>
       <PolicyGroup>
         <Policy>
           <input
