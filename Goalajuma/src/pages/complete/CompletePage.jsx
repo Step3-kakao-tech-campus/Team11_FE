@@ -9,6 +9,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { completeInquire } from "@/services/main";
 import Loader from "@/assets/Loader";
 import ErrorScreen from "@/components/common/ErrorScreen";
+import NonePage from "@/components/common/NonePage";
 
 const CompletePage = () => {
   const categoryData = useRecoilValue(completeTotalCategoryState);
@@ -67,19 +68,26 @@ const CompletePage = () => {
 
   return (
     <>
-      <Main page="complete"/>
-      <HomeContainer>
-        {error ? (
-          <ErrorScreen error={error}></ErrorScreen>
-        ) : (
-          <>
-            {" "}
-            <CompleteTemplate datas={Data} isFetching={isFetching} />
-            <div ref={bottomObserver}></div>
-            {isFetching && <Loader />}
-          </>
-        )}
-      </HomeContainer>
+      <Main page="complete" />
+      {isFetching ? (
+        <Loader />
+      ) : (
+        <HomeContainer>
+          {error ? (
+            <ErrorScreen error={error}></ErrorScreen>
+          ) : !Data?.length ? (
+            <NonePage what="complete" />
+          ) : (
+            <>
+              {" "}
+              <CompleteTemplate datas={Data} isFetching={isFetching} />
+              <div ref={bottomObserver}></div>
+              {isFetching && <Loader />}
+            </>
+          )}
+        </HomeContainer>
+      )}
+
       <Footer page="complete" />
     </>
   );

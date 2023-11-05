@@ -20,11 +20,10 @@ import { useQuery } from "react-query";
  */
 
 const ModalLayout = ({ id, what }) => {
-  const {data} = useQuery(`/votes/${id}`, 
-    async () => detailInquire(id), 
-    { enabled: !!id }
-  )
-  console.log(id)
+  const { data } = useQuery(`/votes/${id}`, async (id) => detailInquire(id), {
+    enabled: !!id,
+  });
+  console.log(id);
   const {
     totalCount,
     participate,
@@ -37,11 +36,11 @@ const ModalLayout = ({ id, what }) => {
     username,
     category,
   } = data;
-  console.log(data)
-  
+  console.log(data);
+
   const [participateState, setParticipate] = useState(participate);
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(category)
+  console.log(category);
   const closeModal = () => {
     setModalVisible(false);
   };
@@ -83,10 +82,9 @@ const ModalLayout = ({ id, what }) => {
             maskClosable={true}
             onClose={closeModal}
           >
-            <ShareForm/>
+            <ShareForm />
           </Modal>
         )}
-
       </Container>
       <Chat>
         <ChatForm />
