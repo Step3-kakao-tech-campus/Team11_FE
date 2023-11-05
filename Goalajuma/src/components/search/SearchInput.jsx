@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import Icon from "../common/Icon";
 import { FaSearch, FaArrowLeft } from "react-icons/fa";
+import { AiOutlineClose } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { Palette } from "@/styles/Palette";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
-import { useState } from "react";
+import { useRef, useState } from "react";
 const SearchInput = () => {
   let { query } = useParams();
   const navigate = useNavigate();
+  const searchRef = useRef();
   const [value, setValue] = useState(query);
   const goToSearch = (e) => {
     e.preventDefault();
@@ -17,44 +19,65 @@ const SearchInput = () => {
   };
   const searchOnChange = (e) => {
     setValue(e.target.value);
-    // setSearchQuery();
   };
 
   return (
-    <SearchStyle onSubmit={(e) => goToSearch(e)}>
-      <Icon
-        size="21px"
-        color={Palette.point_blue}
-        onClick={() => {
-          console.log("d");
-          navigate(routes.home);
-        }}
-      >
-        <FaArrowLeft />
-      </Icon>
-      <input
-        type="text"
-        placeholder="검색어를 입력해주세요."
-        value={value}
-        onChange={(e) => searchOnChange(e)}
-      />
-
-      <Icon
-        size="21px"
-        color={Palette.point_blue}
-        onClick={(e) => goToSearch(e)}
-      >
-        <FaSearch />
-      </Icon>
-    </SearchStyle>
+    <>
+      <SearchStyle onSubmit={(e) => goToSearch(e)}>
+        <Icon
+          size="21px"
+          color={Palette.point_blue}
+          onClick={() => {
+            navigate(routes.home);
+          }}
+          className="searchIcon"
+        >
+          <FaArrowLeft />
+        </Icon>
+        <input
+          type="text"
+          placeholder="검색어를 입력해주세요."
+          value={value}
+          onChange={(e) => searchOnChange(e)}
+          autoFocus
+          ref={searchRef}
+        />
+        {value && focus ? (
+          <Icon
+            size="14px"
+            className="searchXIcon"
+            color={Palette.font_gray}
+            onClick={() => {
+              setValue("");
+              searchRef.current.focus();
+            }}
+          >
+            <AiOutlineClose />
+          </Icon>
+        ) : (
+          <></>
+        )}
+        <Icon
+          size="23px"
+          color={Palette.point_blue}
+          onClick={(e) => goToSearch(e)}
+          className="searchIcon"
+        >
+          <FaSearch />
+        </Icon>
+      </SearchStyle>
+    </>
   );
 };
 
 const SearchStyle = styled.form`
+  background-color: white;
+  z-index: 10000000;
   display: flex;
   align-items: center;
-  position: relative;
-  bottom: 2rem;
+  position: fixed;
+  top: 0rem;
+  padding-top: 1rem;
 
   & input {
     width: 230px;
@@ -65,15 +88,23 @@ const SearchStyle = styled.form`
     padding: 0 50px;
     background-color: transparent;
   }
-  & div:first-child {
+  .searchIcon:first-child {
     position: relative;
     top: 0.2rem;
     left: 2.5rem;
   }
-  & div:last-child {
+  .searchIcon:last-child {
     position: relative;
     top: 0.2rem;
-    right: 2.5rem;
+    right: 3rem;
+  }
+  .searchXIcon {
+    position: absolute;
+    top: 2.1rem;
+    right: 5rem;
+  }
+  .searchXIcon:hover {
+    background-color: #d8d8d8;
   }
 `;
 export default SearchInput;
