@@ -6,45 +6,38 @@ import VoteBottom from "@/components/common/voteButton/VoteBottom";
 import ChatForm from "./ChatForm";
 import ChatWriteForm from "./ChatWriteForm";
 import styled from "styled-components";
-import { useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "./Modal";
 import ShareForm from "./ShareForm";
 import { detailInquire } from "@/services/main";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "@/assets/Loader";
 
 /**
  *
- * @param {object} data
+ * @param {object} id
  * @param {string} what
  */
 
 const ModalLayout = ({ id, what }) => {
-  const { data } = useQuery(`/votes/${id}`, async (id) => detailInquire(id), {
+  const { data } = useQuery({
+    queryKey: ["voteId"],
+    queryFn: () => {
+      console.log(id);
+      return detailInquire(id);
+    },
     enabled: !!id,
   });
-  console.log(id);
-  const {
-    totalCount,
-    participate,
-    isOwner,
-    title,
-    content,
-    endDate,
-    active,
-    options,
-    username,
-    category,
-  } = data;
-  console.log(data);
-
-  const [participateState, setParticipate] = useState(participate);
+  const detailData = data?.data.data.vote;
+  console.log(detailData);
+  const [participateState, setParticipate] = useState(detailData.participate);
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(category);
-  const closeModal = () => {
+
+  const shareCloseModal = () => {
     setModalVisible(false);
   };
-  const share = () => {
+  const shareOpenModal = () => {
     setModalVisible(true);
   };
 
@@ -53,44 +46,49 @@ const ModalLayout = ({ id, what }) => {
   };
 
   return (
-    <MainContainer className="modal">
-      <Container>
-        <VoteHead
-          totalCount={totalCount}
-          endDate={endDate}
-          what={what}
-          isOwner={isOwner}
-          active={active}
-          username={username}
-          categoryValue={category}
-        ></VoteHead>
-        <MainContent title={title} content={content}></MainContent>
+    <Suspense fallback={<Loader />}>
+      <MainContainer className="modal">
+        <Container>
+          <VoteHead
+            totalCount={detailData.totalCount}
+            endDate={detailData.endDate}
+            what={what}
+            isOwner={detailData.isOwner}
+            active={detailData.active}
+            username={detailData.username}
+            categoryValue={detailData.category}
+          ></VoteHead>
+          <MainContent
+            title={detailData.title}
+            content={detailData.content}
+          ></MainContent>
 
-        <ButtonLayout
-          participate={participateState}
-          isOwner={isOwner}
-          active={active}
-          options={options}
-          onClick={clickButton}
-        ></ButtonLayout>
+          <ButtonLayout
+            participate={participateState}
+            isOwner={detailData.isOwner}
+            active={detailData.active}
+            options={detailData.options}
+            onClick={clickButton}
+          ></ButtonLayout>
 
-        <VoteBottom onClickShare={share}></VoteBottom>
-        {modalVisible && (
-          <Modal
-            visible={modalVisible}
-            closable={true}
-            maskClosable={true}
-            onClose={closeModal}
-          >
-            <ShareForm />
-          </Modal>
-        )}
-      </Container>
-      <Chat>
-        <ChatForm />
-        <ChatWriteForm participate={participate} />
-      </Chat>
-    </MainContainer>
+          <VoteBottom onClickShare={shareOpenModal}></VoteBottom>
+          {modalVisible && (
+            <Modal
+              visible={modalVisible}
+              closable={true}
+              maskClosable={true}
+              onClose={shareCloseModal}
+            >
+              <ShareForm />
+            </Modal>
+          )}
+        </Container>
+        <Chat>
+          <ChatForm id={id} />
+          <ChatWriteForm participate={detailData.participate} />
+        </Chat>
+      </MainContainer>
+    </Suspense>
   );
 };
 const Container = styled.div`

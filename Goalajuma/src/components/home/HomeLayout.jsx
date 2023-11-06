@@ -8,6 +8,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
 import ModalLayout from "../common/modal/ModalLayout";
+import ShareForm from "../common/modal/ShareForm";
 
 /**
  *
@@ -33,6 +34,7 @@ const HomeLayout = ({ data, what }) => {
     participate && participate
   );
   const [modalVisible, setModalVisible] = useState(false);
+  const [share, setShare] = useState(false);
   const [modalId, setModalId] = useState(null);
   const [optionState, setOptionState] = useState(options);
   // const [count, setCount] = useState(0);
@@ -56,34 +58,16 @@ const HomeLayout = ({ data, what }) => {
   const clickModal = (data) => {
     setModalVisible(true);
     setModalId(data.id);
-    const { data: Data } = useQuery(
-      `/votes/${id}`,
-      async () => detailInquire(id),
-      {
-        enabled: !!id,
-      }
-    );
-    console.log(id);
-    const {
-      totalCount,
-      participate,
-      isOwner,
-      title,
-      content,
-      endDate,
-      active,
-      options,
-      username,
-      category,
-    } = data;
-    console.log(data);
   };
   const closeModal = () => {
     setModalVisible(false);
     setModalId(null);
   };
-  const share = () => {
-    alert("공유하기");
+  const shareOpenModal = () => {
+    setShare(true);
+  };
+  const shareCloseModal = () => {
+    setShare(false);
   };
   return (
     <MainContainer>
@@ -110,7 +94,7 @@ const HomeLayout = ({ data, what }) => {
 
         <VoteBottom
           onClick={() => clickModal(data)}
-          onClickShare={share}
+          onClickShare={shareOpenModal}
         ></VoteBottom>
         {modalVisible && (
           <Modal
@@ -120,6 +104,16 @@ const HomeLayout = ({ data, what }) => {
             onClose={closeModal}
           >
             <ModalLayout id={modalId} what="main" />
+          </Modal>
+        )}
+        {share && (
+          <Modal
+            visible={share}
+            closable={true}
+            maskClosable={true}
+            onClose={shareCloseModal}
+          >
+            <ShareForm />
           </Modal>
         )}
       </Container>

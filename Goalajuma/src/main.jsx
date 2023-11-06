@@ -10,14 +10,14 @@ import { BrowserRouter } from "react-router-dom";
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <GlobalStyle />
-        <BrowserRouter>
-          <ScrollToTop />
+    <RecoilRoot>
+      <GlobalStyle />
+      <BrowserRouter>
+        <ScrollToTop />
+        <QueryClientProvider client={queryClient} contextSharing={true}>
           <App />
-        </BrowserRouter>
-      </RecoilRoot>
-    </QueryClientProvider>
+        </QueryClientProvider>
+      </BrowserRouter>
+    </RecoilRoot>
   </React.StrictMode>
 );
