@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 import Modal from "./Modal";
 import ShareForm from "./ShareForm";
 import { detailInquire } from "@/services/main";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 /**
  *
@@ -20,13 +20,15 @@ import { useQuery } from "react-query";
  */
 
 const ModalLayout = ({ id, what }) => {
-  console.log(id)
-  const {data} = useQuery({
-    queryKey: ["voteId"], 
-    queryFn: (id) => {return detailInquire(id)}, 
-    enabled: !!id
-})
-  console.log(data)
+  const { data } = useQuery({
+    queryKey: ["voteId"],
+    queryFn: () => {
+      console.log(id);
+      return detailInquire(id);
+    },
+    enabled: !!id,
+  });
+
   const {
     totalCount,
     participate,
@@ -38,11 +40,11 @@ const ModalLayout = ({ id, what }) => {
     options,
     username,
     category,
-  } = data.vote;
+  } = data.data.data.vote;
 
   const [participateState, setParticipate] = useState(participate);
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(category)
+  // console.log(category);
   const shareCloseModal = () => {
     setModalVisible(false);
   };
@@ -58,13 +60,13 @@ const ModalLayout = ({ id, what }) => {
     <MainContainer className="modal">
       <Container>
         <VoteHead
-          totalCount={totalCount}
-          endDate={endDate}
-          what={what}
-          isOwner={isOwner}
-          active={active}
-          username={username}
-          categoryValue={category}
+        totalCount={totalCount}
+        endDate={endDate}
+        what={what}
+        isOwner={isOwner}
+        active={active}
+        username={username}
+        categoryValue={category}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 
@@ -84,10 +86,9 @@ const ModalLayout = ({ id, what }) => {
             maskClosable={true}
             onClose={shareCloseModal}
           >
-            <ShareForm/>
+            <ShareForm />
           </Modal>
         )}
-
       </Container>
       <Chat>
         <ChatForm />
