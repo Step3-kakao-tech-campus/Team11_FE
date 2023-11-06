@@ -64,10 +64,10 @@ const HomeLayout = ({ data, what }) => {
     setModalId(null);
   };
   const shareOpenModal = () => {
-    setShare(true)
+    setShare(true);
   };
   const shareCloseModal = () => {
-    setShare(false)
+    setShare(false);
   };
   return (
     <MainContainer>
@@ -92,8 +92,10 @@ const HomeLayout = ({ data, what }) => {
           voteId={id}
         ></ButtonLayout>
 
-
-        <VoteBottom onClick={()=>clickModal(data)} onClickShare={shareOpenModal}></VoteBottom>
+        <VoteBottom
+          onClick={() => clickModal(data)}
+          onClickShare={shareOpenModal}
+        ></VoteBottom>
         {modalVisible && (
           <Modal
             visible={modalVisible}
@@ -111,7 +113,7 @@ const HomeLayout = ({ data, what }) => {
             maskClosable={true}
             onClose={shareCloseModal}
           >
-            <ShareForm/>
+            <ShareForm />
           </Modal>
         )}
       </Container>
