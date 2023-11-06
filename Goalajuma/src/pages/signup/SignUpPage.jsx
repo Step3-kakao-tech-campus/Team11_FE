@@ -106,7 +106,6 @@ const SignUpPage = () => {
             onChange={handleOnChange}
           />
           <StyledButton onClick={emailCheck}>중복 검사</StyledButton>
-
         </InputContainer>
         <StyledErr>{validText.emailText}</StyledErr>
         <InputGroup
@@ -194,10 +193,6 @@ const Group = styled.div`
   flex-direction: column;
   gap: 15px;
   align-items: center;
-
-  .passwordConfirm{
-    margin-bottom: 50px;
-  }
 `;
 const InputContainer = styled.div`
   height: 100px;
@@ -248,7 +243,7 @@ const PolicyGroup = styled.div`
   bottom: 20px;
   left: 10px;
   text-align: left;
-
+  margin-top: 50px;
 `;
 const Policy = styled.div`
   display: flex;
