@@ -192,7 +192,10 @@ const Group = styled.div`
   flex-direction: column;
   gap: 15px;
   align-items: center;
-  .input:last-child {
+  .email{
+    height: 100px;
+  }
+  .passwordConfirm{
     margin-bottom: 50px;
   }
 `;
@@ -227,8 +230,8 @@ const StyledButton = styled.button`
   color: #fff;
   position: relative;
   width: 32%;
-  bottom: 303px;
-  left: 180px;
+  bottom: 40px;
+  left: 80px;
   cursor: pointer;
   &:hover{
     background-color: #8C9CCF;
