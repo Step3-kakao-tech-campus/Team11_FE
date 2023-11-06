@@ -20,20 +20,24 @@ const Mypage = () => {
       return myInquire();
     },
     enabled: !!token,
-  }); 
-  const profile = data?.data;  
+  });
+  const profile = data?.data;
   return (
     <div>
-      <MyPageHeader/>
+      <MyPageHeader />
       <MyContainer>
-        <Profile userName={profile?.data.nickName} email={profile?.data.email} src={"./vv.jpg"}></Profile>
+        <Profile
+          userName={profile?.data.nickName}
+          email={profile?.data.email}
+          src={"./vv.jpg"}
+        ></Profile>
         <MyPageUl
           votingNumber={profile?.data.participateVoteCount}
           questionNumber={profile?.data.createVoteCount}
           data={profile?.data}
         ></MyPageUl>
       </MyContainer>
-      <Footer page="mypage"/>
+      <Footer page="mypage" />
     </div>
   );
 };
