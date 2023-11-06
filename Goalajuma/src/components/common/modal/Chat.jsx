@@ -3,21 +3,21 @@ import Img from '@/components/common/Img'
 import styled from "styled-components";
 
 const Chat = ({data}) => {
-  const {
-    username,
-    content,
-    createTime
-  } = data
+  // const {
+  //   username,
+  //   content,
+  //   createTime
+  // } = data
   return (
     <>
     <ChatStyled>
       <Img src="vv.jpg" size="35px"/>
       <div>
         <UserStyled>
-          <NameStyled>{username}</NameStyled>
-          <DateStyled>{createTime}</DateStyled>
+          <NameStyled>{data.username}</NameStyled>
+          <DateStyled>{data.createTime}</DateStyled>
         </UserStyled>
-        <ContentStyled>{content}</ContentStyled>
+        <ContentStyled>{data.content}</ContentStyled>
       </div>
     </ChatStyled>
     </>
