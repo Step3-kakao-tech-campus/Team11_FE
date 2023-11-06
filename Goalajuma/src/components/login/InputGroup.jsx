@@ -1,0 +1,54 @@
+import Box from "./Box";
+import Label from "./Label";
+import Input from "./Input";
+import PropTypes from 'prop-types';
+
+/**
+ * @param {string} id
+ * @param {string} type
+ * @param { func } onChange
+ * @param { string } value
+ * @param { string } className
+ * @param {string} placeholder
+ * @param {string} label
+ * @param {boolean} valid
+ */
+const InputGroup = ({
+  id,
+  type,
+  value,
+  onChange,
+  className,
+  placeholder,
+  label,
+  valid,
+  children
+}) => {
+  return (
+    <Box className={className}>
+      <Label htmlFor={id}>{label}</Label>
+      <Input
+        id={id}
+        type={type}
+        value={value}
+        placeholder={placeholder}
+        onChange={onChange}
+        valid={valid}
+      />
+      {children}
+    </Box>
+  );
+};
+
+InputGroup.propTypes = {
+  id: PropTypes.string,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+  label: PropTypes.string,
+  valid: PropTypes.bool,
+}
+
+export default InputGroup;
