@@ -5,27 +5,32 @@ import MyPageHeader from "@/components/layouts/headers/MyPageHeader";
 import Footer from "@/components/layouts/footers/Footer";
 // import { MainMyData } from "@/components/common/mypage/MyPageData";
 import { myInquire } from "@/services/my";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const Mypage = () => {
   const token = localStorage.getItem("token");
-  const {data} = useQuery(
-    ["myProfile"],
-    myInquire,
-    {
-      enabled: !!token
-    }
-  );
-  // const data =  myInquire();
-  console.log(data);
+  // const data = useQuery({
+  //   queryKey: ["myProfile"],
+  //   queryFn: myInquire(),
+  //   }
+  // );
+  const { data, error, isLoading, isError } = useQuery({
+    queryKey: ["myProfile"],
+    queryFn: () => {
+      return myInquire();
+    },
+    enabled: !!token,
+  }); 
+  const profile = data?.data;  
   return (
     <div>
       <MyPageHeader/>
       <MyContainer>
-        <Profile userName={data.nickName} email={data.email} src={"./vv.jpg"}></Profile>
+        <Profile userName={profile?.data.nickName} email={profile?.data.email} src={"./vv.jpg"}></Profile>
         <MyPageUl
-          votingNumber={data.participateVoteCount}
-          questionNumber={data.createVoteCount}
+          votingNumber={profile?.data.participateVoteCount}
+          questionNumber={profile?.data.createVoteCount}
+          data={profile?.data}
         ></MyPageUl>
       </MyContainer>
       <Footer page="mypage"/>
