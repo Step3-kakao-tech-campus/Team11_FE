@@ -1,25 +1,36 @@
 import SubMyPageHeader from "@/components/layouts/headers/SubMyPageHeader";
 import Footer from "@/components/layouts/footers/Footer";
-import { MyQuestionsData } from "@/components/common/mypage/mypageTestData";
+// import { MyQuestionsData } from "@/components/common/mypage/mypageTestData";
 import MyVoteList from "@/components/common/mypage/MyVoteList";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import { Palette } from "@/styles/Palette";
 import { MyContainer } from "@/styles/Container";
+import { useQuery } from "@tanstack/react-query";
+import { myvoteInquire } from "@/services/my";
 
 const MyQuestionPage = () => {
-  const datas = MyQuestionsData.data.votes;
+  const token = localStorage.getItem("token");
+  const {data} = useQuery({
+    queryKey: ["myQuestion"],
+    queryFn: () => {
+      return myvoteInquire();
+    }
+  })
+  const info = data?.data.data;
+  console.log(info);
+  // const datas = MyQuestionsData.data.votes;
   // const datas = null;
   const navigate = useNavigate();
   return (
     <div>
       <SubMyPageHeader page="내가 한 질문" />
       <MyContainer>
-        {datas ? (
+        {info?.votes.length ? (
           <div>
-            {datas &&
-              datas.map((data) => (
+            {info &&
+              info?.votes.map((data) => (
                 <>
                   <MyVoteList data={data} />
                 </>
