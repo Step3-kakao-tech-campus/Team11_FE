@@ -17,7 +17,6 @@ const ShareForm = () => {
 				<CopyToClipboard text={currentUrl}>
 					<URLShareButton>URL</URLShareButton>
 				</CopyToClipboard>
-				<button>kakao</button>
 			</GridContainer>
 		</FlexContainer>
   )
@@ -30,8 +29,8 @@ const FlexContainer = styled.div`
 
 const GridContainer = styled.div`
 	display: grid;
-	grid-template-columns: repeat(4, 48px);
-	grid-column-gap: 8px;
+	grid-template-columns: repeat(3, 48px);
+	grid-column-gap: 10px;
 	justify-content: center;
 	align-items: center;
 	margin-bottom: 16px;

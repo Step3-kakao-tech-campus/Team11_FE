@@ -15,7 +15,7 @@ const MypageMainLi = ({ content, number, onClick }) => {
   return (
     <DivLi onClick={onClick}>
       <li>
-        {content} {number && <span>({number})</span>}
+        {content} {!isNaN(number) && <span>({number})</span>}
       </li>
       <Icon size="24px" color={Palette["point_blue"]}>
         <GoChevronRight />

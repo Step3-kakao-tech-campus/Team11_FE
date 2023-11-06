@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 import { useState } from "react";
 import Modal from '../modal/Modal'
 import ProfileModal from "@/pages/my/ProfileModal"
-import { MainMyData } from "./MyPageData";
 
 /**
  *
@@ -14,11 +13,10 @@ import { MainMyData } from "./MyPageData";
  * @param {number} questionNumber 내가 한 질문
  * @return {JSX.Element}
  */
-const MyPageUl = ({ votingNumber, questionNumber }) => {
+const MyPageUl = ({ votingNumber, questionNumber, data }) => {
   const navigate = useNavigate(); // Li tag 아래 버튼을 주고 onclick 주기
   const [profile, setProfile] = useState(false);
-  const datas = MainMyData.data;
-  
+ 
   const openProfile = () => {
     setProfile(true);
   }
@@ -29,12 +27,12 @@ const MyPageUl = ({ votingNumber, questionNumber }) => {
     <MyUlStyle> 
       <MypageMainLi
         content="내가 참여한 투표"
-        number={datas.participateVoteCount}
+        number={votingNumber}
         onClick={()=>navigate(route.myparticipation)}
       ></MypageMainLi>
       <MypageMainLi
         content="내가 한 질문"
-        number={datas.createVoteCount}
+        number={questionNumber}
         onClick={()=>navigate(route.myquestion)}
       ></MypageMainLi>
       <MypageMainLi
@@ -50,9 +48,9 @@ const MyPageUl = ({ votingNumber, questionNumber }) => {
             maskClosable={true}
             onClose={closeProfile}>
             <ProfileModal
-              myNickName ={datas.nickName}
-              myEmail={datas.email}
-              img={datas.image}
+              myNickName ={data.nickName}
+              myEmail={data.email}
+              img="./vv.jpg"
             />
           </Modal>
       }
@@ -62,7 +60,8 @@ const MyPageUl = ({ votingNumber, questionNumber }) => {
 
 MyPageUl.propTypes={
   votingNumber: PropTypes.number.isRequired,
-  questionNumber: PropTypes.number.isRequired
+  questionNumber: PropTypes.number.isRequired,
+  data: PropTypes.object.isRequired,
 }
 const MyUlStyle = styled.ul`
   display: flex;

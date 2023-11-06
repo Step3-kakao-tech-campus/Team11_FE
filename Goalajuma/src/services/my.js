@@ -1,7 +1,7 @@
 import { instance } from "./index";
 
 export const myInquire = () => {
-  return instance.get(`/users/profile`);
+  return instance.get("/users/profile");
 };
 
 export const participateInquire = () => {

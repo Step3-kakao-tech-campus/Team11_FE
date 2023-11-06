@@ -8,6 +8,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
 import ModalLayout from "../common/modal/ModalLayout";
+import ShareForm from "../common/modal/ShareForm";
 
 /**
  *
@@ -33,6 +34,7 @@ const HomeLayout = ({ data, what }) => {
     participate && participate
   );
   const [modalVisible, setModalVisible] = useState(false);
+  const [share, setShare] = useState(false);
   const [modalId, setModalId] = useState(null);
   const [optionState, setOptionState] = useState(options);
   // const [count, setCount] = useState(0);
@@ -61,8 +63,11 @@ const HomeLayout = ({ data, what }) => {
     setModalVisible(false);
     setModalId(null);
   };
-  const share = () => {
-    alert("공유하기");
+  const shareOpenModal = () => {
+    setShare(true)
+  };
+  const shareCloseModal = () => {
+    setShare(false)
   };
   return (
     <MainContainer>
@@ -87,7 +92,8 @@ const HomeLayout = ({ data, what }) => {
           voteId={id}
         ></ButtonLayout>
 
-        <VoteBottom onClick={()=>clickModal(data)} onClickShare={share}></VoteBottom>
+
+        <VoteBottom onClick={()=>clickModal(data)} onClickShare={shareOpenModal}></VoteBottom>
         {modalVisible && (
           <Modal
             visible={modalVisible}
@@ -96,6 +102,16 @@ const HomeLayout = ({ data, what }) => {
             onClose={closeModal}
           >
             <ModalLayout id={modalId} what="main" />
+          </Modal>
+        )}
+        {share && (
+          <Modal
+            visible={share}
+            closable={true}
+            maskClosable={true}
+            onClose={shareCloseModal}
+          >
+            <ShareForm/>
           </Modal>
         )}
       </Container>

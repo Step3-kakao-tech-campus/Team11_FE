@@ -3,7 +3,6 @@ import InputGroup from "@/components/login/InputGroup";
 import Button from "@/components/login/Button";
 import { useState } from "react";
 import { GoChevronLeft } from "react-icons/go";
-import { RiKakaoTalkFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { MainContainer } from "@/styles/Container";
 import useValid from "@/hooks/useValid";
@@ -29,11 +28,12 @@ const LoginPage = () => {
       loginInquire(value)
       .then(res => {
         localStorage.setItem('token', res.data.data.accessToken)
+        alert("로그인 성공 !!")
         navigate("/")
       })
-      .catch(err => console.log('Login 요청 실패:',err.message))
+      .catch(err => alert(err.data.message))
     }else{
-      console.log('입력 내용이 올바르지 않습니다.')
+      alert('입력 내용이 올바르지 않습니다.')
     }
   }
   return (
@@ -86,19 +86,6 @@ const LoginPage = () => {
         >
           로그인
         </Button>
-        <Button color="#FEE500">
-          <Icon>
-            <RiKakaoTalkFill
-              style={{
-                paddingRight: "8px",
-                fontSize: "20px",
-                position: "relative",
-                top: "4px",
-              }}
-            />
-            카카오 로그인
-          </Icon>
-        </Button>
       </ButtonGroup>
     </MainContainer>
   );
@@ -106,9 +93,7 @@ const LoginPage = () => {
 
 export default LoginPage;
 
-const Icon = styled.div`
-  color: #333;
-`;
+
 const Title = styled.div`
   font-size: 32px;
   font-weight: bold;

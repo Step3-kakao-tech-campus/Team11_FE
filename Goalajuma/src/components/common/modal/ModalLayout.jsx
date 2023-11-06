@@ -20,11 +20,13 @@ import { useQuery } from "react-query";
  */
 
 const ModalLayout = ({ id, what }) => {
-  const {data} = useQuery(`/votes/${id}`, 
-    async () => detailInquire(id), 
+  console.log(id)
+  const {data} = useQuery(["voteId",id], 
+    async (id) => {return detailInquire(id)}, 
     { enabled: !!id }
   )
-  console.log(id)
+  // const data = detailInquire(id);
+  console.log(data)
   const {
     totalCount,
     participate,
@@ -36,16 +38,15 @@ const ModalLayout = ({ id, what }) => {
     options,
     username,
     category,
-  } = data;
-  console.log(data)
-  
+  } = data.vote;
+
   const [participateState, setParticipate] = useState(participate);
   const [modalVisible, setModalVisible] = useState(false);
   console.log(category)
-  const closeModal = () => {
+  const shareCloseModal = () => {
     setModalVisible(false);
   };
-  const share = () => {
+  const shareOpenModal = () => {
     setModalVisible(true);
   };
 
@@ -75,13 +76,13 @@ const ModalLayout = ({ id, what }) => {
           onClick={clickButton}
         ></ButtonLayout>
 
-        <VoteBottom onClickShare={share}></VoteBottom>
+        <VoteBottom onClickShare={shareOpenModal}></VoteBottom>
         {modalVisible && (
           <Modal
             visible={modalVisible}
             closable={true}
             maskClosable={true}
-            onClose={closeModal}
+            onClose={shareCloseModal}
           >
             <ShareForm/>
           </Modal>
