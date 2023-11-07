@@ -6,7 +6,8 @@ import useValid from "@/hooks/useValid";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import { useRecoilState } from 'recoil';
-import { isLoggedInState } from '@/utils/AuthAtom';
+import { isLoginInState } from '@/utils/AuthAtom';
+import { removeCookie } from "@/services/Cookie";
 
 /**
  * 
@@ -21,7 +22,7 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   const nicknameRef = useRef(null);
   const emailRef = useRef(null);
   const {validText, isValid} = useValid(newInfo);
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
   const navigate = useNavigate();
   
   console.log(isValid);
@@ -49,7 +50,9 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   }
 
   const handleLogOut = () => {
-    setIsLoggedIn(false);
+    setisLoginIn(false);
+    removeCookie("refreshToken");
+    localStorage.removeItem("token");
     navigate(routes.home);
   }
   
