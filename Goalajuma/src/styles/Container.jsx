@@ -11,6 +11,11 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const ModalMainContainer = styled(MainContainer)`
+  height: 600px;
+  overflow: scroll;
+`;
 export const JoinContainer = styled(MainContainer)`
   margin-top: 80px;
 `;

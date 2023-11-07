@@ -1,36 +1,28 @@
+import { setCookie } from "./Cookie";
 import { instance } from "./index";
 
-export const loginInquire = (data) => {
+const token = (res)=>{
+  const accessToken = res.data.data.accessToken
+  const accessExpiredTime = res.data.data.accessExpiredTime
+  const refreshToken = res.data.data.refreshToken
+  const refreshExpiredTime = res.data.data.refreshExpiredTime
+  localStorage.setItem("token", accessToken)
+  setCookie('refreshToken', refreshToken, refreshExpiredTime)
+
+  const Token = {access: accessToken, expiredTime:accessExpiredTime}
+  return Token
+}
+
+export const loginInquire = async (data) => {
   const {email, password} = data;
   
-  return instance.post(`/api/auth/login`, {
+  const res = await instance.post(`/api/auth/login`, {
     email: email,
     password: password 
   })
-  // .then(res =>{
-  //   const expirationTime = new Date(res.data.data.expiredTime)
-  //   const currentTime = new Date()
-  //   const remainedTime = (expirationTime - currentTime) / (1000*60)
-  //   if(remainedTime <= 30){
-  //     refreshTokenInquire(data)
-  //       .then(res => {
-  //         localStorage.setItem('token', res.data.data.accessToken);
-  //       })
-  //       .catch(err => {
-  //         console.log('Refresh Token 요청 실패:', err);
-  //       });
-  //   } else {
-  //     localStorage.setItem('token', res.data.data.accessToken)
-  //   }
-  // })
-  
+  return token(res)
 };
 
-export const refreshTokenInquire = (data)=>{
-  const {email, password} = data;
-
-  return instance.post(`/api/auth/login`, {
-    email: email,
-    password: password
-  });
+export const refreshTokenInquire = ()=>{
+  return instance.post(`/api/auth/reissue`)
 }

@@ -1,4 +1,4 @@
-import { MainContainer } from "@/styles/Container";
+import { ModalMainContainer } from "@/styles/Container";
 import ButtonLayout from "@/components/common/voteButton/ButtonLayout";
 import VoteHead from "@/components/common/voteButton/VoteHead";
 import MainContent from "@/components/home/MainContent";
@@ -10,29 +10,45 @@ import { Suspense, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "./Modal";
 import ShareForm from "./ShareForm";
-import { detailInquire } from "@/services/main";
+import { detailInquire, ChatInquire } from "@/services/main";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "@/assets/Loader";
 
 /**
  *
- * @param {object} id 
+ * @param {object} id
  * @param {string} what
  */
 
 const ModalLayout = ({ id, what }) => {
-
-  const { data} = useQuery({
-    queryKey: ["voteId"],
+  const { modalId, setModalId } = useState(id);
+  const {
+    data: voteData,
+    isLoading: voteIsLoading,
+    error: voteError,
+  } = useQuery({
+    queryKey: ["voteId", id],
     queryFn: () => {
       console.log(id);
       return detailInquire(id);
     },
     enabled: !!id,
   });
-  const detailData = data?.data.data.vote;
-  console.log(detailData);
-  const [participateState, setParticipate] = useState(detailData.participate);
+
+  const {
+    data: chatData,
+    isLoading: chatIsLoading,
+    error: chatError,
+  } = useQuery({
+    queryKey: ["commentId", id],
+    queryFn: () => {
+      return ChatInquire(id);
+    },
+    enabled: !!id,
+  });
+
+  const detailData = voteData?.data.data.vote;
+  const [participateState, setParticipate] = useState(detailData?.participate);
   const [modalVisible, setModalVisible] = useState(false);
 
   const shareCloseModal = () => {
@@ -47,46 +63,63 @@ const ModalLayout = ({ id, what }) => {
   };
 
   return (
-    <Suspense fallback={<Loader/>}>
-    <MainContainer className="modal">
-      <Container>
-        <VoteHead
-        totalCount={detailData.totalCount}
-        endDate={detailData.endDate}
-        what={what}
-        isOwner={detailData.isOwner}
-        active={detailData.active}
-        username={detailData.username}
-        categoryValue={detailData.category}
-        ></VoteHead>
-        <MainContent title={detailData.title} content={detailData.content}></MainContent>
+    <>
+      {chatError || voteError ? (
+        <>
+          {chatError}|{voteError}
+        </>
+      ) : (
+        <>
+          {voteIsLoading || chatIsLoading ? (
+            <Loader />
+          ) : (
+            detailData && (
+              <ModalMainContainer className="modal">
+                <Container>
+                  <VoteHead
+                    totalCount={detailData?.totalCount}
+                    endDate={detailData?.endDate}
+                    what={what}
+                    isOwner={detailData?.isOwner}
+                    active={detailData?.active}
+                    username={detailData?.username}
+                    categoryValue={detailData?.category}
+                  ></VoteHead>
+                  <MainContent
+                    title={detailData?.title}
+                    content={detailData?.content}
+                  ></MainContent>
 
-        <ButtonLayout
-          participate={participateState}
-          isOwner={detailData.isOwner}
-          active={detailData.active}
-          options={detailData.options}
-          onClick={clickButton}
-        ></ButtonLayout>
+                  <ButtonLayout
+                    participate={participateState}
+                    isOwner={detailData?.isOwner}
+                    active={detailData?.active}
+                    options={detailData?.options}
+                    onClick={clickButton}
+                  ></ButtonLayout>
 
-        <VoteBottom onClickShare={shareOpenModal}></VoteBottom>
-        {modalVisible && (
-          <Modal
-            visible={modalVisible}
-            closable={true}
-            maskClosable={true}
-            onClose={shareCloseModal}
-          >
-            <ShareForm />
-          </Modal>
-        )}
-      </Container>
-      <Chat>
-        <ChatForm id={id}/>
-        <ChatWriteForm participate={detailData.participate} />
-      </Chat>
-    </MainContainer>
-    </Suspense>
+                  <VoteBottom onClickShare={shareOpenModal}></VoteBottom>
+                  {modalVisible && (
+                    <Modal
+                      visible={modalVisible}
+                      closable={true}
+                      maskClosable={true}
+                      onClose={shareCloseModal}
+                    >
+                      <ShareForm />
+                    </Modal>
+                  )}
+                </Container>
+                <Chat>
+                  <ChatForm data={chatData} />
+                  <ChatWriteForm participate={detailData?.participate} />
+                </Chat>
+              </ModalMainContainer>
+            )
+          )}
+        </>
+      )}
+    </>
   );
 };
 const Container = styled.div`

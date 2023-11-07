@@ -19,7 +19,7 @@ ActiveSign.propTypes = {
   active: PropTypes.string
 }
 const Label = styled.div`
-  font-size: 3px;
+  font-size: 10px;
   width: 2.5rem;
   height: 1rem;
   border: 1px solid;
