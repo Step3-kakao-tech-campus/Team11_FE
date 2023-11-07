@@ -7,17 +7,18 @@ import { RecoilRoot } from "recoil";
 // import ScrollToTop from "./components/common/ScrollToTop";
 import GlobalStyle from "./styles/GlobalStyle";
 import { BrowserRouter } from "react-router-dom";
-const queryClient = new QueryClient();
+import { CookiesProvider } from "react-cookie";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RecoilRoot>
-      <GlobalStyle />
-      <BrowserRouter>
-        {/* <ScrollToTop /> */}
-        <QueryClientProvider client={queryClient} contextSharing={true}>
+    <CookiesProvider>
+      <RecoilRoot>
+        <GlobalStyle />
+        <BrowserRouter>
+          {/* <ScrollToTop /> */}
           <App />
-        </QueryClientProvider>
-      </BrowserRouter>
-    </RecoilRoot>
+        </BrowserRouter>
+      </RecoilRoot>
+    </CookiesProvider>
   </React.StrictMode>
 );
