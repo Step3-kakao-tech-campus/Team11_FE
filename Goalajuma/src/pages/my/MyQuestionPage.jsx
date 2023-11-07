@@ -14,9 +14,8 @@ const MyQuestionPage = () => {
   const token = localStorage.getItem("token");
   const {data} = useQuery({
     queryKey: ["myQuestion"],
-    queryFn: () => {
-      return myvoteInquire();
-    }
+    queryFn: myvoteInquire,
+    enabled: !!token,
   })
   const info = data?.data.data;
   console.log(info);
