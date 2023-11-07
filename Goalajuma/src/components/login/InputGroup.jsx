@@ -22,7 +22,6 @@ const InputGroup = ({
   placeholder,
   label,
   valid,
-  children
 }) => {
   return (
     <Box className={className}>
@@ -35,7 +34,6 @@ const InputGroup = ({
         onChange={onChange}
         valid={valid}
       />
-      {children}
     </Box>
   );
 };
