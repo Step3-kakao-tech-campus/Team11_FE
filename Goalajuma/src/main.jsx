@@ -7,7 +7,7 @@ import { RecoilRoot } from "recoil";
 // import ScrollToTop from "./components/common/ScrollToTop";
 import GlobalStyle from "./styles/GlobalStyle";
 import { BrowserRouter } from "react-router-dom";
-import { CookiesProvider } from 'react-cookie';
+import { CookiesProvider } from "react-cookie";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
