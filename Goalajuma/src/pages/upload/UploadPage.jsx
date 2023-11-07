@@ -45,7 +45,7 @@ const UploadPage = () => {
 
   return (
     <div>
-      <UploadPageHeader/>
+      <UploadPageHeader />
       <UploadContainer>
         <div className="uploadHead">
           {" "}
