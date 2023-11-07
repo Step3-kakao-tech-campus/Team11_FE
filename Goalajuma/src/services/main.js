@@ -19,9 +19,9 @@ export const completeInquire = (categoryData, pageParam) => {
 };
 
 export const detailInquire = (id) => {
-  return instance.get(`/vote/${id}`);
+  return instance.get(`/votes/${id}`);
 };
 
 export const ChatInquire = (id) => {
-  return instance.get(`/vote/${id}/comments`);
+  return instance.get(`/votes/${id}/comments`);
 };
