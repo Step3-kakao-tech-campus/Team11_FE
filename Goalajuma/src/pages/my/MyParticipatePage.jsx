@@ -1,15 +1,26 @@
 import SubMyPageHeader from "@/components/layouts/headers/SubMyPageHeader";
 import Footer from "@/components/layouts/footers/Footer";
-import { MyParticipateData } from "@/components/common/mypage/mypageTestData";
+// import { MyParticipateData } from "@/components/common/mypage/mypageTestData";
 import MyVoteList from "@/components/common/mypage/MyVoteList";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
 import { MyContainer } from "@/styles/Container";
+import { useQuery } from "@tanstack/react-query";
+import { participateInquire } from "@/services/my";
 
 const MyParticipatePage = () => {
-  const datas = MyParticipateData.data.votes;
+  const token = localStorage.getItem("token");
+  const {data} = useQuery({
+    queryKey: ["myParticipate"],
+    queryFn: () => {
+      return participateInquire();
+    },
+    enabled: !!token,
+  })
+  const info = data?.data.data;
+  // const datas = MyParticipateData.data.votes;
   // const datas = null;
 
   const navigate = useNavigate();
@@ -18,10 +29,10 @@ const MyParticipatePage = () => {
     <div>
       <SubMyPageHeader page="내가 참여한 투표" />
       <MyContainer>
-        {datas ? (
+        {info?.votes.length ? (
           <div>
-            {datas &&
-              datas.map((data) => (
+            {info &&
+              info?.votes.map((data) => (
                 <>
                   <MyVoteList data={data} />
                 </>
