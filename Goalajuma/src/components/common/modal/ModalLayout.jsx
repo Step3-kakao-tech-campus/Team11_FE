@@ -21,7 +21,8 @@ import Loader from "@/assets/Loader";
  */
 
 const ModalLayout = ({ id, what }) => {
-  const { data } = useQuery({
+
+  const { data} = useQuery({
     queryKey: ["voteId"],
     queryFn: () => {
       console.log(id);
@@ -46,48 +47,45 @@ const ModalLayout = ({ id, what }) => {
   };
 
   return (
-    <Suspense fallback={<Loader />}>
-      <MainContainer className="modal">
-        <Container>
-          <VoteHead
-            totalCount={detailData.totalCount}
-            endDate={detailData.endDate}
-            what={what}
-            isOwner={detailData.isOwner}
-            active={detailData.active}
-            username={detailData.username}
-            categoryValue={detailData.category}
-          ></VoteHead>
-          <MainContent
-            title={detailData.title}
-            content={detailData.content}
-          ></MainContent>
+    <Suspense fallback={<Loader/>}>
+    <MainContainer className="modal">
+      <Container>
+        <VoteHead
+        totalCount={detailData.totalCount}
+        endDate={detailData.endDate}
+        what={what}
+        isOwner={detailData.isOwner}
+        active={detailData.active}
+        username={detailData.username}
+        categoryValue={detailData.category}
+        ></VoteHead>
+        <MainContent title={detailData.title} content={detailData.content}></MainContent>
 
-          <ButtonLayout
-            participate={participateState}
-            isOwner={detailData.isOwner}
-            active={detailData.active}
-            options={detailData.options}
-            onClick={clickButton}
-          ></ButtonLayout>
+        <ButtonLayout
+          participate={participateState}
+          isOwner={detailData.isOwner}
+          active={detailData.active}
+          options={detailData.options}
+          onClick={clickButton}
+        ></ButtonLayout>
 
-          <VoteBottom onClickShare={shareOpenModal}></VoteBottom>
-          {modalVisible && (
-            <Modal
-              visible={modalVisible}
-              closable={true}
-              maskClosable={true}
-              onClose={shareCloseModal}
-            >
-              <ShareForm />
-            </Modal>
-          )}
-        </Container>
-        <Chat>
-          <ChatForm id={id} />
-          <ChatWriteForm participate={detailData.participate} />
-        </Chat>
-      </MainContainer>
+        <VoteBottom onClickShare={shareOpenModal}></VoteBottom>
+        {modalVisible && (
+          <Modal
+            visible={modalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={shareCloseModal}
+          >
+            <ShareForm />
+          </Modal>
+        )}
+      </Container>
+      <Chat>
+        <ChatForm id={id}/>
+        <ChatWriteForm participate={detailData.participate} />
+      </Chat>
+    </MainContainer>
     </Suspense>
   );
 };

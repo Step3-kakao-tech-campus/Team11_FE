@@ -28,7 +28,7 @@ const MyVoteList = ({data}) => {
     <MyVote onClick={clickModal}>
       <VoteInfo>
         <ActiveSign active={data.active}/>
-        <div>{data.title}</div>
+        <div className="title">{data.title}</div>
       </VoteInfo>
       <Vote >
         더보기
@@ -67,6 +67,12 @@ const VoteInfo = styled.div`
   position: absolute;
   left: 20px;
   font-size: 17px;
+  > .title {
+    width: 270px;
+    height: 26px;
+    overflow: hidden;
+    text-align: left;
+  }
 `;
 const Vote = styled.div`
   position: absolute;
