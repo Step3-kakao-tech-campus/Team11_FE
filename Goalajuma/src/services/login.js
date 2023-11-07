@@ -1,6 +1,18 @@
 import { setCookie } from "./Cookie";
 import { instance } from "./index";
 
+const token = (res)=>{
+  const accessToken = res.data.data.accessToken
+  const accessExpiredTime = res.data.data.accessExpiredTime
+  const refreshToken = res.data.data.refreshToken
+  const refreshExpiredTime = res.data.data.refreshExpiredTime
+  localStorage.setItem("token", accessToken)
+  setCookie('refreshToken', refreshToken, refreshExpiredTime)
+
+  const Token = {access: accessToken, expiredTime:accessExpiredTime}
+  return Token
+}
+
 export const loginInquire = async (data) => {
   const {email, password} = data;
   
@@ -8,22 +20,9 @@ export const loginInquire = async (data) => {
     email: email,
     password: password 
   })
-  const accessToken = res.data.accessToken
-  const accessExpiredTime = res.data.accessExpiredTime
-  const refreshToken = res.data.refreshToken
-  const refreshExpiredTime = res.data.refreshExpiredTime
-  localStorage.setItem("accessToken", accessToken)
-  setCookie('refreshToken', refreshToken, refreshExpiredTime)
-  
-  const token = {access: accessToken, expiredTime:accessExpiredTime}
-  return token
+  return token(res)
 };
 
 export const refreshTokenInquire = ()=>{
   return instance.post(`/api/auth/reissue`)
-  //  refreshToken
-  // const refreshToken = res.data.refreshToken
-  // const refreshExpiredTime = res.data.refreshExpiredTime
-
-  // setCookie('refreshToken', refreshToken, refreshExpiredTime)
 }
