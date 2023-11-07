@@ -70,7 +70,7 @@ const MainPage = () => {
     <>
       {" "}
       <Main page="main" />
-      {isFetching ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <>

@@ -21,7 +21,7 @@ const MainContent = ({ title, content }) => {
       <div>
         <span className={moreState ? "more" : "short"}>
           <p>{content}</p>{" "}
-          {content.length > 50 ? (
+          {content?.length > 50 ? (
             <button onClick={showMoreBtnClick}>
               {buttonState ? "줄이기" : "자세히 보기"}
             </button>
