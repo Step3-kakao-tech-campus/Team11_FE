@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { Palette } from "@/styles/Palette";
 import EndButton from "@/components/common/voteButton/EndButton";
 import { useEffect, useState } from "react";
-import { contentList } from "@/components/layouts/headers/CategoryBox";
+import { contentList } from "@/components/layouts/headers/DropdownList";
 
 /**
  * @param {object} props
