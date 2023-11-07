@@ -4,6 +4,8 @@ import { removeCookie } from "./Cookie";
 import { refreshTokenInquire } from "./login";
 import { useRecoilState } from 'recoil';
 import { isLoginInState } from '@/utils/AuthAtom';
+import { useEffect } from "react";
+import useLogin from "@/hooks/useLogin";
 
 export const instance = axios.create({
   baseURL: "https://ke48313f43733a.user-app.krampoline.com/",
@@ -25,13 +27,18 @@ instance.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {
+  async (error) => {
     const {
       response: { status },
     } = error;
     if (status === 403) {
       //refreshtoken 요청
-      refreshTokenInquire();
+      console.log("status 403")
+      try{
+        await refreshTokenInquire();
+      } catch(err){
+        console.log("error refreshing",err)
+      }
     }
     if (status === 401) {
       const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);

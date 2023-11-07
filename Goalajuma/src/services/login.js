@@ -22,9 +22,9 @@ export const loginInquire = async (data) => {
   return token(res)
 };
 
-export const refreshTokenInquire = ()=>{
+export const refreshTokenInquire = async()=>{
   try{
-    const res = instance.post(`/api/auth/reissue`, null, {withCredentials: true})
+    const res = await instance.post(`/api/auth/reissue`, null, {withCredentials: true})
     console.log(res)
     return token(res)
   } catch(err){
