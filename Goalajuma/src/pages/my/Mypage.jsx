@@ -9,19 +9,21 @@ import { useQuery } from "@tanstack/react-query";
 
 const Mypage = () => {
   const token = localStorage.getItem("token");
-  // const data = useQuery({
-  //   queryKey: ["myProfile"],
-  //   queryFn: myInquire(),
-  //   }
-  // );
+  if(!token) { // 로그아웃시 뒤로 가기 불가
+    window.history.forward();
+  }
+
   const { data, error, isLoading, isError } = useQuery({
     queryKey: ["myProfile"],
-    queryFn: () => {
-      return myInquire();
-    },
+    queryFn: myInquire,
+    // () => {
+    //   return myInquire();
+    // },
     enabled: !!token,
   });
+
   const profile = data?.data;
+  
   return (
     <div>
       <MyPageHeader />

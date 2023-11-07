@@ -3,6 +3,8 @@ import { Palette } from "@/styles/Palette";
 import { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import useValid from "@/hooks/useValid";
+import { useNavigate } from "react-router-dom";
+import routes from "@/routes";
 
 /**
  * 
@@ -17,6 +19,7 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   const nicknameRef = useRef(null);
   const emailRef = useRef(null);
   const {validText, isValid} = useValid(newInfo);
+  const navigate = useNavigate();
   
   console.log(isValid);
 
@@ -29,6 +32,7 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
       nicknameRef.current.value = myNickName;
       emailRef.current.value = myEmail;
       setNewInfo({name: myNickName, email: myEmail});
+      setInput(false);
     }
   };
 
@@ -43,6 +47,7 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
 
   const handleLogOut = () => {
     localStorage.removeItem("token");
+    navigate(routes.home);
   }
   
   return (
