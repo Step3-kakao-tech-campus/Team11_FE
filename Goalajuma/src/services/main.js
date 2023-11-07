@@ -25,3 +25,7 @@ export const detailInquire = (id) => {
 export const ChatInquire = (id) => {
   return instance.get(`/votes/${id}/comments`);
 };
+
+export const closeInquire = (id)=>{
+  return instance.patch(`/vote/${id}/close`)
+}
