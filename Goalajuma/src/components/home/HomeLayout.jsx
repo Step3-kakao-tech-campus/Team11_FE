@@ -121,7 +121,7 @@ const HomeLayout = ({ data, what }) => {
   );
 };
 HomeLayout.propTypes = {
-  data: PropTypes.string,
+  data: PropTypes.object,
   what: PropTypes.string,
 };
 const Container = styled.div`

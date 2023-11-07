@@ -16,7 +16,11 @@ import Loader from "@/assets/Loader";
 
 /**
  *
+<<<<<<< HEAD
  * @param {object} id
+=======
+ * @param {object} id 
+>>>>>>> e516fe78b6595ae747287512275437a4c4c8c2b8
  * @param {string} what
  */
 

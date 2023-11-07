@@ -27,5 +27,4 @@ const StyledLabel = styled.label`
   font-weight: 500;
   text-align: left;
   color: #333;
-
 `
