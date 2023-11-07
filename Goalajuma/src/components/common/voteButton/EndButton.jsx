@@ -2,19 +2,21 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Alert from "../Alert";
+import { closeInquire } from "@/services/main";
 
 /**
  * @param {object} props
  * @param {boolean} props.isOwner 작성자 확인 
  * @param {string} props.active 투표 진행중 여부 : continue, complete
  */
-const EndButton = ({isOwner, active: initialActive}) => {
+const EndButton = ({isOwner, id, active: initialActive}) => {
   const [active, setActive] = useState(initialActive);
   const [alert, setIsAlert] = useState(false);
 
   const handleOnClick = () => {
     setActive("complete")
     setIsAlert(true)
+    closeInquire(id);
   };
 
   return (
@@ -32,6 +34,7 @@ const EndButton = ({isOwner, active: initialActive}) => {
 }
 EndButton.propTypes = {
   isOwner: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
   active: PropTypes.string.isRequired
 }
 const ButtonStyled = styled.button`

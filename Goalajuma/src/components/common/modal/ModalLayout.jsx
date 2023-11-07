@@ -29,7 +29,6 @@ const ModalLayout = ({ id, what }) => {
   } = useQuery({
     queryKey: ["voteId", id],
     queryFn: () => {
-      console.log(id);
       return detailInquire(id);
     },
     enabled: !!id,
@@ -84,6 +83,7 @@ const ModalLayout = ({ id, what }) => {
                     active={detailData?.active}
                     username={detailData?.username}
                     categoryValue={detailData?.category}
+                    id={detailData?.id}
                   ></VoteHead>
                   <MainContent
                     title={detailData?.title}
