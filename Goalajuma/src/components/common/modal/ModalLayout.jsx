@@ -29,7 +29,6 @@ const ModalLayout = ({ id, what }) => {
   } = useQuery({
     queryKey: ["voteId", id],
     queryFn: () => {
-      console.log(id);
       return detailInquire(id);
     },
     enabled: !!id,
