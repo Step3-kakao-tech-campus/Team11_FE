@@ -17,7 +17,7 @@ export const segmentState = atom({
 
 export const segmentNameState = atom({
   key: "segmentNameState",
-  default: "골라조",
+  default: "골라조(전체)",
 });
 
 export const totalCategoryState = selector({
