@@ -95,17 +95,18 @@ const SignUpPage = () => {
           onChange={handleOnChange}
         />
         <StyledErr>{validText.nameText}</StyledErr>
-        <InputGroup
-          className="email"
-          id="email"
-          type="email"
-          placeholder="이메일을 입력해주세요"
-          label="Email"
-          value={value.email}
-          onChange={handleOnChange}
-        >
+        <InputContainer>
+          <InputGroup
+            className="email"
+            id="email"
+            type="email"
+            placeholder="이메일을 입력해주세요"
+            label="Email"
+            value={value.email}
+            onChange={handleOnChange}
+          />
           <StyledButton onClick={emailCheck}>중복 검사</StyledButton>
-        </InputGroup>
+        </InputContainer>
         <StyledErr>{validText.emailText}</StyledErr>
         <InputGroup
           className="password"
@@ -192,13 +193,10 @@ const Group = styled.div`
   flex-direction: column;
   gap: 15px;
   align-items: center;
-  .email{
-    height: 100px;
-  }
-  .passwordConfirm{
-    margin-bottom: 50px;
-  }
 `;
+const InputContainer = styled.div`
+  height: 100px;
+`
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -225,7 +223,7 @@ const StyledButton = styled.button`
   border: 1px solid transparent;
   font-size: 15px;
   background-color: #9eb0ea;
-  padding: 0.6em 1.2em;
+  padding: 0.6em;
   font-weight: 500;
   color: #fff;
   position: relative;
@@ -245,7 +243,7 @@ const PolicyGroup = styled.div`
   bottom: 20px;
   left: 10px;
   text-align: left;
-
+  margin-top: 50px;
 `;
 const Policy = styled.div`
   display: flex;

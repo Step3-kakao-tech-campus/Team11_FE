@@ -28,37 +28,37 @@ const sortList = [
 export const contentList = [
   {
     id: 0,
-    category: "골라조",
+    category: "골라조(전체)",
     value: "total",
   },
   {
     id: 1,
-    category: "뭐사조",
+    category: "뭐사조(구매)",
     value: "buy",
   },
   {
     id: 2,
-    category: "어디가조",
+    category: "어디가조(갈곳)",
     value: "where",
   },
   {
     id: 3,
-    category: "뭐하조",
+    category: "뭐하조(할것)",
     value: "what",
   },
   {
     id: 4,
-    category: "뭐먹조",
+    category: "뭐먹조(음식)",
     value: "food",
   },
   {
     id: 5,
-    category: "뭐보조",
+    category: "뭐보조(미디어)",
     value: "movie",
   },
   {
     id: 6,
-    category: "들어조",
+    category: "들어조(상담)",
     value: "listen",
   },
   {
@@ -148,7 +148,7 @@ export const CategoryBox = () => {
           <Ul>
             {sortList.map((item) => (
               <Li key={item.id} className="item">
-                <StyledButton>
+                <StyledButton className="sort-item">
                   <div
                     onClick={() => handleSort(item.id)}
                     style={
@@ -172,10 +172,10 @@ export const CategoryBox = () => {
           <ExpandMoreIcon style={{ fontSize: 30 }} />
         </MainButton>
         {drops.content ? (
-          <Ul>
+          <Ul className="content">
             {contentList.map((item) => (
               <Li key={item.id} className="item">
-                <StyledButton>
+                <StyledButton className="content-item">
                   <div
                     onClick={() => handleContent(item.id)}
                     style={
@@ -224,11 +224,14 @@ const StyledButton = styled.button`
   background-color: #fff;
   color: ${Palette.font_gray};
   padding: 5px;
-  width: 4.2rem;
+  width: 6.6rem;
   height: 32px;
   border-width: 0px;
   font-size: 15px;
   cursor: pointer;
+  &.sort-item {
+    width: 4.2rem;
+  }
   &:hover {
     background-color: ${Palette.percent_gray};
   }
@@ -245,6 +248,9 @@ const Ul = styled.ul`
   margin: 0;
   width: 4.2rem;
   background-color: #fff;
+  &.content {
+    width: 6.6rem;
+  }
 `;
 
 const Li = styled.li`
