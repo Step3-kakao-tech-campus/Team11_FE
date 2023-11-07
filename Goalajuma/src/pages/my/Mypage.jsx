@@ -3,17 +3,29 @@ import { MyContainer } from "@/styles/Container";
 import MyPageUl from "@/components/common/mypage/MyPageUl";
 import MyPageHeader from "@/components/layouts/headers/MyPageHeader";
 import Footer from "@/components/layouts/footers/Footer";
-import { MainMyData } from "@/components/common/mypage/MyPageData";
+// import { MainMyData } from "@/components/common/mypage/MyPageData";
+import { myInquire } from "@/services/my";
+import { useQuery } from "react-query";
+
 const Mypage = () => {
-  const datas = MainMyData.data;
+  const token = localStorage.getItem("token");
+  const {data} = useQuery(
+    ["myProfile"],
+    myInquire,
+    {
+      enabled: !!token
+    }
+  );
+  // const data =  myInquire();
+  console.log(data);
   return (
     <div>
       <MyPageHeader/>
       <MyContainer>
-        <Profile userName={datas.nickName} email={datas.email} src={datas.image}></Profile>
+        <Profile userName={data.nickName} email={data.email} src={"./vv.jpg"}></Profile>
         <MyPageUl
-          votingNumber={datas.participateVoteCount}
-          questionNumber={datas.createVoteCount}
+          votingNumber={data.participateVoteCount}
+          questionNumber={data.createVoteCount}
         ></MyPageUl>
       </MyContainer>
       <Footer page="mypage"/>

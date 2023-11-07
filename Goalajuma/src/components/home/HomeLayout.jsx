@@ -2,13 +2,13 @@ import { MainContainer } from "@/styles/Container";
 import ButtonLayout from "../common/voteButton/ButtonLayout";
 import VoteHead from "../common/voteButton/VoteHead";
 import MainContent from "./MainContent";
-import VoteButtom from "../common/voteButton/VoteButtom";
+import VoteBottom from "../common/voteButton/VoteBottom";
 import styled from "styled-components";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
-import { ModalTest } from "../common/modal/ModalTest";
 import ModalLayout from "../common/modal/ModalLayout";
+import ShareForm from "../common/modal/ShareForm";
 
 /**
  *
@@ -18,7 +18,7 @@ import ModalLayout from "../common/modal/ModalLayout";
 
 const HomeLayout = ({ data, what }) => {
   const {
-    voteCount,
+    totalCount,
     participate,
     isOwner,
     title,
@@ -27,35 +27,59 @@ const HomeLayout = ({ data, what }) => {
     active,
     options,
     username,
+    category,
+    id,
   } = data;
-
-  const [participateState, setParticipate] = useState(participate);
+  const [participateState, setParticipate] = useState(
+    participate && participate
+  );
   const [modalVisible, setModalVisible] = useState(false);
-  const Data = ModalTest.data.vote;
+  const [share, setShare] = useState(false);
+  const [modalId, setModalId] = useState(null);
+  const [optionState, setOptionState] = useState(options);
+  // const [count, setCount] = useState(0);
 
-  const clickButton = () => {
+  // const Data = ModalTest.data.vote;
+  const changeVotes = (result) => {
     setParticipate(!participateState);
-    // 투표 참여 안했을때
+
+    const copyOptions = optionState?.map((choice, index) => {
+      return {
+        ...choice,
+        optionCount: result[index]?.optionCount,
+        optionRatio: result[index]?.optionRatio,
+        choice: result[index].choice,
+      };
+    });
+
+    setOptionState(copyOptions);
   };
-  const clickModal = () => {
+
+  const clickModal = (data) => {
     setModalVisible(true);
+    setModalId(data.id);
   };
   const closeModal = () => {
     setModalVisible(false);
+    setModalId(null);
   };
-  const share = () => {
-    alert("공유하기");
+  const shareOpenModal = () => {
+    setShare(true)
+  };
+  const shareCloseModal = () => {
+    setShare(false)
   };
   return (
     <MainContainer>
       <Container>
         <VoteHead
-          voteCount={voteCount}
+          totalCount={totalCount}
           endDate={endDate}
           what={what}
           username={username}
           active={active}
           isOwner={isOwner}
+          categoryValue={category}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 
@@ -63,11 +87,13 @@ const HomeLayout = ({ data, what }) => {
           participate={participateState}
           isOwner={isOwner}
           active={active}
-          options={options}
-          onClick={clickButton}
+          options={optionState}
+          changeVotes={changeVotes}
+          voteId={id}
         ></ButtonLayout>
 
-        <VoteButtom onClick={clickModal} onClickShare={share}></VoteButtom>
+
+        <VoteBottom onClick={()=>clickModal(data)} onClickShare={shareOpenModal}></VoteBottom>
         {modalVisible && (
           <Modal
             visible={modalVisible}
@@ -75,7 +101,17 @@ const HomeLayout = ({ data, what }) => {
             maskClosable={true}
             onClose={closeModal}
           >
-            <ModalLayout data={Data} what="main" />
+            <ModalLayout id={modalId} what="main" />
+          </Modal>
+        )}
+        {share && (
+          <Modal
+            visible={share}
+            closable={true}
+            maskClosable={true}
+            onClose={shareCloseModal}
+          >
+            <ShareForm/>
           </Modal>
         )}
       </Container>
@@ -83,7 +119,7 @@ const HomeLayout = ({ data, what }) => {
   );
 };
 HomeLayout.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.string,
   what: PropTypes.string,
 };
 const Container = styled.div`

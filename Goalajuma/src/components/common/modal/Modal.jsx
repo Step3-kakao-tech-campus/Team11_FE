@@ -28,7 +28,7 @@ function Modal({
 
   // 모달 동작 시 스크롤 중지
   useEffect(() => {
-    document.body.style.cssText = `position: fixed; left: 41.49%; top: -${window.scrollY}px`;
+    document.body.style.cssText = `overflow: hidden;`;
     return () => {
       const scrollY = document.body.style.top;
       document.body.style.cssText = `position: ""; top: "";`;
@@ -68,7 +68,7 @@ Modal.propTypes = {
   closable: PropTypes.bool,
 };
 // 모달 뒷 배경
-const ModalWrapper = styled.div`
+export const ModalWrapper = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? "block" : "none")};
   position: fixed;
@@ -82,7 +82,7 @@ const ModalWrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
 `;
 // 모달 내부
-const ModalInner = styled.div`
+export const ModalInner = styled.div`
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);

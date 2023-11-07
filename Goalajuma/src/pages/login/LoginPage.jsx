@@ -3,10 +3,12 @@ import InputGroup from "@/components/login/InputGroup";
 import Button from "@/components/login/Button";
 import { useState } from "react";
 import { GoChevronLeft } from "react-icons/go";
-import { RiKakaoTalkFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { MainContainer } from "@/styles/Container";
 import useValid from "@/hooks/useValid";
+import { loginInquire } from "@/services/login";
+import routes from "@/routes";
+
 
 const LoginPage = () => {
   const [value, setValue] = useState({ email: "", password: "" });
@@ -20,6 +22,20 @@ const LoginPage = () => {
   // 유효성 검사 text 반환을 위한 커스텀 훅
   const { validText, isValid } = useValid(value);
 
+
+  const handleLogin =()=>{
+    if(isValid.isEmail && isValid.isPassword){
+      loginInquire(value)
+      .then(res => {
+        localStorage.setItem('token', res.data.data.accessToken)
+        alert("로그인 성공 !!")
+        navigate("/")
+      })
+      .catch(err => alert(err.data.message))
+    }else{
+      alert('입력 내용이 올바르지 않습니다.')
+    }
+  }
   return (
     <MainContainer>
       <Header>
@@ -32,7 +48,7 @@ const LoginPage = () => {
         <span>계정이 없으신가요?</span>
         <button
           onClick={() => {
-            navigate("/signup");
+            navigate(routes.signup);
           }}
         >
           회원가입하기
@@ -65,25 +81,10 @@ const LoginPage = () => {
         <Button
           className="firstButton"
           color="#9EB0EA"
-          onClick={() => {
-            navigate("/");
-          }}
+          onClick={handleLogin}
           disabled={isValid.isEmail && isValid.isPassword ? false : true}
         >
           로그인
-        </Button>
-        <Button color="#FEE500">
-          <Icon>
-            <RiKakaoTalkFill
-              style={{
-                paddingRight: "8px",
-                fontSize: "20px",
-                position: "relative",
-                top: "4px",
-              }}
-            />
-            카카오 로그인
-          </Icon>
         </Button>
       </ButtonGroup>
     </MainContainer>
@@ -92,9 +93,7 @@ const LoginPage = () => {
 
 export default LoginPage;
 
-const Icon = styled.div`
-  color: #333;
-`;
+
 const Title = styled.div`
   font-size: 32px;
   font-weight: bold;

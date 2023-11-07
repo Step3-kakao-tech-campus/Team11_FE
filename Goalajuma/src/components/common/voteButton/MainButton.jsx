@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { MainButtonSt, BtnContents } from "@/styles/VotingBtnStyle";
-import PercentNnumber from "./PercentNumber";
+import PercentNumber from "./PercentNumber";
 import styled from "styled-components";
 import Img from "../Img";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import Alert from "../Alert";
+import { changeOption, deleteVote, vote } from "@/services/vote";
+import Swal from "sweetalert2";
 
 /**
  * @param {object} props
@@ -31,30 +33,59 @@ const MainButton = ({
   participate,
   isOwner,
   active,
-  onClick,
   className,
+  voteId,
+  changeVotes,
 }) => {
-  const navigate = useNavigate();
   const login = localStorage.getItem("token");
-  const [choice, setChoiced] = useState(choiced);
   const [alert, setIsAlert] = useState(false);
-  console.log();
-  const clickButton = () => {
+  const clickButton = (e) => {
     if (active === "complete") {
       setIsAlert(true);
     }
-    if (active !== "complete" && isOwner === false) {
+    if (isOwner === true) {
+      setIsAlert(true);
+    } else if (active !== "complete" && isOwner === false) {
       if (!login) {
         setIsAlert(true);
       } else if (participate === true) {
-        choice === true
-          ? (setChoiced(!choice), onClick())
-          : setChoiced(!choice);
-        /** 서버에 수정 요청 보내기*/
+        console.log(e.target);
+        if (choiced !== true) {
+          const voteId = e.target.parentElement.id;
+          const optionId = e.target.id;
+          changeOption(voteId, optionId).then((res) => {
+            // console.log(res.data);
+          });
+        } else {
+          Swal.fire({
+            icon: "info",
+            html: "투표 취소 시 댓글이 전부 삭제될 수 있습니다. <br><br> 취소하시겠습니까?",
+            showCancelButton: true,
+            confirmButtonText: "예",
+            cancelButtonText: "아니오",
+            confirmButtonColor: "#429f50",
+            cancelButtonColor: "#d33",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              deleteVote(e.target.id).then((res) => {
+                const result = res?.data.data.result;
+                // changeOptions(result);
+                changeVotes(result);
+              });
+            }
+          });
+        }
       } else {
         //투표 안한 기본 상태...
-        setChoiced(true);
-        onClick();
+        vote(e.target.id)
+          .then((res) => {
+            const result = res?.data.data.result;
+            // changeOptions(result);
+            // console.log(result);
+            changeVotes(result);
+          })
+          .catch((err) => console.log(err));
+        // onClick();
         //투표 요청보내기
       }
     }
@@ -66,22 +97,23 @@ const MainButton = ({
           <Alert setIsAlert={setIsAlert}>
             종료된 게시글은 투표가 불가합니다.
           </Alert>
+        ) : isOwner === true ? (
+          <Alert setIsAlert={setIsAlert}>본인 게시글은 투표 불가합니다.</Alert>
         ) : (
           <Alert setIsAlert={setIsAlert}>로그인 후 투표가 가능합니다</Alert>
         )
       ) : null}
 
-      <ButtonContainer>
-        {src ? <Img src={src} /> : <></>}
+      <ButtonContainer id={voteId}>
+        {src ? <Img src={src} server={true} /> : <></>}
 
         <MainButtonSt
+          border={value == 100 ? true : false}
           onClick={clickButton}
-          choice={
-            isOwner || participate || active === "complete" ? choice : false
-          }
-          id={id}
+          choice={choiced}
+          id={voteId}
         >
-          <BtnContents choice={choice} id={id}>
+          <BtnContents choice={participate && choiced} id={id}>
             {name}
           </BtnContents>
           <progress
@@ -91,10 +123,10 @@ const MainButton = ({
           ></progress>
         </MainButtonSt>
         {isOwner || participate || active === "complete" ? (
-          <PercentNnumber
+          <PercentNumber
             value={value}
             number={number}
-            choice={choice}
+            choice={choiced}
             id={id}
           />
         ) : (

@@ -3,9 +3,12 @@ import { GoChevronLeft } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/login/Button";
 import InputGroup from "../../components/login/InputGroup";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { JoinContainer } from "../../styles/Container";
 import useValid from "../../hooks/useValid";
+import routes from "@/routes";
+import Swal from "sweetalert2";
+import { emailCheckInquire, signupInquire } from "@/services/signup";
 
 const SignUpPage = () => {
   const [allAgree, setAllAgree] = useState(false);
@@ -41,6 +44,38 @@ const SignUpPage = () => {
     }
   };
 
+
+  const handleSignUp =()=>{
+    if(isValid.isName &&isValid.isEmail && isValid.isPassword && isValid.isPasswordConfirm){
+      signupInquire(value)
+      .then(()=>{
+        alert("회원가입 성공!!")
+        navigate(routes.login)
+      })
+      .catch(err=>alert(err.data.message))
+    }else{
+      console.log('입력 내용이 올바르지 않습니다.')
+    }
+  }
+  const emailCheck=()=>{
+    emailCheckInquire(value.email)
+    .then(res=>{
+      console.log(res)
+      Swal.fire({
+        icon: "success",
+        text: "사용가능한 이메일 입니다!",
+        confirmButtonColor: "#429f50",
+        })
+    })
+    .catch(err=>{
+      console.log(err)
+      Swal.fire({
+        icon: "error",
+        text: "이미 사용중인 이메일입니다.",
+        confirmButtonColor: "#d33",
+      })
+    })
+  }
   return (
     <JoinContainer>
       <Header>
@@ -68,7 +103,9 @@ const SignUpPage = () => {
           label="Email"
           value={value.email}
           onChange={handleOnChange}
-        />
+        >
+          <StyledButton onClick={emailCheck}>중복 검사</StyledButton>
+        </InputGroup>
         <StyledErr>{validText.emailText}</StyledErr>
         <InputGroup
           className="password"
@@ -91,7 +128,6 @@ const SignUpPage = () => {
         />
         <StyledErr>{validText.passwordConfirmText}</StyledErr>
       </Group>
-      <StyledButton onClick={() => navigate("/")}>중복 검사</StyledButton>
       <PolicyGroup>
         <Policy>
           <input
@@ -124,7 +160,7 @@ const SignUpPage = () => {
       <ButtonGroup>
         <Button
           color="#9EB0EA"
-          onClick={() => navigate("/login")}
+          onClick={handleSignUp}
           disabled={
             isValid.isName &&
             isValid.isEmail &&
@@ -156,7 +192,10 @@ const Group = styled.div`
   flex-direction: column;
   gap: 15px;
   align-items: center;
-  .input:last-child {
+  .email{
+    height: 100px;
+  }
+  .passwordConfirm{
     margin-bottom: 50px;
   }
 `;
@@ -191,8 +230,8 @@ const StyledButton = styled.button`
   color: #fff;
   position: relative;
   width: 32%;
-  bottom: 303px;
-  left: 180px;
+  bottom: 40px;
+  left: 80px;
   cursor: pointer;
   &:hover{
     background-color: #8C9CCF;

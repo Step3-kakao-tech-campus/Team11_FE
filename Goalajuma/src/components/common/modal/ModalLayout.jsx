@@ -1,13 +1,17 @@
-import { MainContainer } from "@/styles/Container"
+import { MainContainer } from "@/styles/Container";
 import ButtonLayout from "@/components/common/voteButton/ButtonLayout";
 import VoteHead from "@/components/common/voteButton/VoteHead";
 import MainContent from "@/components/home/MainContent";
-import VoteButtom from "@/components/common/voteButton/VoteButtom";
+import VoteBottom from "@/components/common/voteButton/VoteBottom";
 import ChatForm from "./ChatForm";
 import ChatWriteForm from "./ChatWriteForm";
 import styled from "styled-components";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Modal from "./Modal";
+import ShareForm from "./ShareForm";
+import { detailInquire } from "@/services/main";
+import { useQuery } from "react-query";
 
 /**
  *
@@ -15,39 +19,52 @@ import PropTypes from "prop-types";
  * @param {string} what
  */
 
-const ModalLayout = ({ data, what }) => {
+const ModalLayout = ({ id, what }) => {
+  console.log(id)
+  const {data} = useQuery(["voteId",id], 
+    async (id) => {return detailInquire(id)}, 
+    { enabled: !!id }
+  )
+  // const data = detailInquire(id);
+  console.log(data)
   const {
-    voteCount,
+    totalCount,
     participate,
     isOwner,
     title,
     content,
-    createDate,
     endDate,
     active,
     options,
     username,
-  } = data;
+    category,
+  } = data.vote;
+
   const [participateState, setParticipate] = useState(participate);
+  const [modalVisible, setModalVisible] = useState(false);
+  console.log(category)
+  const shareCloseModal = () => {
+    setModalVisible(false);
+  };
+  const shareOpenModal = () => {
+    setModalVisible(true);
+  };
 
   const clickButton = () => {
     setParticipate(!participateState);
-  };
-  const share = () => {
-    alert("공유하기 모달창 !!!");
   };
 
   return (
     <MainContainer className="modal">
       <Container>
         <VoteHead
-          voteCount={voteCount}
-          createDate={createDate}
+          totalCount={totalCount}
           endDate={endDate}
           what={what}
           isOwner={isOwner}
           active={active}
           username={username}
+          categoryValue={category}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 
@@ -59,13 +76,23 @@ const ModalLayout = ({ data, what }) => {
           onClick={clickButton}
         ></ButtonLayout>
 
-        <VoteButtom onClickShare={share}></VoteButtom>
+        <VoteBottom onClickShare={shareOpenModal}></VoteBottom>
+        {modalVisible && (
+          <Modal
+            visible={modalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={shareCloseModal}
+          >
+            <ShareForm/>
+          </Modal>
+        )}
+
       </Container>
       <Chat>
         <ChatForm />
-        <ChatWriteForm participate={participate}/>
+        <ChatWriteForm participate={participate} />
       </Chat>
-
     </MainContainer>
   );
 };
@@ -80,13 +107,13 @@ const Container = styled.div`
   padding-bottom: 1rem;
 `;
 ModalLayout.propTypes = {
-  data: PropTypes.object,
+  id: PropTypes.number,
   what: PropTypes.string,
 };
 const Chat = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-bottom: 30px;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 30px;
+`;
 export default ModalLayout;
