@@ -1,7 +1,7 @@
-import { setCookie } from "./Cookie";
+import { getCookie, setCookie } from "./Cookie";
 import { instance } from "./index";
 
-const token = (res)=>{
+export const token = (res)=>{
   const accessToken = res.data.data.accessToken
   const accessExpiredTime = new Date(res.data.data.accessExpiredTime)
   const refreshToken = res.data.data.refreshToken
@@ -25,6 +25,7 @@ export const loginInquire = async (data) => {
 export const refreshTokenInquire = async()=>{
   try{
     const res = await instance.post(`/api/auth/reissue`, null, {withCredentials: true})
+    console.log(getCookie("refreshToken"))
     console.log(res)
     return token(res)
   } catch(err){

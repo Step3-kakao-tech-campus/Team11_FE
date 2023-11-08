@@ -27,6 +27,5 @@ export const ChatInquire = (id) => {
 };
 
 export const closeInquire = (id)=>{
-  console.log('메롱',id)
-  return instance.patch(`/vote/${id}/close`)
+  return instance.patch(`/votes/${id}/close`)
 }

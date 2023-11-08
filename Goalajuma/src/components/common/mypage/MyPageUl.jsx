@@ -22,6 +22,7 @@ const MyPageUl = ({ votingNumber, questionNumber, data }) => {
   }
   const closeProfile = () => {
     setProfile(false);
+    window.location.reload();
   }
   return ( 
     <MyUlStyle> 
