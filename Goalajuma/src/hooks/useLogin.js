@@ -23,6 +23,7 @@ const useLogin = ()=>{
   }
   else if(isAccessToken && expiredTime < currentTime && refreshTokenExpiredTime > currentTime) {
     console.log('hi')
+    setisLoginIn(true)
     refreshTokenInquire()
   }
   else if(refreshTokenExpiredTime < currentTime){
