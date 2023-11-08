@@ -4,7 +4,8 @@ import Img from "@/components/common/Img"
 import styled from "styled-components"; 
 import PropTypes from "prop-types";
 import Alert from "../Alert"
-// import { useMutation, useQueryClient } from 'react-query';
+import { commentInquire } from "@/services/detailVote";
+import { useMutation, useQueryClient } from 'react-query';
 // import axios from 'axios';
 
 /**
@@ -15,23 +16,15 @@ import Alert from "../Alert"
 const ChatWriteForm = ({participate}) => {
   const [write, setWrite] = useState("")
   const [alert, setIsAlert] = useState(false)
-  //const queryClient = useQueryClient();
 
-  // const addComment = async (comment) => {
-  //   const response = await axios.post('/votes/{voteId}/comments', { comment });
-  //   return response.data;
-  // };
-  // const mutation = useMutation(addComment, {
-  //   // 성공 시 캐시 업데이트
-  //   onSuccess: () => {
-  //     // 서버로부터 데이터를 다시 불러와서 캐시를 업데이트.
-  //     queryClient.invalidateQueries('comments');
-  //     // 성공 시 추가적인 로직을 수행할 수 있다.
-  //   },
-  // });
+  const AddComment = () => {
+    return useMutation(commentInquire(10, write))
+  }
   const handleUpload = ()=>{
     // mutation 함수를 호출하여 POST 요청을 보냄.
     //mutation.mutate(write);
+    console.log(write);
+    AddComment()
     console.log(write)
     setWrite("")
   }
