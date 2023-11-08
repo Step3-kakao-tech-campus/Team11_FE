@@ -83,6 +83,7 @@ const ModalLayout = ({ id, what }) => {
                     active={detailData?.active}
                     username={detailData?.username}
                     categoryValue={detailData?.category}
+                    id={detailData?.id}
                   ></VoteHead>
                   <MainContent
                     title={detailData?.title}

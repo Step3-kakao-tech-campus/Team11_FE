@@ -25,6 +25,7 @@ const VoteHead = ({
   isOwner,
   active,
   categoryValue,
+  id
 }) => {
   const [categoryName, setCategoryName] = useState(null);
   useEffect(() => {
@@ -65,7 +66,7 @@ const VoteHead = ({
             </div>
           )}
         </VoteHeadCss>
-        <EndButton isOwner={isOwner} active={active} />
+        <EndButton isOwner={isOwner} active={active} id={id} />
       </VoteHeadLayout>
     </>
   );
@@ -78,6 +79,7 @@ VoteHead.propTypes = {
   active: PropTypes.string.isRequired,
   totalCount: PropTypes.number.isRequired,
   categoryValue: PropTypes.string.isRequired,
+  id:PropTypes.number.isRequired,
 };
 const VoteHeadLayout = styled.div`
   display: flex;
