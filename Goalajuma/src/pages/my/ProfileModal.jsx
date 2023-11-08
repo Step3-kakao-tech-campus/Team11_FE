@@ -9,6 +9,7 @@ import { useRecoilState } from 'recoil';
 import { isLoginInState } from '@/utils/AuthAtom';
 import { removeCookie } from "@/services/Cookie";
 import { newNameInquire, newEmailInquire } from "@/services/my";
+import Swal from "sweetalert2";
 
 /**
  * 
@@ -24,8 +25,6 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   const {validText, isValid} = useValid(newInfo);
   const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
   const navigate = useNavigate();
-  
-  console.log(isValid);
 
   const handleMyInfo = () => {
     setInput((prev) => !prev);
@@ -37,7 +36,6 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   };
 
   const handleSubmit = () => {
-    console.log(newInfo, originInfo)
     if(newInfo.name != originInfo.name){
       newNameInquire(newInfo.name);
     }
@@ -45,13 +43,26 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
       newEmailInquire(newInfo.email);
     }
     setInput(prev => !prev);
+    alert("저장되었습니다!")
   }
 
   const handleLogOut = () => {
-    setisLoginIn(false);
-    removeCookie("refreshToken");
-    localStorage.removeItem("token");
-    navigate(routes.home);
+    Swal.fire({
+      icon: "info",
+      html: "로그아웃 하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "예",
+      cancelButtonText: "아니오",
+      confirmButtonColor: "#429f50",
+      cancelButtonColor: "#d33",
+    }).then((result)=>{
+      if(result.isConfirmed){
+        setisLoginIn(false);
+        removeCookie("refreshToken");
+        localStorage.clear();
+        navigate(routes.home);
+      }
+    })
   }
   
   return (
