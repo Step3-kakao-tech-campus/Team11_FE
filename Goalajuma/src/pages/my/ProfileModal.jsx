@@ -9,6 +9,7 @@ import { useRecoilState } from 'recoil';
 import { isLoginInState } from '@/utils/AuthAtom';
 import { removeCookie } from "@/services/Cookie";
 import { newNameInquire, newEmailInquire } from "@/services/my";
+import useLogin from "@/hooks/useLogin";
 
 /**
  * 
@@ -25,6 +26,11 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
   const navigate = useNavigate();
   
+  const checkLogin = useLogin() // 로그인 상태를 체크하는 훅 
+  if(!checkLogin){
+    removeCookie("refreshToken");
+    localStorage.clear();
+  }
   console.log(isValid);
 
   const handleMyInfo = () => {
@@ -49,8 +55,6 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
 
   const handleLogOut = () => {
     setisLoginIn(false);
-    removeCookie("refreshToken");
-    localStorage.removeItem("token");
     navigate(routes.home);
   }
   

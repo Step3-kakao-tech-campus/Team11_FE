@@ -29,8 +29,8 @@ const EndButton = ({isOwner, id, active: initialActive}) => {
       <ButtonStyled onClick={handleOnClick}>끝내기</ButtonStyled>
       :""}
     </>
-    )
-  
+  )
+
 }
 EndButton.propTypes = {
   isOwner: PropTypes.bool.isRequired,

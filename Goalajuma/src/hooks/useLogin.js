@@ -29,13 +29,7 @@ const useLogin = ()=>{
     console.log('hii')
     setisLoginIn(false)
   }
-  // useEffect(()=>{
-  //   if(!isLoginIn){
-  //     console.log('hiii')
-  //     localStorage.clear();
-  //     removeCookie("refreshToken")
-  //   }
-  // },[isLoginIn])
+
   return isLoginIn
 }
 
