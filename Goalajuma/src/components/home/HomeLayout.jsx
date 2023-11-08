@@ -80,6 +80,7 @@ const HomeLayout = ({ data, what }) => {
           active={active}
           isOwner={isOwner}
           categoryValue={category}
+          id={id}
         ></VoteHead>
         <MainContent title={title} content={content}></MainContent>
 

@@ -9,11 +9,11 @@ import useValid from "@/hooks/useValid";
 import { loginInquire } from "@/services/login";
 import routes from "@/routes";
 import { useRecoilState } from 'recoil';
-import { isLoggedInState } from '@/utils/AuthAtom';
+import { isLoginInState } from '@/utils/AuthAtom';
 
 
 const LoginPage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
   const [value, setValue] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ const LoginPage = () => {
     if(isValid.isEmail && isValid.isPassword){
       loginInquire(value)
       .then((res)=>{
-        setIsLoggedIn(true);
+        setisLoginIn(true);
         alert("로그인 성공 !!")
         navigate("/")
         console.log(res)
