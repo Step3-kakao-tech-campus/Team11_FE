@@ -8,7 +8,7 @@ const useLogin = ()=>{
   const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
   const accessToken = localStorage.getItem("token")
   const expiredTime = new Date(localStorage.getItem("expiredTime")) // accessToken 만료 시간
-  const refreshExpiredTime = new Date(getCookie("refreshExpiredTime"))
+  const refreshExpiredTime = new Date(localStorage.getItem("refreshExpiredTime"))
   const currentTime = new Date()
   const isAccessToken = accessToken && accessToken !== "";
   console.log(accessToken)
