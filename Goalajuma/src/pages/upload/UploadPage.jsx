@@ -6,14 +6,17 @@ import CategoryNDeadLine from "@/components/upload/CategoryNDeadLine";
 import UploadButton from "@/components/upload/UploadButton";
 import { useEffect } from "react";
 import { uploadSelector } from "@/utils/UploadAtom";
-import { useResetRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import { BiReset } from "react-icons/bi";
 import Swal from "sweetalert2";
 import Icon from "@/components/common/Icon";
 import UploadPageHeader from "@/components/layouts/headers/UploadPageHeader";
+import { isLoginInState } from "@/utils/AuthAtom";
+import { useNavigate } from "react-router-dom";
 const UploadPage = () => {
+  const navigate = useNavigate();
   const resetList = useResetRecoilState(uploadSelector);
-
+  const isLogin = useRecoilValue(isLoginInState);
   const resetClick = (e) => {
     Swal.fire({
       icon: "info",
@@ -34,6 +37,14 @@ const UploadPage = () => {
     e.returnValue = "";
   };
   useEffect(() => {
+    if (!isLogin) {
+      Swal.fire({
+        icon: "error",
+        text: "로그인 후 글 작성이 가능합니다.",
+      }).then(() => navigate(-1));
+      // navigate(-1);
+    }
+    window.scrollTo({ top: 0, left: 0 });
     (() => {
       window.addEventListener("beforeunload", preventRefresh);
     })();
@@ -48,7 +59,6 @@ const UploadPage = () => {
       <UploadPageHeader />
       <UploadContainer>
         <div className="uploadHead">
-          {" "}
           <p>*은 필수 질문 입니다.</p>
           <button onClick={resetClick}>
             RESET

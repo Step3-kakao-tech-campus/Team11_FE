@@ -8,9 +8,12 @@ import { MainContainer } from "@/styles/Container";
 import useValid from "@/hooks/useValid";
 import { loginInquire } from "@/services/login";
 import routes from "@/routes";
+import { useRecoilState } from 'recoil';
+import { isLoginInState } from '@/utils/AuthAtom';
 
 
 const LoginPage = () => {
+  const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
   const [value, setValue] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
@@ -26,12 +29,13 @@ const LoginPage = () => {
   const handleLogin =()=>{
     if(isValid.isEmail && isValid.isPassword){
       loginInquire(value)
-      .then(res => {
-        localStorage.setItem('token', res.data.data.accessToken)
+      .then((res)=>{
+        setisLoginIn(true);
         alert("로그인 성공 !!")
         navigate("/")
+        console.log(res)
       })
-      .catch(err => alert(err.data.message))
+      .catch(err => alert(err.data.data.message))
     }else{
       alert('입력 내용이 올바르지 않습니다.')
     }

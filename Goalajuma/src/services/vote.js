@@ -5,8 +5,8 @@ export const vote = (id) => {
 };
 
 //투표 옵션 수정
-export const changeOption = (voteId, optionId) => {
-  return instance.put(`/votes/${voteId}/options/${optionId}`);
+export const changeOption = (id) => {
+  return instance.put(`/votes/participate/options/${id}`);
 };
 //글 업로드
 export const uploadVote = (count) => {

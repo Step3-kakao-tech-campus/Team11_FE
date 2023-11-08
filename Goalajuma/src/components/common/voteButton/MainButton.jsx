@@ -51,10 +51,10 @@ const MainButton = ({
       } else if (participate === true) {
         console.log(e.target);
         if (choiced !== true) {
-          const voteId = e.target.parentElement.id;
-          const optionId = e.target.id;
-          changeOption(voteId, optionId).then((res) => {
-            // console.log(res.data);
+          changeOption(e.target.id).then((res) => {
+            const result = res?.data.data.result;
+            console.log(result);
+            changeVotes(true, result);
           });
         } else {
           Swal.fire({
@@ -70,7 +70,7 @@ const MainButton = ({
               deleteVote(e.target.id).then((res) => {
                 const result = res?.data.data.result;
                 // changeOptions(result);
-                changeVotes(result);
+                changeVotes(false, result);
               });
             }
           });
@@ -82,7 +82,7 @@ const MainButton = ({
             const result = res?.data.data.result;
             // changeOptions(result);
             // console.log(result);
-            changeVotes(result);
+            changeVotes(true, result);
           })
           .catch((err) => console.log(err));
         // onClick();

@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import useValid from "@/hooks/useValid";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
+import { useRecoilState } from 'recoil';
+import { isLoginInState } from '@/utils/AuthAtom';
+import { removeCookie } from "@/services/Cookie";
+import { newNameInquire, newEmailInquire } from "@/services/my";
 
 /**
  * 
@@ -14,26 +18,17 @@ import routes from "@/routes";
  * @returns
  */
 const ProfileModal = ({myNickName, myEmail, img}) => {
+  const originInfo = {name: myNickName, email: myEmail};
   const [newInfo, setNewInfo] = useState({name: myNickName, email: myEmail, password: "",});
   const [input, setInput] = useState(false);
-  const nicknameRef = useRef(null);
-  const emailRef = useRef(null);
   const {validText, isValid} = useValid(newInfo);
+  const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
   const navigate = useNavigate();
   
   console.log(isValid);
 
   const handleMyInfo = () => {
     setInput((prev) => !prev);
-    if (!input) {
-      nicknameRef.current.defaultValue = myNickName;
-      emailRef.current.defaultValue = myEmail;
-    } else {
-      nicknameRef.current.value = myNickName;
-      emailRef.current.value = myEmail;
-      setNewInfo({name: myNickName, email: myEmail});
-      setInput(false);
-    }
   };
 
   const handleOnChange = (e) => {
@@ -42,10 +37,19 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   };
 
   const handleSubmit = () => {
-    console.log(newInfo);
+    console.log(newInfo, originInfo)
+    if(newInfo.name != originInfo.name){
+      newNameInquire(newInfo.name);
+    }
+    if(newInfo.email != originInfo.email){
+      newEmailInquire(newInfo.email);
+    }
+    setInput(prev => !prev);
   }
 
   const handleLogOut = () => {
+    setisLoginIn(false);
+    removeCookie("refreshToken");
     localStorage.removeItem("token");
     navigate(routes.home);
   }
@@ -53,14 +57,13 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   return (
     <div>
       <Img src={`/image/${img}`} alt="사용자 프로필" />
-      {!input && <Modify onClick={() => handleMyInfo()}>수정하기</Modify>}
+      {!input && <ProfileButton onClick={() => handleMyInfo()}>수정하기</ProfileButton>}
       <InputBox>
         <label htmlFor="nickname">닉네임</label>
         <input 
           type="text" 
           id="name" 
           defaultValue={myNickName}
-          ref={nicknameRef}
           disabled={!input}
           onChange={handleOnChange}
         />
@@ -70,16 +73,17 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
           type="email" 
           id="email" 
           defaultValue={myEmail} 
-          ref={emailRef}
           disabled={!input}
           onChange={handleOnChange}
         />
         <div className="error">{validText.emailText}</div>
       </InputBox>
       <ButtonBox>
-        {input && <SubmitButton onClick={() => handleSubmit()} disabled={!isValid.isName && !isValid.isEmail}>저장</SubmitButton>}
-        {input ? <LogOutButton onClick={() => handleMyInfo()}>취소</LogOutButton>:
-         <LogOutButton onClick={() => handleLogOut()}>로그아웃</LogOutButton>}
+        {input ? 
+        <SubmitButton onClick={() => handleSubmit()} disabled={!isValid.isName && !isValid.isEmail}>저장</SubmitButton>
+        :
+        <ProfileButton onClick={() => handleLogOut()}>로그아웃</ProfileButton>
+        }
       </ButtonBox>
     </div>
   );
@@ -91,11 +95,6 @@ ProfileModal.propTypes = {
   img : PropTypes.string,
 };
 
-const Modify = styled.div`
-  font-size: 13px;
-  text-align: right;
-  cursor: pointer;
-`
 const InputBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -146,11 +145,14 @@ const SubmitButton = styled.button`
   letter-spacing: 3px;
 
 `
-const LogOutButton = styled.div`
-  width: 4rem;
+const ProfileButton = styled.div`
+  display: inline-block;
   font-size: 13px;
-  margin: 10px 0 0 85%;
+  margin-left: 16.9rem;
   cursor: pointer;
-  /* right: 10%; */
+  border-radius: 3px;
+  &:hover {
+    background-color: ${Palette.button_gray}
+  }
 `;
 export default ProfileModal;

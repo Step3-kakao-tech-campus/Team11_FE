@@ -8,14 +8,16 @@ import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import { useRef, useState } from "react";
 const SearchInput = () => {
-  let { query } = useParams();
+  let { query } = useParams("");
   const navigate = useNavigate();
   const searchRef = useRef();
   const [value, setValue] = useState(query);
-  const goToSearch = (e) => {
-    e.preventDefault();
+  const goToSearch = () => {
+    if (value === "") {
+      alert("검색어를 입력해주세요");
+      return;
+    }
     navigate(`${routes.search}${value}`);
-    location.reload();
   };
   const searchOnChange = (e) => {
     setValue(e.target.value);

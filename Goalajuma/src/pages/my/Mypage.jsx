@@ -16,9 +16,6 @@ const Mypage = () => {
   const { data, error, isLoading, isError } = useQuery({
     queryKey: ["myProfile"],
     queryFn: myInquire,
-    // () => {
-    //   return myInquire();
-    // },
     enabled: !!token,
   });
 
