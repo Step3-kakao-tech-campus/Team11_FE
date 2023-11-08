@@ -1,7 +1,7 @@
 import axios from "axios";
 import routes from "../routes";
 import { getCookie, removeCookie } from "./Cookie";
-import { refreshTokenInquire, token } from "./login";
+import { refreshTokenInquire, getToken } from "./login";
 import { useRecoilState } from 'recoil';
 import { isLoginInState } from '@/utils/AuthAtom';
 import { useEffect } from "react";
@@ -32,16 +32,16 @@ instance.interceptors.response.use(
     const {
       response: { status },
     } = error;
-    const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);    
     if (status === 403) {
       //refreshtoken 요청
       console.log("status 403")
       console.log(getCookie("refreshToken"))
       const res = await refreshTokenInquire()
       if(res.status === 200){
-        token(res)
+        getToken(res) // 엑세스랑 리프레시 토큰을 받아 업데이트 시켜주는 함수
       }
       else if (res.status === 401) {
+        const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
         setisLoginIn(false);
         console.log(isLoginIn)
         console.log("리프만료")
@@ -49,11 +49,8 @@ instance.interceptors.response.use(
         localStorage.clear();
         removeCookie("refreshToken")
         location.href = routes.login;
+        return Promise.resolve(error.response.data.error.message);
       }
-    }
-    else if(status === 401){
-      setisLoginIn(false);
-      return Promise.resolve(error.response.data.error);
     }
     return Promise.reject(error.response);
   }

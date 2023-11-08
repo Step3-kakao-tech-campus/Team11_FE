@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
 import Chat from "./Chat";
 // import {ChatTest} from "./ChatTest"
-import { ChatInquire } from "@/services/main";
-import { useQuery } from "@tanstack/react-query";
 
 const ChatForm = ({ data }) => {
   // const dataList = ChatTest.data.comments;
-
-  const dataList = data?.data.data.comments;
+  console.log(data);
+  const dataList = data;
   return (
     <>
       {dataList?.map((data, index) => {
