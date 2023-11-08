@@ -1,7 +1,8 @@
-import { getCookie } from "@/services/Cookie";
+import { getCookie, removeCookie } from "@/services/Cookie";
 import { refreshTokenInquire } from "@/services/login"
 import { useRecoilState } from 'recoil';
 import { isLoginInState } from '@/utils/AuthAtom';
+import { useEffect } from "react";
 
 const useLogin = ()=>{
   console.log('dd')
@@ -28,7 +29,13 @@ const useLogin = ()=>{
     console.log('hii')
     setisLoginIn(false)
   }
-
+  // useEffect(()=>{
+  //   if(!isLoginIn){
+  //     console.log('hiii')
+  //     localStorage.clear();
+  //     removeCookie("refreshToken")
+  //   }
+  // },[isLoginIn])
   return isLoginIn
 }
 

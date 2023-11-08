@@ -35,7 +35,7 @@ const VoteHead = ({
         return;
       }
     });
-  }, [categoryValue]);
+  }, [categoryValue, active]);
 
   return (
     <>
