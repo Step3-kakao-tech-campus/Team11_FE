@@ -1,7 +1,8 @@
-import { getCookie } from "@/services/Cookie";
+import { getCookie, removeCookie } from "@/services/Cookie";
 import { refreshTokenInquire } from "@/services/login"
 import { useRecoilState } from 'recoil';
 import { isLoginInState } from '@/utils/AuthAtom';
+import { useEffect } from "react";
 
 const useLogin = ()=>{
   console.log('dd')
@@ -22,6 +23,7 @@ const useLogin = ()=>{
   }
   else if(isAccessToken && expiredTime < currentTime && refreshTokenExpiredTime > currentTime) {
     console.log('hi')
+    setisLoginIn(true)
     refreshTokenInquire()
   }
   else if(refreshTokenExpiredTime < currentTime){
