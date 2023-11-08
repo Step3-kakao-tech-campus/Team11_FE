@@ -40,8 +40,8 @@ const HomeLayout = ({ data, what }) => {
   // const [count, setCount] = useState(0);
 
   // const Data = ModalTest.data.vote;
-  const changeVotes = (result) => {
-    setParticipate(!participateState);
+  const changeVotes = (participate, result) => {
+    setParticipate(participate);
 
     const copyOptions = optionState?.map((choice, index) => {
       return {
