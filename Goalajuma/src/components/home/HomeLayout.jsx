@@ -9,6 +9,8 @@ import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
 import ModalLayout from "../common/modal/ModalLayout";
 import ShareForm from "../common/modal/ShareForm";
+import { useNavigate } from "react-router-dom";
+import routes from "@/routes";
 
 /**
  *
@@ -17,6 +19,7 @@ import ShareForm from "../common/modal/ShareForm";
  */
 
 const HomeLayout = ({ data, what }) => {
+  const navigate = useNavigate();
   const {
     totalCount,
     participate,
@@ -35,7 +38,6 @@ const HomeLayout = ({ data, what }) => {
   );
   const [modalVisible, setModalVisible] = useState(false);
   const [share, setShare] = useState(false);
-  const [modalId, setModalId] = useState(null);
   const [optionState, setOptionState] = useState(options);
   // const [count, setCount] = useState(0);
 
@@ -56,12 +58,14 @@ const HomeLayout = ({ data, what }) => {
   };
 
   const clickModal = (data) => {
+    navigate(routes.home + data.id);
     setModalVisible(true);
-    setModalId(data.id);
+    // setModalId(data.id);
   };
   const closeModal = () => {
+    location.reload();
+    navigate(routes.home);
     setModalVisible(false);
-    setModalId(null);
   };
   const shareOpenModal = () => {
     setShare(true);
@@ -104,7 +108,13 @@ const HomeLayout = ({ data, what }) => {
             maskClosable={true}
             onClose={closeModal}
           >
-            <ModalLayout id={modalId} what="main" />
+            <ModalLayout
+              what="main"
+              optionState={optionState}
+              // participateState={participateState}
+              // setParticipate={() => setParticipate()}
+              // setOptionState={() => setOptionState()}
+            />
           </Modal>
         )}
         {share && (
