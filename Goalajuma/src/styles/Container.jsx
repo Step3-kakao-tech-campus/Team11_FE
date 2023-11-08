@@ -13,7 +13,8 @@ export const MainContainer = styled.div`
 `;
 
 export const ModalMainContainer = styled(MainContainer)`
-  height: 600px;
+  max-height: 600px;
+  min-height: 500px;
   overflow: scroll;
 `;
 export const JoinContainer = styled(MainContainer)`
@@ -29,6 +30,7 @@ export const MyContainer = styled.div`
   min-width: 210px;
   max-width: 400px;
   height: 100%;
+  overflow: scroll;
 
   margin-top: 63px;
 
