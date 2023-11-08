@@ -2,6 +2,7 @@ import routes from "@/routes";
 import { getCookie, removeCookie, setCookie } from "./Cookie";
 import { instance } from "./index";
 
+
 export const getToken = (res)=>{
   const accessToken = res.data.data.accessToken
   const accessExpiredTime = new Date(res.data.data.accessExpiredTime)
@@ -9,9 +10,15 @@ export const getToken = (res)=>{
   const refreshExpiredTime = new Date (res.data.data.refreshExpiredTime)
   localStorage.setItem("token", accessToken)
   localStorage.setItem("expiredTime", accessExpiredTime)
-  setCookie('refreshToken', refreshToken, refreshExpiredTime)
+  setCookie('refreshToken', refreshToken)
+  setCookie('refreshExpiredTime', refreshExpiredTime)
 }
-
+export const removeToken = () =>{
+  removeCookie('refreshToken')
+  alert('토큰이 만료되었습니다! 다시 로그인 해주세요.')
+  localStorage.clear()
+  location.href = routes.login
+}
 export const loginInquire = async (data) => {
   const {email, password} = data;
   
@@ -19,7 +26,9 @@ export const loginInquire = async (data) => {
     email: email,
     password: password 
   })
-  getToken(res)
+  if(res.status === 200){
+    getToken(res)
+  }
   return res
 };
 
@@ -32,7 +41,9 @@ export const refreshTokenInquire = async()=>{
     return res
   } catch(err){
     console.log('리프레시 토큰 요청 중 오류',err)
-    console.log(err.status)
+    if(err.status === 401){
+      removeToken()
+    }
     return err
   }
 }
