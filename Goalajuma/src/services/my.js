@@ -11,3 +11,16 @@ export const participateInquire = () => {
 export const myvoteInquire = () => {
   return instance.get(`/users/votes/ask`);
 };
+
+export const newNameInquire = (payload) => {
+  console.log(payload);
+  return instance.patch("/users/nickname", {
+    nickName : payload 
+  })
+}
+
+export const newEmailInquire = (payload) => {
+  return instance.patch("/users/email", {
+    email: payload
+  })
+}
