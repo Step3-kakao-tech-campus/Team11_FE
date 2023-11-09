@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import Alert from "../Alert"
 import { commentInquire } from "@/services/detailVote";
 import { useMutation, useQueryClient } from 'react-query';
+import { useParams } from "react-router";
 // import axios from 'axios';
 
 /**
@@ -16,9 +17,10 @@ import { useMutation, useQueryClient } from 'react-query';
 const ChatWriteForm = ({participate}) => {
   const [write, setWrite] = useState("")
   const [alert, setIsAlert] = useState(false)
+  const id = useParams();
 
   const AddComment = () => {
-    return useMutation(commentInquire(10, write))
+    return useMutation(commentInquire(id.id, write))
   }
   const handleUpload = ()=>{
     // mutation 함수를 호출하여 POST 요청을 보냄.

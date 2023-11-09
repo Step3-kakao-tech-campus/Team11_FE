@@ -1,7 +1,7 @@
 import routes from "@/routes";
 import HomeLayout from "../home/HomeLayout";
 routes;
-const HotTemplate = ({ datas, isFetching }) => {
+const HotTemplate = ({ datas, isFetching, modal }) => {
   return (
     <div>
       {datas &&
@@ -14,6 +14,7 @@ const HotTemplate = ({ datas, isFetching }) => {
             what="hot"
             key={id}
             route={routes.hot}
+            modal={modal}
           />
         ))}
     </div>

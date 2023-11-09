@@ -13,7 +13,7 @@ import NonePage from "@/components/common/NonePage";
 import Alert from "@/components/common/Alert";
 import { isToastState } from "@/utils/ToastAtom";
 
-const MainPage = () => {
+const MainPage = ({ modal }) => {
   // const datas = ButtonTest.data.votes;
   const [toast, setToast] = useRecoilState(isToastState);
   const categoryData = useRecoilValue(totalCategoryState);
@@ -91,7 +91,11 @@ const MainPage = () => {
               <NonePage what="main" />
             ) : (
               <>
-                <HomeTemplate datas={Data} isFetching={isFetching} />
+                <HomeTemplate
+                  datas={Data}
+                  isFetching={isFetching}
+                  modal={modal}
+                />
                 <div ref={bottomObserver}></div>
                 {isFetching && <Loader />}
               </>
