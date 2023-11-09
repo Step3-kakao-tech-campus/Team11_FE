@@ -6,17 +6,17 @@ import CategoryNDeadLine from "@/components/upload/CategoryNDeadLine";
 import UploadButton from "@/components/upload/UploadButton";
 import { useEffect } from "react";
 import { uploadSelector } from "@/utils/UploadAtom";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useResetRecoilState } from "recoil";
 import { BiReset } from "react-icons/bi";
 import Swal from "sweetalert2";
 import Icon from "@/components/common/Icon";
 import UploadPageHeader from "@/components/layouts/headers/UploadPageHeader";
-import { isLoginInState } from "@/utils/AuthAtom";
 import { useNavigate } from "react-router-dom";
+import useLogin from "@/hooks/useLogin";
 const UploadPage = () => {
   const navigate = useNavigate();
   const resetList = useResetRecoilState(uploadSelector);
-  const isLogin = useRecoilValue(isLoginInState);
+  const isLogin = useLogin()
   const resetClick = (e) => {
     Swal.fire({
       icon: "info",

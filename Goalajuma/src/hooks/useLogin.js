@@ -5,28 +5,27 @@ import { isLoginInState } from '@/utils/AuthAtom';
 import { useEffect } from "react";
 
 const useLogin = ()=>{
-  console.log('dd')
   const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
   const accessToken = localStorage.getItem("token")
-  const expiredTime = localStorage.getItem("expiredTime") // accessToken 만료 시간
-  const refreshTokenExpiredTime = getCookie("refreshTokenExpiredTime")
-  const currentTime = Math.floor(Date.now() / 1000)
+  const expiredTime = new Date(localStorage.getItem("expiredTime")) // accessToken 만료 시간
+  const refreshExpiredTime = new Date(localStorage.getItem("refreshExpiredTime"))
+  const currentTime = new Date()
   const isAccessToken = accessToken && accessToken !== "";
   console.log(accessToken)
   console.log(expiredTime)
-  console.log(refreshTokenExpiredTime)
-  console.log(isAccessToken)
+  console.log(currentTime)
+  console.log(expiredTime > currentTime)
 
   if(isAccessToken && expiredTime > currentTime) {
     console.log('h')
     setisLoginIn(true)
   }
-  else if(isAccessToken && expiredTime < currentTime && refreshTokenExpiredTime > currentTime) {
+  else if(isAccessToken && expiredTime < currentTime && refreshExpiredTime > currentTime) {
     console.log('hi')
     setisLoginIn(true)
     refreshTokenInquire()
   }
-  else if(refreshTokenExpiredTime < currentTime){
+  else if(refreshExpiredTime < currentTime){
     console.log('hii')
     setisLoginIn(false)
   }
