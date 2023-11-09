@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Alert from "../Alert";
 import { closeInquire } from "@/services/main";
 import Swal from "sweetalert2";
+import { useMutation} from "@tanstack/react-query";
 
 /**
  * @param {object} props
@@ -13,6 +14,17 @@ import Swal from "sweetalert2";
 const EndButton = ({ isOwner, id, active: initialActive }) => {
   const [active, setActive] = useState(initialActive);
   const [alert, setIsAlert] = useState(false);
+  // const queryClient = useQueryClient();
+
+  const deleteVote = useMutation(
+    {
+      mutationFn: () => closeInquire(id),
+      onSuccess: () => {
+        console.log('Deleting')
+        // queryClient.invalidateQueries([id]);
+      },
+    }
+  )
 
   const handleOnClick = () => {
     Swal.fire({
@@ -27,17 +39,19 @@ const EndButton = ({ isOwner, id, active: initialActive }) => {
       if (result.isConfirmed) {
         setActive("complete");
         setIsAlert(true);
-        closeInquire(id)
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((err) => {
-            alert(err);
-          });
+        deleteVote.mutate();
+          // .then((res) => {
+          //   console.log(res);
+          // })
+          // .catch((err) => {
+          //   alert(err);
+          // });
         window.location.reload();
       }
     });
   };
+
+
 
   return (
     <>
