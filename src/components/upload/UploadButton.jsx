@@ -7,13 +7,13 @@ import { uploadVote } from "@/services/vote";
 import { useMutation } from "@tanstack/react-query";
 import routes from "@/routes";
 import { useNavigate } from "react-router-dom";
-import { isToastState } from "@/utils/ToastAtom";
+import Swal from "sweetalert2";
 
 const UploadButton = () => {
   const navigate = useNavigate();
   const [count, setCount] = useRecoilState(uploadSelector);
   const resetList = useResetRecoilState(uploadSelector);
-  const [toast, setToast] = useRecoilState(isToastState);
+  // const [toast, setToast] = useRecoilState(isToastState);
   const [active, setActive] = useState(false);
   const mutation = useMutation({
     mutationFn: (payload) => uploadVote(payload),
@@ -35,8 +35,15 @@ const UploadButton = () => {
       const payload = count;
       mutation.mutate(payload, {
         onSuccess: () => {
-          setToast(true);
-          resetList();
+          // setToast(true);
+          Swal.fire({
+            icon: "success",
+            text: "업로드 완료",
+          }).then(() => {
+            resetList();
+            navigate(routes.home);
+            location.reload();
+          });
           navigate(routes.home);
         },
         onError: (error) => {
