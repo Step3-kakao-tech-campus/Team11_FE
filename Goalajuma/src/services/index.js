@@ -1,7 +1,7 @@
 import axios from "axios";
 import routes from "../routes";
-import { removeCookie } from "./Cookie";
-import { refreshTokenInquire } from "./login";
+import { getCookie, removeCookie } from "./Cookie";
+import { refreshTokenInquire, getToken } from "./login";
 import { useRecoilState } from 'recoil';
 import { isLoginInState } from '@/utils/AuthAtom';
 import { useEffect } from "react";
@@ -12,7 +12,8 @@ export const instance = axios.create({
   timeout: 1000 * 3,
   headers: {
     "Content-Type": "application/json",
-  }
+  },
+  // withCredential: true
 });
 
 instance.interceptors.request.use((config) => {
@@ -34,22 +35,22 @@ instance.interceptors.response.use(
     if (status === 403) {
       //refreshtoken 요청
       console.log("status 403")
-      try{
-        await refreshTokenInquire();
-      } catch(err){
-        console.log("error refreshing",err)
+      console.log(getCookie("refreshToken"))
+      const res = await refreshTokenInquire()
+      if(res.status === 200){
+        getToken(res) // 엑세스랑 리프레시 토큰을 받아 업데이트 시켜주는 함수
       }
-    }
-    if (status === 401) {
-      const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
-      setisLoginIn(false);
-      console.log(isLoginIn)
-      console.log("리프만료")
-      alert("로그인 시간이 만료되었습니다. 다시 로그인해주세요");
-      localStorage.clear();
-      removeCookie("refreshToken")
-      location.href = routes.login;
-      return Promise.resolve(error.response.data.error.message);
+      else if (res.status === 401) {
+        const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
+        setisLoginIn(false);
+        console.log(isLoginIn)
+        console.log("리프만료")
+        alert("로그인 시간이 만료되었습니다. 다시 로그인해주세요");
+        localStorage.clear();
+        removeCookie("refreshToken")
+        location.href = routes.login;
+        return Promise.resolve(error.response.data.error.message);
+      }
     }
     return Promise.reject(error.response);
   }

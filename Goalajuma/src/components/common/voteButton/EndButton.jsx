@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Alert from "../Alert";
 import { closeInquire } from "@/services/main";
+import Swal from "sweetalert2";
 
 /**
  * @param {object} props
@@ -14,23 +15,36 @@ const EndButton = ({isOwner, id, active: initialActive}) => {
   const [alert, setIsAlert] = useState(false);
 
   const handleOnClick = () => {
-    setActive("complete")
-    setIsAlert(true)
-    closeInquire(id);
+    Swal.fire({
+      icon: "info",
+      html: "투표를 종료하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "예",
+      cancelButtonText: "아니오",
+      confirmButtonColor: "#429f50",
+      cancelButtonColor: "#d33",
+    }).then((result)=>{
+      if(result.isConfirmed){
+        window.location.reload();
+        setActive("complete")
+        setIsAlert(true)
+        closeInquire(id);
+      }
+    })
   };
 
   return (
     <>
-        {alert && 
-        <Alert setIsAlert={setIsAlert}>
-          투표가 종료됩니다.
-        </Alert>}
-        {isOwner && active === "continue"? 
-        <ButtonStyled onClick={handleOnClick}>끝내기</ButtonStyled>
-        :""}
-      </>
-    )
-  
+      {alert && 
+      <Alert setIsAlert={setIsAlert}>
+        투표가 종료됩니다.
+      </Alert>}
+      {isOwner && active === "continue"? 
+      <ButtonStyled onClick={handleOnClick}>끝내기</ButtonStyled>
+      :""}
+    </>
+  )
+
 }
 EndButton.propTypes = {
   isOwner: PropTypes.bool.isRequired,

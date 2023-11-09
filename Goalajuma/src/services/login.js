@@ -1,7 +1,8 @@
-import { setCookie } from "./Cookie";
+import routes from "@/routes";
+import { getCookie, removeCookie, setCookie } from "./Cookie";
 import { instance } from "./index";
 
-const token = (res)=>{
+export const getToken = (res)=>{
   const accessToken = res.data.data.accessToken
   const accessExpiredTime = new Date(res.data.data.accessExpiredTime)
   const refreshToken = res.data.data.refreshToken
@@ -18,16 +19,20 @@ export const loginInquire = async (data) => {
     email: email,
     password: password 
   })
-  console.log(res)
-  return token(res)
+  getToken(res)
+  return res
 };
 
 export const refreshTokenInquire = async()=>{
   try{
     const res = await instance.post(`/api/auth/reissue`, null, {withCredentials: true})
-    console.log(res)
-    return token(res)
+    console.log(getCookie("refreshToken"))
+    console.log(res.data.status)
+    getToken(res)
+    return res
   } catch(err){
     console.log('리프레시 토큰 요청 중 오류',err)
+    console.log(err.status)
+    return err
   }
 }
