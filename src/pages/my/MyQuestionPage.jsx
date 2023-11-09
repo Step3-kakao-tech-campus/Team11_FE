@@ -6,17 +6,18 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import { Palette } from "@/styles/Palette";
-import { MyContainer } from "@/styles/Container";
+import { MyVoteContainer } from "@/styles/Container";
 import { useQuery } from "@tanstack/react-query";
 import { myvoteInquire } from "@/services/my";
+import Loader from "@/assets/Loader";
 
 const MyQuestionPage = () => {
   const token = localStorage.getItem("token");
-  const {data} = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["myQuestion"],
     queryFn: myvoteInquire,
     enabled: !!token,
-  })
+  });
   const info = data?.data.data;
   console.log(info);
   // const datas = MyQuestionsData.data.votes;
@@ -25,32 +26,38 @@ const MyQuestionPage = () => {
   return (
     <div>
       <SubMyPageHeader page="내가 한 질문" />
-      <MyContainer>
-        {info?.votes.length ? (
-          <div>
-            {info &&
-              info?.votes.map((data) => (
-                <>
-                  <MyVoteList data={data} />
-                </>
-              ))}
-          </div>
+      <MyVoteContainer>
+        {isLoading ? (
+          <Loader />
         ) : (
-          <Box>
-            <Text>
-              내가 한 질문이 없습니다. <br />
-              첫 질문을 작성해보세요! <br />
-              당신의 고민을 <Goala>Goalajuma!</Goala>
-            </Text>
-            <div>
-              <Button onClick={() => navigate(routes.upload)}>
-                질문 작성 하러가기
-              </Button>
-            </div>
-          </Box>
+          <>
+            {info?.votes.length ? (
+              <div>
+                {info &&
+                  info?.votes.map((data) => (
+                    <>
+                      <MyVoteList data={data} route={routes.myquestion} />
+                    </>
+                  ))}
+              </div>
+            ) : (
+              <Box>
+                <Text>
+                  내가 한 질문이 없습니다. <br />
+                  첫 질문을 작성해보세요! <br />
+                  당신의 고민을 <Goala>Goalajuma!</Goala>
+                </Text>
+                <div>
+                  <Button onClick={() => navigate(routes.upload)}>
+                    질문 작성 하러가기
+                  </Button>
+                </div>
+              </Box>
+            )}
+          </>
         )}
-      </MyContainer>
-      <Footer page="mypage"/>
+      </MyVoteContainer>
+      <Footer page="mypage" />
     </div>
   );
 };

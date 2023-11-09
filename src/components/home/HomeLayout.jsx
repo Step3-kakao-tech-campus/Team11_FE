@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
 import ModalLayout from "../common/modal/ModalLayout";
 import ShareForm from "../common/modal/ShareForm";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 /**
  *
@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 const HomeLayout = ({ data, what, route, modal }) => {
   const navigate = useNavigate();
+  const { id: modalId } = useParams();
 
   const {
     totalCount,
@@ -67,12 +68,12 @@ const HomeLayout = ({ data, what, route, modal }) => {
     navigate(route);
     setModalVisible(false);
   };
-  const shareOpenModal = () => {
-    setShare(true);
-  };
-  const shareCloseModal = () => {
-    setShare(false);
-  };
+  // const shareOpenModal = () => {
+  //   setShare(true);
+  // };
+  // const shareCloseModal = () => {
+  //   setShare(false);
+  // };
   return (
     <MainContainer>
       <Container>
@@ -99,9 +100,10 @@ const HomeLayout = ({ data, what, route, modal }) => {
 
         <VoteBottom
           onClick={() => clickModal(data)}
-          onClickShare={shareOpenModal}
+          // onClickShare={shareOpenModal}
+          modal={false}
         ></VoteBottom>
-        {modalVisible && (
+        {modalVisible && modalId == id && (
           <Modal
             visible={modalVisible}
             closable={true}
@@ -115,7 +117,7 @@ const HomeLayout = ({ data, what, route, modal }) => {
             />
           </Modal>
         )}
-        {share && (
+        {/* {share && (
           <Modal
             visible={share}
             closable={true}
@@ -124,7 +126,7 @@ const HomeLayout = ({ data, what, route, modal }) => {
           >
             <ShareForm />
           </Modal>
-        )}
+        )} */}
       </Container>
     </MainContainer>
   );
