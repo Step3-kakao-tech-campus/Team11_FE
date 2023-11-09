@@ -1,6 +1,6 @@
 import HomeLayout from "../home/HomeLayout";
 import routes from "@/routes";
-const HomeTemplate = ({ datas, isFetching, error }) => {
+const HomeTemplate = ({ datas, isFetching, error, location }) => {
   return (
     <div>
       {error ? (
