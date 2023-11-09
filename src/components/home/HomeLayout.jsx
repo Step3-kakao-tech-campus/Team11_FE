@@ -8,7 +8,6 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
 import ModalLayout from "../common/modal/ModalLayout";
-import ShareForm from "../common/modal/ShareForm";
 import { useNavigate, useParams } from "react-router-dom";
 
 /**
@@ -38,11 +37,7 @@ const HomeLayout = ({ data, what, route, modal }) => {
     participate && participate
   );
   const [modalVisible, setModalVisible] = useState(modal);
-  const [share, setShare] = useState(false);
   const [optionState, setOptionState] = useState(options);
-  // const [count, setCount] = useState(0);
-
-  // const Data = ModalTest.data.vote;
   const changeVotes = (participate, result) => {
     setParticipate(participate);
 
@@ -61,19 +56,11 @@ const HomeLayout = ({ data, what, route, modal }) => {
   const clickModal = (data) => {
     navigate(route + data.id);
     setModalVisible(true);
-    // setModalId(data.id);
   };
   const closeModal = () => {
-    // location.reload();
     navigate(route);
     setModalVisible(false);
   };
-  // const shareOpenModal = () => {
-  //   setShare(true);
-  // };
-  // const shareCloseModal = () => {
-  //   setShare(false);
-  // };
   return (
     <MainContainer>
       <Container>
@@ -100,7 +87,6 @@ const HomeLayout = ({ data, what, route, modal }) => {
 
         <VoteBottom
           onClick={() => clickModal(data)}
-          // onClickShare={shareOpenModal}
           modal={false}
         ></VoteBottom>
         {modalVisible && modalId == id && (
@@ -117,16 +103,6 @@ const HomeLayout = ({ data, what, route, modal }) => {
             />
           </Modal>
         )}
-        {/* {share && (
-          <Modal
-            visible={share}
-            closable={true}
-            maskClosable={true}
-            onClose={shareCloseModal}
-          >
-            <ShareForm />
-          </Modal>
-        )} */}
       </Container>
     </MainContainer>
   );
