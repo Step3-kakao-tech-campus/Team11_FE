@@ -13,7 +13,7 @@ const Alert = ({ children, setIsAlert, margin }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsAlert(false);
-    }, 3000);
+    }, 1000);
     return () => {
       clearTimeout(timer);
     };
@@ -39,7 +39,7 @@ const Container = styled.div`
   margin-left: ${(prop) => prop.margin};
   position: fixed;
   top: 10%;
-  animation: ${fadeIn} 3s ease-in-out 0s infinite normal none running;
+  animation: ${fadeIn} 1s ease-in-out 0s infinite normal none running;
   z-index: 1000000000;
 `;
 

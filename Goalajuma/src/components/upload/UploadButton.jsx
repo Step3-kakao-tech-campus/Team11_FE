@@ -7,11 +7,13 @@ import { uploadVote } from "@/services/vote";
 import { useMutation } from "@tanstack/react-query";
 import routes from "@/routes";
 import { useNavigate } from "react-router-dom";
+import { isToastState } from "@/utils/ToastAtom";
 
 const UploadButton = () => {
   const navigate = useNavigate();
   const [count, setCount] = useRecoilState(uploadSelector);
   const resetList = useResetRecoilState(uploadSelector);
+  const [toast, setToast] = useRecoilState(isToastState);
   const [active, setActive] = useState(false);
   const mutation = useMutation({
     mutationFn: (payload) => uploadVote(payload),
@@ -33,8 +35,9 @@ const UploadButton = () => {
       const payload = count;
       mutation.mutate(payload, {
         onSuccess: () => {
+          setToast(true);
           resetList();
-          navigate(routes.home, { state: { active: true } });
+          navigate(routes.home);
         },
         onError: (error) => {
           alert(error?.data.message);
