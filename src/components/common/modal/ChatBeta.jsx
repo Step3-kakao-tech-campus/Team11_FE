@@ -90,7 +90,7 @@ const ChatBeta = ({participate}) => {
           <Alert setIsAlert={setIsAlert}>투표를 해야 댓글 작성이 가능합니다.</Alert>
         }
         <input placeholder='댓글 작성'onChange={handleInputChange} onKeyDown={handleEnterKey} value={write}/>
-        <UploadStyled onClick={() => handleClick(126)}>게시</UploadStyled>
+        <UploadStyled onClick={handleUpload}>게시</UploadStyled>
       </WriteStyled>
     </FormStyled>
     </>
