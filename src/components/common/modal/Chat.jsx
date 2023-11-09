@@ -3,11 +3,14 @@ import Img from '@/components/common/Img'
 import styled from "styled-components";
 
 const Chat = ({data}) => {
-  // const {
-  //   username,
-  //   content,
-  //   createTime
-  // } = data
+  const createTime = new Date(data.createTime)
+  const year = createTime.getFullYear()
+  const month = String(createTime.getMonth()+1).padStart(2,'0')
+  const day = String(createTime.getDate()).padStart(2,'0')
+  const hours = String(createTime.getHours()).padStart(2, '0');
+  const minutes = String(createTime.getMinutes()).padStart(2, '0');
+  
+  const formatDate = `${year}.${month}.${day} ${hours}:${minutes}`
   return (
     <>
     <ChatStyled>
@@ -15,7 +18,7 @@ const Chat = ({data}) => {
       <div>
         <UserStyled>
           <NameStyled>{data.username}</NameStyled>
-          <DateStyled>{data.createTime}</DateStyled>
+          <DateStyled>{formatDate}</DateStyled>
         </UserStyled>
         <ContentStyled>{data.content}</ContentStyled>
       </div>
