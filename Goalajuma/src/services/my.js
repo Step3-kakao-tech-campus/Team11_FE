@@ -1,14 +1,26 @@
 import { instance } from "./index";
 
 export const myInquire = () => {
-  return instance.get(`/users/profile`);
+  return instance.get("/users/profile");
 };
 
 export const participateInquire = () => {
-  return instance.get(`/users/votes/participate`)
+  return instance.get(`/users/votes/participate`);
 };
 
 export const myvoteInquire = () => {
-  return instance.get(`/users/votes/ask`)
+  return instance.get(`/users/votes/ask`);
 };
 
+export const newNameInquire = (payload) => {
+  console.log(payload);
+  return instance.patch("/users/nickname", {
+    nickName : payload 
+  })
+}
+
+export const newEmailInquire = (payload) => {
+  return instance.patch("/users/email", {
+    email: payload
+  })
+}

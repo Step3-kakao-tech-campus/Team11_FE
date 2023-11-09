@@ -1,5 +1,9 @@
 import axios from "axios";
-import routes from "../routes";
+// import { getCookie, removeCookie } from "./Cookie";
+import { refreshTokenInquire, removeToken } from "./login";
+import { useSetRecoilState } from 'recoil';
+import { isLoginInState } from '@/utils/AuthAtom';
+// import { useEffect } from "react";
 
 export const instance = axios.create({
   baseURL: "https://ke48313f43733a.user-app.krampoline.com/",
@@ -7,6 +11,7 @@ export const instance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  // withCredential: true
 });
 
 instance.interceptors.request.use((config) => {
@@ -21,18 +26,24 @@ instance.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {
+  async (error) => {
     const {
-      // config,
       response: { status },
     } = error;
-    if (status === 403 || status === 500) {
-      //refreshtoekn
+    if (status === 403) {
+      //refreshtoken 요청
+      console.log(status);
+      const res = await refreshTokenInquire()
+      if (res.status === 401) {
+        const setisLoginIn = useSetRecoilState(isLoginInState);
+        setisLoginIn(false);
+      }
     }
-    if (status == 401) {
-      alert("로그인 시간이 만료되었습니다. 다시 로그인해주세요");
-      localStorage.clear();
-      location.href = routes.login;
+    if(status === 401){
+      // 로그인 만료
+      // setisLoginIn(false);
+      // removeToken()
+      console.log('status', status);
       return Promise.resolve(error.response.data.error.message);
     }
     return Promise.reject(error.response);

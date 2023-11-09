@@ -3,15 +3,19 @@ import Main from "@/components/layouts/headers/Main";
 import Footer from "@/components/layouts/footers/Footer";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { mainInquire } from "@/services/main";
-import { useEffect, useRef } from "react";
-import { useRecoilValue } from "recoil";
+import { useEffect, useRef, useState } from "react";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { totalCategoryState } from "@/utils/HeaderAtom";
 import HomeTemplate from "@/components/template/HomeTemplate";
 import Loader from "@/assets/Loader";
 import ErrorScreen from "@/components/common/ErrorScreen";
 import NonePage from "@/components/common/NonePage";
+import Alert from "@/components/common/Alert";
+import { isToastState } from "@/utils/ToastAtom";
+
 const MainPage = () => {
   // const datas = ButtonTest.data.votes;
+  const [toast, setToast] = useRecoilState(isToastState);
   const categoryData = useRecoilValue(totalCategoryState);
   const bottomObserver = useRef(null);
 
@@ -68,9 +72,14 @@ const MainPage = () => {
 
   return (
     <>
-      {" "}
+      {toast && (
+        <Alert margin="2rem" setIsAlert={setToast}>
+          {" "}
+          게시글이 등록되었습니다.{" "}
+        </Alert>
+      )}
       <Main page="main" />
-      {isFetching ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <>

@@ -4,63 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
-//value로 영어 추가 하기
-const sortList = [
-  {
-    id: 0,
-    category: "최신순",
-    value: "current",
-  },
-  {
-    id: 1,
-    category: "인기순",
-    value: "popular",
-  },
-];
-
-const contentList = [
-  {
-    id: 0,
-    category: "골라조",
-    value: "total",
-  },
-  {
-    id: 1,
-    category: "뭐사조",
-    value: "buy",
-  },
-  {
-    id: 2,
-    category: "어디가조",
-    value: "where",
-  },
-  {
-    id: 3,
-    category: "뭐하조",
-    value: "what",
-  },
-  {
-    id: 4,
-    category: "뭐먹조",
-    value: "food",
-  },
-  {
-    id: 5,
-    category: "뭐보조",
-    value: "movie",
-  },
-  {
-    id: 6,
-    category: "들어조",
-    value: "listen",
-  },
-  {
-    id: 7,
-    category: "기타",
-    value: "etc",
-  },
-];
+import { sortList, contentList } from "./DropdownList";
 
 export const CompleteCategoryBox = () => {
   const [sort, setSort] = useRecoilState(completeSortState);
@@ -144,7 +88,7 @@ export const CompleteCategoryBox = () => {
           <Ul>
             {sortList.map((item) => (
               <Li key={item.id} className="item">
-                <StyledButton>
+                <StyledButton className="sort-item">
                   <div
                     onClick={() => handleSort(item.id)}
                     style={
@@ -168,10 +112,10 @@ export const CompleteCategoryBox = () => {
           <ExpandMoreIcon style={{ fontSize: 30 }} />
         </MainButton>
         {drops.content ? (
-          <Ul>
+          <Ul className="content">
             {contentList.map((item) => (
               <Li key={item.id} className="item">
-                <StyledButton>
+                <StyledButton className="content-item">
                   <div
                     onClick={() => handleContent(item.id)}
                     style={
@@ -196,6 +140,7 @@ const Category = styled.div`
   display: inline-block;
   position: relative;
   margin-right: 10px;
+  z-index: 1000;
 `;
 
 const MainButton = styled.button`
@@ -219,11 +164,14 @@ const StyledButton = styled.button`
   background-color: #fff;
   color: ${Palette.font_gray};
   padding: 5px;
-  width: 4.2rem;
+  width: 6.6rem;
   height: 32px;
   border-width: 0px;
   font-size: 15px;
   cursor: pointer;
+  &.sort-item {
+    width: 4.2rem;
+  }
   &:hover {
     background-color: ${Palette.percent_gray}
   }
@@ -240,6 +188,9 @@ const Ul = styled.ul`
   margin: 0;
   width: 4.2rem;
   background-color: #fff;
+  &.content {
+    width: 6.6rem;
+  }
 `;
 
 const Li = styled.li`

@@ -11,6 +11,12 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const ModalMainContainer = styled(MainContainer)`
+  max-height: 550px;
+  min-height: 400px;
+  overflow: scroll;
+`;
 export const JoinContainer = styled(MainContainer)`
   margin-top: 80px;
 `;
@@ -24,6 +30,7 @@ export const MyContainer = styled.div`
   min-width: 210px;
   max-width: 400px;
   height: 100%;
+  overflow: scroll;
 
   margin-top: 63px;
 

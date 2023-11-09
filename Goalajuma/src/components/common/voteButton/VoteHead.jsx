@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { Palette } from "@/styles/Palette";
 import EndButton from "@/components/common/voteButton/EndButton";
 import { useEffect, useState } from "react";
-import { contentList } from "@/components/layouts/headers/CategoryBox";
+import { contentList } from "@/components/layouts/headers/DropdownList";
 
 /**
  * @param {object} props
@@ -25,6 +25,7 @@ const VoteHead = ({
   isOwner,
   active,
   categoryValue,
+  id
 }) => {
   const [categoryName, setCategoryName] = useState(null);
   useEffect(() => {
@@ -34,7 +35,7 @@ const VoteHead = ({
         return;
       }
     });
-  }, [categoryValue]);
+  }, [categoryValue, active]);
 
   return (
     <>
@@ -65,7 +66,7 @@ const VoteHead = ({
             </div>
           )}
         </VoteHeadCss>
-        <EndButton isOwner={isOwner} active={active} />
+        <EndButton isOwner={isOwner} active={active} id={id} />
       </VoteHeadLayout>
     </>
   );
@@ -78,6 +79,7 @@ VoteHead.propTypes = {
   active: PropTypes.string.isRequired,
   totalCount: PropTypes.number.isRequired,
   categoryValue: PropTypes.string.isRequired,
+  id:PropTypes.number.isRequired,
 };
 const VoteHeadLayout = styled.div`
   display: flex;

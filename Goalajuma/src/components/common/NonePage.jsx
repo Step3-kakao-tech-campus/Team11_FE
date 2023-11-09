@@ -26,6 +26,12 @@ const NonePage = ({ what, query }) => {
           <button onClick={() => navigate(routes.upload)}>질문하러 가기</button>
         </NoneStyle>
       )}
+      {what === "hot" && (
+        <NoneStyle>
+          핫게시글이 없습니다. <br></br>투표를 해서 핫게시글을 만들어주세요!
+          <button onClick={() => navigate(routes.home)}>투표하러 가기</button>
+        </NoneStyle>
+      )}
     </>
   );
 };

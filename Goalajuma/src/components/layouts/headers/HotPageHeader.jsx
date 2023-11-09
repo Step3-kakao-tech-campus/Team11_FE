@@ -37,6 +37,7 @@ const Title = styled.div`
 `;
 const PageName = styled.div`
   margin: auto;
+  margin-top: 12px;
   font-size: 18px;
   font-weight: bold;
   display:flex;

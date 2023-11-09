@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
 import PropTypes from "prop-types";
 import Modal from "../modal/Modal";
-import { ModalTest } from "../modal/ModalTest";
 import ModalLayout from "../modal/ModalLayout";
 import { useState } from "react";
 
@@ -14,7 +13,6 @@ import { useState } from "react";
  */
 const MyVoteList = ({data}) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const datas = ModalTest.data.vote;
 
   const clickModal = () => {
     setModalVisible(true);
@@ -25,25 +23,30 @@ const MyVoteList = ({data}) => {
   }
 
   return (
+    <div>
     <MyVote onClick={clickModal}>
       <VoteInfo>
         <ActiveSign active={data.active}/>
-        <div>{data.title}</div>
+        {data.title.length >= 15 ?
+        <div className="title">{data.title.slice(0, 15)}...</div>
+        :<div className="title">{data.title}</div>
+        }
       </VoteInfo>
       <Vote >
         더보기
         <GoChevronRight className="modal"/>
       </Vote>
-      {modalVisible && (
-        <Modal
-          visible={modalVisible}
-          closable={true}
-          maskClosable={true}
-          onClose={closeModal}>
-            <ModalLayout data={datas} />
-        </Modal>
-      )}
     </MyVote>
+    {modalVisible && (
+      <Modal
+        visible={modalVisible}
+        closable={true}
+        maskClosable={true}
+        onClose={closeModal}>
+          <ModalLayout id={data.id} />
+      </Modal>
+      )}
+    </div>
   )
 }
 
@@ -67,6 +70,11 @@ const VoteInfo = styled.div`
   position: absolute;
   left: 20px;
   font-size: 17px;
+  > .title {
+    width: 270px;
+    height: 26px;
+    text-align: left;
+  }
 `;
 const Vote = styled.div`
   position: absolute;
