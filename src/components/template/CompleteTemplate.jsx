@@ -1,6 +1,6 @@
 import routes from "@/routes";
 import HomeLayout from "../home/HomeLayout";
-const CompleteTemplate = ({ datas, isFetching, error }) => {
+const CompleteTemplate = ({ datas, isFetching, error, modal }) => {
   return (
     <div>
       {error ? (
@@ -15,6 +15,7 @@ const CompleteTemplate = ({ datas, isFetching, error }) => {
             what="complete"
             key={id}
             route={routes.complete}
+            modal={modal}
           />
         ))
       )}
