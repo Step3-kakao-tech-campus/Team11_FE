@@ -42,9 +42,9 @@ export const refreshTokenInquire = async()=>{
     return res
   } catch(err){
     console.log('리프레시 토큰 요청 중 오류',err)
-    if(err.status === 401){
+    if(err.response.status === 401){
       console.log('here')
-      removeToken()
+      // removeToken()
     }
     return err
   }
