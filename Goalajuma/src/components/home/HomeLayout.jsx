@@ -18,8 +18,9 @@ import routes from "@/routes";
  * @param {string} props.what
  */
 
-const HomeLayout = ({ data, what }) => {
+const HomeLayout = ({ data, what, route }) => {
   const navigate = useNavigate();
+
   const {
     totalCount,
     participate,
@@ -58,13 +59,13 @@ const HomeLayout = ({ data, what }) => {
   };
 
   const clickModal = (data) => {
-    navigate(routes.home + data.id);
+    navigate(route + data.id);
     setModalVisible(true);
     // setModalId(data.id);
   };
   const closeModal = () => {
-    location.reload();
-    navigate(routes.home);
+    // location.reload();
+    navigate(route);
     setModalVisible(false);
   };
   const shareOpenModal = () => {
@@ -111,9 +112,7 @@ const HomeLayout = ({ data, what }) => {
             <ModalLayout
               what="main"
               optionState={optionState}
-              // participateState={participateState}
-              // setParticipate={() => setParticipate()}
-              // setOptionState={() => setOptionState()}
+              click={changeVotes}
             />
           </Modal>
         )}

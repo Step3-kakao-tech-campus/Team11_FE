@@ -4,7 +4,7 @@ import styled from "styled-components";
 import AddChoice from "@/components/upload/AddChoice";
 import CategoryNDeadLine from "@/components/upload/CategoryNDeadLine";
 import UploadButton from "@/components/upload/UploadButton";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { uploadSelector } from "@/utils/UploadAtom";
 import { useResetRecoilState } from "recoil";
 import { BiReset } from "react-icons/bi";
@@ -13,10 +13,11 @@ import Icon from "@/components/common/Icon";
 import UploadPageHeader from "@/components/layouts/headers/UploadPageHeader";
 import { useNavigate } from "react-router-dom";
 import useLogin from "@/hooks/useLogin";
+
 const UploadPage = () => {
   const navigate = useNavigate();
   const resetList = useResetRecoilState(uploadSelector);
-  const isLogin = useLogin()
+  const isLogin = useLogin();
   const resetClick = (e) => {
     Swal.fire({
       icon: "info",
