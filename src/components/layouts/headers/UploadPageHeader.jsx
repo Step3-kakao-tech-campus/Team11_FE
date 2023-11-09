@@ -2,28 +2,26 @@ import styled from "styled-components";
 import BackButton from "./BackButton";
 
 /**
- * 
+ *
  * @return {JSX.Element}
  */
 const UploadPageHeader = () => {
   return (
     <Nav>
-      <BackButton/>
+      <BackButton upload={true} />
       <PageName>
-        <Title>
-          투표 등록하기
-        </Title>
+        <Title>투표 등록하기</Title>
       </PageName>
     </Nav>
-  )
-}
+  );
+};
 
 const Nav = styled.nav`
   height: 55px;
   position: fixed;
   top: 0px;
   width: 390px;
-  background-color: #FFF;
+  background-color: #fff;
   color: #535763;
   display: flex;
   align-items: center;
@@ -35,11 +33,10 @@ const Title = styled.div`
 `;
 const PageName = styled.div`
   width: 100%;
-  margin : auto 120px auto 73px ;
+  margin: auto 120px auto 73px;
   font-size: 18px;
   font-weight: bold;
-  display:flex;
+  display: flex;
 `;
-
 
 export default UploadPageHeader;

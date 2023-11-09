@@ -6,53 +6,61 @@ import PropTypes from "prop-types";
 import Modal from "../modal/Modal";
 import ModalLayout from "../modal/ModalLayout";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { MyVoteContainer } from "@/styles/Container";
 
 /**
  * @param {object} data
  * @returns {JSX.Element}
  */
-const MyVoteList = ({data}) => {
+const MyVoteList = ({ data, route }) => {
+  const navigate = useNavigate();
+  console.log(data.id);
   const [modalVisible, setModalVisible] = useState(false);
 
   const clickModal = () => {
+    navigate(route + data.id);
     setModalVisible(true);
-  }
+  };
 
   const closeModal = () => {
+    navigate(route);
     setModalVisible(false);
-  }
+  };
 
   return (
     <div>
-    <MyVote onClick={clickModal}>
-      <VoteInfo>
-        <ActiveSign active={data.active}/>
-        {data.title.length >= 15 ?
-        <div className="title">{data.title.slice(0, 15)}...</div>
-        :<div className="title">{data.title}</div>
-        }
-      </VoteInfo>
-      <Vote >
-        더보기
-        <GoChevronRight className="modal"/>
-      </Vote>
-    </MyVote>
-    {modalVisible && (
-      <Modal
-        visible={modalVisible}
-        closable={true}
-        maskClosable={true}
-        onClose={closeModal}>
+      <MyVote onClick={clickModal}>
+        <VoteInfo>
+          <ActiveSign active={data.active} />
+          {data.title.length >= 15 ? (
+            <div className="title">{data.title.slice(0, 15)}...</div>
+          ) : (
+            <div className="title">{data.title}</div>
+          )}
+        </VoteInfo>
+        <Vote>
+          더보기
+          <GoChevronRight className="modal" />
+        </Vote>
+      </MyVote>
+      {modalVisible && (
+        <Modal
+          visible={modalVisible}
+          closable={true}
+          maskClosable={true}
+          onClose={closeModal}
+        >
           <ModalLayout id={data.id} />
-      </Modal>
+        </Modal>
       )}
     </div>
-  )
-}
+  );
+};
 
 MyVoteList.propTypes = {
-  data: PropTypes.object.isRequired
-}
+  data: PropTypes.object.isRequired,
+};
 const MyVote = styled.div`
   height: 4rem;
   display: flex;
@@ -61,7 +69,7 @@ const MyVote = styled.div`
   position: relative;
   cursor: pointer;
   &:hover {
-    background-color: ${Palette.percent_gray}
+    background-color: ${Palette.percent_gray};
   }
 `;
 const VoteInfo = styled.div`

@@ -40,9 +40,17 @@ function App() {
         ></Route>
 
         <Route path={routes.mypage} element={<MyPage />}></Route>
-        <Route path={routes.myquestion} element={<MyQuestionPage />}></Route>
         <Route path={`${routes.search}:query`} element={<SearchPage />}></Route>
 
+        <Route path={routes.myquestion} element={<MyQuestionPage />}></Route>
+        <Route
+          path={`${routes.myquestion}:id`}
+          element={<MyQuestionPage />}
+        ></Route>
+        <Route
+          path={`${routes.myparticipation}:id`}
+          element={<MyParticipatePage />}
+        ></Route>
         <Route
           path={routes.myparticipation}
           element={<MyParticipatePage />}
