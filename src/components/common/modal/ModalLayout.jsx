@@ -1,9 +1,7 @@
-import styled from "styled-components";
-
 import PropTypes from "prop-types";
-import { useNavigate, useParams } from "react-router-dom";
-import { detailInquire, ChatInquire } from "@/services/main";
-import { useQueries } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import { detailInquire } from "@/services/main";
+import { useQuery } from "@tanstack/react-query";
 import Loader from "@/assets/Loader";
 import ModalTemplate from "./ModalTemplate";
 
@@ -15,43 +13,27 @@ import ModalTemplate from "./ModalTemplate";
 
 const ModalLayout = ({ what, click }) => {
   const { id } = useParams();
-  const datas = useQueries({
-    queries: [
-      {
-        queryKey: ["voteId", id],
-        queryFn: () => {
-          return detailInquire(id);
-        },
-        enabled: !!id,
-      },
-      {
-        queryKey: ["commentId", id],
-        queryFn: () => {
-          return ChatInquire(id);
-        },
-        enabled: !!id,
-      },
-    ],
+  const datas = useQuery({
+    queryKey: ["voteId", id],
+    queryFn: () => {
+      return detailInquire(id);
+    },
+    enabled: !!id,
   });
-  const detailData = datas[0]?.data?.data?.data?.vote;
-  const chatData = datas[1]?.data?.data?.data?.comments;
+  const detailData = datas?.data?.data?.data?.vote;
 
   return (
     <>
-      {datas[0].error || datas[1].error ? (
-        <>
-          {datas[0].errorr}|{datas[1].error}
-        </>
+      {datas.error ? (
+        <>{datas.error}</>
       ) : (
         <>
-          {datas[0].isLoading || datas[1].isLoading ? (
+          {datas.isLoading ? (
             <Loader />
           ) : (
-            detailData &&
-            chatData && (
+            detailData && (
               <ModalTemplate
                 detailData={detailData}
-                chatData={chatData}
                 click={click}
                 what={what}
               ></ModalTemplate>

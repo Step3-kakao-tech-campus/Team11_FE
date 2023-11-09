@@ -6,3 +6,7 @@ export const commentInquire = (id, comment) => {
     content: comment
   });
 }
+
+export const deleteCommentInquire = (id, cid) => {
+  return instance.delete(`/votes/${id}/comments/${cid}`)
+}
