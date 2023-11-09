@@ -2,10 +2,7 @@ import styled from "styled-components";
 import Icon from "@/components/common/Icon";
 import { Palette } from "@/styles/Palette";
 import { FaSearch } from "react-icons/fa";
-import Modal from "@/components/common/modal/Modal";
 import { useState } from "react";
-import ModalLayout from "@/components/common/modal/ModalLayout";
-import SearchInput from "@/components/search/SearchInput";
 import SearchModal from "@/components/search/SearchModal";
 
 const SearchButton = () => {

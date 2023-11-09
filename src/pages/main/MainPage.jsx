@@ -3,7 +3,7 @@ import Main from "@/components/layouts/headers/Main";
 import Footer from "@/components/layouts/footers/Footer";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { mainInquire } from "@/services/main";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { totalCategoryState } from "@/utils/HeaderAtom";
 import HomeTemplate from "@/components/template/HomeTemplate";

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import Alert from "../Alert";
 import { closeInquire } from "@/services/main";
@@ -23,11 +23,17 @@ const EndButton = ({ isOwner, id, active: initialActive }) => {
       cancelButtonText: "아니오",
       confirmButtonColor: "#429f50",
       cancelButtonColor: "#d33",
-    }).then((result)=>{
-      if(result.isConfirmed){
-        setActive("complete")
-        setIsAlert(true)
-        closeInquire(id);
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setActive("complete");
+        setIsAlert(true);
+        closeInquire(id)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            alert(err);
+          });
         window.location.reload();
       }
     });
