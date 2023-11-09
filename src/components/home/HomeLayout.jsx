@@ -10,7 +10,6 @@ import Modal from "../common/modal/Modal";
 import ModalLayout from "../common/modal/ModalLayout";
 import ShareForm from "../common/modal/ShareForm";
 import { useNavigate } from "react-router-dom";
-import routes from "@/routes";
 
 /**
  *

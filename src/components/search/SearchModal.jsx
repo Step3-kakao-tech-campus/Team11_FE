@@ -1,5 +1,4 @@
 import Portal from "../common/modal/Portal";
-import { useEffect } from "react";
 import styled from "styled-components";
 import SearchInput from "./SearchInput";
 import { ModalWrapper, ModalInner } from "../common/modal/Modal";

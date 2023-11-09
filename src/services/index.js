@@ -1,8 +1,8 @@
 import axios from "axios";
 // import { getCookie, removeCookie } from "./Cookie";
-import { refreshTokenInquire, removeToken } from "./login";
-import { useSetRecoilState } from 'recoil';
-import { isLoginInState } from '@/utils/AuthAtom';
+import { refreshTokenInquire } from "./login";
+import { useSetRecoilState } from "recoil";
+import { isLoginInState } from "@/utils/AuthAtom";
 // import { useEffect } from "react";
 
 export const instance = axios.create({
@@ -33,17 +33,17 @@ instance.interceptors.response.use(
     if (status === 403) {
       //refreshtoken 요청
       console.log(status);
-      const res = await refreshTokenInquire()
+      const res = await refreshTokenInquire();
       if (res.status === 401) {
         const setisLoginIn = useSetRecoilState(isLoginInState);
         setisLoginIn(false);
       }
     }
-    if(status === 401){
+    if (status === 401) {
       // 로그인 만료
       // setisLoginIn(false);
       // removeToken()
-      console.log('status', status);
+      console.log("status", status);
       return Promise.resolve(error.response.data.error.message);
     }
     return Promise.reject(error.response);
