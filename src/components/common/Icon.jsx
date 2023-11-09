@@ -22,6 +22,7 @@ const Icon = ({
   hoverBackColor,
   margin,
   className,
+  modal
 }) => {
   return (
     <IconCss
@@ -33,6 +34,7 @@ const Icon = ({
       hoverColor={hoverColor}
       margin={margin}
       className={className}
+      modal={modal}
     >
       {children}
     </IconCss>
@@ -48,6 +50,7 @@ Icon.propTypes = {
   hoverColor: PropTypes.string,
   hoverBackColor: PropTypes.string,
   margin: PropTypes.number,
+  modal : PropTypes.bool,
 };
 const IconCss = styled.div`
   cursor: pointer;
@@ -59,6 +62,7 @@ const IconCss = styled.div`
     background-color: ${(props) => props.hoverBackColor};
   }
   margin: ${(props) => props.margin};
+  display: ${(props) => props.modal ? "flex" : "none"};
 `;
 
 export default Icon;

@@ -8,8 +8,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
 import ModalLayout from "../common/modal/ModalLayout";
-import ShareForm from "../common/modal/ShareForm";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 /**
  *
@@ -19,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 const HomeLayout = ({ data, what, route, modal }) => {
   const navigate = useNavigate();
+  const { id: modalId } = useParams();
 
   const {
     totalCount,
@@ -37,11 +37,7 @@ const HomeLayout = ({ data, what, route, modal }) => {
     participate && participate
   );
   const [modalVisible, setModalVisible] = useState(modal);
-  const [share, setShare] = useState(false);
   const [optionState, setOptionState] = useState(options);
-  // const [count, setCount] = useState(0);
-
-  // const Data = ModalTest.data.vote;
   const changeVotes = (participate, result) => {
     setParticipate(participate);
 
@@ -60,18 +56,10 @@ const HomeLayout = ({ data, what, route, modal }) => {
   const clickModal = (data) => {
     navigate(route + data.id);
     setModalVisible(true);
-    // setModalId(data.id);
   };
   const closeModal = () => {
-    // location.reload();
     navigate(route);
     setModalVisible(false);
-  };
-  const shareOpenModal = () => {
-    setShare(true);
-  };
-  const shareCloseModal = () => {
-    setShare(false);
   };
   return (
     <MainContainer>
@@ -99,9 +87,9 @@ const HomeLayout = ({ data, what, route, modal }) => {
 
         <VoteBottom
           onClick={() => clickModal(data)}
-          onClickShare={shareOpenModal}
+          modal={false}
         ></VoteBottom>
-        {modalVisible && (
+        {modalVisible && modalId == id && (
           <Modal
             visible={modalVisible}
             closable={true}
@@ -113,16 +101,6 @@ const HomeLayout = ({ data, what, route, modal }) => {
               optionState={optionState}
               click={changeVotes}
             />
-          </Modal>
-        )}
-        {share && (
-          <Modal
-            visible={share}
-            closable={true}
-            maskClosable={true}
-            onClose={shareCloseModal}
-          >
-            <ShareForm />
           </Modal>
         )}
       </Container>
