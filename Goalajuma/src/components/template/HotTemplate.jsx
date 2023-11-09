@@ -13,7 +13,7 @@ const HotTemplate = ({ datas, isFetching }) => {
             data={data}
             what="hot"
             key={id}
-            route={routes.home}
+            route={routes.hot}
           />
         ))}
     </div>
