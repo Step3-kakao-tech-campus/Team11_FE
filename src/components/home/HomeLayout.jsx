@@ -8,7 +8,10 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
 import ModalLayout from "../common/modal/ModalLayout";
+<<<<<<< HEAD
 import ShareForm from "../common/modal/ShareForm";
+=======
+>>>>>>> 489a3fb3e6d07349363519d68474b8edd5ad82bd
 import { useNavigate, useParams } from "react-router-dom";
 
 /**
@@ -38,11 +41,7 @@ const HomeLayout = ({ data, what, route, modal }) => {
     participate && participate
   );
   const [modalVisible, setModalVisible] = useState(modal);
-  const [share, setShare] = useState(false);
   const [optionState, setOptionState] = useState(options);
-  // const [count, setCount] = useState(0);
-
-  // const Data = ModalTest.data.vote;
   const changeVotes = (participate, result) => {
     setParticipate(participate);
 
@@ -61,19 +60,20 @@ const HomeLayout = ({ data, what, route, modal }) => {
   const clickModal = (data) => {
     navigate(route + data.id);
     setModalVisible(true);
-    // setModalId(data.id);
   };
   const closeModal = () => {
-    // location.reload();
     navigate(route);
     setModalVisible(false);
   };
+<<<<<<< HEAD
   // const shareOpenModal = () => {
   //   setShare(true);
   // };
   // const shareCloseModal = () => {
   //   setShare(false);
   // };
+=======
+>>>>>>> 489a3fb3e6d07349363519d68474b8edd5ad82bd
   return (
     <MainContainer>
       <Container>
@@ -100,7 +100,10 @@ const HomeLayout = ({ data, what, route, modal }) => {
 
         <VoteBottom
           onClick={() => clickModal(data)}
+<<<<<<< HEAD
           // onClickShare={shareOpenModal}
+=======
+>>>>>>> 489a3fb3e6d07349363519d68474b8edd5ad82bd
           modal={false}
         ></VoteBottom>
         {modalVisible && modalId == id && (
@@ -117,6 +120,7 @@ const HomeLayout = ({ data, what, route, modal }) => {
             />
           </Modal>
         )}
+<<<<<<< HEAD
         {/* {share && (
           <Modal
             visible={share}
@@ -127,6 +131,8 @@ const HomeLayout = ({ data, what, route, modal }) => {
             <ShareForm />
           </Modal>
         )} */}
+=======
+>>>>>>> 489a3fb3e6d07349363519d68474b8edd5ad82bd
       </Container>
     </MainContainer>
   );

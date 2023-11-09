@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import Img from '@/components/common/Img'
 import styled from "styled-components";
 
-const Chat = ({data}) => {
+const Chat = ({data, onClick}) => {
   const createTime = new Date(data.createTime)
   const year = createTime.getFullYear()
   const month = String(createTime.getMonth()+1).padStart(2,'0')
@@ -19,6 +19,7 @@ const Chat = ({data}) => {
         <UserStyled>
           <NameStyled>{data.username}</NameStyled>
           <DateStyled>{formatDate}</DateStyled>
+          {data.isOwner && <DeleteStyled onClick={() => onClick(data.id)}>삭제</DeleteStyled>}
         </UserStyled>
         <ContentStyled>{data.content}</ContentStyled>
       </div>
@@ -47,7 +48,7 @@ const UserStyled = styled.div`
 const NameStyled = styled.div`
   position: relative;
   left: 0;
-  top: 12px;
+  top: 10px;
   font-family: 'Nanum Gothic';
   font-weight: 400;
   font-size: 14px;
@@ -62,6 +63,16 @@ const DateStyled = styled.div`
   font-weight: 400;
   font-size: 12px;
   line-height: 17px;
+`
+const DeleteStyled = styled.div`
+  position: relative;
+  left: 55px;
+  top: 10px;
+  font-family: 'Nanum Gothic';
+  font-weight: 400;
+  font-size: 10px;
+  color: #e45151;
+  cursor: pointer;
 `
 const ContentStyled = styled.div`
   position: relative;
