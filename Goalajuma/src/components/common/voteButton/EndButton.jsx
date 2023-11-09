@@ -25,10 +25,10 @@ const EndButton = ({isOwner, id, active: initialActive}) => {
       cancelButtonColor: "#d33",
     }).then((result)=>{
       if(result.isConfirmed){
-        window.location.reload();
+        closeInquire(id);
         setActive("complete")
         setIsAlert(true)
-        closeInquire(id);
+        window.location.reload();
       }
     })
   };

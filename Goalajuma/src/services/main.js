@@ -27,5 +27,5 @@ export const ChatInquire = (id) => {
 };
 
 export const closeInquire = (id)=>{
-  return instance.patch(`/votes/${id}/close`)
+  return instance.patch(`/votes/${id}/close`).catch((err)=>{console.log(err)})
 }
