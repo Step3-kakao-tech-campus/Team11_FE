@@ -67,19 +67,24 @@ const HotPage = () => {
   return (
     <>
       <HotPageHeader />
-      <HomeContainer>
-        {error ? (
-          <ErrorScreen error={error}></ErrorScreen>
-        ) : !Data?.length ? (
-          <NonePage what="hot" />
-        ) : (
-          <>
-            {" "}
-            <HotTemplate datas={Data} isFetching={isFetching} />
-            {isFetching && <Loader />}
-          </>
-        )}
-      </HomeContainer>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <HomeContainer>
+          {error ? (
+            <ErrorScreen error={error}></ErrorScreen>
+          ) : !Data?.length ? (
+            <NonePage what="hot" />
+          ) : (
+            <>
+              {" "}
+              <HotTemplate datas={Data} isFetching={isFetching} />
+              {isFetching && <Loader />}
+            </>
+          )}
+        </HomeContainer>
+      )}
+
       <Footer page="hot" />
     </>
   );
