@@ -24,7 +24,6 @@ const Icon = ({
   className,
   modal
 }) => {
-  console.log(modal)
   return (
     <IconCss
       reverse={reverse}

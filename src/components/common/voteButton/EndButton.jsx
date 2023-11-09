@@ -5,6 +5,7 @@ import Alert from "../Alert";
 import { closeInquire } from "@/services/main";
 import Swal from "sweetalert2";
 import { useMutation} from "@tanstack/react-query";
+// import { useQueryClient } from "react-query";
 
 /**
  * @param {object} props
@@ -21,7 +22,10 @@ const EndButton = ({ isOwner, id, active: initialActive }) => {
       mutationFn: () => closeInquire(id),
       onSuccess: () => {
         console.log('Deleting')
-        // queryClient.invalidateQueries([id]);
+        setActive("complete");
+        setIsAlert(true);
+        window.location.reload();
+        // queryClient.invalidateQueries(id);
       },
     }
   )
@@ -46,7 +50,7 @@ const EndButton = ({ isOwner, id, active: initialActive }) => {
           // .catch((err) => {
           //   alert(err);
           // });
-        window.location.reload();
+        // window.location.reload();
       }
     });
   };
