@@ -8,12 +8,12 @@ import { MainContainer } from "@/styles/Container";
 import useValid from "@/hooks/useValid";
 import { loginInquire } from "@/services/login";
 import routes from "@/routes";
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { isLoginInState } from '@/utils/AuthAtom';
 
 
 const LoginPage = () => {
-  const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
+  const setisLoginIn = useSetRecoilState(isLoginInState);
   const [value, setValue] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 

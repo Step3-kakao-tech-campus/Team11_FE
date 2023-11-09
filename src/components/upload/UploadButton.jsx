@@ -7,12 +7,13 @@ import { uploadVote } from "@/services/vote";
 import { useMutation } from "@tanstack/react-query";
 import routes from "@/routes";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { isToastState } from "@/utils/ToastAtom";
 
 const UploadButton = () => {
   const navigate = useNavigate();
   const [count, setCount] = useRecoilState(uploadSelector);
   const resetList = useResetRecoilState(uploadSelector);
+  const [toast, setToast] = useRecoilState(isToastState);
   const [active, setActive] = useState(false);
   const mutation = useMutation({
     mutationFn: (payload) => uploadVote(payload),
@@ -34,15 +35,9 @@ const UploadButton = () => {
       const payload = count;
       mutation.mutate(payload, {
         onSuccess: () => {
-          Swal.fire({
-            icon: "success",
-            text: "투표 등록에 성공했습니다!",
-            confirmButtonColor: "#429f50",
-          }).then(() => {
-            resetList();
-            navigate(routes.home);
-            setTimeout(() => location.reload(), 0);
-          });
+          setToast(true);
+          resetList();
+          navigate(routes.home);
         },
         onError: (error) => {
           alert(error?.data.message);
@@ -52,11 +47,13 @@ const UploadButton = () => {
   };
 
   return (
-    <UploadButtonStyle active={active}>
-      <button className="uploadBtn" onClick={uploadButton}>
-        등록
-      </button>
-    </UploadButtonStyle>
+    <>
+      <UploadButtonStyle active={active}>
+        <button className="uploadBtn" onClick={uploadButton}>
+          등록
+        </button>
+      </UploadButtonStyle>
+    </>
   );
 };
 

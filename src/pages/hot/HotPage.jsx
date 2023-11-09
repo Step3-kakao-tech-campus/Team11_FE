@@ -8,6 +8,7 @@ import { useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { hotInquire } from "@/services/main";
+import NonePage from "@/components/common/NonePage";
 
 const HotPage = () => {
   const bottomObserver = useRef(null);
@@ -62,21 +63,28 @@ const HotPage = () => {
   }, [isLoading, hasNextPage, fetchNextPage]);
 
   const Data = data?.pages.flatMap((param) => param.data.data.votes);
-  console.log(error);
+
   return (
     <>
       <HotPageHeader />
-      <HomeContainer>
-        {error ? (
-          <ErrorScreen error={error}></ErrorScreen>
-        ) : (
-          <>
-            {" "}
-            <HotTemplate datas={Data} isFetching={isFetching} />
-            {isFetching && <Loader />}
-          </>
-        )}
-      </HomeContainer>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <HomeContainer>
+          {error ? (
+            <ErrorScreen error={error}></ErrorScreen>
+          ) : !Data?.length ? (
+            <NonePage what="hot" />
+          ) : (
+            <>
+              {" "}
+              <HotTemplate datas={Data} isFetching={isFetching} />
+              {isFetching && <Loader />}
+            </>
+          )}
+        </HomeContainer>
+      )}
+
       <Footer page="hot" />
     </>
   );
