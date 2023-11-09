@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import ShareForm from "./ShareForm";
 import styled from "styled-components";
+import ChatBeta from "./ChatBeta";
 // import routes from "@/routes";
 
 const ModalTemplate = (datas, what) => {
@@ -89,8 +90,9 @@ const ModalTemplate = (datas, what) => {
           )}
         </Container>
         <Chat>
-          <ChatForm data={datas.chatData} />
-          <ChatWriteForm participate={participateState || participate} />
+          {/* <ChatForm data={datas.chatData} />
+          <ChatWriteForm participate={participateState || participate} /> */}
+          <ChatBeta participate={participateState || participate}/>
         </Chat>
       </ModalMainContainer>
     </div>
