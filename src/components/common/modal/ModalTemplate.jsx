@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import ShareForm from "./ShareForm";
 import styled from "styled-components";
+import ChatBeta from "./ChatBeta";
 // import routes from "@/routes";
 
 const ModalTemplate = ({ detailData, chatData, click, what }) => {

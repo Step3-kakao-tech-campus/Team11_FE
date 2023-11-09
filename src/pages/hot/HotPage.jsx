@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { hotInquire } from "@/services/main";
 import NonePage from "@/components/common/NonePage";
 
-const HotPage = () => {
+const HotPage = ({ modal }) => {
   const bottomObserver = useRef(null);
 
   const {
@@ -78,7 +78,7 @@ const HotPage = () => {
           ) : (
             <>
               {" "}
-              <HotTemplate datas={Data} isFetching={isFetching} />
+              <HotTemplate datas={Data} isFetching={isFetching} modal={modal} />
               {isFetching && <Loader />}
             </>
           )}

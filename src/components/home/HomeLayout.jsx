@@ -18,7 +18,7 @@ import routes from "@/routes";
  * @param {string} props.what
  */
 
-const HomeLayout = ({ data, what, route }) => {
+const HomeLayout = ({ data, what, route, modal }) => {
   const navigate = useNavigate();
 
   const {
@@ -37,7 +37,7 @@ const HomeLayout = ({ data, what, route }) => {
   const [participateState, setParticipate] = useState(
     participate && participate
   );
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(modal);
   const [share, setShare] = useState(false);
   const [optionState, setOptionState] = useState(options);
   // const [count, setCount] = useState(0);
