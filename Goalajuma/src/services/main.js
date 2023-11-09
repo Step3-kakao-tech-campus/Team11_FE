@@ -8,7 +8,7 @@ export const mainInquire = (categoryData, pageParam) => {
 };
 
 export const hotInquire = (pageParam) => {
-  return instance.get(`/votes/hot&page=${pageParam}`);
+  return instance.get(`/votes/hot?page=${pageParam}`);
 };
 
 export const completeInquire = (categoryData, pageParam) => {
@@ -26,6 +26,6 @@ export const ChatInquire = (id) => {
   return instance.get(`/votes/${id}/comments`);
 };
 
-export const closeInquire = (id)=>{
-  return instance.patch(`/votes/${id}/close`)
-}
+export const closeInquire = (id) => {
+  return instance.patch(`/votes/${id}/close`);
+};

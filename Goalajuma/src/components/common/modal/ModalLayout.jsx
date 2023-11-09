@@ -13,7 +13,7 @@ import ModalTemplate from "./ModalTemplate";
  * @param {string} what
  */
 
-const ModalLayout = ({ what }) => {
+const ModalLayout = ({ what, click }) => {
   const { id } = useParams();
   const datas = useQueries({
     queries: [
@@ -52,6 +52,7 @@ const ModalLayout = ({ what }) => {
               <ModalTemplate
                 detailData={detailData}
                 chatData={chatData}
+                click={click}
                 what={what}
               ></ModalTemplate>
             )
