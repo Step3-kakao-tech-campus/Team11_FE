@@ -88,7 +88,7 @@ const ModalTemplate = ({ detailData, click, what }) => {
           )}
         </Container>
         <Chat>
-          <ChatBeta participate={participateState} />
+          <ChatBeta participate={participateState || isOwner} />
         </Chat>
       </ModalMainContainer>
     </div>
