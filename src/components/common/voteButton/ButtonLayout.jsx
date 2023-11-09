@@ -1,7 +1,7 @@
 import MainButton from "./MainButton";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 /**
  * @param {object} props

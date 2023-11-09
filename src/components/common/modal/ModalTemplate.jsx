@@ -3,9 +3,7 @@ import ButtonLayout from "@/components/common/voteButton/ButtonLayout";
 import VoteHead from "@/components/common/voteButton/VoteHead";
 import MainContent from "@/components/home/MainContent";
 import VoteBottom from "@/components/common/voteButton/VoteBottom";
-import ChatForm from "./ChatForm";
-import ChatWriteForm from "./ChatWriteForm";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "./Modal";
 import ShareForm from "./ShareForm";
 import styled from "styled-components";
@@ -90,7 +88,7 @@ const ModalTemplate = ({ detailData, click, what }) => {
           )}
         </Container>
         <Chat>
-          <ChatBeta participate={participateState}/>
+          <ChatBeta participate={participateState} />
         </Chat>
       </ModalMainContainer>
     </div>

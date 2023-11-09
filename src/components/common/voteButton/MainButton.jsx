@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MainButtonSt, BtnContents } from "@/styles/VotingBtnStyle";
 import PercentNumber from "./PercentNumber";
 import styled from "styled-components";
 import Img from "../Img";
-import { useNavigate } from "react-router-dom";
-import routes from "@/routes";
+
 import Alert from "../Alert";
 import { changeOption, deleteVote, vote } from "@/services/vote";
 import Swal from "sweetalert2";

@@ -1,8 +1,6 @@
-import styled from "styled-components";
-
 import PropTypes from "prop-types";
-import { useNavigate, useParams } from "react-router-dom";
-import { detailInquire, ChatInquire } from "@/services/main";
+import { useParams } from "react-router-dom";
+import { detailInquire } from "@/services/main";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "@/assets/Loader";
 import ModalTemplate from "./ModalTemplate";
@@ -15,30 +13,25 @@ import ModalTemplate from "./ModalTemplate";
 
 const ModalLayout = ({ what, click }) => {
   const { id } = useParams();
-  const datas = useQuery(
-      {
-        queryKey: ["voteId", id],
-        queryFn: () => {
-          return detailInquire(id);
-        },
-        enabled: !!id,
-      },
-  );
+  const datas = useQuery({
+    queryKey: ["voteId", id],
+    queryFn: () => {
+      return detailInquire(id);
+    },
+    enabled: !!id,
+  });
   const detailData = datas?.data?.data?.data?.vote;
 
   return (
     <>
       {datas.error ? (
-        <>
-          {datas.error}
-        </>
+        <>{datas.error}</>
       ) : (
         <>
           {datas.isLoading ? (
             <Loader />
           ) : (
-            detailData &&
-            (
+            detailData && (
               <ModalTemplate
                 detailData={detailData}
                 click={click}

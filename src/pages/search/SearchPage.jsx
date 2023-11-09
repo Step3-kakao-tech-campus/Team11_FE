@@ -1,7 +1,6 @@
 import { CategoryBox } from "@/components/layouts/headers/CategoryBox";
 import SearchInput from "@/components/search/SearchInput";
 import { HomeContainer } from "@/styles/Container";
-import ErrorScreen from "@/components/common/ErrorScreen";
 import Footer from "@/components/layouts/footers/Footer";
 import HomeTemplate from "@/components/template/HomeTemplate";
 import { useRef } from "react";

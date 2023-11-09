@@ -4,7 +4,7 @@ import styled from "styled-components";
 import AddChoice from "@/components/upload/AddChoice";
 import CategoryNDeadLine from "@/components/upload/CategoryNDeadLine";
 import UploadButton from "@/components/upload/UploadButton";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { uploadSelector } from "@/utils/UploadAtom";
 import { useResetRecoilState } from "recoil";
 import { BiReset } from "react-icons/bi";
