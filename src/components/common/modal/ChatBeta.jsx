@@ -73,7 +73,6 @@ const ChatBeta = ({participate}) => {
       cancelButtonColor: "#d33",
     }).then((result) => {
       if (result.isConfirmed) {
-        setIsAlert(true);
         deleteComment.mutate(uid)
           .then((res) => {
             console.log(res);
