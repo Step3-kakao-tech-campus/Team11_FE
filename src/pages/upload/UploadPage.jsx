@@ -1,5 +1,5 @@
 import TextArea from "@/components/upload/TextArea";
-import Input from "@/components/upload/input";
+import Input from "@/components/upload/Input";
 import styled from "styled-components";
 import AddChoice from "@/components/upload/AddChoice";
 import CategoryNDeadLine from "@/components/upload/CategoryNDeadLine";
