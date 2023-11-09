@@ -27,7 +27,13 @@ const EndButton = ({ isOwner, id, active: initialActive }) => {
       if (result.isConfirmed) {
         setActive("complete");
         setIsAlert(true);
-        closeInquire(id);
+        closeInquire(id)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            alert(err);
+          });
         window.location.reload();
       }
     });
