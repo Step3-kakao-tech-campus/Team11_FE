@@ -42,7 +42,8 @@ instance.interceptors.response.use(
     if(status === 401){
       // 로그인 만료
       // setisLoginIn(false);
-      removeToken()
+      // removeToken()
+      console.log('status', status);
       return Promise.resolve(error.response.data.error.message);
     }
     return Promise.reject(error.response);

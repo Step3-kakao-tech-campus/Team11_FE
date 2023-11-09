@@ -8,7 +8,7 @@ export const mainInquire = (categoryData, pageParam) => {
 };
 
 export const hotInquire = (pageParam) => {
-  return instance.get(`/votes/hot&page=${pageParam}`);
+  return instance.get(`/votes/hot?page=${pageParam}`);
 };
 
 export const completeInquire = (categoryData, pageParam) => {

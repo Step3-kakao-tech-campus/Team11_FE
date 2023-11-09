@@ -26,7 +26,14 @@ function App() {
         <Route path={`${routes.home}:id`} element={<MainPage />}></Route>
 
         <Route path={routes.hot} element={<HotPage />}></Route>
+        <Route path={`${routes.hot}:id`} element={<HotPage />}></Route>
+
         <Route path={routes.complete} element={<CompletePage />}></Route>
+        <Route
+          path={`${routes.complete}:id`}
+          element={<CompletePage />}
+        ></Route>
+
         <Route path={routes.mypage} element={<MyPage />}></Route>
         <Route path={routes.myquestion} element={<MyQuestionPage />}></Route>
         <Route path={`${routes.search}:query`} element={<SearchPage />}></Route>
