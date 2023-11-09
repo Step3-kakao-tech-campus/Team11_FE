@@ -12,7 +12,7 @@ import styled from "styled-components";
 import ChatBeta from "./ChatBeta";
 // import routes from "@/routes";
 
-const ModalTemplate = ({ detailData, chatData, click, what }) => {
+const ModalTemplate = ({ detailData, click, what }) => {
   const {
     totalCount,
     participate,
@@ -90,8 +90,7 @@ const ModalTemplate = ({ detailData, chatData, click, what }) => {
           )}
         </Container>
         <Chat>
-          <ChatForm data={chatData} />
-          <ChatWriteForm participate={participateState} />
+          <ChatBeta participate={participateState}/>
         </Chat>
       </ModalMainContainer>
     </div>
