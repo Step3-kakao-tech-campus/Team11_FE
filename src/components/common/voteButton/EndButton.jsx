@@ -5,7 +5,6 @@ import Alert from "../Alert";
 import { closeInquire } from "@/services/main";
 import Swal from "sweetalert2";
 import { useMutation} from "@tanstack/react-query";
-// import { useQueryClient } from "react-query";
 
 /**
  * @param {object} props
@@ -15,7 +14,6 @@ import { useMutation} from "@tanstack/react-query";
 const EndButton = ({ isOwner, id, active: initialActive }) => {
   const [active, setActive] = useState(initialActive);
   const [alert, setIsAlert] = useState(false);
-  // const queryClient = useQueryClient();
 
   const deleteVote = useMutation(
     {
@@ -25,7 +23,6 @@ const EndButton = ({ isOwner, id, active: initialActive }) => {
         setActive("complete");
         setIsAlert(true);
         window.location.reload();
-        // queryClient.invalidateQueries(id);
       },
     }
   )
@@ -44,13 +41,6 @@ const EndButton = ({ isOwner, id, active: initialActive }) => {
         setActive("complete");
         setIsAlert(true);
         deleteVote.mutate();
-          // .then((res) => {
-          //   console.log(res);
-          // })
-          // .catch((err) => {
-          //   alert(err);
-          // });
-        // window.location.reload();
       }
     });
   };
