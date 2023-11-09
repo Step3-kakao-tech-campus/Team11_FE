@@ -11,7 +11,7 @@ import Loader from "@/assets/Loader";
 import ErrorScreen from "@/components/common/ErrorScreen";
 import NonePage from "@/components/common/NonePage";
 
-const CompletePage = () => {
+const CompletePage = ({ modal }) => {
   const categoryData = useRecoilValue(completeTotalCategoryState);
   const bottomObserver = useRef(null);
 
@@ -80,7 +80,11 @@ const CompletePage = () => {
           ) : (
             <>
               {" "}
-              <CompleteTemplate datas={Data} isFetching={isFetching} />
+              <CompleteTemplate
+                datas={Data}
+                isFetching={isFetching}
+                modal={modal}
+              />
               <div ref={bottomObserver}></div>
               {isFetching && <Loader />}
             </>

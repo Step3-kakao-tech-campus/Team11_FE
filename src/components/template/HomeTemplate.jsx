@@ -1,6 +1,6 @@
 import HomeLayout from "../home/HomeLayout";
 import routes from "@/routes";
-const HomeTemplate = ({ datas, isFetching, error, location }) => {
+const HomeTemplate = ({ datas, isFetching, error, modal }) => {
   return (
     <div>
       {error ? (
@@ -15,6 +15,7 @@ const HomeTemplate = ({ datas, isFetching, error, location }) => {
             what="home"
             key={id}
             route={routes.home}
+            modal={modal}
           />
         ))
       )}
