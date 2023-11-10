@@ -26,13 +26,15 @@ const VoteBottom = ({ onClick, onClickShare, modal, id }) => {
   return (
     <VoteButtonStyle>
       <div className="chat" onClick={onClick}>
-        <Icon reverse={true} color="#676767" size="20px" modal={modal}>
+        <Icon reverse={true} color="#676767" size="20px">
           {" "}
           <HiOutlineChatBubbleOvalLeft />
         </Icon>
+
         <p>댓글({data?.data.data.commentCount})</p>
       </div>
-      <Icon color="#676767" size="20px" onClick={onClickShare}>
+
+      <Icon color="#676767" size="20px" onClick={onClickShare} modal={modal}>
         <FaShare />
       </Icon>
     </VoteButtonStyle>

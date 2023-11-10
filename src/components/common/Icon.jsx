@@ -62,8 +62,7 @@ const IconCss = styled.div`
     background-color: ${(props) => props.hoverBackColor};
   }
   margin: ${(props) => props.margin};
-  /* display: ${(props) => (props.modal ? "flex" : "none")}; */
-  visibility: ${(props) => (props.modal ? "visible" : "hidden")};
+  visibility: ${(props) => props.modal};
 `;
 
 export default Icon;
