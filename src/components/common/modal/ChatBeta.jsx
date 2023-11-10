@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import Chat from "./Chat";
 import { useState } from "react";
-import Img from "@/components/common/Img"
 import styled from "styled-components"; 
 import Alert from "../Alert"
 import { commentInquire, deleteCommentInquire} from "@/services/detailVote";
@@ -91,15 +90,14 @@ const ChatBeta = ({participate}) => {
         return <Chat key={index} data={data} onClick={handleClick}/>;
       })}
       <FormStyled>
-      <Img src="tst.jpeg" size="30px"/>
-      <WriteStyled>
-        {alert && 
-          <Alert setIsAlert={setIsAlert}>투표를 해야 댓글 작성이 가능합니다.</Alert>
-        }
-        <input placeholder='댓글 작성'onChange={handleInputChange} onKeyDown={handleEnterKey} value={write}/>
-        <UploadStyled onClick={handleUpload}>게시</UploadStyled>
-      </WriteStyled>
-    </FormStyled>
+        <WriteStyled>
+          {alert && 
+            <Alert setIsAlert={setIsAlert} positionLeft="5%">투표를 해야 댓글 작성이 가능합니다.</Alert>
+          }
+          <input placeholder='댓글 작성'onChange={handleInputChange} onKeyDown={handleEnterKey} value={write}/>
+          <UploadStyled onClick={handleUpload}>게시</UploadStyled>
+        </WriteStyled>
+      </FormStyled>
     </>
   );
 };
@@ -116,38 +114,48 @@ const FormStyled = styled.div`
   height: 30px;
   position: fixed;
   bottom: 10%;
-  z-index: 1000;
+  z-index: 900;
 `
 const WriteStyled = styled.div`
   position: relative;
   top: 30px;
-  width: 230px;
+  width: 238px;
   height: 27px;
-  border: 0.7px solid #9EB0EA;
+  border: 1px solid #9EB0EA;
   border-radius: 72px;
   display: flex;
   flex-direction: row;
+  padding-left: 20px;
+  padding-right: 10px;
   background-color: #fff;
 
   input{
     border: none;
     background-color: #fff;
-    width: 165px;
-    left: 5%;
+    width: 210px;
+    left: 10%;
     top: 15%;
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
     color: #000;
-    padding-left: 15px;
+    padding-inline: 0;
+    padding-block: 0;
+    border-radius: 72px;
+    &:focus {
+      outline: none;
+    }
   }
 `
 const UploadStyled = styled.button`
+  width: 40px;
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
   color: #2955C5;
   border: none;
+  padding-inline: 0;
+  padding-block: 0;
   background-color: #fff;
 `
 export default ChatBeta;
