@@ -42,7 +42,7 @@ const ChatWriteForm = ({ participate }) => {
         <Img src="맹구.png" size="35px" />
         <WriteStyled>
           {alert && (
-            <Alert setIsAlert={setIsAlert}>
+            <Alert positionLeft="5%" setIsAlert={setIsAlert}>
               투표를 해야 댓글 작성이 가능합니다.
             </Alert>
           )}

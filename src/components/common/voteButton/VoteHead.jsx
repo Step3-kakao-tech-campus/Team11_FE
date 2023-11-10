@@ -25,7 +25,7 @@ const VoteHead = ({
   isOwner,
   active,
   categoryValue,
-  id
+  id,
 }) => {
   const [categoryName, setCategoryName] = useState(null);
   useEffect(() => {
@@ -79,7 +79,7 @@ VoteHead.propTypes = {
   active: PropTypes.string.isRequired,
   totalCount: PropTypes.number.isRequired,
   categoryValue: PropTypes.string.isRequired,
-  id:PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
 };
 const VoteHeadLayout = styled.div`
   display: flex;
