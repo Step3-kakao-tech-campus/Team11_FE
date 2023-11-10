@@ -10,12 +10,13 @@ export const getToken = (res) => {
   localStorage.setItem("expiredTime", accessExpiredTime);
   localStorage.setItem("refreshExpiredTime", refreshExpiredTime);
   localStorage.setItem("refreshToken", refreshToken);
+  return accessToken;
 };
 
 export const removeToken = () => {
-  alert("로그인이 만료되었습니다! 다시 로그인 해주세요.");
   localStorage.clear();
   location.href = routes.login;
+  console.log("remove")
 };
 
 export const loginInquire = async (data) => {
@@ -35,11 +36,12 @@ export const refreshTokenInquire = async () => {
   const refreshToken = localStorage.getItem('refreshToken')
   await instance.post(`/api/auth/reissue`,{refreshToken})
   .then((res)=>{
-    getToken(res)
     console.log(res)
+    return getToken(res)
   })
   .catch((err)=>{
     removeToken()
+    alert("로그인이 만료되었습니다! 다시 로그인 해주세요.")
     console.log("리프레시 토큰 만료", err)
   })
 };

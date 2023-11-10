@@ -10,7 +10,6 @@ import PropTypes from "prop-types";
  */
 
 const Alert = ({ children, setIsAlert, positionLeft }) => {
-  console.log(positionLeft);
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsAlert(false);

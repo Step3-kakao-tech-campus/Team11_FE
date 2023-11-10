@@ -3,13 +3,11 @@ import { Palette } from "@/styles/Palette";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import useValid from "@/hooks/useValid";
-import { useNavigate } from "react-router-dom";
-import routes from "@/routes";
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { isLoginInState } from '@/utils/AuthAtom';
-import { removeCookie } from "@/services/Cookie";
 import { newNameInquire, newEmailInquire } from "@/services/my";
 import Swal from "sweetalert2";
+import { removeToken } from "@/services/login";
 
 /**
  * 
@@ -23,8 +21,7 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   const [newInfo, setNewInfo] = useState({name: myNickName, email: myEmail, password: "",});
   const [input, setInput] = useState(false);
   const {validText, isValid} = useValid(newInfo);
-  const [isLoginIn, setisLoginIn] = useRecoilState(isLoginInState);
-  const navigate = useNavigate();
+  const setisLoginIn = useSetRecoilState(isLoginInState);
 
   const handleMyInfo = () => {
     setInput((prev) => !prev);
@@ -58,9 +55,8 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
     }).then((result)=>{
       if(result.isConfirmed){
         setisLoginIn(false);
-        removeCookie("refreshToken");
-        localStorage.clear();
-        navigate(routes.home);
+        removeToken()
+        alert('dd')
       }
     })
   }
