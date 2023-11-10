@@ -16,7 +16,7 @@ import { useNavigate, useParams } from "react-router-dom";
  * @param {string} props.what
  */
 
-const HomeLayout = ({ data, what, route, modal }) => {
+const HomeLayout = ({ data, what, route }) => {
   const navigate = useNavigate();
   const { id: modalId } = useParams();
 
@@ -87,7 +87,7 @@ const HomeLayout = ({ data, what, route, modal }) => {
 
         <VoteBottom
           onClick={() => clickModal(data)}
-          modal={false}
+          modal="hidden"
           id={id}
         ></VoteBottom>
         {modalVisible && modalId == id && (

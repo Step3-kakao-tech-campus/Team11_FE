@@ -14,24 +14,26 @@ import { useState } from "react";
  */
 const VoteBottom = ({ onClick, onClickShare, modal, id }) => {
   // const [count, setCount] = useState(null)
-  const {data} = useQuery({
+  const { data } = useQuery({
     queryKey: ["comments", id],
     queryFn: () => {
-        return commentCountInquire(id);
-      },
+      return commentCountInquire(id);
+    },
     enabled: !!id,
-  })
+  });
 
   // console.log(data?.data.data.commentCount)
   return (
     <VoteButtonStyle>
       <div className="chat" onClick={onClick}>
-        <Icon reverse={true} color="#676767" size="20px" modal={true}>
+        <Icon reverse={true} color="#676767" size="20px">
           {" "}
           <HiOutlineChatBubbleOvalLeft />
         </Icon>
+
         <p>댓글({data?.data.data.commentCount})</p>
       </div>
+
       <Icon color="#676767" size="20px" onClick={onClickShare} modal={modal}>
         <FaShare />
       </Icon>
@@ -43,7 +45,7 @@ VoteBottom.propTypes = {
   onClickShare: PropTypes.func,
   onClick: PropTypes.func,
   modal: PropTypes.bool,
-  id: PropTypes.number
+  id: PropTypes.number,
 };
 const VoteButtonStyle = styled.div`
   margin-top: 2rem;
