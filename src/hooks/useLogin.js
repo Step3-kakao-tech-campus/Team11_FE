@@ -1,4 +1,4 @@
-import { refreshTokenInquire } from "@/services/login";
+import { refreshTokenInquire, removeToken } from "@/services/login";
 import { useRecoilState } from "recoil";
 import { isLoginInState } from "@/utils/AuthAtom";
 
@@ -30,6 +30,7 @@ const useLogin = () => {
   } else if (refreshExpiredTime < currentTime) {
     console.log("hii");
     setisLoginIn(false);
+    removeToken()
   }
 
   return isLoginIn;

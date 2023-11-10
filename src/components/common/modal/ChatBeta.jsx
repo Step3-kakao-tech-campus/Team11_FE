@@ -8,7 +8,7 @@ import { commentInquire, deleteCommentInquire} from "@/services/detailVote";
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { useParams } from "react-router";
 import { ChatInquire } from "@/services/main";
-// import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ChatBeta = ({participate}) => {
   const [write, setWrite] = useState("")
@@ -63,18 +63,26 @@ const ChatBeta = ({participate}) => {
   };
 
   const handleClick = (uid) => {
-    // switch (e.detail) {
-    //   case 1:
-    //     console.log("click");
-    //     break;
-    //   case 2:
-    //     deleteComment.mutate(id);
-    //     break;
-    //   case 3:
-    //     console.log("triple click");
-    //     break;
-    // }
-    deleteComment.mutate(uid);
+    Swal.fire({
+      icon: "info",
+      html: "댓글을 삭제하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "예",
+      cancelButtonText: "아니오",
+      confirmButtonColor: "#429f50",
+      cancelButtonColor: "#d33",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setIsAlert(true);
+        deleteComment.mutate(uid)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            alert(err);
+          });
+      }
+    });
   };
 
   return (
@@ -84,7 +92,7 @@ const ChatBeta = ({participate}) => {
         return <Chat key={index} data={data} onClick={handleClick}/>;
       })}
       <FormStyled>
-      <Img src="맹구.png" size="35px"/>
+      <Img src="tst.jpeg" size="30px"/>
       <WriteStyled>
         {alert && 
           <Alert setIsAlert={setIsAlert}>투표를 해야 댓글 작성이 가능합니다.</Alert>
@@ -107,7 +115,9 @@ const FormStyled = styled.div`
   display: flex;
   flex-direction: row;
   height: 30px;
-
+  position: fixed;
+  bottom: 10%;
+  z-index: 1000;
 `
 const WriteStyled = styled.div`
   position: relative;
@@ -118,17 +128,18 @@ const WriteStyled = styled.div`
   border-radius: 72px;
   display: flex;
   flex-direction: row;
+  background-color: #fff;
 
   input{
     border: none;
-    background-color: transparent;
+    background-color: #fff;
     width: 165px;
     left: 5%;
     top: 15%;
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
-    color: rgba(41, 85, 197, 0.5);
+    color: #000;
     padding-left: 15px;
   }
 `
@@ -138,6 +149,6 @@ const UploadStyled = styled.button`
   line-height: 16px;
   color: #2955C5;
   border: none;
-  background-color: transparent;
+  background-color: #fff;
 `
 export default ChatBeta;

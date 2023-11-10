@@ -24,6 +24,10 @@ export const JoinContainer = styled(MainContainer)`
 export const HomeContainer = styled.div`
   padding-bottom: 7rem;
 `;
+export const MyVoteContainer = styled.div`
+  padding-bottom: 6rem;
+  padding-top: 1rem;
+`;
 
 export const MyContainer = styled.div`
   width: 100%;
