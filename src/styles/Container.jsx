@@ -25,6 +25,7 @@ export const HomeContainer = styled.div`
   padding-bottom: 7rem;
 `;
 export const MyVoteContainer = styled.div`
+  border-top: 2px solid #f3f2f3;
   padding-bottom: 6rem;
   padding-top: 1rem;
 `;

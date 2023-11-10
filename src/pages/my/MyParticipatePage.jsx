@@ -22,7 +22,7 @@ const MyParticipatePage = () => {
   });
 
   const info = data?.data.data;
-  
+
   const navigate = useNavigate();
 
   return (

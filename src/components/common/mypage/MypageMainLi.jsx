@@ -2,13 +2,13 @@ import Icon from "../Icon";
 import { GoChevronRight } from "react-icons/go";
 import { Palette } from "@/styles/Palette";
 import styled from "styled-components";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
 /**
- * 
+ *
  * @param {string} content
  * @param {number} number
- * @param {function(): void} onClick 
+ * @param {function(): void} onClick
  * @returns {JSX.Element}
  */
 const MypageMainLi = ({ content, number, onClick }) => {
@@ -27,8 +27,8 @@ const MypageMainLi = ({ content, number, onClick }) => {
 MypageMainLi.propTypes = {
   content: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired
-}
+  onClick: PropTypes.func.isRequired,
+};
 const DivLi = styled.div`
   text-align: start;
   height: 68px;
@@ -40,9 +40,9 @@ const DivLi = styled.div`
   padding-right: 20px;
   cursor: pointer;
   &:hover {
-    background-color: ${Palette.percent_gray}
+    background-color: ${Palette.percent_gray};
   }
-  
+
   li span {
     color: ${Palette["point_blue"]};
   }
