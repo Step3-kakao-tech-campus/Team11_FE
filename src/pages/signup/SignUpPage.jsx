@@ -49,7 +49,6 @@ const SignUpPage = () => {
     if(isValid.isName &&isValid.isEmail && isValid.isPassword && isValid.isPasswordConfirm){
       signupInquire(value)
       .then(()=>{
-        alert("회원가입 성공!!")
         navigate(routes.login)
       })
       .catch(err=>alert(err.data.message))

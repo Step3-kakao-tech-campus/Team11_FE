@@ -31,8 +31,8 @@ const LoginPage = () => {
       loginInquire(value)
       .then((res)=>{
         setisLoginIn(true);
-        alert("로그인 성공 !!")
         navigate("/")
+        window.location.reload()
         console.log(res)
       })
       .catch(err => alert(err.data.data.message))
@@ -40,6 +40,13 @@ const LoginPage = () => {
       alert('입력 내용이 올바르지 않습니다.')
     }
   }
+
+  const handleEnterKey = e => {
+    if(e.key === "Enter") {
+      handleLogin();
+    }
+  } 
+
   return (
     <MainContainer>
       <Header>
@@ -67,6 +74,7 @@ const LoginPage = () => {
           value={value.email}
           valid={!isValid.isEmail}
           onChange={handleOnChange}
+          onKeyDown={handleEnterKey}
         />
         <StyledErr>{validText.emailText}</StyledErr>
         <InputGroup
@@ -78,6 +86,7 @@ const LoginPage = () => {
           value={value.password}
           valid={!isValid.isPassword}
           onChange={handleOnChange}
+          onKeyDown={handleEnterKey}
         />
         <StyledErr>{validText.passwordText}</StyledErr>
       </Group>
