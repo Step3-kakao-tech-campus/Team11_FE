@@ -75,7 +75,7 @@ const ModalTemplate = ({ detailData, click, what }) => {
             changeVotes={changeVotes}
           ></ButtonLayout>
 
-          <VoteBottom onClickShare={shareOpenModal} modal={true}></VoteBottom>
+          <VoteBottom onClickShare={shareOpenModal} modal={true} id={id}></VoteBottom>
           {modalVisible && (
             <Modal
               visible={modalVisible}
