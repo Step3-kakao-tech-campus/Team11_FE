@@ -18,6 +18,10 @@ export const completeInquire = (categoryData, pageParam) => {
   );
 };
 
+export const commentCountInquire = (id) =>{
+  return instance.get(`/votes/${id}/comments/count`)
+}
+
 export const detailInquire = (id) => {
   return instance.get(`/votes/${id}`);
 };

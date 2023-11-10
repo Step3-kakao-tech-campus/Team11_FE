@@ -88,6 +88,7 @@ const HomeLayout = ({ data, what, route, modal }) => {
         <VoteBottom
           onClick={() => clickModal(data)}
           modal={false}
+          id={id}
         ></VoteBottom>
         {modalVisible && modalId == id && (
           <Modal
