@@ -11,26 +11,23 @@ const useLogin = () => {
   );
   const currentTime = new Date();
   const isAccessToken = accessToken && accessToken !== "";
-  console.log(accessToken);
-  console.log(expiredTime);
-  console.log(currentTime);
-  console.log(expiredTime > currentTime);
 
   if (isAccessToken && expiredTime > currentTime) {
+    console.log(expiredTime)
     console.log("h");
     setisLoginIn(true);
   } else if (
-    isAccessToken &&
-    expiredTime < currentTime &&
-    refreshExpiredTime > currentTime
-  ) {
+    isAccessToken && expiredTime < currentTime && refreshExpiredTime > currentTime) {
     console.log("hi");
     setisLoginIn(true);
     refreshTokenInquire();
   } else if (refreshExpiredTime < currentTime) {
+    console.log(refreshExpiredTime);
+    console.log(currentTime);
     console.log("hii");
     setisLoginIn(false);
     removeToken()
+    // alert("로그인이 만료되었습니다! 다시 로그인 해주세요.");
   }
 
   return isLoginIn;

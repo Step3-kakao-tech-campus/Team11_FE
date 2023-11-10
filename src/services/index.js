@@ -22,14 +22,18 @@ instance.interceptors.request.use(async (config) => {
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
-  if(expiredTime < currentTime &&refreshExpiredTime > currentTime){
+  console.log('hello')
+  if(expiredTime < currentTime && refreshExpiredTime > currentTime){
     try{ 
-      await refreshTokenInquire()}
+      console.log('refresh 요청')
+      const res = await refreshTokenInquire()
+      console.log(res)
+      config.headers["Authorization"] = `Bearer ${res}`
+    }
     catch(e){
       console.log(e)
       removeToken()
     }
-    config.headers["Authorization"] = `Bearer ${token}`
   }
   return config;
 
@@ -53,6 +57,7 @@ instance.interceptors.response.use(
       const setisLoginIn = useSetRecoilState(isLoginInState)
       setisLoginIn(false);
       removeToken()
+      alert("로그인이 만료되었습니다! 다시 로그인 해주세요.");
       console.log("status", status);
       return Promise.resolve(error.response.data.error.message);
     }
