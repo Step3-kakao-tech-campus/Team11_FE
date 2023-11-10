@@ -3,24 +3,28 @@ import { Palette } from "@/styles/Palette";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import useValid from "@/hooks/useValid";
-import { useSetRecoilState } from 'recoil';
-import { isLoginInState } from '@/utils/AuthAtom';
+import { useSetRecoilState } from "recoil";
+import { isLoginInState } from "@/utils/AuthAtom";
 import { newNameInquire, newEmailInquire } from "@/services/my";
 import Swal from "sweetalert2";
 import { removeToken } from "@/services/login";
 
 /**
- * 
+ *
  * @param {string} myNickName
- * @param {string} myEmail 
+ * @param {string} myEmail
  * @param {string} img
  * @returns
  */
-const ProfileModal = ({myNickName, myEmail, img}) => {
-  const originInfo = {name: myNickName, email: myEmail};
-  const [newInfo, setNewInfo] = useState({name: myNickName, email: myEmail, password: "",});
+const ProfileModal = ({ myNickName, myEmail, img }) => {
+  const originInfo = { name: myNickName, email: myEmail };
+  const [newInfo, setNewInfo] = useState({
+    name: myNickName,
+    email: myEmail,
+    password: "",
+  });
   const [input, setInput] = useState(false);
-  const {validText, isValid} = useValid(newInfo);
+  const { validText, isValid } = useValid(newInfo);
   const setisLoginIn = useSetRecoilState(isLoginInState);
 
   const handleMyInfo = () => {
@@ -33,15 +37,15 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
   };
 
   const handleSubmit = () => {
-    if(newInfo.name != originInfo.name){
+    if (newInfo.name != originInfo.name) {
       newNameInquire(newInfo.name);
     }
-    if(newInfo.email != originInfo.email){
+    if (newInfo.email != originInfo.email) {
       newEmailInquire(newInfo.email);
     }
-    setInput(prev => !prev);
-    alert("저장되었습니다!")
-  }
+    setInput((prev) => !prev);
+    alert("저장되었습니다!");
+  };
 
   const handleLogOut = () => {
     Swal.fire({
@@ -52,54 +56,60 @@ const ProfileModal = ({myNickName, myEmail, img}) => {
       cancelButtonText: "아니오",
       confirmButtonColor: "#429f50",
       cancelButtonColor: "#d33",
-    }).then((result)=>{
-      if(result.isConfirmed){
+    }).then((result) => {
+      if (result.isConfirmed) {
         setisLoginIn(false);
-        removeToken()
-        alert('dd')
+        removeToken();
       }
-    })
-  }
-  
+    });
+  };
+
   return (
     <div>
       <Img src={`/image/${img}`} alt="사용자 프로필" />
-      {!input && <ProfileButton onClick={() => handleMyInfo()}>수정하기</ProfileButton>}
+      {!input && (
+        <ProfileButton onClick={() => handleMyInfo()}>수정하기</ProfileButton>
+      )}
       <InputBox>
         <label htmlFor="nickname">닉네임</label>
-        <input 
-          type="text" 
-          id="name" 
+        <input
+          type="text"
+          id="name"
           defaultValue={myNickName}
           disabled={!input}
           onChange={handleOnChange}
         />
         <div className="error">{validText.nameText}</div>
         <label htmlFor="email">이메일</label>
-        <input 
-          type="email" 
-          id="email" 
-          defaultValue={myEmail} 
+        <input
+          type="email"
+          id="email"
+          defaultValue={myEmail}
           disabled={!input}
           onChange={handleOnChange}
         />
         <div className="error">{validText.emailText}</div>
       </InputBox>
       <ButtonBox>
-        {input ? 
-        <SubmitButton onClick={() => handleSubmit()} disabled={!isValid.isName && !isValid.isEmail}>저장</SubmitButton>
-        :
-        <ProfileButton onClick={() => handleLogOut()}>로그아웃</ProfileButton>
-        }
+        {input ? (
+          <SubmitButton
+            onClick={() => handleSubmit()}
+            disabled={!isValid.isName && !isValid.isEmail}
+          >
+            저장
+          </SubmitButton>
+        ) : (
+          <ProfileButton onClick={() => handleLogOut()}>로그아웃</ProfileButton>
+        )}
       </ButtonBox>
     </div>
   );
-}
+};
 
 ProfileModal.propTypes = {
-  myNickName : PropTypes.string.isRequired,
-  myEmail : PropTypes.string.isRequired,
-  img : PropTypes.string,
+  myNickName: PropTypes.string.isRequired,
+  myEmail: PropTypes.string.isRequired,
+  img: PropTypes.string,
 };
 
 const InputBox = styled.div`
@@ -144,14 +154,14 @@ const SubmitButton = styled.button`
   width: 80%;
   height: 40px;
   border-radius: 20px;
-  background-color: ${props => (props.disabled ? Palette.button_gray : Palette.button_blue)};
-  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  background-color: ${(props) =>
+    props.disabled ? Palette.button_gray : Palette.button_blue};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   border: 0px;
   color: #fff;
   font-size: 18px;
   letter-spacing: 3px;
-
-`
+`;
 const ProfileButton = styled.div`
   display: inline-block;
   font-size: 13px;
@@ -159,7 +169,7 @@ const ProfileButton = styled.div`
   cursor: pointer;
   border-radius: 3px;
   &:hover {
-    background-color: ${Palette.button_gray}
+    background-color: ${Palette.button_gray};
   }
 `;
 export default ProfileModal;
