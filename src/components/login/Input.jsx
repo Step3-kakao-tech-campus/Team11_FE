@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
  * @param {string} value
  * @param { string } className
  * @param { func } onChange input 태그에 변화 발생시 이벤트 
+ * @param { func } onKeyDown
  * @param { string } placeholder
  * @param {string} id 
  * @param {boolean} valid
@@ -16,6 +17,7 @@ const Input = ({
   value,
   className,
   onChange,
+  onKeyDown,
   placeholder,
   id,
   valid,
@@ -27,6 +29,7 @@ const Input = ({
       type={type}
       value={value}
       onChange={onChange}
+      onKeyDown={onKeyDown}
       placeholder={placeholder}
       valid={valid}
     />
