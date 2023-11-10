@@ -6,13 +6,14 @@ import {AiOutlineFire, AiFillFire} from 'react-icons/ai';
 import {BsClipboardCheck, BsClipboardCheckFill, BsPerson, BsPersonFill} from 'react-icons/bs';
 import { Palette } from "@/styles/Palette";
 import PropTypes from "prop-types";
+import useLogin from "@/hooks/useLogin";
 
 
 /**
  * @param {string} page 각 페이지 이름 
  */
 const Footer = ({page}) => {  
-  const token = localStorage.getItem('token');
+  const isLogIn = useLogin();
   // 해당 푸터 버튼 클릭시 맨 위로 이동 
   const handlePage = (index) => {
     if (page[index] === true) { // 맨위로 이동
@@ -79,7 +80,7 @@ const Footer = ({page}) => {
             </>
           }
         </LinkNav>
-        {token ? 
+        {isLogIn ? 
           <LinkNav to={routes.mypage}> 
             {page==='mypage' ? 
               <>

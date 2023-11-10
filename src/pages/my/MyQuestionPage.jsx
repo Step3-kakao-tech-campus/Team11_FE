@@ -10,13 +10,14 @@ import { MyVoteContainer } from "@/styles/Container";
 import { useQuery } from "@tanstack/react-query";
 import { myvoteInquire } from "@/services/my";
 import Loader from "@/assets/Loader";
+import useLogin from "@/hooks/useLogin";
 
 const MyQuestionPage = () => {
-  const token = localStorage.getItem("token");
+  const isLogIn = useLogin();
   const { data, isLoading } = useQuery({
     queryKey: ["myQuestion"],
     queryFn: myvoteInquire,
-    enabled: !!token,
+    enabled: !!isLogIn,
   });
   const info = data?.data.data;
   console.log(info);
