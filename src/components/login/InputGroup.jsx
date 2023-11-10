@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
  * @param {string} id
  * @param {string} type
  * @param { func } onChange
+ * @param { func } onKeyDown
  * @param { string } value
  * @param { string } className
  * @param {string} placeholder
@@ -18,6 +19,7 @@ const InputGroup = ({
   type,
   value,
   onChange,
+  onKeyDown,
   className,
   placeholder,
   label,
@@ -32,6 +34,7 @@ const InputGroup = ({
         value={value}
         placeholder={placeholder}
         onChange={onChange}
+        onKeyDown={onKeyDown}
         valid={valid}
       />
     </Box>

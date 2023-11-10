@@ -6,27 +6,29 @@ import Footer from "@/components/layouts/footers/Footer";
 // import { MainMyData } from "@/components/common/mypage/MyPageData";
 import { myInquire } from "@/services/my";
 import { useQuery } from "@tanstack/react-query";
+import useLogin from "@/hooks/useLogin";
 
 const Mypage = () => {
-  const token = localStorage.getItem("token");
-  if(!token) { // 로그아웃시 뒤로 가기 불가
+  const isLogIn = useLogin();
+  if (!isLogIn) {
+    // 로그아웃시 뒤로 가기 불가
     window.history.forward();
   }
 
   const { data, error, isLoading, isError } = useQuery({
     queryKey: ["myProfile"],
     queryFn: myInquire,
-    enabled: !!token,
+    enabled: !!isLogIn,
   });
 
   const profile = data?.data;
-  
+
   return (
     <div>
       <MyPageHeader />
       <MyContainer>
         <Profile
-          userName={profile?.data.nickName}
+          userName={profile?.data.nickname}
           email={profile?.data.email}
           src={"./vv.jpg"}
         ></Profile>

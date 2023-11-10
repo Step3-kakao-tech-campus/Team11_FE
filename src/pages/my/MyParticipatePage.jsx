@@ -10,18 +10,18 @@ import { MyVoteContainer } from "@/styles/Container";
 import { useQuery } from "@tanstack/react-query";
 import { participateInquire } from "@/services/my";
 import Loader from "@/assets/Loader";
+import useLogin from "@/hooks/useLogin";
 const MyParticipatePage = () => {
-  const token = localStorage.getItem("token");
+  const isLogIn = useLogin();
   const { data, isLoading } = useQuery({
     queryKey: ["myParticipate"],
     queryFn: () => {
       return participateInquire();
     },
-    enabled: !!token,
+    enabled: !!isLogIn,
   });
+
   const info = data?.data.data;
-  // const datas = MyParticipateData.data.votes;
-  // const datas = null;
 
   const navigate = useNavigate();
 

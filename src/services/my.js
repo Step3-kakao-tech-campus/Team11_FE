@@ -15,12 +15,12 @@ export const myvoteInquire = () => {
 export const newNameInquire = (payload) => {
   console.log(payload);
   return instance.patch("/users/nickname", {
-    nickName : payload 
-  })
-}
+    nickname: payload,
+  });
+};
 
 export const newEmailInquire = (payload) => {
   return instance.patch("/users/email", {
-    email: payload
-  })
-}
+    email: payload,
+  });
+};
