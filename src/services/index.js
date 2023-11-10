@@ -14,12 +14,25 @@ export const instance = axios.create({
   // withCredential: true
 });
 
-instance.interceptors.request.use((config) => {
+instance.interceptors.request.use(async (config) => {
   const token = localStorage.getItem("token");
+  const expiredTime = new Date(localStorage.getItem("expiredTime")); // accessToken 만료 시간
+  const refreshExpiredTime = new Date(localStorage.getItem("refreshExpiredTime"));
+  const currentTime = new Date();
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
+  if(expiredTime < currentTime &&refreshExpiredTime > currentTime){
+    try{ 
+      await refreshTokenInquire()}
+    catch(e){
+      console.log(e)
+      removeToken()
+    }
+    config.headers["Authorization"] = `Bearer ${token}`
+  }
   return config;
+
 });
 
 instance.interceptors.response.use(
