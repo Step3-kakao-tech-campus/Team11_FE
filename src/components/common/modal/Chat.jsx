@@ -14,7 +14,7 @@ const Chat = ({data, onClick}) => {
   return (
     <>
     <ChatStyled>
-      <Img src="vv.jpg" size="35px"/>
+      <Img src="profile.png" size="35px"/>
       <div>
         <UserStyled>
           <NameStyled>{data.username}</NameStyled>
