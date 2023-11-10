@@ -6,19 +6,19 @@ import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
-import { MyContainer } from "@/styles/Container";
+import { MyVoteContainer } from "@/styles/Container";
 import { useQuery } from "@tanstack/react-query";
 import { participateInquire } from "@/services/my";
-
+import Loader from "@/assets/Loader";
 const MyParticipatePage = () => {
   const token = localStorage.getItem("token");
-  const {data} = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["myParticipate"],
     queryFn: () => {
       return participateInquire();
     },
     enabled: !!token,
-  })
+  });
   const info = data?.data.data;
   // const datas = MyParticipateData.data.votes;
   // const datas = null;
@@ -28,30 +28,34 @@ const MyParticipatePage = () => {
   return (
     <div>
       <SubMyPageHeader page="내가 참여한 투표" />
-      <MyContainer>
-        {info?.votes.length ? (
-          <div>
-            {info &&
-              info?.votes.map((data) => (
-                <>
-                  <MyVoteList data={data} />
-                </>
-              ))}
-          </div>
-        ) : (
-          <Box>
-            <Text>
-              참여한 투표가 없습니다. <br />
-              당신의 생각을 <Goala>Goala</Goala> 주세요!
-            </Text>
+      <MyVoteContainer>
+        {!isLoading ? (
+          info?.votes.length ? (
             <div>
-              <Button onClick={() => navigate(routes.hot)}>
-                투표 하러가기
-              </Button>
+              {info &&
+                info?.votes.map((data) => (
+                  <>
+                    <MyVoteList data={data} route={routes.myparticipation} />
+                  </>
+                ))}
             </div>
-          </Box>
+          ) : (
+            <Box>
+              <Text>
+                참여한 투표가 없습니다. <br />
+                당신의 생각을 <Goala>Goala</Goala> 주세요!
+              </Text>
+              <div>
+                <Button onClick={() => navigate(routes.hot)}>
+                  투표 하러가기
+                </Button>
+              </div>
+            </Box>
+          )
+        ) : (
+          <Loader />
         )}
-      </MyContainer>
+      </MyVoteContainer>
       <Footer page="mypage" />
     </div>
   );
@@ -61,7 +65,7 @@ const Box = styled.div`
   margin-top: 10rem;
 `;
 const Text = styled.p`
-  font-size: 20px;
+  font-size: 17px;
   line-height: 2;
 `;
 const Goala = styled.span`
