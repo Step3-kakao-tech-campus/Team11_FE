@@ -14,7 +14,7 @@ const Alert = ({ children, setIsAlert, positionLeft }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsAlert(false);
-    }, 100000);
+    }, 1000);
     return () => {
       clearTimeout(timer);
     };
