@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { optionState } from "@/utils/UploadAtom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Icon from "../common/Icon";
 import { GoFileMedia } from "react-icons/go";
 import { useRef } from "react";
@@ -16,6 +16,7 @@ import PropTypes from "prop-types";
 const Img = ({ id, src }) => {
   const [imgFile, setImgFile] = useState("");
   const [option, setOption] = useRecoilState(optionState);
+  const [img, setImg] = useState(false);
   const imgRef = useRef();
   // 이미지 업로드 input의 onChange
   const saveImgFile = (e) => {
@@ -39,10 +40,16 @@ const Img = ({ id, src }) => {
       });
     });
   };
-
+  useEffect(() => {
+    option.map((choice, index) => {
+      if (choice.image && index == id) {
+        return setImg(true);
+      }
+    });
+  }, []);
   return (
     <>
-      {imgFile && src ? (
+      {(imgFile && src) || img ? (
         <ImgContainer>
           {" "}
           <div className="Div">

@@ -37,6 +37,7 @@ const UploadPage = () => {
     e.preventDefault();
     e.returnValue = "";
   };
+
   useEffect(() => {
     if (!isLogin) {
       Swal.fire({
@@ -45,6 +46,7 @@ const UploadPage = () => {
       }).then(() => navigate(-1));
       // navigate(-1);
     }
+
     window.scrollTo({ top: 0, left: 0 });
     (() => {
       window.addEventListener("beforeunload", preventRefresh);
