@@ -31,8 +31,8 @@ const LoginPage = () => {
       loginInquire(value)
       .then((res)=>{
         setisLoginIn(true);
-        alert("로그인 성공 !!")
         navigate("/")
+        window.location.reload()
         console.log(res)
       })
       .catch(err => alert(err.data.data.message))

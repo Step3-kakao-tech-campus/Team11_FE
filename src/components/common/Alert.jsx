@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
  * @param {func} param.setIsAlert  setIsAlert(false) 3초간 실행
  */
 
-const Alert = ({ children, setIsAlert, margin }) => {
+const Alert = ({ children, setIsAlert, positionLeft }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsAlert(false);
@@ -18,7 +18,7 @@ const Alert = ({ children, setIsAlert, margin }) => {
       clearTimeout(timer);
     };
   }, [setIsAlert]);
-  return <Container margin={margin}>{children}</Container>;
+  return <Container left={positionLeft}>{children}</Container>;
 };
 Alert.propTypes = {
   children: PropTypes.string.isRequired,
@@ -36,7 +36,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 6px 0 rgba(46, 46, 46, 0.5);
-  margin-left: ${(prop) => prop.margin};
+  left: ${(prop) => prop.left};
   position: fixed;
   top: 10%;
   animation: ${fadeIn} 1s ease-in-out 0s infinite normal none running;
