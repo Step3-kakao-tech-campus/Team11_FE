@@ -4,8 +4,8 @@ import { CopyToClipboard } from "react-copy-to-clipboard"; // 현재 url 복사
 import { useState } from "react";
 import Alert from "../Alert";
 
-const ShareForm = () => {
-  const currentUrl = window.location.href; // window 객체에서 현재 url 가져오기
+const ShareForm = ({id = ""}) => {
+  const currentUrl = window.location.href + id; // window 객체에서 현재 url 가져오기
   const [alert, setIsAlert] = useState(false)
 
 	const handleOnClick = () => {

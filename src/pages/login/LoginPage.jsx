@@ -8,9 +8,8 @@ import { MainContainer } from "@/styles/Container";
 import useValid from "@/hooks/useValid";
 import { loginInquire } from "@/services/login";
 import routes from "@/routes";
-import { useSetRecoilState } from 'recoil';
-import { isLoginInState } from '@/utils/AuthAtom';
-
+import { useSetRecoilState } from "recoil";
+import { isLoginInState } from "@/utils/AuthAtom";
 
 const LoginPage = () => {
   const setisLoginIn = useSetRecoilState(isLoginInState);
@@ -25,28 +24,20 @@ const LoginPage = () => {
   // 유효성 검사 text 반환을 위한 커스텀 훅
   const { validText, isValid } = useValid(value);
 
-
-  const handleLogin =()=>{
-    if(isValid.isEmail && isValid.isPassword){
+  const handleLogin = () => {
+    if (isValid.isEmail && isValid.isPassword) {
       loginInquire(value)
-      .then((res)=>{
-        setisLoginIn(true);
-        alert("로그인 성공 !!")
-        navigate("/")
-        console.log(res)
-      })
-      .catch(err => alert(err.data.data.message))
-    }else{
-      alert('입력 내용이 올바르지 않습니다.')
+        .then((res) => {
+          setisLoginIn(true);
+          alert("로그인 성공 !!");
+          navigate("/");
+          console.log(res);
+        })
+        .catch((err) => alert(err.data.data.message));
+    } else {
+      alert("입력 내용이 올바르지 않습니다.");
     }
-  }
-
-  const handleEnterKey = e => {
-    if(e.key === "Enter") {
-      handleLogin();
-    }
-  } 
-
+  };
   return (
     <MainContainer>
       <Header>
@@ -74,7 +65,6 @@ const LoginPage = () => {
           value={value.email}
           valid={!isValid.isEmail}
           onChange={handleOnChange}
-          onKeyDown={handleEnterKey}
         />
         <StyledErr>{validText.emailText}</StyledErr>
         <InputGroup
@@ -86,7 +76,6 @@ const LoginPage = () => {
           value={value.password}
           valid={!isValid.isPassword}
           onChange={handleOnChange}
-          onKeyDown={handleEnterKey}
         />
         <StyledErr>{validText.passwordText}</StyledErr>
       </Group>
@@ -105,7 +94,6 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
 
 const Title = styled.div`
   font-size: 32px;
@@ -132,11 +120,9 @@ const Subheader = styled.div`
     border-radius: 50px;
     cursor: pointer;
     &:hover {
-    background-color:#d3d3d6 ;
+      background-color: #d3d3d6;
     }
   }
-
-
 `;
 const Group = styled.div`
   display: flex;
@@ -171,4 +157,3 @@ const StyledErr = styled.div`
   right: 60px;
   bottom: 10px;
 `;
-
