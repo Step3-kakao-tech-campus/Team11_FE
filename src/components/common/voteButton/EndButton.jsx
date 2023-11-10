@@ -45,8 +45,6 @@ const EndButton = ({ isOwner, id, active: initialActive }) => {
     });
   };
 
-
-
   return (
     <>
       {alert && <Alert setIsAlert={setIsAlert}>투표가 종료됩니다.</Alert>}
