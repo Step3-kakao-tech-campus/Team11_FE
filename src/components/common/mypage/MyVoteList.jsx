@@ -64,7 +64,7 @@ MyVoteList.propTypes = {
 const MyVote = styled.div`
   height: 4rem;
   display: flex;
-  border-top: 1px solid ${Palette.percent_gray};
+  /* border-top: 1px solid ${Palette.percent_gray}; */
   border-bottom: 1px solid ${Palette.percent_gray};
   position: relative;
   cursor: pointer;
@@ -93,7 +93,7 @@ const Vote = styled.div`
   font-size: 12px;
   & > .modal {
     font-size: 20px;
-    color: ${Palette.font_blue};
+    color: ${Palette.point_blue};
   }
 `;
 

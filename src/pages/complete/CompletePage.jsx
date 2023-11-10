@@ -69,7 +69,7 @@ const CompletePage = ({ modal }) => {
   return (
     <>
       <Main page="complete" />
-      {isFetching ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <HomeContainer>
