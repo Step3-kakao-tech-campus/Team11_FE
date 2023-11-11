@@ -24,7 +24,7 @@ instance.interceptors.request.use(async (config) => {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
 
-  console.log("hello");
+  // console.log("hello");
   console.log(new Date(parseInt(expiredTime)));
 
   const expiredTimeData = new Date(parseInt(expiredTime));
