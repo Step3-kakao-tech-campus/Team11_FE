@@ -12,11 +12,6 @@ import { refreshTokenInquire } from "@/services/login";
 const Mypage = () => {
   const isLogIn = useLogin();
 
-  if (!isLogIn) {
-    // 로그아웃시 뒤로 가기 불가
-    window.history.forward();
-  }
-
   const { data, error, isLoading, isError } = useQuery({
     queryKey: ["myProfile"],
     queryFn: myInquire,
