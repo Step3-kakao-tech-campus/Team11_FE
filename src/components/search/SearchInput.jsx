@@ -7,6 +7,7 @@ import { Palette } from "@/styles/Palette";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
 import { useRef, useState } from "react";
+
 const SearchInput = () => {
   let { query } = useParams("");
   const navigate = useNavigate();

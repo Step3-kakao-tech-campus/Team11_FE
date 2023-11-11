@@ -10,7 +10,12 @@ import { completeInquire } from "@/services/main";
 import Loader from "@/assets/Loader";
 import ErrorScreen from "@/components/common/ErrorScreen";
 import NonePage from "@/components/common/NonePage";
+import PropTypes from "prop-types";
 
+/**
+ *@param {object} prop
+ * @param {boolean} prop.modal
+ */
 const CompletePage = ({ modal }) => {
   const categoryData = useRecoilValue(completeTotalCategoryState);
   const bottomObserver = useRef(null);
@@ -79,7 +84,6 @@ const CompletePage = ({ modal }) => {
             <NonePage what="complete" />
           ) : (
             <>
-              {" "}
               <CompleteTemplate
                 datas={Data}
                 isFetching={isFetching}
@@ -97,4 +101,7 @@ const CompletePage = ({ modal }) => {
   );
 };
 
+CompletePage.propTypes = {
+  modal: PropTypes.bool,
+};
 export default CompletePage;

@@ -8,7 +8,11 @@ import { JoinContainer } from "../../styles/Container";
 import useValid from "../../hooks/useValid";
 import routes from "@/routes";
 import Swal from "sweetalert2";
-import { emailCheckInquire, signupInquire, nicknameCheckInquire } from "@/services/signup";
+import {
+  emailCheckInquire,
+  signupInquire,
+  nicknameCheckInquire,
+} from "@/services/signup";
 
 const SignUpPage = () => {
   const [allAgree, setAllAgree] = useState(false);
@@ -29,9 +33,9 @@ const SignUpPage = () => {
   const handleOnChange = (e) => {
     const { id, value } = e.target;
     setValue((prev) => ({ ...prev, [id]: value }));
-    if(id === "name") {
+    if (id === "name") {
       setCheckName(false);
-    } else if (id === "email" ) {
+    } else if (id === "email") {
       setCheckEmail(false);
     }
   };
@@ -52,57 +56,60 @@ const SignUpPage = () => {
     }
   };
 
-
-  const handleSignUp =()=>{
-    if(isValid.isName &&isValid.isEmail && isValid.isPassword && isValid.isPasswordConfirm){
+  const handleSignUp = () => {
+    if (
+      isValid.isName &&
+      isValid.isEmail &&
+      isValid.isPassword &&
+      isValid.isPasswordConfirm
+    ) {
       signupInquire(value)
-      .then(()=>{
-        navigate(routes.login)
-      })
-      .catch(err=>alert(err.data.message))
-    }else{
-      console.log('입력 내용이 올바르지 않습니다.')
+        .then(() => {
+          navigate(routes.login);
+        })
+        .catch((err) => alert(err.data.message));
+    } else {
+      alert("입력 내용이 올바르지 않습니다.");
     }
-  }
-  const nicknameCheck=()=> {
+  };
+  const nicknameCheck = () => {
     nicknameCheckInquire(value.name)
-    .then(()=>{
-      setCheckName(true);
-      Swal.fire({
-        icon: "success",
-        text: "사용가능한 이름 입니다!",
-        confirmButtonColor: "#429f50",
-        })
-    })
-    .catch(err=>{
-      console.log(err)
-      Swal.fire({
-        icon: "error",
-        text: "이미 사용중인 이름입니다.",
-        confirmButtonColor: "#d33",
+      .then(() => {
+        setCheckName(true);
+        Swal.fire({
+          icon: "success",
+          text: "사용가능한 이름 입니다!",
+          confirmButtonColor: "#429f50",
+        });
       })
-    })
-  }
+      .catch((err) => {
+        console.log(err);
+        Swal.fire({
+          icon: "error",
+          text: "이미 사용중인 이름입니다.",
+          confirmButtonColor: "#d33",
+        });
+      });
+  };
 
-  const emailCheck=()=>{
+  const emailCheck = () => {
     emailCheckInquire(value.email)
-    .then(()=>{
-      setCheckEmail(true)
-      Swal.fire({
-        icon: "success",
-        text: "사용가능한 이메일 입니다!",
-        confirmButtonColor: "#429f50",
-        })
-    })
-    .catch(err=>{
-      console.log(err)
-      Swal.fire({
-        icon: "error",
-        text: "이미 사용중인 이메일입니다.",
-        confirmButtonColor: "#d33",
+      .then(() => {
+        setCheckEmail(true);
+        Swal.fire({
+          icon: "success",
+          text: "사용가능한 이메일 입니다!",
+          confirmButtonColor: "#429f50",
+        });
       })
-    })
-  }
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          text: "이미 사용중인 이메일입니다.",
+          confirmButtonColor: "#d33",
+        });
+      });
+  };
   return (
     <JoinContainer>
       <Header>
@@ -122,7 +129,9 @@ const SignUpPage = () => {
             value={value.name}
             onChange={handleOnChange}
           />
-          <StyledButton onClick={nicknameCheck} disabled={!value.name}>중복 검사</StyledButton>
+          <StyledButton onClick={nicknameCheck} disabled={!value.name}>
+            중복 검사
+          </StyledButton>
           <StyledErr>{validText.nameText}</StyledErr>
         </InputContainer>
         <InputContainer>
@@ -135,7 +144,9 @@ const SignUpPage = () => {
             value={value.email}
             onChange={handleOnChange}
           />
-          <StyledButton onClick={emailCheck} disabled={!value.email}>중복 검사</StyledButton>
+          <StyledButton onClick={emailCheck} disabled={!value.email}>
+            중복 검사
+          </StyledButton>
         </InputContainer>
         <StyledErr>{validText.emailText}</StyledErr>
         <InputGroup
@@ -197,8 +208,8 @@ const SignUpPage = () => {
             isValid.isEmail &&
             isValid.isPassword &&
             isValid.isPasswordConfirm &&
-            checkName&&
-            checkEmail&&
+            checkName &&
+            checkEmail &&
             agreePollcy &&
             agreeService
               ? false
@@ -208,14 +219,15 @@ const SignUpPage = () => {
           가입 완료
         </Button>
       </ButtonGroup>
-        <DuplicateErr>{ 
-            !isValid.isName ||
-            !isValid.isEmail ||
-            !isValid.isPassword ||
-            !isValid.isPasswordConfirm ||
-            checkEmail &&
-            checkName ? "" : "중복검사를 진행해주세요"}
-        </DuplicateErr>
+      <DuplicateErr>
+        {!isValid.isName ||
+        !isValid.isEmail ||
+        !isValid.isPassword ||
+        !isValid.isPasswordConfirm ||
+        (checkEmail && checkName)
+          ? ""
+          : "중복검사를 진행해주세요"}
+      </DuplicateErr>
     </JoinContainer>
   );
 };
@@ -236,7 +248,7 @@ const Group = styled.div`
 `;
 const InputContainer = styled.div`
   height: 100px;
-`
+`;
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -271,8 +283,8 @@ const StyledButton = styled.button`
   bottom: 40px;
   left: 90px;
   cursor: pointer;
-  &:hover{
-    background-color: #8C9CCF;
+  &:hover {
+    background-color: #8c9ccf;
   }
 `;
 const PolicyGroup = styled.div`

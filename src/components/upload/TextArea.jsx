@@ -15,7 +15,6 @@ const TextArea = ({ name }) => {
 
   const textAreaHeight = () => {
     textArea.current.style.height = 0;
-    //초기화해야함(안해주면 scrollHeight이 누적됨.)
     textArea.current.style.height = textArea.current.scrollHeight + "px";
   };
   return (

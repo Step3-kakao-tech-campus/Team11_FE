@@ -3,6 +3,13 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Icon from "@/components/common/Icon";
 import routes from "@/routes";
+import PropTypes from "prop-types";
+
+/**
+ *
+ * @param {object} props
+ * @param {boolean} props.upload
+ */
 
 const BackButton = ({ upload }) => {
   const navigate = useNavigate();
@@ -18,7 +25,10 @@ const BackButton = ({ upload }) => {
   );
 };
 
-// 이거 없애고 Icon 컴포넌트 사용하기
+BackButton.propTypes = {
+  upload: PropTypes.bool,
+};
+
 const Back = styled.button`
   margin-top: 3px;
   margin-left: 5px;

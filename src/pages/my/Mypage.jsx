@@ -3,16 +3,14 @@ import { MyContainer } from "@/styles/Container";
 import MyPageUl from "@/components/common/mypage/MyPageUl";
 import MyPageHeader from "@/components/layouts/headers/MyPageHeader";
 import Footer from "@/components/layouts/footers/Footer";
-// import { MainMyData } from "@/components/common/mypage/MyPageData";
 import { myInquire } from "@/services/my";
 import { useQuery } from "@tanstack/react-query";
 import useLogin from "@/hooks/useLogin";
-import { refreshTokenInquire } from "@/services/login";
 
 const Mypage = () => {
   const isLogIn = useLogin();
 
-  const { data, error, isLoading, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ["myProfile"],
     queryFn: myInquire,
     enabled: !!isLogIn,

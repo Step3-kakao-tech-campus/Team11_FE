@@ -12,12 +12,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import ShareForm from "../common/modal/ShareForm";
 
 /**
- *
+ * @param {object} props
  * @param {object} props.data
  * @param {string} props.what
+ * @param {string} props.route
+ *
  */
 
-const HomeLayout = ({ data, what, route }) => {
+const HomeLayout = ({ data, what, route, modal }) => {
   const navigate = useNavigate();
   const { id: modalId } = useParams();
 
@@ -135,6 +137,8 @@ const HomeLayout = ({ data, what, route }) => {
 HomeLayout.propTypes = {
   data: PropTypes.object,
   what: PropTypes.string,
+  route: PropTypes.string,
+  modal: PropTypes.bool,
 };
 const Container = styled.div`
   display: flex;

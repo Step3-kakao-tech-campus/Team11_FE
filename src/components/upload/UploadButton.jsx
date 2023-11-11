@@ -13,7 +13,6 @@ const UploadButton = () => {
   const navigate = useNavigate();
   const [count, setCount] = useRecoilState(uploadSelector);
   const resetList = useResetRecoilState(uploadSelector);
-  // const [toast, setToast] = useRecoilState(isToastState);
   const [active, setActive] = useState(false);
   const mutation = useMutation({
     mutationFn: (payload) => uploadVote(payload),
@@ -35,7 +34,6 @@ const UploadButton = () => {
       const payload = count;
       mutation.mutate(payload, {
         onSuccess: () => {
-          // setToast(true);
           Swal.fire({
             icon: "success",
             text: "업로드 완료",
@@ -75,10 +73,7 @@ const UploadButtonStyle = styled.div`
     font-size: 19px;
     border: 0;
   }
-
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
   width: 100%;
   max-width: 450px;
   flex-direction: column;

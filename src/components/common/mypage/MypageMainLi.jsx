@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
  * @param {function(): void} onClick
  * @returns {JSX.Element}
  */
+
 const MypageMainLi = ({ content, number, onClick }) => {
   return (
     <DivLi onClick={onClick}>
@@ -29,6 +30,7 @@ MypageMainLi.propTypes = {
   number: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
 };
+
 const DivLi = styled.div`
   text-align: start;
   height: 68px;

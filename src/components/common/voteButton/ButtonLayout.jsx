@@ -1,7 +1,6 @@
 import MainButton from "./MainButton";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { useState } from "react";
 
 /**
  * @param {object} props
@@ -10,6 +9,7 @@ import { useState } from "react";
  * @param { boolean } props.participate 참여여부
  * @param { boolean } props.isOwner 투표자인지의 여부
  * @param {string} props.active  투표 상태
+ * @param {number} props.voteId 투표 id
  */
 
 const ButtonLayout = ({
@@ -19,7 +19,6 @@ const ButtonLayout = ({
   isOwner,
   active,
   voteId,
-  location,
 }) => {
   return (
     <>
@@ -27,7 +26,6 @@ const ButtonLayout = ({
         {options?.map((option, index) => {
           return (
             <MainButton
-              location={location}
               changeVotes={changeVotes}
               key={index}
               name={option.optionName}
@@ -54,6 +52,7 @@ ButtonLayout.propTypes = {
   participate: PropTypes.bool.isRequired,
   isOwner: PropTypes.bool.isRequired,
   active: PropTypes.string.isRequired,
+  voteId: PropTypes.number.isRequired,
 };
 const Container = styled.div`
   display: flex;
