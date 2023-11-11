@@ -25,6 +25,7 @@ instance.interceptors.request.use(async (config) => {
   }
 
   // console.log("hello");
+  // localStorage.clear();
   console.log(new Date(parseInt(expiredTime)));
 
   const expiredTimeData = new Date(parseInt(expiredTime));
@@ -62,7 +63,7 @@ instance.interceptors.response.use(
     if (status === 403) {
       //refreshtoken 요청
       console.log("status", status);
-      await refreshTokenInquire();
+      // await refreshTokenInquire();
     }
     if (status === 401) {
       // 리프레시 토큰 만료

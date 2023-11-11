@@ -25,6 +25,8 @@ const ModalTemplate = ({ detailData, click, what }) => {
     id,
   } = detailData;
 
+  console.log(options);
+
   const [optionState, setOptionState] = useState(options);
   const [participateState, setParticipate] = useState(participate);
   const [modalVisible, setModalVisible] = useState(false);
@@ -75,7 +77,11 @@ const ModalTemplate = ({ detailData, click, what }) => {
             changeVotes={changeVotes}
           ></ButtonLayout>
 
-          <VoteBottom onClickShare={shareOpenModal} modal={true} id={id}></VoteBottom>
+          <VoteBottom
+            onClickShare={shareOpenModal}
+            modal={true}
+            id={id}
+          ></VoteBottom>
           {modalVisible && (
             <Modal
               visible={modalVisible}
