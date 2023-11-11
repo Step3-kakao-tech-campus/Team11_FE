@@ -8,12 +8,15 @@ import { JoinContainer } from "../../styles/Container";
 import useValid from "../../hooks/useValid";
 import routes from "@/routes";
 import Swal from "sweetalert2";
-import { emailCheckInquire, signupInquire } from "@/services/signup";
+import { emailCheckInquire, signupInquire, nicknameCheckInquire } from "@/services/signup";
 
 const SignUpPage = () => {
   const [allAgree, setAllAgree] = useState(false);
   const [agreeService, setAgreeService] = useState(false);
   const [agreePollcy, setAgreePollcy] = useState(false);
+  const [checkName, setCheckName] = useState(false);
+  const [checkEmail, setCheckEmail] = useState(false);
+
   const [value, setValue] = useState({
     name: "",
     email: "",
@@ -26,6 +29,11 @@ const SignUpPage = () => {
   const handleOnChange = (e) => {
     const { id, value } = e.target;
     setValue((prev) => ({ ...prev, [id]: value }));
+    if(id === "name") {
+      setCheckName(false);
+    } else if (id === "email" ) {
+      setCheckEmail(false);
+    }
   };
   const handleAllAgree = (e) => {
     const value = e.target.checked;
@@ -56,10 +64,30 @@ const SignUpPage = () => {
       console.log('입력 내용이 올바르지 않습니다.')
     }
   }
+  const nicknameCheck=()=> {
+    nicknameCheckInquire(value.name)
+    .then(()=>{
+      setCheckName(true);
+      Swal.fire({
+        icon: "success",
+        text: "사용가능한 이름 입니다!",
+        confirmButtonColor: "#429f50",
+        })
+    })
+    .catch(err=>{
+      console.log(err)
+      Swal.fire({
+        icon: "error",
+        text: "이미 사용중인 이름입니다.",
+        confirmButtonColor: "#d33",
+      })
+    })
+  }
+
   const emailCheck=()=>{
     emailCheckInquire(value.email)
-    .then(res=>{
-      console.log(res)
+    .then(()=>{
+      setCheckEmail(true)
       Swal.fire({
         icon: "success",
         text: "사용가능한 이메일 입니다!",
@@ -84,16 +112,19 @@ const SignUpPage = () => {
         <Title>Goalajuma</Title>
       </Header>
       <Group>
-        <InputGroup
-          className="name"
-          id="name"
-          type="name"
-          placeholder="닉네임을 입력해주세요"
-          label="닉네임"
-          value={value.name}
-          onChange={handleOnChange}
-        />
-        <StyledErr>{validText.nameText}</StyledErr>
+        <InputContainer>
+          <InputGroup
+            className="name"
+            id="name"
+            type="name"
+            placeholder="닉네임을 입력해주세요"
+            label="닉네임"
+            value={value.name}
+            onChange={handleOnChange}
+          />
+          <StyledButton onClick={nicknameCheck} disabled={!value.name}>중복 검사</StyledButton>
+          <StyledErr>{validText.nameText}</StyledErr>
+        </InputContainer>
         <InputContainer>
           <InputGroup
             className="email"
@@ -104,7 +135,7 @@ const SignUpPage = () => {
             value={value.email}
             onChange={handleOnChange}
           />
-          <StyledButton onClick={emailCheck}>중복 검사</StyledButton>
+          <StyledButton onClick={emailCheck} disabled={!value.email}>중복 검사</StyledButton>
         </InputContainer>
         <StyledErr>{validText.emailText}</StyledErr>
         <InputGroup
@@ -166,6 +197,8 @@ const SignUpPage = () => {
             isValid.isEmail &&
             isValid.isPassword &&
             isValid.isPasswordConfirm &&
+            checkName&&
+            checkEmail&&
             agreePollcy &&
             agreeService
               ? false
@@ -175,6 +208,14 @@ const SignUpPage = () => {
           가입 완료
         </Button>
       </ButtonGroup>
+        <DuplicateErr>{ 
+            !isValid.isName ||
+            !isValid.isEmail ||
+            !isValid.isPassword ||
+            !isValid.isPasswordConfirm ||
+            checkEmail &&
+            checkName ? "" : "중복검사를 진행해주세요"}
+        </DuplicateErr>
     </JoinContainer>
   );
 };
@@ -220,15 +261,15 @@ const Title = styled.div`
 const StyledButton = styled.button`
   border-radius: 50px;
   border: 1px solid transparent;
-  font-size: 15px;
+  font-size: 13px;
   background-color: #9eb0ea;
   padding: 0.6em;
   font-weight: 500;
   color: #fff;
   position: relative;
-  width: 32%;
+  width: 30%;
   bottom: 40px;
-  left: 80px;
+  left: 90px;
   cursor: pointer;
   &:hover{
     background-color: #8C9CCF;
@@ -254,4 +295,12 @@ const StyledErr = styled.div`
   position: relative;
   right: 60px;
   bottom: 10px;
+`;
+const DuplicateErr = styled.div`
+  color: #e45151;
+  font-size: 13px;
+  position: relative;
+  right: 8px;
+  top: 20px;
+  align-items: center;
 `;
