@@ -3,7 +3,7 @@ import ButtonLayout from "@/components/common/voteButton/ButtonLayout";
 import VoteHead from "@/components/common/voteButton/VoteHead";
 import MainContent from "@/components/home/MainContent";
 import VoteBottom from "@/components/common/voteButton/VoteBottom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import ShareForm from "./ShareForm";
 import styled from "styled-components";
@@ -25,12 +25,16 @@ const ModalTemplate = ({ detailData, click, what }) => {
     id,
   } = detailData;
 
-  console.log(options);
-
   const [optionState, setOptionState] = useState(options);
   const [participateState, setParticipate] = useState(participate);
-  const [modalVisible, setModalVisible] = useState(false);
 
+  useEffect(() => {
+    setOptionState(options);
+    setParticipate(participate);
+  }, [detailData, participate]);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  console.log(detailData);
   const shareCloseModal = () => {
     setModalVisible(false);
   };
@@ -41,6 +45,7 @@ const ModalTemplate = ({ detailData, click, what }) => {
   const [totalCountState, setTotalCountState] = useState(totalCount);
 
   const changeVotes = (participate, result) => {
+    click(participate, result);
     const resultData = result?.result;
     setParticipate(participate);
 
