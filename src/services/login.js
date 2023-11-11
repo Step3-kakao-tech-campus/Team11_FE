@@ -1,5 +1,5 @@
 import routes from "@/routes";
-import { loginInstance,instance } from "./index";
+import { loginInstance, instance } from "./index";
 import { getCookie, removeCookie, setCookie } from "./Cookie";
 
 export const getToken = (res) => {
@@ -34,16 +34,17 @@ export const loginInquire = async (data) => {
   return res;
 };
 
-
-export const refreshTokenInquire = async()=>{
-  try{
-    console.log(getCookie("refreshToken"))
-    const res = await loginInstance.post(`/api/auth/reissue`, null, {withCredentials: true})
-    console.log(res)
-    return getToken(res)
-  } catch(err){
-    console.log('리프레시 토큰 요청 중 오류',err)
+export const refreshTokenInquire = async () => {
+  try {
+    console.log(getCookie("refreshToken"));
+    const res = await loginInstance.post(`/api/auth/reissue`, null, {
+      withCredentials: true,
+    });
+    console.log(res);
+    return getToken(res);
+  } catch (err) {
+    console.log("리프레시 토큰 요청 중 오류", err);
     alert("로그인이 만료되었습니다! 다시 로그인 해주세요.");
-    removeToken()
+    removeToken();
   }
-}
+};
