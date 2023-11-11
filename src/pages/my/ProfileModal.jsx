@@ -17,6 +17,7 @@ import { emailCheckInquire, nicknameCheckInquire } from "@/services/signup";
  * @param {string} img
  * @returns
  */
+
 const ProfileModal = ({ myNickName, myEmail, img }) => {
   const [newInfo, setNewInfo] = useState({
     name: "",
