@@ -44,6 +44,7 @@ export const refreshTokenInquire = async () => {
     return getToken(res);
   } catch (err) {
     console.log("리프레시 토큰 요청 중 오류", err);
-    // removeToken()
+    alert("로그인이 만료되었습니다! 다시 로그인 해주세요.");
+    removeToken();
   }
 };

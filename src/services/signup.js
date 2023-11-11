@@ -11,7 +11,9 @@ export const signupInquire = (data) => {
   
 };
 
+export const nicknameCheckInquire = (nickName) => {
+  return instance.post("api/auth/nickname-check", { nickname: nickName})
+}
 export const emailCheckInquire = (email) => {
   return instance.post(`/api/auth/email-check`, {email: email});
-  
 };

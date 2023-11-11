@@ -27,7 +27,8 @@ loginInstance.interceptors.request.use((config) => {
   const refreshToken = getCookie("refreshToken");
   console.log("loginInstance");
   if (refreshToken) {
-    config.headers["Authorization"] = `Bearer ${refreshToken}`;
+    console.log(`Bearer ${refreshToken}`)
+    config.headers["Cookie"] = `Bearer ${refreshToken}`;
   }
   return config;
 });
