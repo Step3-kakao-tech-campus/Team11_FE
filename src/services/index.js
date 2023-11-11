@@ -12,7 +12,7 @@ export const instance = axios.create({
   timeout: 1000 * 3,
   headers: {
     "Content-Type": "application/json",
-  }
+  },
 });
 
 export const loginInstance = axios.create({
@@ -20,30 +20,32 @@ export const loginInstance = axios.create({
   timeout: 1000 * 3,
   headers: {
     "Content-Type": "application/json",
-  }
-})
+  },
+});
 
-loginInstance.interceptors.request.use((config)=>{
+loginInstance.interceptors.request.use((config) => {
   const refreshToken = getCookie("refreshToken");
-  console.log('loginInstance')
+  console.log("loginInstance");
   if (refreshToken) {
     console.log(`Bearer ${refreshToken}`)
     config.headers["Cookie"] = `Bearer ${refreshToken}`;
   }
   return config;
-})
+});
 
 instance.interceptors.request.use(async (config) => {
   const expiredTime = new Date(localStorage.getItem("expiredTime")); // accessToken 만료 시간
-  const refreshExpiredTime = new Date(localStorage.getItem("refreshExpiredTime"));
+  const refreshExpiredTime = new Date(
+    localStorage.getItem("refreshExpiredTime")
+  );
   const currentTime = new Date();
 
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
   // localStorage.clear()
-  console.log("hello")
-  console.log(expiredTime)
+  console.log("hello");
+  console.log(expiredTime);
 
   if (expiredTime < currentTime && refreshExpiredTime > currentTime) {
     try {
