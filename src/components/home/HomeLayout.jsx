@@ -4,7 +4,7 @@ import VoteHead from "../common/voteButton/VoteHead";
 import MainContent from "./MainContent";
 import VoteBottom from "../common/voteButton/VoteBottom";
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
 import ModalLayout from "../common/modal/ModalLayout";
@@ -43,6 +43,17 @@ const HomeLayout = ({ data, what, route, modal }) => {
   const [shareModalVisible, setShareModalVisible] = useState(false);
   const [optionState, setOptionState] = useState(options);
   const [totalCountState, setTotalCountState] = useState(totalCount);
+
+  useEffect(() => {
+    setOptionState(options);
+  }, [options]);
+
+  useEffect(() => {
+    setParticipate(participate);
+  }, [participate]);
+  useEffect(() => {
+    setTotalCountState(totalCount);
+  }, [totalCount]);
 
   const changeVotes = (participate, result) => {
     const resultData = result?.result;
