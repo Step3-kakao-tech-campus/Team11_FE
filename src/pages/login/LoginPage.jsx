@@ -34,7 +34,6 @@ const LoginPage = () => {
           window.location.reload();
         })
         .catch((err) => {
-        console.log(err)
         alert(err.data.message)});
     } else {
       alert("입력 내용이 올바르지 않습니다.");

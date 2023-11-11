@@ -21,7 +21,6 @@ const ButtonLayout = ({
   voteId,
   location,
 }) => {
-  console.log(options);
   return (
     <>
       <Container>
