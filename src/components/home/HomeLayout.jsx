@@ -40,19 +40,23 @@ const HomeLayout = ({ data, what, route }) => {
   const [modalVisible, setModalVisible] = useState(modal);
   const [shareModalVisible, setShareModalVisible] = useState(false);
   const [optionState, setOptionState] = useState(options);
+  const [totalCountState, setTotalCountState] = useState(totalCount);
+
   const changeVotes = (participate, result) => {
+    const resultData = result?.result;
     setParticipate(participate);
 
     const copyOptions = optionState?.map((choice, index) => {
       return {
         ...choice,
-        optionCount: result[index]?.optionCount,
-        optionRatio: result[index]?.optionRatio,
-        choice: result[index].choice,
+        optionCount: resultData[index]?.optionCount,
+        optionRatio: resultData[index]?.optionRatio,
+        choice: resultData[index].choice,
       };
     });
 
     setOptionState(copyOptions);
+    setTotalCountState(result?.total);
   };
 
   const clickModal = (data) => {
@@ -74,7 +78,7 @@ const HomeLayout = ({ data, what, route }) => {
     <MainContainer>
       <Container>
         <VoteHead
-          totalCount={totalCount}
+          totalCount={totalCountState}
           endDate={endDate}
           what={what}
           username={username}
@@ -101,15 +105,15 @@ const HomeLayout = ({ data, what, route }) => {
           id={id}
         ></VoteBottom>
         {shareModalVisible && (
-            <Modal
-              visible={shareModalVisible}
-              closable={true}
-              maskClosable={true}
-              onClose={shareCloseModal}
-            >
-              <ShareForm id={id}/>
-            </Modal>
-          )}
+          <Modal
+            visible={shareModalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={shareCloseModal}
+          >
+            <ShareForm id={id} />
+          </Modal>
+        )}
         {modalVisible && modalId == id && (
           <Modal
             visible={modalVisible}

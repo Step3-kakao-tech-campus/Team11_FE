@@ -51,7 +51,7 @@ const MainButton = ({
         console.log(e.target);
         if (choiced !== true) {
           changeOption(e.target.id).then((res) => {
-            const result = res?.data.data.result;
+            const result = res?.data.data;
             console.log(result);
             changeVotes(true, result);
           });
@@ -67,7 +67,7 @@ const MainButton = ({
           }).then((result) => {
             if (result.isConfirmed) {
               deleteVote(e.target.id).then((res) => {
-                const result = res?.data.data.result;
+                const result = res?.data.data;
                 // changeOptions(result);
                 changeVotes(false, result);
               });
@@ -78,7 +78,7 @@ const MainButton = ({
         //투표 안한 기본 상태...
         vote(e.target.id)
           .then((res) => {
-            const result = res?.data.data.result;
+            const result = res?.data.data;
             // changeOptions(result);
             // console.log(result);
             changeVotes(true, result);
