@@ -21,14 +21,11 @@ const ButtonLayout = ({
   voteId,
   location,
 }) => {
-  const optionList = options;
-  //choice 하나만 선택할 수 있는 함수 구현해서 프롭스로 보내주기
-  const [optionState, setOptionState] = useState(optionList);
-
+  console.log(options);
   return (
     <>
       <Container>
-        {optionList?.map((option, index) => {
+        {options?.map((option, index) => {
           return (
             <MainButton
               location={location}

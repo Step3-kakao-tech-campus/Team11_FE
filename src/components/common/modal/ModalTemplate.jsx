@@ -3,7 +3,7 @@ import ButtonLayout from "@/components/common/voteButton/ButtonLayout";
 import VoteHead from "@/components/common/voteButton/VoteHead";
 import MainContent from "@/components/home/MainContent";
 import VoteBottom from "@/components/common/voteButton/VoteBottom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import ShareForm from "./ShareForm";
 import styled from "styled-components";
@@ -27,8 +27,14 @@ const ModalTemplate = ({ detailData, click, what }) => {
 
   const [optionState, setOptionState] = useState(options);
   const [participateState, setParticipate] = useState(participate);
-  const [modalVisible, setModalVisible] = useState(false);
 
+  useEffect(() => {
+    setOptionState(options);
+    setParticipate(participate);
+  }, [detailData, participate]);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  console.log(detailData);
   const shareCloseModal = () => {
     setModalVisible(false);
   };
@@ -36,27 +42,32 @@ const ModalTemplate = ({ detailData, click, what }) => {
     setModalVisible(true);
   };
 
+  const [totalCountState, setTotalCountState] = useState(totalCount);
+
   const changeVotes = (participate, result) => {
     click(participate, result);
+    const resultData = result?.result;
     setParticipate(participate);
 
     const copyOptions = optionState?.map((choice, index) => {
       return {
         ...choice,
-        optionCount: result[index]?.optionCount,
-        optionRatio: result[index]?.optionRatio,
-        choice: result[index].choice,
+        optionCount: resultData[index]?.optionCount,
+        optionRatio: resultData[index]?.optionRatio,
+        choice: resultData[index].choice,
       };
     });
 
     setOptionState(copyOptions);
+    setTotalCountState(result?.total);
   };
+
   return (
     <div>
       <ModalMainContainer className="modal">
         <Container>
           <VoteHead
-            totalCount={totalCount}
+            totalCount={totalCountState}
             endDate={endDate}
             what={what}
             isOwner={isOwner}
@@ -75,7 +86,11 @@ const ModalTemplate = ({ detailData, click, what }) => {
             changeVotes={changeVotes}
           ></ButtonLayout>
 
-          <VoteBottom onClickShare={shareOpenModal} modal={true} id={id}></VoteBottom>
+          <VoteBottom
+            onClickShare={shareOpenModal}
+            modal={true}
+            id={id}
+          ></VoteBottom>
           {modalVisible && (
             <Modal
               visible={modalVisible}

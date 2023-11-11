@@ -20,7 +20,7 @@ const ModalLayout = ({ what, click }) => {
     },
     enabled: !!id,
   });
-  const detailData = datas?.data?.data?.data?.vote;
+  const detailData = datas?.data?.data.data.vote;
 
   return (
     <>
