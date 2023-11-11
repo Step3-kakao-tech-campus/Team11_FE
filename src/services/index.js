@@ -30,10 +30,11 @@ loginInstance.interceptors.request.use((config) => {
 });
 
 instance.interceptors.request.use(async (config) => {
-  const expiredTime = new Date(localStorage.getItem("expiredTime")); // accessToken 만료 시간
+  const expiredTime = new Date(parseInt(localStorage.getItem("expiredTime"))); // accessToken 만료 시간
   const refreshExpiredTime = new Date(
-    localStorage.getItem("refreshExpiredTime")
+    parseInt(localStorage.getItem("refreshExpiredTime"))
   );
+
   const currentTime = new Date();
 
   if (token) {

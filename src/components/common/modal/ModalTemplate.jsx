@@ -82,6 +82,7 @@ const ModalTemplate = ({ detailData, click, what }) => {
             username={username}
             categoryValue={category}
             id={id}
+            modal={true}
           ></VoteHead>
           <MainContent title={title} content={content}></MainContent>
 
