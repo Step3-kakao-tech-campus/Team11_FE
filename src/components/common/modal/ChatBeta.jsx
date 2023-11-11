@@ -70,9 +70,7 @@ const ChatBeta = ({ participate }) => {
       if (result.isConfirmed) {
         deleteComment
           .mutate(uid)
-          .then((res) => {
-            console.log(res);
-          })
+          .then((res) => {})
           .catch((err) => {
             alert(err);
           });

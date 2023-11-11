@@ -1,9 +1,10 @@
 import Box from "./Box";
 import Label from "./Label";
 import Input from "./Input";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 /**
+ * @param {object} props
  * @param {string} id
  * @param {string} type
  * @param { func } onChange
@@ -45,11 +46,12 @@ InputGroup.propTypes = {
   id: PropTypes.string,
   type: PropTypes.string,
   onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
   value: PropTypes.string,
   className: PropTypes.string,
   placeholder: PropTypes.string,
   label: PropTypes.string,
   valid: PropTypes.bool,
-}
+};
 
 export default InputGroup;

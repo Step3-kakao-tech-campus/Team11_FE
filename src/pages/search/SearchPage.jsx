@@ -17,7 +17,6 @@ import NonePage from "@/components/common/NonePage";
 const SearchPage = () => {
   const bottomObserver = useRef(null);
   const categoryData = useRecoilValue(totalCategoryState);
-  //추후 헤더 완료 후 수정
   let { query } = useParams();
 
   const {
@@ -27,7 +26,6 @@ const SearchPage = () => {
     isLoading,
     data,
     isFetching,
-    error,
   } = useInfiniteQuery({
     queryKey: ["searchInfo", categoryData],
     queryFn: ({ pageParam = 0 }) => search(categoryData, query, pageParam),
@@ -85,11 +83,6 @@ const SearchPage = () => {
             {!Data?.length ? (
               <NonePage what="research" query={query} />
             ) : (
-              // <ErrorScreen
-              //   // status={error.data.status}
-              //   error={error.data.error}
-              //   // message={error.data.message}
-              // ></ErrorScreen>
               <>
                 <HomeTemplate datas={Data} isFetching={isFetching} />
                 <div ref={bottomObserver}></div>

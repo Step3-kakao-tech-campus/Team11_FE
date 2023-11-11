@@ -29,21 +29,12 @@ const SearchButton = () => {
       </Search>
       {modalVisible && (
         <SearchModal maskClosable={true} onClose={closeModal}></SearchModal>
-        // <Modal
-        //   visible={modalVisible}
-        //   closable={true}
-        //   maskClosable={true}
-        //   onClose={closeModal}
-        // >
-        //   <SearchInput></SearchInput>
-        // </Modal>
       )}
     </div>
   );
 };
 
 const Search = styled.button`
-  // 위치 다시 조정
   position: absolute;
   right: 20px;
   top: 15px;

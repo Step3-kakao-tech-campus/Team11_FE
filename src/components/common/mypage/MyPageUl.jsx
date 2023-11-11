@@ -8,13 +8,15 @@ import Modal from "../modal/Modal";
 import ProfileModal from "@/pages/my/ProfileModal";
 
 /**
- *
- * @param {number} votingNumber 내가 한 투표수
- * @param {number} questionNumber 내가 한 질문
+ *@param {object} prop
+ * @param {number} prop.votingNumber 내가 참여한 투표
+ * @param {number} prop.questionNumber 내가 한 질문
+ * @param {object} prop.data 내 정보 수정
  * @return {JSX.Element}
  */
+
 const MyPageUl = ({ votingNumber, questionNumber, data }) => {
-  const navigate = useNavigate(); // Li tag 아래 버튼을 주고 onclick 주기
+  const navigate = useNavigate();
   const [profile, setProfile] = useState(false);
 
   const openProfile = () => {

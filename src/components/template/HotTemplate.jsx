@@ -1,6 +1,14 @@
 import routes from "@/routes";
 import HomeLayout from "../home/HomeLayout";
-routes;
+import PropTypes from "prop-types";
+
+/**
+ * @param {object} prop
+ * @param {array} prop.datas
+ * @param {boolean} prop.modal
+ * @param {boolean} prop.isFetching
+ */
+
 const HotTemplate = ({ datas, isFetching, modal }) => {
   return (
     <div>
@@ -19,6 +27,12 @@ const HotTemplate = ({ datas, isFetching, modal }) => {
         ))}
     </div>
   );
+};
+
+HotTemplate.propTypes = {
+  datas: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  modal: PropTypes.bool,
 };
 
 export default HotTemplate;

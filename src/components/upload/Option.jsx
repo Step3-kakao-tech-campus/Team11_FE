@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { GoChevronDown } from "react-icons/go";
 import Icon from "../common/Icon";
@@ -20,7 +19,7 @@ const Option = ({ datas, name }) => {
   const [categoryStates, setCategoryState] = useRecoilState(categoryState);
   const [timeLimitStates, setTimeLimitState] = useRecoilState(timeLimitState);
 
-  const selectCategory = (e) => {
+  const selectCategory = () => {
     downRef.current?.scrollIntoView({ behavior: "smooth" });
     setList(!list);
   };
@@ -56,7 +55,6 @@ const Option = ({ datas, name }) => {
           <p>
             {name === "카테고리" ? categoryList[0].name : deadLineList[0].name}
           </p>
-          {/* 여기 부분이 atom 에서 값 가져와서 넣어주기, 아래 리스트 클릭 시 상태 바뀌게 하기.. */}
           <Icon size="20px" color="#585858">
             <GoChevronDown className="icon" />
           </Icon>

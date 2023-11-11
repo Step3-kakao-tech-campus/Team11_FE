@@ -5,15 +5,16 @@ import { FaShare } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { commentCountInquire } from "@/services/main";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 
 /**
  * @param {object} props
- * @param {object} onClick - 댓글 모달
- * @param {object} onClickShare - 공유 버튼 모달
+ * @param {func} props.onClick - 댓글 모달
+ * @param {func} props.onClickShare - 공유 버튼 모달
+ * @param {boolean} props.modal - 공유 버튼 모달
+ * @param {number} props.id - 투표 id
  */
+
 const VoteBottom = ({ onClick, onClickShare, modal, id }) => {
-  // const [count, setCount] = useState(null)
   const { data } = useQuery({
     queryKey: ["comments", id],
     queryFn: () => {
@@ -22,7 +23,6 @@ const VoteBottom = ({ onClick, onClickShare, modal, id }) => {
     enabled: !!id,
   });
 
-  // console.log(data?.data.data.commentCount)
   return (
     <VoteButtonStyle>
       <div className="chat" onClick={onClick}>

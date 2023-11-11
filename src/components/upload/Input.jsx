@@ -59,5 +59,3 @@ export const InputStyle = styled.div`
 `;
 
 export default Input;
-
-/* Rectangle 226 */

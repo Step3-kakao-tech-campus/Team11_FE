@@ -28,7 +28,6 @@ export const optionState = atom({
   ],
 });
 
-//전부 가져와서 selector 로 합쳐 get 으로 내보내기
 export const uploadSelector = selector({
   key: "uploadSelector",
   get: ({ get }) => {

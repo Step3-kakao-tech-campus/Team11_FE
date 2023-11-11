@@ -18,7 +18,7 @@ const UploadPage = () => {
   const navigate = useNavigate();
   const resetList = useResetRecoilState(uploadSelector);
   const isLogin = useLogin();
-  const resetClick = (e) => {
+  const resetClick = () => {
     Swal.fire({
       icon: "info",
       text: "전체 내용을 초기화 하겠습니까?",
@@ -44,7 +44,6 @@ const UploadPage = () => {
         icon: "error",
         text: "로그인 후 글 작성이 가능합니다.",
       }).then(() => navigate(-1));
-      // navigate(-1);
     }
 
     window.scrollTo({ top: 0, left: 0 });
@@ -99,7 +98,6 @@ const UploadContainer = styled.div`
     margin: 1rem 0 1rem 0;
 
     position: relative;
-    /* left: 100px; */
   }
   .uploadHead {
     display: flex;

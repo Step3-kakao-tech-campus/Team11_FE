@@ -9,7 +9,12 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { hotInquire } from "@/services/main";
 import NonePage from "@/components/common/NonePage";
+import PropTypes from "prop-types";
 
+/**
+ * @param {object} prop
+ * @param {boolean} prop.modal
+ */
 const HotPage = ({ modal }) => {
   const bottomObserver = useRef(null);
 
@@ -77,7 +82,6 @@ const HotPage = ({ modal }) => {
             <NonePage what="hot" />
           ) : (
             <>
-              {" "}
               <HotTemplate datas={Data} isFetching={isFetching} modal={modal} />
               {isFetching && <Loader />}
             </>
@@ -90,4 +94,7 @@ const HotPage = ({ modal }) => {
   );
 };
 
+HotPage.propTypes = {
+  modal: PropTypes.bool,
+};
 export default HotPage;
