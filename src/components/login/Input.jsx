@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import PropTypes from 'prop-types';
-
+import PropTypes from "prop-types";
 
 /**
- * @param {string} type input type
+ * @param {object} props
+ * @param {string} type
  * @param {string} value
  * @param { string } className
- * @param { func } onChange input 태그에 변화 발생시 이벤트 
+ * @param { func } onChange
  * @param { func } onKeyDown
  * @param { string } placeholder
- * @param {string} id 
+ * @param {string} id
  * @param {boolean} valid
  */
 const Input = ({
@@ -41,10 +41,11 @@ Input.propTypes = {
   value: PropTypes.string,
   className: PropTypes.string,
   onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
   placeholder: PropTypes.string,
   id: PropTypes.string,
-  valid: PropTypes.bool
-}
+  valid: PropTypes.bool,
+};
 
 export default Input;
 

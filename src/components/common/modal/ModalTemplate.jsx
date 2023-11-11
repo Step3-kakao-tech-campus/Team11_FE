@@ -8,7 +8,15 @@ import Modal from "./Modal";
 import ShareForm from "./ShareForm";
 import styled from "styled-components";
 import ChatBeta from "./ChatBeta";
-// import routes from "@/routes";
+import PropTypes from "prop-types";
+
+/**
+ * @param {object} props
+ * @param {object} props.detailData
+ * @param {string} props.what
+ * @param {function} props.click
+ *
+ **/
 
 const ModalTemplate = ({ detailData, click, what }) => {
   const {
@@ -34,7 +42,6 @@ const ModalTemplate = ({ detailData, click, what }) => {
   }, [detailData, participate]);
 
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(detailData);
   const shareCloseModal = () => {
     setModalVisible(false);
   };
@@ -109,6 +116,13 @@ const ModalTemplate = ({ detailData, click, what }) => {
     </div>
   );
 };
+
+ModalTemplate.propTypes = {
+  detailData: PropTypes.object.isRequired,
+  click: PropTypes.func.isRequired,
+  what: PropTypes.string.isRequired,
+};
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;

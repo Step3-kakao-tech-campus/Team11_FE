@@ -1,10 +1,7 @@
+// 투표 등록 페이지 헤더
 import styled from "styled-components";
 import BackButton from "./BackButton";
 
-/**
- *
- * @return {JSX.Element}
- */
 const UploadPageHeader = () => {
   return (
     <Nav>

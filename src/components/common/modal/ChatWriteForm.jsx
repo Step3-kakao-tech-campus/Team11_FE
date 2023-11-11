@@ -1,17 +1,15 @@
-// import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import { useState } from "react";
 import Img from "@/components/common/Img";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import Alert from "../Alert";
 import { commentInquire } from "@/services/detailVote";
 import { useMutation } from "react-query";
 import { useParams } from "react-router";
-// import axios from 'axios';
 
 /**
- *
- * @param {object} props.participate 투표 참여 여부
+ * @param {object} props
+ * @param {boolean} props.participate 투표 참여 여부
  */
 
 const ChatWriteForm = ({ participate }) => {
@@ -23,11 +21,7 @@ const ChatWriteForm = ({ participate }) => {
     return useMutation(commentInquire(id.id, write));
   };
   const handleUpload = () => {
-    // mutation 함수를 호출하여 POST 요청을 보냄.
-    //mutation.mutate(write);
-    console.log(write);
     AddComment();
-    console.log(write);
     setWrite("");
   };
   const handleInputChange = (event) => {
@@ -97,14 +91,4 @@ const UploadStyled = styled.button`
   border: none;
   background-color: transparent;
 `;
-// const CommentStyled = styled.input`
-//   position: relative;
-//   left: 5%;
-//   top: 15%;
-//   font-family: 'Nanum Gothic';
-//   font-weight: 400;
-//   font-size: 12px;
-//   line-height: 16px;
-//   color: rgba(41, 85, 197, 0.5);
-// `
 export default ChatWriteForm;

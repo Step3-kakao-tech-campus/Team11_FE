@@ -4,6 +4,16 @@ import { useEffect } from "react";
 import Portal from "./Portal";
 import { GoX } from "react-icons/go";
 
+/**
+ * @param {object} param
+ * @param {string} param.className
+ * @param {boolean} param.visible
+ * @param {node} param.children
+ * @param {function} param.onClose
+ * @param {boolean} param.maskClosable
+ * @param {boolean} param.closable
+ *
+ * */
 function Modal({
   className,
   visible,
@@ -12,14 +22,12 @@ function Modal({
   maskClosable, // close 아이콘 유무 결정
   closable, //dimmed 처리된 영역 클릭했을 때 모달 닫힘 결정
 }) {
-  // 배경 누르면 동작
   const onMaskClick = (e) => {
-    // target : 모달 배경, currentTarget : 유저가 클릭한 것
     if (e.target === e.currentTarget) {
       onClose(e);
     }
   };
-  // 닫힘 버튼을 누르면 동작
+
   const close = (e) => {
     if (onClose) {
       onClose(e);
@@ -65,7 +73,7 @@ Modal.propTypes = {
   maskClosable: PropTypes.bool,
   closable: PropTypes.bool,
 };
-// 모달 뒷 배경
+
 export const ModalWrapper = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? "block" : "none")};
@@ -79,7 +87,7 @@ export const ModalWrapper = styled.div`
   outline: 0;
   background-color: rgba(0, 0, 0, 0.6);
 `;
-// 모달 내부
+
 export const ModalInner = styled.div`
   box-sizing: border-box;
   position: relative;

@@ -7,8 +7,9 @@ import ModalTemplate from "./ModalTemplate";
 
 /**
  *
- * @param {object} id
- * @param {string} what
+ * @param {object} props
+ * @param {string} props.what
+ * @param {object} props.click
  */
 
 const ModalLayout = ({ what, click }) => {
@@ -46,8 +47,8 @@ const ModalLayout = ({ what, click }) => {
 };
 
 ModalLayout.propTypes = {
-  id: PropTypes.number,
   what: PropTypes.string,
+  click: PropTypes.func,
 };
 
 export default ModalLayout;

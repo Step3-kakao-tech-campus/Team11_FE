@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
  * @param {object} param
  * @param {string} param.children 알람 내용
  * @param {func} param.setIsAlert  setIsAlert(false) 3초간 실행
+ * @param {string} param.positionLeft 토스트창 위치 수정(positionLeft)
  */
 
 const Alert = ({ children, setIsAlert, positionLeft }) => {
@@ -23,6 +24,7 @@ const Alert = ({ children, setIsAlert, positionLeft }) => {
 Alert.propTypes = {
   children: PropTypes.string.isRequired,
   setIsAlert: PropTypes.func.isRequired,
+  positionLeft: PropTypes.string,
 };
 
 const Container = styled.div`

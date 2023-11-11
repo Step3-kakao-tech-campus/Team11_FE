@@ -30,18 +30,18 @@ const LoginPage = () => {
         .then((res) => {
           setisLoginIn(true);
           navigate("/");
-          console.log(res);
           window.location.reload();
         })
         .catch((err) => {
-        alert(err.data.message)});
+          alert(err.data.message);
+        });
     } else {
       alert("입력 내용이 올바르지 않습니다.");
     }
   };
 
-  const handleEnterKey = e => {
-    if(e.key === "Enter") {
+  const handleEnterKey = (e) => {
+    if (e.key === "Enter") {
       handleLogin();
     }
   };

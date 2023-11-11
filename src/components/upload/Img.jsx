@@ -18,8 +18,7 @@ const Img = ({ id, src }) => {
   const [option, setOption] = useRecoilState(optionState);
   const [img, setImg] = useState(false);
   const imgRef = useRef();
-  // 이미지 업로드 input의 onChange
-  const saveImgFile = (e) => {
+  const saveImgFile = () => {
     const file = imgRef.current.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -47,6 +46,7 @@ const Img = ({ id, src }) => {
       }
     });
   }, []);
+
   return (
     <>
       {(imgFile && src) || img ? (
@@ -88,13 +88,6 @@ Img.propTypes = {
 };
 
 const Container = styled.form`
-  /* img,
-  svg,
-  label,
-  div,
-  p {
-    background-color: #d8d8d8;
-  } */
   width: 134px;
   height: 48px;
   text-align: center;

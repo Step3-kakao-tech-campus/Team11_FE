@@ -1,5 +1,10 @@
 import { useRecoilState } from "recoil";
-import { completeSortState, completeSortNameState, completeSegmentState, completeSegmentNameState } from "@/utils/HeaderAtom";
+import {
+  completeSortState,
+  completeSortNameState,
+  completeSegmentState,
+  completeSegmentNameState,
+} from "@/utils/HeaderAtom";
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
@@ -10,7 +15,9 @@ export const CompleteCategoryBox = () => {
   const [sort, setSort] = useRecoilState(completeSortState);
   const [sortName, setSortName] = useRecoilState(completeSortNameState);
   const [content, setContent] = useRecoilState(completeSegmentState);
-  const [contentName, setContentName] = useRecoilState(completeSegmentNameState);
+  const [contentName, setContentName] = useRecoilState(
+    completeSegmentNameState
+  );
 
   const [drops, setDrops] = useState({ sort: false, content: false });
 
@@ -25,25 +32,17 @@ export const CompleteCategoryBox = () => {
     }
   };
 
-  useEffect(() => {
-
-  }, [sort, content])
-  // recoil 사용: 클릭된 값을 atom에 넣어주기
+  useEffect(() => {}, [sort, content]);
   const handleSort = (num) => {
     setSort(sortList[num].value);
     setSortName(sortList[num].category);
     toggleDropdown("sort");
-    console.log(sort);
   };
 
   const handleContent = (num) => {
     setContent(contentList[num].value);
     setContentName(contentList[num].category);
-    console.log(contentList[num].value);
     toggleDropdown("content");
-    console.log(content);
-    console.log(contentName);
-    // window.location.reload();
   };
 
   useEffect(() => {
@@ -154,7 +153,7 @@ const MainButton = styled.button`
   font-size: 15px;
   cursor: pointer;
   &:hover {
-    background-color: ${Palette.percent_gray}
+    background-color: ${Palette.percent_gray};
   }
 `;
 
@@ -173,7 +172,7 @@ const StyledButton = styled.button`
     width: 4.2rem;
   }
   &:hover {
-    background-color: ${Palette.percent_gray}
+    background-color: ${Palette.percent_gray};
   }
 `;
 
@@ -196,6 +195,6 @@ const Ul = styled.ul`
 const Li = styled.li`
   margin: 0;
   &:hover {
-    background-color: ${Palette.percent_gray}
+    background-color: ${Palette.percent_gray};
   }
 `;

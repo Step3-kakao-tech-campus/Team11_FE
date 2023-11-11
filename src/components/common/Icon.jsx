@@ -10,6 +10,8 @@ import PropTypes from "prop-types";
  * @param {function} prop.onClick 클릭 이벤트
  * @param {string} prop.hoverColor 호버 시 색깔
  * @param {string} prop.hoverBackColor 호버 시 배경색깔
+ * @param {number} prop.margin 마진
+ * @param {string} prop.className 클래스 이름
  *
  */
 const Icon = ({
@@ -51,6 +53,7 @@ Icon.propTypes = {
   hoverBackColor: PropTypes.string,
   margin: PropTypes.number,
   modal: PropTypes.bool,
+  className: PropTypes.string,
 };
 const IconCss = styled.div`
   cursor: pointer;

@@ -7,15 +7,15 @@ import Modal from "../modal/Modal";
 import ModalLayout from "../modal/ModalLayout";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MyVoteContainer } from "@/styles/Container";
 
 /**
- * @param {object} data
+ * @param {object} prop
+ * @param {object} prop.data
+ * @param {string} prop.route
  * @returns {JSX.Element}
  */
 const MyVoteList = ({ data, route }) => {
   const navigate = useNavigate();
-  console.log(data.id);
   const [modalVisible, setModalVisible] = useState(false);
 
   const clickModal = () => {
@@ -60,6 +60,7 @@ const MyVoteList = ({ data, route }) => {
 
 MyVoteList.propTypes = {
   data: PropTypes.object.isRequired,
+  route: PropTypes.string,
 };
 const MyVote = styled.div`
   height: 4rem;

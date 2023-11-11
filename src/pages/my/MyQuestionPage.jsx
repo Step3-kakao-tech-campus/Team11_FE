@@ -20,9 +20,6 @@ const MyQuestionPage = () => {
     enabled: !!isLogIn,
   });
   const info = data?.data.data;
-  console.log(info);
-  // const datas = MyQuestionsData.data.votes;
-  // const datas = null;
   const navigate = useNavigate();
   return (
     <div>

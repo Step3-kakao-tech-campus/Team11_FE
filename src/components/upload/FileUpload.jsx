@@ -38,7 +38,6 @@ FileUpload.propTypes = {
   id: PropTypes.number.isRequired,
 };
 
-//이미지 타입 어떤거 받을지 정해야함(전부 받을지, 특정 타입만 받을지)
 const FileUploadContainer = styled.div`
   margin: 0;
   .fileInput {

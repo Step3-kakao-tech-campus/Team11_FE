@@ -2,8 +2,16 @@ import Portal from "../common/modal/Portal";
 import styled from "styled-components";
 import SearchInput from "./SearchInput";
 import { ModalWrapper, ModalInner } from "../common/modal/Modal";
+import PropTypes from "prop-types";
 
-const SearchModal = ({ visible, children, onClose, maskClosable }) => {
+/**
+ * @param {object} props
+ * @param {function} props.onClose
+ * @param {string} props.markClosable
+ *
+ **/
+
+const SearchModal = ({ onClose, maskClosable }) => {
   const onMaskClick = (e) => {
     // target : 모달 배경, currentTarget : 유저가 클릭한 것
     if (e.target === e.currentTarget) {
@@ -19,6 +27,11 @@ const SearchModal = ({ visible, children, onClose, maskClosable }) => {
       </ModalWrapper>
     </Portal>
   );
+};
+
+SearchModal.propTypes = {
+  onClose: PropTypes.func,
+  maskClosable: PropTypes.bool,
 };
 
 const SearchModalInner = styled(ModalInner)`
