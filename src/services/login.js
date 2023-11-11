@@ -1,5 +1,6 @@
 import routes from "@/routes";
-import { instance } from "./index";
+import { loginInstance,instance } from "./index";
+import { getCookie, removeCookie, setCookie } from "./Cookie";
 
 export const getToken = (res) => {
   const accessToken = res.data.data.accessToken;
@@ -9,14 +10,15 @@ export const getToken = (res) => {
   localStorage.setItem("token", accessToken);
   localStorage.setItem("expiredTime", accessExpiredTime);
   localStorage.setItem("refreshExpiredTime", refreshExpiredTime);
-  localStorage.setItem("refreshToken", refreshToken);
+  setCookie("refreshToken", refreshToken, refreshExpiredTime);
   return accessToken;
 };
 
 export const removeToken = () => {
   localStorage.clear();
+  removeCookie("refreshToken");
   location.href = routes.login;
-  console.log("remove")
+  console.log("remove");
 };
 
 export const loginInquire = async (data) => {
@@ -32,16 +34,15 @@ export const loginInquire = async (data) => {
   return res;
 };
 
-export const refreshTokenInquire = async () => {
-  const refreshToken = localStorage.getItem('refreshToken')
-  await instance.post(`/api/auth/reissue`,{refreshToken})
-  .then((res)=>{
+
+export const refreshTokenInquire = async()=>{
+  try{
+    console.log(getCookie("refreshToken"))
+    const res = await loginInstance.post(`/api/auth/reissue`, null, {withCredentials: true})
     console.log(res)
     return getToken(res)
-  })
-  .catch((err)=>{
-    removeToken()
-    alert("로그인이 만료되었습니다! 다시 로그인 해주세요.")
-    console.log("리프레시 토큰 만료", err)
-  })
-};
+  } catch(err){
+    console.log('리프레시 토큰 요청 중 오류',err)
+    // removeToken()
+  }
+}

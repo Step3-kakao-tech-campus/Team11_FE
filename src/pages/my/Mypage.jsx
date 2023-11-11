@@ -7,10 +7,13 @@ import Footer from "@/components/layouts/footers/Footer";
 import { myInquire } from "@/services/my";
 import { useQuery } from "@tanstack/react-query";
 import useLogin from "@/hooks/useLogin";
+import { refreshTokenInquire } from "@/services/login";
 
 const Mypage = () => {
   const isLogIn = useLogin();
-  if(!isLogIn) { // 로그아웃시 뒤로 가기 불가
+
+  if (!isLogIn) {
+    // 로그아웃시 뒤로 가기 불가
     window.history.forward();
   }
 
@@ -21,13 +24,13 @@ const Mypage = () => {
   });
 
   const profile = data?.data;
-  
+
   return (
     <div>
       <MyPageHeader />
       <MyContainer>
         <Profile
-          userName={profile?.data.nickName}
+          userName={profile?.data.nickname}
           email={profile?.data.email}
           src={"./vv.jpg"}
         ></Profile>
