@@ -38,27 +38,31 @@ const ModalTemplate = ({ detailData, click, what }) => {
     setModalVisible(true);
   };
 
+  const [totalCountState, setTotalCountState] = useState(totalCount);
+
   const changeVotes = (participate, result) => {
-    click(participate, result);
+    const resultData = result?.result;
     setParticipate(participate);
 
     const copyOptions = optionState?.map((choice, index) => {
       return {
         ...choice,
-        optionCount: result[index]?.optionCount,
-        optionRatio: result[index]?.optionRatio,
-        choice: result[index].choice,
+        optionCount: resultData[index]?.optionCount,
+        optionRatio: resultData[index]?.optionRatio,
+        choice: resultData[index].choice,
       };
     });
 
     setOptionState(copyOptions);
+    setTotalCountState(result?.total);
   };
+
   return (
     <div>
       <ModalMainContainer className="modal">
         <Container>
           <VoteHead
-            totalCount={totalCount}
+            totalCount={totalCountState}
             endDate={endDate}
             what={what}
             isOwner={isOwner}

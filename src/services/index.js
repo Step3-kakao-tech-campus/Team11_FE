@@ -25,7 +25,6 @@ instance.interceptors.request.use(async (config) => {
   }
 
   // console.log("hello");
-  // localStorage.clear();
   console.log(new Date(parseInt(expiredTime)));
 
   const expiredTimeData = new Date(parseInt(expiredTime));
