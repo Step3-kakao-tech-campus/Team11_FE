@@ -3,6 +3,7 @@ import axios from "axios";
 import { refreshTokenInquire, removeToken } from "./login";
 import { useSetRecoilState } from "recoil";
 import { isLoginInState } from "@/utils/AuthAtom";
+import { getCookie } from "./Cookie";
 // import { useEffect } from "react";
 
 const token = localStorage.getItem("token");
@@ -11,7 +12,7 @@ export const instance = axios.create({
   timeout: 1000 * 3,
   headers: {
     "Content-Type": "application/json",
-  },
+  }
 });
 
 export const loginInstance = axios.create({
@@ -19,42 +20,40 @@ export const loginInstance = axios.create({
   timeout: 1000 * 3,
   headers: {
     "Content-Type": "application/json",
-  },
-});
+  }
+})
 
-instance.interceptors.request.use((config) => {
-  if (token) {
-    config.headers["Authorization"] = `Bearer ${token}`;
+loginInstance.interceptors.request.use((config)=>{
+  const refreshToken = getCookie("refreshToken");
+  console.log('loginInstance')
+  if (refreshToken) {
+    config.headers["Authorization"] = `Bearer ${refreshToken}`;
   }
   return config;
-});
+})
 
-loginInstance.interceptors.request.use(async (config) => {
-  const expiredTime = localStorage.getItem("expiredTime"); // accessToken 만료 시간
-  const refreshExpiredTime = localStorage.getItem("refreshExpiredTime");
+instance.interceptors.request.use(async (config) => {
+  const expiredTime = new Date(localStorage.getItem("expiredTime")); // accessToken 만료 시간
+  const refreshExpiredTime = new Date(localStorage.getItem("refreshExpiredTime"));
   const currentTime = new Date();
 
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
-  // localStorage.clear();
-  console.log("hello");
-  console.log(new Date(parseInt(expiredTime)));
+  // localStorage.clear()
+  console.log("hello")
+  console.log(expiredTime)
 
-  const expiredTimeData = new Date(parseInt(expiredTime));
-  const refreshExpiredTimeData = new Date(parseInt(refreshExpiredTime));
-
-  if (expiredTimeData < currentTime && refreshExpiredTimeData > currentTime) {
+  if (expiredTime < currentTime && refreshExpiredTime > currentTime) {
     try {
       const res = await refreshTokenInquire();
       console.log("refresh 요청");
       console.log(res);
-      config.headers["Authorization"] = `Bearer ${res}`;
       return;
     } catch (e) {
       console.log(e);
       removeToken();
-      return config;
+      return Promise.reject(e);
     }
   }
   return config;
@@ -71,7 +70,7 @@ instance.interceptors.response.use(
     if (status === 403) {
       //refreshtoken 요청
       console.log("status", status);
-      // await refreshTokenInquire();
+      await refreshTokenInquire();
     }
     if (status === 401) {
       // 리프레시 토큰 만료
