@@ -5,7 +5,11 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { mainInquire } from "@/services/main";
 import { useEffect, useRef } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { totalCategoryState } from "@/utils/HeaderAtom";
+import {
+  segmentState,
+  sortState,
+  totalCategoryState,
+} from "@/utils/HeaderAtom";
 import HomeTemplate from "@/components/template/HomeTemplate";
 import Loader from "@/assets/Loader";
 import ErrorScreen from "@/components/common/ErrorScreen";
@@ -21,6 +25,7 @@ import PropTypes from "prop-types";
 const MainPage = ({ modal }) => {
   const [toast, setToast] = useRecoilState(isToastState);
   const categoryData = useRecoilValue(totalCategoryState);
+
   const bottomObserver = useRef(null);
 
   const {
