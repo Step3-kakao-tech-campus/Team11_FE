@@ -5,17 +5,31 @@ import { useSetRecoilState } from "recoil";
 import { isLoginInState } from "@/utils/AuthAtom";
 // import { useEffect } from "react";
 
+const token = localStorage.getItem("token");
 export const instance = axios.create({
-  baseURL: "https://ke48313f43733a.user-app.krampoline.com/",
+  baseURL: import.meta.env.VITE_AUTH_DOMAIN,
   timeout: 1000 * 3,
   headers: {
     "Content-Type": "application/json",
   },
-  // withCredential: true
 });
 
-instance.interceptors.request.use(async (config) => {
-  const token = localStorage.getItem("token");
+export const loginInstance = axios.create({
+  baseURL: import.meta.env.VITE_AUTH_DOMAIN,
+  timeout: 1000 * 3,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+instance.interceptors.request.use((config) => {
+  if (token) {
+    config.headers["Authorization"] = `Bearer ${token}`;
+  }
+  return config;
+});
+
+loginInstance.interceptors.request.use(async (config) => {
   const expiredTime = localStorage.getItem("expiredTime"); // accessToken 만료 시간
   const refreshExpiredTime = localStorage.getItem("refreshExpiredTime");
   const currentTime = new Date();
@@ -23,8 +37,8 @@ instance.interceptors.request.use(async (config) => {
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
-
-  // console.log("hello");
+  // localStorage.clear()
+  console.log("hello");
   console.log(new Date(parseInt(expiredTime)));
 
   const expiredTimeData = new Date(parseInt(expiredTime));
@@ -35,12 +49,7 @@ instance.interceptors.request.use(async (config) => {
       const res = await refreshTokenInquire();
       console.log("refresh 요청");
       console.log(res);
-      localStorage.setItem(
-        "refreshExpiredTime",
-        res.data.data.refreshExpiredTime
-      );
-      localStorage.setItem("refreshToken", res.data.data.refreshToken);
-      config.headers["Authorization"] = `Bearer ${res.data.data.refreshToken}`;
+      config.headers["Authorization"] = `Bearer ${res}`;
       return;
     } catch (e) {
       console.log(e);
