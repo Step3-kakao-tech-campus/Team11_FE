@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import ShareForm from "./ShareForm";
 import styled from "styled-components";
-import ChatBeta from "./ChatBeta";
+import ChatForm from "./ChatForm";
 import PropTypes from "prop-types";
 
 /**
@@ -110,7 +110,7 @@ const ModalTemplate = ({ detailData, click, what }) => {
           )}
         </Container>
         <Chat>
-          <ChatBeta participate={participateState || isOwner} />
+          <ChatForm participate={participateState || isOwner} />
         </Chat>
       </ModalMainContainer>
     </div>
