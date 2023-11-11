@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import useValid from "@/hooks/useValid";
 import { useSetRecoilState } from "recoil";
@@ -92,6 +92,11 @@ const ProfileModal = ({ myNickName, myEmail, img }) => {
       })
     })
   }
+  useEffect(() => {
+    console.log(              !isValid.isName ||
+      !isValid.isEmail ||
+      checkName && checkEmail)
+  },[isValid.isName, isValid.isEmail, checkName, checkEmail])
 
   const emailCheck=()=>{
     emailCheckInquire(newInfo.email)
@@ -113,7 +118,7 @@ const ProfileModal = ({ myNickName, myEmail, img }) => {
     })
   }
   console.log(isValid.isName, isValid.isEmail, checkName, checkEmail);
-
+  
   return (
     <div>
       <Img src={`/image/${img}`} alt="사용자 프로필" />
@@ -148,9 +153,8 @@ const ProfileModal = ({ myNickName, myEmail, img }) => {
             onClick={() => handleSubmit()}
             disabled={
               !isValid.isName ||
-              !isValid.isEmail||
-              !(!checkName|| 
-              !checkEmail)
+              !isValid.isEmail 
+              // !(checkName || checkEmail)
             }
           >
             저장
