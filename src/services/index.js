@@ -37,7 +37,7 @@ loginInstance.interceptors.request.use(async (config) => {
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
-  // localStorage.clear()
+  // localStorage.clear();
   console.log("hello");
   console.log(new Date(parseInt(expiredTime)));
 

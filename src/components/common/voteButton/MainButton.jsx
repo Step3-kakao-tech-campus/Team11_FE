@@ -52,7 +52,6 @@ const MainButton = ({
         if (choiced !== true) {
           changeOption(e.target.id).then((res) => {
             const result = res?.data.data;
-            console.log(result);
             changeVotes(true, result);
           });
         } else {
@@ -68,7 +67,6 @@ const MainButton = ({
             if (result.isConfirmed) {
               deleteVote(e.target.id).then((res) => {
                 const result = res?.data.data;
-                // changeOptions(result);
                 changeVotes(false, result);
               });
             }
@@ -79,8 +77,6 @@ const MainButton = ({
         vote(e.target.id)
           .then((res) => {
             const result = res?.data.data;
-            // changeOptions(result);
-            // console.log(result);
             changeVotes(true, result);
           })
           .catch((err) => console.log(err));
