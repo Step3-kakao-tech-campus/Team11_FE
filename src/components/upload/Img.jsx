@@ -69,7 +69,7 @@ const Img = ({ id, src }) => {
               type="file"
               className="fileInput"
               id={`file${id}`}
-              accept="image/*"
+              accept=".jpg, .png"
               onChange={(e) => {
                 saveImgFile(e);
               }}
