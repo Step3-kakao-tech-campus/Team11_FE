@@ -6,6 +6,7 @@ import Icon from "../common/Icon";
 import { GoFileMedia } from "react-icons/go";
 import { useRef } from "react";
 import PropTypes from "prop-types";
+import Resizer from "react-image-file-resizer";
 /**
  *
  * @param {object} param
@@ -18,16 +19,46 @@ const Img = ({ id, src }) => {
   const [option, setOption] = useRecoilState(optionState);
   const [img, setImg] = useState(false);
   const imgRef = useRef();
-  const saveImgFile = () => {
-    const file = imgRef.current.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      reader.result;
-      setImgFile(reader.result);
-      inputImg(reader.result);
-    };
+
+  const resizeFile = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        500,
+        500,
+        "JPEG",
+        100,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        "file"
+      );
+    });
+
+  const saveImgFile = async (e) => {
+    const file = await imgRef.current.files[0];
+    const supportedFormats = ["image/jpeg", "image/png"];
+    if (!supportedFormats.includes(file.type)) {
+      alert(
+        "지원되지 않는 이미지 형식입니다. JPEG, PNG 형식의 이미지를 업로드해주세요."
+      );
+      return;
+    }
+    try {
+      const compressedFile = await resizeFile(file);
+      const reader = new FileReader();
+      reader.readAsDataURL(compressedFile);
+      reader.onloadend = () => {
+        reader.result;
+        setImgFile(reader.result);
+        inputImg(reader.result);
+      };
+    } catch (error) {
+      console.error("이미지 리사이징 및 압축 중 오류가 발생했습니다:", error);
+    }
   };
+
   const inputImg = (src) => {
     setOption((prop) => {
       return prop.map((choice, index) => {
