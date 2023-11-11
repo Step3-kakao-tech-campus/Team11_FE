@@ -1,6 +1,5 @@
 import SubMyPageHeader from "@/components/layouts/headers/SubMyPageHeader";
 import Footer from "@/components/layouts/footers/Footer";
-// import { MyParticipateData } from "@/components/common/mypage/mypageTestData";
 import MyVoteList from "@/components/common/mypage/MyVoteList";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
@@ -11,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { participateInquire } from "@/services/my";
 import Loader from "@/assets/Loader";
 import useLogin from "@/hooks/useLogin";
+
 const MyParticipatePage = () => {
   const isLogIn = useLogin();
   const { data, isLoading } = useQuery({
@@ -22,7 +22,6 @@ const MyParticipatePage = () => {
   });
 
   const info = data?.data.data;
-
   const navigate = useNavigate();
 
   return (

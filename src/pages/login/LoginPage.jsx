@@ -27,7 +27,7 @@ const LoginPage = () => {
   const handleLogin = () => {
     if (isValid.isEmail && isValid.isPassword) {
       loginInquire(value)
-        .then((res) => {
+        .then(() => {
           setisLoginIn(true);
           navigate("/");
           window.location.reload();

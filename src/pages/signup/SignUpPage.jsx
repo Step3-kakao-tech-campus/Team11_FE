@@ -69,7 +69,7 @@ const SignUpPage = () => {
         })
         .catch((err) => alert(err.data.message));
     } else {
-      console.log("입력 내용이 올바르지 않습니다.");
+      alert("입력 내용이 올바르지 않습니다.");
     }
   };
   const nicknameCheck = () => {
@@ -102,7 +102,7 @@ const SignUpPage = () => {
           confirmButtonColor: "#429f50",
         });
       })
-      .catch((err) => {
+      .catch(() => {
         Swal.fire({
           icon: "error",
           text: "이미 사용중인 이메일입니다.",

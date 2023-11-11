@@ -1,6 +1,6 @@
 import routes from "@/routes";
 import { loginInstance, instance } from "./index";
-import { getCookie, removeCookie, setCookie } from "./Cookie";
+import { removeCookie, setCookie } from "./Cookie";
 
 export const getToken = (res) => {
   const accessToken = res.data.data.accessToken;
