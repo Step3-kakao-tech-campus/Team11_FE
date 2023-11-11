@@ -12,9 +12,13 @@ import ErrorScreen from "@/components/common/ErrorScreen";
 import NonePage from "@/components/common/NonePage";
 import Alert from "@/components/common/Alert";
 import { isToastState } from "@/utils/ToastAtom";
+import PropTypes from "prop-types";
 
+/**
+ * @param {object} prop
+ * @param {boolean} prop.modal
+ */
 const MainPage = ({ modal }) => {
-  // const datas = ButtonTest.data.votes;
   const [toast, setToast] = useRecoilState(isToastState);
   const categoryData = useRecoilValue(totalCategoryState);
   const bottomObserver = useRef(null);
@@ -83,7 +87,6 @@ const MainPage = ({ modal }) => {
         <Loader />
       ) : (
         <>
-          {" "}
           <HomeContainer>
             {error ? (
               <ErrorScreen error={error}></ErrorScreen>
@@ -108,4 +111,7 @@ const MainPage = ({ modal }) => {
   );
 };
 
+MainPage.propTypes = {
+  modal: PropTypes.bool,
+};
 export default MainPage;

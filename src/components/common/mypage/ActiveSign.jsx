@@ -3,8 +3,8 @@ import { Palette } from "@/styles/Palette";
 import PropTypes from "prop-types";
 
 /**
- *
- * @param {string} active
+ *@param {string} prop
+ * @param {string} prop.active
  * @return {JSX.Element}
  */
 const ActiveSign = ({ active }) => {
@@ -22,6 +22,7 @@ const ActiveSign = ({ active }) => {
 ActiveSign.propTypes = {
   active: PropTypes.string,
 };
+
 const Label = styled.div`
   font-size: 10px;
   width: 2.5rem;

@@ -1,6 +1,5 @@
 import SubMyPageHeader from "@/components/layouts/headers/SubMyPageHeader";
 import Footer from "@/components/layouts/footers/Footer";
-// import { MyQuestionsData } from "@/components/common/mypage/mypageTestData";
 import MyVoteList from "@/components/common/mypage/MyVoteList";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -20,9 +19,6 @@ const MyQuestionPage = () => {
     enabled: !!isLogIn,
   });
   const info = data?.data.data;
-  console.log(info);
-  // const datas = MyQuestionsData.data.votes;
-  // const datas = null;
   const navigate = useNavigate();
   return (
     <div>

@@ -1,6 +1,14 @@
 import routes from "@/routes";
 import HomeLayout from "../home/HomeLayout";
-const CompleteTemplate = ({ datas, isFetching, error, modal }) => {
+import PropTypes from "prop-types";
+/**
+ * @param {object} props
+ * @param {array} props.data
+ * @param {boolean} props.error
+ * @param {boolean} props.modal
+ *
+ **/
+const CompleteTemplate = ({ datas, error, modal }) => {
   return (
     <div>
       {error ? (
@@ -23,4 +31,9 @@ const CompleteTemplate = ({ datas, isFetching, error, modal }) => {
   );
 };
 
+CompleteTemplate.propTypes = {
+  datas: PropTypes.array.isRequired,
+  error: PropTypes.bool,
+  modal: PropTypes.bool,
+};
 export default CompleteTemplate;

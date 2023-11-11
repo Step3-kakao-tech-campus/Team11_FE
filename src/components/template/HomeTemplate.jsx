@@ -1,6 +1,16 @@
 import HomeLayout from "../home/HomeLayout";
 import routes from "@/routes";
-const HomeTemplate = ({ datas, isFetching, error, modal }) => {
+import PropTypes from "prop-types";
+
+/**
+ * @param {object} props
+ * @param {array} props.datas
+ * @param {boolean} props.error
+ * @param {boolean} props.modal
+ *
+ **/
+
+const HomeTemplate = ({ datas, error, modal }) => {
   return (
     <div>
       {error ? (
@@ -21,6 +31,12 @@ const HomeTemplate = ({ datas, isFetching, error, modal }) => {
       )}
     </div>
   );
+};
+
+HomeTemplate.propTypes = {
+  datas: PropTypes.array.isRequired,
+  error: PropTypes.bool,
+  modal: PropTypes.bool,
 };
 
 export default HomeTemplate;

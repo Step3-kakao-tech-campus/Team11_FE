@@ -9,24 +9,20 @@ import { Palette } from "@/styles/Palette";
  * @param {string} prop.endDate 작성자가 지정한 투표 종료 시간
  * @param {string} prop.username 작성자 이름
  */
+
 const Timer = ({ endDate, username }) => {
   let time = remaindTime(endDate)[0];
   const [endTime, setEndTime] = useState(time);
-  const [oneMinute, setOneMinute] = useState(false); // 일분 남았을 때 빨강 글씨 여부
+  const [oneMinute, setOneMinute] = useState(false);
 
   //타이머 함수
   function remaindTime(endDate) {
-    // 현재 시간을 구한다.
     let now = new Date();
-    // 마감 기간을 가져온다.
     let end = new Date(endDate);
 
-    // 현재 시간을 ms로 반환한다.
     let nt = now.getTime();
-    // 마감 기간을 ms로 반환한다.
     let et = end.getTime();
 
-    // 마감 기간이 현재 시간보다 클 경우
     if (nt < et) {
       let sec = parseInt(et - nt) / 1000;
       let days = parseInt(sec / 60 / 60 / 24);
@@ -73,6 +69,7 @@ Timer.propTypes = {
   endDate: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
 };
+
 const TimerStyle = styled.div`
   & div {
     margin-right: 5px;

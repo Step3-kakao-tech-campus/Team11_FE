@@ -36,17 +36,12 @@ export const CategoryBox = () => {
     setSort(sortList[num].value);
     setSortName(sortList[num].category);
     toggleDropdown("sort");
-    console.log(sort);
   };
 
   const handleContent = (num) => {
     setContent(contentList[num].value);
     setContentName(contentList[num].category);
-    console.log(contentList[num].value);
     toggleDropdown("content");
-    console.log(content);
-    console.log(contentName);
-    // window.location.reload();
   };
 
   useEffect(() => {

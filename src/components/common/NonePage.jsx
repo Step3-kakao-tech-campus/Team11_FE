@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import routes from "@/routes";
+import PropTypes from "prop-types";
+
+/**
+ * @param {object} props
+ * @param {string} props.what
+ * @param {string} props.query
+ */
 
 const NonePage = ({ what, query }) => {
   const navigate = useNavigate();
@@ -34,6 +41,11 @@ const NonePage = ({ what, query }) => {
       )}
     </>
   );
+};
+
+NonePage.propTypes = {
+  what: PropTypes.string.isRequired,
+  query: PropTypes.string,
 };
 
 const NoneStyle = styled.div`

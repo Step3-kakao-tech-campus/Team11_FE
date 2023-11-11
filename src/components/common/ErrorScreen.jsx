@@ -1,16 +1,24 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
+
+/**
+ * @param {object} props
+ * @param {object} props.error
+ * */
+
 const ErrorScreen = ({ error }) => {
-  // status={error.data.status}
-  // error={error.data.error}
-  // message={error.data.message}
   return (
     <ErrorStyle>
       <p>
         {error?.data?.status} {error?.data?.error}
       </p>
-      <p> {error?.data?.message} 🥲</p>
+      <p> {error?.data?.message || "네트워크 오류"} 🥲</p>
     </ErrorStyle>
   );
+};
+
+ErrorScreen.propTypes = {
+  error: PropTypes.object,
 };
 
 const ErrorStyle = styled.div`

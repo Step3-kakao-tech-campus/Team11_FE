@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -39,6 +40,11 @@ const ShareForm = ({ id = "" }) => {
     </FlexContainer>
   );
 };
+
+ShareForm.propTypes = {
+  id: PropTypes.string,
+};
+
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
