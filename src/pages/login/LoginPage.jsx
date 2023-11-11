@@ -33,7 +33,8 @@ const LoginPage = () => {
           console.log(res);
           window.location.reload();
         })
-        .catch((err) => alert(err.data.data.message));
+        .catch((err) => {
+        alert(err.data.message)});
     } else {
       alert("입력 내용이 올바르지 않습니다.");
     }

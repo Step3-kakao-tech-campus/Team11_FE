@@ -82,8 +82,7 @@ const ChatBeta = ({ participate }) => {
 
   return (
     <>
-      {dataList?.map((data, index) => {
-        console.log(data, index);
+      {dataList?.map((data, index) =>;
         return <Chat key={index} data={data} onClick={handleClick} />;
       })}
       <FormStyled>
