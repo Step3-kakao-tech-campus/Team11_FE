@@ -25,8 +25,6 @@ const ModalTemplate = ({ detailData, click, what }) => {
     id,
   } = detailData;
 
-  console.log(options);
-
   const [optionState, setOptionState] = useState(options);
   const [participateState, setParticipate] = useState(participate);
   const [modalVisible, setModalVisible] = useState(false);
@@ -41,6 +39,7 @@ const ModalTemplate = ({ detailData, click, what }) => {
   const [totalCountState, setTotalCountState] = useState(totalCount);
 
   const changeVotes = (participate, result) => {
+    click(participate, result);
     const resultData = result?.result;
     setParticipate(participate);
 
