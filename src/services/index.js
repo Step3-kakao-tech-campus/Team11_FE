@@ -3,49 +3,57 @@ import axios from "axios";
 import { refreshTokenInquire, removeToken } from "./login";
 import { useSetRecoilState } from "recoil";
 import { isLoginInState } from "@/utils/AuthAtom";
+import { getCookie } from "./Cookie";
 // import { useEffect } from "react";
 
+const token = localStorage.getItem("token");
 export const instance = axios.create({
-  baseURL: "https://ke48313f43733a.user-app.krampoline.com/",
+  baseURL: import.meta.env.VITE_AUTH_DOMAIN,
   timeout: 1000 * 3,
   headers: {
     "Content-Type": "application/json",
-  },
-  // withCredential: true
+  }
 });
 
+export const loginInstance = axios.create({
+  baseURL: import.meta.env.VITE_AUTH_DOMAIN,
+  timeout: 1000 * 3,
+  headers: {
+    "Content-Type": "application/json",
+  }
+})
+
+loginInstance.interceptors.request.use((config)=>{
+  const refreshToken = getCookie("refreshToken");
+  console.log('loginInstance')
+  if (refreshToken) {
+    config.headers["Authorization"] = `Bearer ${refreshToken}`;
+  }
+  return config;
+})
+
 instance.interceptors.request.use(async (config) => {
-  const token = localStorage.getItem("token");
-  const expiredTime = localStorage.getItem("expiredTime"); // accessToken 만료 시간
-  const refreshExpiredTime = localStorage.getItem("refreshExpiredTime");
+  const expiredTime = new Date(localStorage.getItem("expiredTime")); // accessToken 만료 시간
+  const refreshExpiredTime = new Date(localStorage.getItem("refreshExpiredTime"));
   const currentTime = new Date();
 
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
+  // localStorage.clear()
+  console.log("hello")
+  console.log(expiredTime)
 
-  console.log("hello");
-  console.log(new Date(parseInt(expiredTime)));
-
-  const expiredTimeData = new Date(parseInt(expiredTime));
-  const refreshExpiredTimeData = new Date(parseInt(refreshExpiredTime));
-
-  if (expiredTimeData < currentTime && refreshExpiredTimeData > currentTime) {
+  if (expiredTime < currentTime && refreshExpiredTime > currentTime) {
     try {
       const res = await refreshTokenInquire();
       console.log("refresh 요청");
       console.log(res);
-      localStorage.setItem(
-        "refreshExpiredTime",
-        res.data.data.refreshExpiredTime
-      );
-      localStorage.setItem("refreshToken", res.data.data.refreshToken);
-      config.headers["Authorization"] = `Bearer ${res.data.data.refreshToken}`;
       return;
     } catch (e) {
       console.log(e);
       removeToken();
-      return config;
+      return Promise.reject(e);
     }
   }
   return config;

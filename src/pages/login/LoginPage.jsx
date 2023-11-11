@@ -29,9 +29,9 @@ const LoginPage = () => {
       loginInquire(value)
         .then((res) => {
           setisLoginIn(true);
-          alert("로그인 성공 !!");
           navigate("/");
           console.log(res);
+          window.location.reload();
         })
         .catch((err) => alert(err.data.data.message));
     } else {
