@@ -4,28 +4,26 @@ import styled from "styled-components";
 import Alert from "../Alert";
 import { closeInquire } from "@/services/main";
 import Swal from "sweetalert2";
-import { useMutation} from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 /**
  * @param {object} props
  * @param {boolean} props.isOwner 작성자 확인
- * @param {string} props.active 투표 진행중 여부 : continue, complete
+ * @param {number} props.id 투표 id
  */
-const EndButton = ({ isOwner, id, active: initialActive }) => {
+
+const EndButton = ({ isOwner, id, active: initialActive, modal }) => {
   const [active, setActive] = useState(initialActive);
   const [alert, setIsAlert] = useState(false);
 
-  const deleteVote = useMutation(
-    {
-      mutationFn: () => closeInquire(id),
-      onSuccess: () => {
-        console.log('Deleting')
-        setActive("complete");
-        setIsAlert(true);
-        window.location.reload();
-      },
-    }
-  )
+  const deleteVote = useMutation({
+    mutationFn: () => closeInquire(id),
+    onSuccess: () => {
+      setActive("complete");
+      setIsAlert(true);
+      window.location.reload();
+    },
+  });
 
   const handleOnClick = () => {
     Swal.fire({
@@ -47,7 +45,11 @@ const EndButton = ({ isOwner, id, active: initialActive }) => {
 
   return (
     <>
-      {alert && <Alert setIsAlert={setIsAlert}>투표가 종료됩니다.</Alert>}
+      {alert && (
+        <Alert setIsAlert={setIsAlert} positionLeft={modal && "5%"}>
+          투표가 종료됩니다.
+        </Alert>
+      )}
       {isOwner && active === "continue" ? (
         <ButtonStyled onClick={handleOnClick}>끝내기</ButtonStyled>
       ) : (
@@ -60,6 +62,7 @@ EndButton.propTypes = {
   isOwner: PropTypes.bool.isRequired,
   id: PropTypes.number.isRequired,
   active: PropTypes.string.isRequired,
+  modal: PropTypes.bool,
 };
 const ButtonStyled = styled.button`
   width: 60px;

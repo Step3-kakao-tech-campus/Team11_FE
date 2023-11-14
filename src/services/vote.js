@@ -10,9 +10,7 @@ export const changeOption = (id) => {
 };
 //글 업로드
 export const uploadVote = (count) => {
-  return instance.post(`/votes`, count, {
-    // headers: { "Content-Type": "multipart/form-data" },
-  });
+  return instance.post(`/votes`, count);
 };
 //투표 취소
 export const deleteVote = (id) => {

@@ -9,7 +9,7 @@ import { useParams } from "react-router";
 import { ChatInquire } from "@/services/main";
 import Swal from "sweetalert2";
 
-const ChatBeta = ({ participate }) => {
+const ChatForm = ({ participate }) => {
   const [write, setWrite] = useState("");
   const [alert, setIsAlert] = useState(false);
   const queryClient = useQueryClient();
@@ -48,7 +48,7 @@ const ChatBeta = ({ participate }) => {
   };
 
   const handleEnterKey = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && e.nativeEvent.isComposing === false) {
       handleUpload();
     }
   };
@@ -70,9 +70,7 @@ const ChatBeta = ({ participate }) => {
       if (result.isConfirmed) {
         deleteComment
           .mutate(uid)
-          .then((res) => {
-            console.log(res);
-          })
+          .then((res) => {})
           .catch((err) => {
             alert(err);
           });
@@ -104,7 +102,7 @@ const ChatBeta = ({ participate }) => {
     </>
   );
 };
-ChatBeta.propTypes = {
+ChatForm.propTypes = {
   data: PropTypes.object.isRequired,
   participate: PropTypes.bool.isRequired,
   id: PropTypes.number.isRequired,
@@ -160,4 +158,4 @@ const UploadStyled = styled.button`
   padding-block: 0;
   background-color: #fff;
 `;
-export default ChatBeta;
+export default ChatForm;

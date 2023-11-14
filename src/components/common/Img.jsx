@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
  * @param {object} prop
  * @param {string} prop.src 이미지 주소
  * @param {string} size 이미지 크기
+ * @param {boolean} server 서버에서 이미지를 가져올지 여부
  */
 const Img = ({ src, size, server }) => {
   return (
@@ -22,7 +23,9 @@ const Img = ({ src, size, server }) => {
 Img.propTypes = {
   src: PropTypes.string.isRequired,
   size: PropTypes.string,
+  server: PropTypes.bool,
 };
+
 const ImgStyle = styled.img`
   width: ${(props) => props.size || "111px"};
   min-height: ${(props) => props.size || "50px"};

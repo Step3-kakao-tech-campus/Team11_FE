@@ -13,7 +13,6 @@ export const myvoteInquire = () => {
 };
 
 export const newNameInquire = (payload) => {
-  console.log(payload);
   return instance.patch("/users/nickname", {
     nickname: payload,
   });

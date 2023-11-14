@@ -4,7 +4,7 @@ import VoteHead from "../common/voteButton/VoteHead";
 import MainContent from "./MainContent";
 import VoteBottom from "../common/voteButton/VoteBottom";
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "../common/modal/Modal";
 import ModalLayout from "../common/modal/ModalLayout";
@@ -12,12 +12,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import ShareForm from "../common/modal/ShareForm";
 
 /**
- *
+ * @param {object} props
  * @param {object} props.data
  * @param {string} props.what
+ * @param {string} props.route
+ *
  */
 
-const HomeLayout = ({ data, what, route }) => {
+const HomeLayout = ({ data, what, route, modal }) => {
   const navigate = useNavigate();
   const { id: modalId } = useParams();
 
@@ -41,6 +43,17 @@ const HomeLayout = ({ data, what, route }) => {
   const [shareModalVisible, setShareModalVisible] = useState(false);
   const [optionState, setOptionState] = useState(options);
   const [totalCountState, setTotalCountState] = useState(totalCount);
+
+  useEffect(() => {
+    setOptionState(options);
+  }, [options]);
+
+  useEffect(() => {
+    setParticipate(participate);
+  }, [participate]);
+  useEffect(() => {
+    setTotalCountState(totalCount);
+  }, [totalCount]);
 
   const changeVotes = (participate, result) => {
     const resultData = result?.result;
@@ -135,6 +148,8 @@ const HomeLayout = ({ data, what, route }) => {
 HomeLayout.propTypes = {
   data: PropTypes.object,
   what: PropTypes.string,
+  route: PropTypes.string,
+  modal: PropTypes.bool,
 };
 const Container = styled.div`
   display: flex;

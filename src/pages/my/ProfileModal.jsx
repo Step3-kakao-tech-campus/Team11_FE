@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Palette } from "@/styles/Palette";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import useValid from "@/hooks/useValid";
 import { useSetRecoilState } from "recoil";
@@ -8,8 +8,7 @@ import { isLoginInState } from "@/utils/AuthAtom";
 import { newNameInquire, newEmailInquire } from "@/services/my";
 import Swal from "sweetalert2";
 import { removeToken } from "@/services/login";
-import { emailCheckInquire,nicknameCheckInquire } from "@/services/signup";
-import Input from "@/components/login/Input";
+import { emailCheckInquire, nicknameCheckInquire } from "@/services/signup";
 
 /**
  *
@@ -18,8 +17,8 @@ import Input from "@/components/login/Input";
  * @param {string} img
  * @returns
  */
+
 const ProfileModal = ({ myNickName, myEmail, img }) => {
-  const originInfo = { name: myNickName, email: myEmail };
   const [newInfo, setNewInfo] = useState({
     name: myNickName,
     email: myEmail,
@@ -38,20 +37,17 @@ const ProfileModal = ({ myNickName, myEmail, img }) => {
   const handleOnChange = (e) => {
     const { id, value } = e.target;
     setNewInfo((prev) => ({ ...prev, [id]: value }));
-    if(id === "name") {
-      setCheckName(false)
-    } else if(id === "email"){
-      setCheckEmail(false)
+    if (id === "name") {
+      setCheckName(false);
+    } else if (id === "email") {
+      setCheckEmail(false);
     }
   };
 
   const handleSubmit = () => {
-    if (newInfo.name != originInfo.name) {
-      newNameInquire(newInfo.name);
-    }
-    if (newInfo.email != originInfo.email) {
-      newEmailInquire(newInfo.email);
-    }
+    newNameInquire(newInfo.name);
+    newEmailInquire(newInfo.email);
+
     setInput((prev) => !prev);
     alert("저장되었습니다!");
   };
@@ -73,55 +69,69 @@ const ProfileModal = ({ myNickName, myEmail, img }) => {
     });
   };
 
-  const nicknameCheck=()=> {
+  const nicknameCheck = () => {
     nicknameCheckInquire(newInfo.name)
-    .then(()=>{
-      setCheckName(true);
-      Swal.fire({
-        icon: "success",
-        text: "사용가능한 이름 입니다!",
-        confirmButtonColor: "#429f50",
-        })
-    })
-    .catch(err=>{
-      console.log(err)
-      Swal.fire({
-        icon: "error",
-        text: "이미 사용중인 이름입니다.",
-        confirmButtonColor: "#d33",
+      .then(() => {
+        setCheckName(true);
+        Swal.fire({
+          icon: "success",
+          text: "사용가능한 이름 입니다!",
+          confirmButtonColor: "#429f50",
+        });
       })
-    })
-  }
-  useEffect(() => {
-    console.log(              !isValid.isName ||
-      !isValid.isEmail ||
-      checkName && checkEmail)
-  },[isValid.isName, isValid.isEmail, checkName, checkEmail])
+      .catch((err) => {
+        console.log(err);
+        if (newInfo.name === myNickName) {
+          Swal.fire({
+            icon: "success",
+            text: "사용가능한 이름 입니다!",
+            confirmButtonColor: "#429f50",
+          });
+          setCheckName(true);
+        } else {
+          Swal.fire({
+            icon: "error",
+            text: "이미 사용중인 이름입니다.",
+            confirmButtonColor: "#d33",
+          });
+        }
+      });
+  };
 
-  const emailCheck=()=>{
+  const emailCheck = () => {
     emailCheckInquire(newInfo.email)
-    .then(()=>{
-      setCheckEmail(true)
-      Swal.fire({
-        icon: "success",
-        text: "사용가능한 이메일 입니다!",
-        confirmButtonColor: "#429f50",
-        })
-    })
-    .catch(err=>{
-      console.log(err)
-      Swal.fire({
-        icon: "error",
-        text: "이미 사용중인 이메일입니다.",
-        confirmButtonColor: "#d33",
+      .then(() => {
+        setCheckEmail(true);
+        Swal.fire({
+          icon: "success",
+          text: "사용가능한 이메일입니다!",
+          confirmButtonColor: "#429f50",
+        });
       })
-    })
-  }
-  console.log(isValid.isName, isValid.isEmail, checkName, checkEmail);
-  
+      .catch((err) => {
+        console.log(err);
+        if (newInfo.email === myEmail) {
+          Swal.fire({
+            icon: "success",
+            text: "사용가능한 이메일입니다!",
+            confirmButtonColor: "#429f50",
+          });
+          setCheckEmail(true);
+        } else {
+          Swal.fire({
+            icon: "error",
+            text: "이미 사용중인 이메일입니다.",
+            confirmButtonColor: "#d33",
+          });
+        }
+      });
+  };
+
   return (
     <div>
-      <Img src={`/image/${img}`} alt="사용자 프로필" />
+      <Img className="userImg">
+        <img src={`/image/${img}`} alt="사용자 프로" />
+      </Img>
       {!input && (
         <ProfileButton onClick={() => handleMyInfo()}>수정하기</ProfileButton>
       )}
@@ -130,21 +140,35 @@ const ProfileModal = ({ myNickName, myEmail, img }) => {
         <input
           type="text"
           id="name"
-          defaultValue={myNickName}
+          defaultValue={newInfo.name}
           disabled={!input}
           onChange={handleOnChange}
         />
-        {input && <StyledButton onClick={nicknameCheck} disabled={!newInfo.name}>중복 검사</StyledButton>}
+        {input && (
+          <StyledButton
+            onClick={nicknameCheck}
+            disabled={(newInfo.name === myNickName) || !newInfo.name}
+          >
+            중복 검사
+          </StyledButton>
+        )}
         <div className="error">{validText.nameText}</div>
         <label htmlFor="email">이메일</label>
         <input
           type="email"
           id="email"
-          defaultValue={myEmail}
+          defaultValue={newInfo.email}
           disabled={!input}
           onChange={handleOnChange}
         />
-        {input && <StyledButton onClick={emailCheck} disabled={!newInfo.email}>중복 검사</StyledButton>}
+        {input && (
+          <StyledButton
+            onClick={emailCheck}
+            disabled={(newInfo.email === myEmail) || !newInfo.email || !isValid.isEmail}
+          >
+            중복 검사
+          </StyledButton>
+        )}
         <div className="error">{validText.emailText}</div>
       </InputBox>
       <ButtonBox>
@@ -152,9 +176,9 @@ const ProfileModal = ({ myNickName, myEmail, img }) => {
           <SubmitButton
             onClick={() => handleSubmit()}
             disabled={
-              !isValid.isName ||
-              !isValid.isEmail 
-              // !(checkName || checkEmail)
+              !((checkName && newInfo.email === myEmail) ||
+              (checkEmail && newInfo.name === myNickName)||
+              (checkEmail && checkName))
             }
           >
             저장
@@ -191,6 +215,8 @@ const InputBox = styled.div`
   .error {
     color: #e45151;
     font-size: 13px;
+    position: relative;
+    bottom: 30px;
   }
 `;
 const ButtonBox = styled.div`
@@ -198,16 +224,22 @@ const ButtonBox = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-const Img = styled.img`
+const Img = styled.div`
   width: 95px;
   height: 95px;
-  margin: 10px auto;
+  margin-left: 112.5px;
+
   overflow: hidden;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   border-radius: 1000000000px;
-  box-shadow: 0 0 0 2.3px #ffffff, 0 0 0 4.6px ${Palette.point_blue};
+  box-shadow: 0 0 0 2.3px #ffffff, 0 0 0 4.6px ${Palette["point_blue"]};
+  img {
+    width: 100%;
+  }
 `;
 const StyledButton = styled.button`
   border-radius: 50px;
@@ -222,9 +254,8 @@ const StyledButton = styled.button`
   bottom: 37.5px;
   left: 238px;
   cursor: pointer;
-  &:hover{
-    background-color: #8C9CCF;
-  }
+  background-color: ${(props) =>
+    props.disabled ? Palette.button_gray : Palette.button_blue};
 `;
 const SubmitButton = styled.button`
   margin-top: 20px;

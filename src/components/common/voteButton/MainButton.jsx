@@ -3,7 +3,7 @@ import { MainButtonSt, BtnContents } from "@/styles/VotingBtnStyle";
 import PercentNumber from "./PercentNumber";
 import styled from "styled-components";
 import Img from "../Img";
-
+import PropTypes from "prop-types";
 import Alert from "../Alert";
 import { changeOption, deleteVote, vote } from "@/services/vote";
 import Swal from "sweetalert2";
@@ -32,12 +32,13 @@ const MainButton = ({
   participate,
   isOwner,
   active,
-  className,
   voteId,
   changeVotes,
 }) => {
   const login = localStorage.getItem("token");
   const [alert, setIsAlert] = useState(false);
+  const buttonActive = isOwner || participate || active === "complete";
+
   const clickButton = (e) => {
     if (active === "complete") {
       setIsAlert(true);
@@ -48,13 +49,14 @@ const MainButton = ({
       if (!login) {
         setIsAlert(true);
       } else if (participate === true) {
-        console.log(e.target);
+        //투표 수정
         if (choiced !== true) {
           changeOption(e.target.id).then((res) => {
             const result = res?.data.data;
             changeVotes(true, result);
           });
         } else {
+          //투표 취소
           Swal.fire({
             icon: "info",
             html: "투표 취소 시 댓글이 전부 삭제될 수 있습니다. <br><br> 취소하시겠습니까?",
@@ -73,15 +75,13 @@ const MainButton = ({
           });
         }
       } else {
-        //투표 안한 기본 상태...
+        //투표 안한 상태
         vote(e.target.id)
           .then((res) => {
             const result = res?.data.data;
             changeVotes(true, result);
           })
           .catch((err) => console.log(err));
-        // onClick();
-        //투표 요청보내기
       }
     }
   };
@@ -100,7 +100,7 @@ const MainButton = ({
       ) : null}
 
       <ButtonContainer id={voteId}>
-        {src ? <Img src={src} server={true} /> : <></>}
+        {src && <Img src={src} server={true} />}
 
         <MainButtonSt
           border={value == 100 ? true : false}
@@ -114,10 +114,10 @@ const MainButton = ({
           <progress
             id={id}
             max="100"
-            value={isOwner || participate || active === "complete" ? value : 0}
+            value={buttonActive ? value : 0}
           ></progress>
         </MainButtonSt>
-        {isOwner || participate || active === "complete" ? (
+        {buttonActive ? (
           <PercentNumber
             value={value}
             number={number}
@@ -130,6 +130,21 @@ const MainButton = ({
       </ButtonContainer>
     </>
   );
+};
+
+MainButton.propTypes = {
+  choiced: PropTypes.bool.isRequired,
+  value: PropTypes.number.isRequired,
+  number: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  participate: PropTypes.bool.isRequired,
+  isOwner: PropTypes.bool.isRequired,
+  active: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  voteId: PropTypes.number.isRequired,
+  changeVotes: PropTypes.func,
 };
 
 const ButtonContainer = styled.div`

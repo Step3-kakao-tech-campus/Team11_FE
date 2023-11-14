@@ -8,6 +8,7 @@ import { useState } from "react";
  * @param {string} prop.title
  * @param {string} prop.content
  */
+
 const MainContent = ({ title, content }) => {
   const [moreState, setMoreState] = useState(false);
   const [buttonState, setButtonState] = useState(false);
@@ -33,10 +34,12 @@ const MainContent = ({ title, content }) => {
     </MainContentStyle>
   );
 };
+
 MainContent.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
 };
+
 const MainContentStyle = styled.div`
   display: flex;
   flex-direction: column;
