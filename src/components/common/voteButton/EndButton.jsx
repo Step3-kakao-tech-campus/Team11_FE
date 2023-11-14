@@ -12,7 +12,7 @@ import { useMutation } from "@tanstack/react-query";
  * @param {number} props.id 투표 id
  */
 
-const EndButton = ({ isOwner, id, active: initialActive }) => {
+const EndButton = ({ isOwner, id, active: initialActive, modal }) => {
   const [active, setActive] = useState(initialActive);
   const [alert, setIsAlert] = useState(false);
 
@@ -45,7 +45,11 @@ const EndButton = ({ isOwner, id, active: initialActive }) => {
 
   return (
     <>
-      {alert && <Alert setIsAlert={setIsAlert}>투표가 종료됩니다.</Alert>}
+      {alert && (
+        <Alert setIsAlert={setIsAlert} positionLeft={modal && "5%"}>
+          투표가 종료됩니다.
+        </Alert>
+      )}
       {isOwner && active === "continue" ? (
         <ButtonStyled onClick={handleOnClick}>끝내기</ButtonStyled>
       ) : (
@@ -58,6 +62,7 @@ EndButton.propTypes = {
   isOwner: PropTypes.bool.isRequired,
   id: PropTypes.number.isRequired,
   active: PropTypes.string.isRequired,
+  modal: PropTypes.bool,
 };
 const ButtonStyled = styled.button`
   width: 60px;
