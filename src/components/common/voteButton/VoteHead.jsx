@@ -26,6 +26,7 @@ const VoteHead = ({
   active,
   categoryValue,
   id,
+  modal,
 }) => {
   const [categoryName, setCategoryName] = useState(null);
   useEffect(() => {
@@ -66,7 +67,7 @@ const VoteHead = ({
             </div>
           )}
         </VoteHeadCss>
-        <EndButton isOwner={isOwner} active={active} id={id} />
+        <EndButton isOwner={isOwner} active={active} id={id} modal={modal} />
       </VoteHeadLayout>
     </>
   );

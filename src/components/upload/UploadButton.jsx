@@ -14,6 +14,7 @@ const UploadButton = () => {
   const [count, setCount] = useRecoilState(uploadSelector);
   const resetList = useResetRecoilState(uploadSelector);
   const [active, setActive] = useState(false);
+  const [doOnce, setDoOnce] = useState(true);
   const mutation = useMutation({
     mutationFn: (payload) => uploadVote(payload),
   });
@@ -29,10 +30,12 @@ const UploadButton = () => {
     }
   }, [count]);
 
-  const uploadButton = () => {
-    if (active) {
+  const uploadButton = async () => {
+    console.log(doOnce);
+    if (active && doOnce) {
+      setDoOnce(false);
       const payload = count;
-      mutation.mutate(payload, {
+      await mutation.mutate(payload, {
         onSuccess: () => {
           Swal.fire({
             icon: "success",
@@ -43,6 +46,7 @@ const UploadButton = () => {
             location.reload();
           });
           navigate(routes.home);
+          setDoOnce(true);
         },
         onError: (error) => {
           alert(error?.data.message);
