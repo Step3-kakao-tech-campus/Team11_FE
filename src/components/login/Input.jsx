@@ -55,4 +55,5 @@ const StyledInput = styled.input`
   font-size: 13px;
   border: none;
   border-bottom: 2px solid #9eb0ea;
+  position: relative;
 `;
