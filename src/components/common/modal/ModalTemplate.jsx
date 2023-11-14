@@ -52,7 +52,7 @@ const ModalTemplate = ({ detailData, click, what }) => {
   const [totalCountState, setTotalCountState] = useState(totalCount);
 
   const changeVotes = (participate, result) => {
-    click(participate, result);
+    click && click(participate, result);
     const resultData = result?.result;
     setParticipate(participate);
 
