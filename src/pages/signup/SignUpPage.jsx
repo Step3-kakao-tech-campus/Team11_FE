@@ -132,7 +132,7 @@ const SignUpPage = () => {
           <StyledButton onClick={nicknameCheck} disabled={!value.name}>
             중복 검사
           </StyledButton>
-          <StyledErr>{validText.nameText}</StyledErr>
+          <StyledErr name="name">{validText.nameText}</StyledErr>
         </InputContainer>
         <InputContainer>
           <InputGroup
@@ -148,7 +148,7 @@ const SignUpPage = () => {
             중복 검사
           </StyledButton>
         </InputContainer>
-        <StyledErr>{validText.emailText}</StyledErr>
+        <StyledErr email="email">{validText.emailText}</StyledErr>
         <InputGroup
           className="password"
           id="password"
@@ -243,11 +243,12 @@ const Header = styled.div`
 const Group = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 13px;
   align-items: center;
 `;
 const InputContainer = styled.div`
   height: 100px;
+  margin-bottom: 5px;
 `;
 const ButtonGroup = styled.div`
   display: flex;
@@ -303,10 +304,10 @@ const Policy = styled.div`
 `;
 const StyledErr = styled.div`
   color: #e45151;
-  font-size: 13px;
+  font-size: 12px;
   position: relative;
-  right: 60px;
-  bottom: 10px;
+  right: ${props => (props.name === 'name' ? '50px' : props.email === 'email' ? '65px' :'60px')};
+  bottom: ${props => (props.name === 'name' ? '27px' : props.email === 'email' ? '17px' :'10px')};
 `;
 const DuplicateErr = styled.div`
   color: #e45151;
