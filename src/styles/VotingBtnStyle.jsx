@@ -4,7 +4,7 @@ import { Palette } from "./Palette";
 export const MainButtonSt = styled.div`
   cursor: pointer;
   font-family: "NanumGothic";
-  max-width: 295px;
+  max-width: 300px;
   min-width: 110px;
   margin-top: -1rem;
 
@@ -40,6 +40,7 @@ export const BtnContents = styled.p`
 
   position: relative;
   top: 2.1rem;
+  /* top: 2.7rem; */
   z-index: 2;
 
   font-size: 12px;

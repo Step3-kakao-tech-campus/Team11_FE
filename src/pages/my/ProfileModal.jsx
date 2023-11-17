@@ -20,8 +20,8 @@ import { emailCheckInquire, nicknameCheckInquire } from "@/services/signup";
 
 const ProfileModal = ({ myNickName, myEmail, img }) => {
   const [newInfo, setNewInfo] = useState({
-    name: "",
-    email: "",
+    name: myNickName,
+    email: myEmail,
     password: "",
   });
   const [input, setInput] = useState(false);
@@ -140,14 +140,14 @@ const ProfileModal = ({ myNickName, myEmail, img }) => {
         <input
           type="text"
           id="name"
-          placeholder={input ? "" : myNickName}
+          defaultValue={newInfo.name}
           disabled={!input}
           onChange={handleOnChange}
         />
         {input && (
           <StyledButton
             onClick={nicknameCheck}
-            disabled={!newInfo.name && !isValid.isName}
+            disabled={(newInfo.name === myNickName) || !newInfo.name}
           >
             중복 검사
           </StyledButton>
@@ -157,14 +157,14 @@ const ProfileModal = ({ myNickName, myEmail, img }) => {
         <input
           type="email"
           id="email"
-          placeholder={input ? "" : myEmail}
+          defaultValue={newInfo.email}
           disabled={!input}
           onChange={handleOnChange}
         />
         {input && (
           <StyledButton
             onClick={emailCheck}
-            disabled={!newInfo.email && !isValid.isEmail}
+            disabled={(newInfo.email === myEmail) || !newInfo.email || !isValid.isEmail}
           >
             중복 검사
           </StyledButton>
@@ -176,7 +176,9 @@ const ProfileModal = ({ myNickName, myEmail, img }) => {
           <SubmitButton
             onClick={() => handleSubmit()}
             disabled={
-              !(isValid.isName && isValid.isEmail && checkName && checkEmail)
+              !((checkName && newInfo.email === myEmail) ||
+              (checkEmail && newInfo.name === myNickName)||
+              (checkEmail && checkName))
             }
           >
             저장

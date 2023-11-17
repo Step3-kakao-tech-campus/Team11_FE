@@ -28,6 +28,10 @@ const AddChoice = () => {
   //선택지 인풋 값 바꾸기
   const inputOption = (e) => {
     const id = e.target.id;
+    if (e.target.value.length > 15) {
+      alert("옵션 내용은 15자 이내로 입력해주세요😥");
+      return;
+    }
     setOption((prop) => {
       return prop.map((choice, index) => {
         if (id == index) {

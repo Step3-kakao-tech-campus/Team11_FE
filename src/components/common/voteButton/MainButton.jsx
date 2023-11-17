@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { MainButtonSt, BtnContents } from "@/styles/VotingBtnStyle";
 import PercentNumber from "./PercentNumber";
 import styled from "styled-components";
